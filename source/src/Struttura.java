@@ -1,0 +1,2212 @@
+// **********************************************
+// Struttura
+// Project : Cfa
+// **********************************************
+
+import com.progamma.is.*;
+import com.progamma.*;
+import com.progamma.idre.*;
+import com.progamma.doc.*;
+
+import java.io.*;
+import java.util.*;
+import java.sql.*;
+
+
+public final class Struttura extends MyWebForm implements Serializable
+{  
+  MyWebEntryPoint MainFrm;
+  
+  // Frame constant definitions
+  ATree TRE_STRUTTBILANC;
+
+  // Definition of Global Variables
+  private IDVariant NUOVOVISIBIL = new IDVariant(0,IDVariant.STRING);
+
+ 
+  // **********************************************
+  // Inizializzatore tabelle IMDB di form
+  // **********************************************
+  public static void ImdbInit(IMDBObj IMDB)
+  {
+    Init_TBL_DAPASSARE(IMDB);
+    //
+    //
+    Init_PQRY_VISTASTRUBI1(IMDB);
+    Init_PQRY_VISTASTRUBI2(IMDB);
+    Init_PQRY_VISTASTRUBI3(IMDB);
+    Init_PQRY_VISTASTRUBI4(IMDB);
+    Init_PQRY_VISTASTRUBI5(IMDB);
+    Init_PQRY_VISTASTRUBI6(IMDB);
+    Init_PQRY_VISTASTRUBI7(IMDB);
+    Init_PQRY_VISTASTRUBI8(IMDB);
+    Init_PQRY_VISTASTRUBI9(IMDB);
+    Init_PQRY_VISTASTRUB10(IMDB);
+    Init_PQRY_VISTASTRUB11(IMDB);
+    Init_PQRY_VISTASTRUB12(IMDB);
+    Init_PQRY_VISTASTRUB13(IMDB);
+    Init_PQRY_VISTASTRUB14(IMDB);
+    Init_PQRY_VISTASTRUBIL(IMDB);
+  }
+
+  // IMDB DDL Procedures
+  private static void Init_TBL_DAPASSARE(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef1.TBL_DAPASSARE, 8);
+    IMDB.set_TblCode(IMDBDef1.TBL_DAPASSARE, "TBL_DAPASSARE");
+    IMDB.set_FldCode(IMDBDef1.TBL_DAPASSARE,IMDBDef1.FLD_DAPASSARE_ROWNAMENTOSP, "ROWNAMENTOSP");
+    IMDB.SetFldParams(IMDBDef1.TBL_DAPASSARE,IMDBDef1.FLD_DAPASSARE_ROWNAMENTOSP,5,1,0);
+    IMDB.set_FldCode(IMDBDef1.TBL_DAPASSARE,IMDBDef1.FLD_DAPASSARE_ROWNAMELIVEL, "ROWNAMELIVEL");
+    IMDB.SetFldParams(IMDBDef1.TBL_DAPASSARE,IMDBDef1.FLD_DAPASSARE_ROWNAMELIVEL,1,1,0);
+    IMDB.set_FldCode(IMDBDef1.TBL_DAPASSARE,IMDBDef1.FLD_DAPASSARE_ROWNAMESOTTO, "ROWNAMESOTTO");
+    IMDB.SetFldParams(IMDBDef1.TBL_DAPASSARE,IMDBDef1.FLD_DAPASSARE_ROWNAMESOTTO,1,1,0);
+    IMDB.set_FldCode(IMDBDef1.TBL_DAPASSARE,IMDBDef1.FLD_DAPASSARE_ROWNAMECAPTI, "ROWNAMECAPTI");
+    IMDB.SetFldParams(IMDBDef1.TBL_DAPASSARE,IMDBDef1.FLD_DAPASSARE_ROWNAMECAPTI,5,49,0);
+    IMDB.set_FldCode(IMDBDef1.TBL_DAPASSARE,IMDBDef1.FLD_DAPASSARE_ROWNAMESTRUT, "ROWNAMESTRUT");
+    IMDB.SetFldParams(IMDBDef1.TBL_DAPASSARE,IMDBDef1.FLD_DAPASSARE_ROWNAMESTRUT,1,10,0);
+    IMDB.set_FldCode(IMDBDef1.TBL_DAPASSARE,IMDBDef1.FLD_DAPASSARE_ROWNAMECODIC, "ROWNAMECODIC");
+    IMDB.SetFldParams(IMDBDef1.TBL_DAPASSARE,IMDBDef1.FLD_DAPASSARE_ROWNAMECODIC,1,10,0);
+    IMDB.set_FldCode(IMDBDef1.TBL_DAPASSARE,IMDBDef1.FLD_DAPASSARE_ROWNAMETIVAL, "ROWNAMETIVAL");
+    IMDB.SetFldParams(IMDBDef1.TBL_DAPASSARE,IMDBDef1.FLD_DAPASSARE_ROWNAMETIVAL,5,49,0);
+    IMDB.set_FldCode(IMDBDef1.TBL_DAPASSARE,IMDBDef1.FLD_DAPASSARE_ROWNAMCODGER, "ROWNAMCODGER");
+    IMDB.SetFldParams(IMDBDef1.TBL_DAPASSARE,IMDBDef1.FLD_DAPASSARE_ROWNAMCODGER,5,21,0);
+    IMDB.TblAddNew(IMDBDef1.TBL_DAPASSARE, 0);
+  }
+
+  private static void Init_PQRY_VISTASTRUBI1(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef8.PQRY_VISTASTRUBI1, 4);
+    IMDB.set_TblCode(IMDBDef8.PQRY_VISTASTRUBI1, "PQRY_VISTASTRUBI1");
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI1,IMDBDef8.PQSL_VISTASTRUBI1_DESCR_RAMO, "DESCR_RAMO");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI1,IMDBDef8.PQSL_VISTASTRUBI1_DESCR_RAMO,5,183,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI1,IMDBDef8.PQSL_VISTASTRUBI1_E_S, "E_S");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI1,IMDBDef8.PQSL_VISTASTRUBI1_E_S,5,1,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI1,IMDBDef8.PQSL_VISTASTRUBI1_HASH, "HASH");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI1,IMDBDef8.PQSL_VISTASTRUBI1_HASH,5,298,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI1,IMDBDef8.PQSL_VISTASTRUBI1_ICON, "ICON");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI1,IMDBDef8.PQSL_VISTASTRUBI1_ICON,5,99,0);
+    IMDB.TblAddNew(IMDBDef8.PQRY_VISTASTRUBI1, 0);
+  }
+
+  private static void Init_PQRY_VISTASTRUBI2(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef8.PQRY_VISTASTRUBI2, 5);
+    IMDB.set_TblCode(IMDBDef8.PQRY_VISTASTRUBI2, "PQRY_VISTASTRUBI2");
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI2,IMDBDef8.PQSL_VISTASTRUBI2_DESCR_RAMO, "DESCR_RAMO");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI2,IMDBDef8.PQSL_VISTASTRUBI2_DESCR_RAMO,5,183,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI2,IMDBDef8.PQSL_VISTASTRUBI2_CODICE_GERARCHIA, "CODICE_GERARCHIA");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI2,IMDBDef8.PQSL_VISTASTRUBI2_CODICE_GERARCHIA,5,21,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI2,IMDBDef8.PQSL_VISTASTRUBI2_ORDERBY, "ORDERBY");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI2,IMDBDef8.PQSL_VISTASTRUBI2_ORDERBY,1,19,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI2,IMDBDef8.PQSL_VISTASTRUBI2_HASH, "HASH");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI2,IMDBDef8.PQSL_VISTASTRUBI2_HASH,5,298,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI2,IMDBDef8.PQSL_VISTASTRUBI2_ICON, "ICON");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI2,IMDBDef8.PQSL_VISTASTRUBI2_ICON,5,99,0);
+    IMDB.TblAddNew(IMDBDef8.PQRY_VISTASTRUBI2, 0);
+  }
+
+  private static void Init_PQRY_VISTASTRUBI3(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef8.PQRY_VISTASTRUBI3, 6);
+    IMDB.set_TblCode(IMDBDef8.PQRY_VISTASTRUBI3, "PQRY_VISTASTRUBI3");
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI3,IMDBDef8.PQSL_VISTASTRUBI3_DESCR_RAMO, "DESCR_RAMO");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI3,IMDBDef8.PQSL_VISTASTRUBI3_DESCR_RAMO,5,183,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI3,IMDBDef8.PQSL_VISTASTRUBI3_REVISTBICOGE, "REVISTBICOGE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI3,IMDBDef8.PQSL_VISTASTRUBI3_REVISTBICOGE,5,21,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI3,IMDBDef8.PQSL_VISTASTRUBI3_ORDERBY, "ORDERBY");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI3,IMDBDef8.PQSL_VISTASTRUBI3_ORDERBY,1,19,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI3,IMDBDef8.PQSL_VISTASTRUBI3_CODICE, "CODICE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI3,IMDBDef8.PQSL_VISTASTRUBI3_CODICE,1,15,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI3,IMDBDef8.PQSL_VISTASTRUBI3_HASH, "HASH");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI3,IMDBDef8.PQSL_VISTASTRUBI3_HASH,5,298,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI3,IMDBDef8.PQSL_VISTASTRUBI3_ICON, "ICON");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI3,IMDBDef8.PQSL_VISTASTRUBI3_ICON,5,99,0);
+    IMDB.TblAddNew(IMDBDef8.PQRY_VISTASTRUBI3, 0);
+  }
+
+  private static void Init_PQRY_VISTASTRUBI4(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef8.PQRY_VISTASTRUBI4, 5);
+    IMDB.set_TblCode(IMDBDef8.PQRY_VISTASTRUBI4, "PQRY_VISTASTRUBI4");
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI4,IMDBDef8.PQSL_VISTASTRUBI4_DESCR_RAMO, "DESCR_RAMO");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI4,IMDBDef8.PQSL_VISTASTRUBI4_DESCR_RAMO,5,183,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI4,IMDBDef8.PQSL_VISTASTRUBI4_REVISTBICOGE, "REVISTBICOGE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI4,IMDBDef8.PQSL_VISTASTRUBI4_REVISTBICOGE,5,21,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI4,IMDBDef8.PQSL_VISTASTRUBI4_ORDERBY, "ORDERBY");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI4,IMDBDef8.PQSL_VISTASTRUBI4_ORDERBY,1,19,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI4,IMDBDef8.PQSL_VISTASTRUBI4_HASH, "HASH");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI4,IMDBDef8.PQSL_VISTASTRUBI4_HASH,5,596,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI4,IMDBDef8.PQSL_VISTASTRUBI4_ICON, "ICON");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI4,IMDBDef8.PQSL_VISTASTRUBI4_ICON,5,99,0);
+    IMDB.TblAddNew(IMDBDef8.PQRY_VISTASTRUBI4, 0);
+  }
+
+  private static void Init_PQRY_VISTASTRUBI5(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef8.PQRY_VISTASTRUBI5, 6);
+    IMDB.set_TblCode(IMDBDef8.PQRY_VISTASTRUBI5, "PQRY_VISTASTRUBI5");
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI5,IMDBDef8.PQSL_VISTASTRUBI5_DESCR_RAMO, "DESCR_RAMO");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI5,IMDBDef8.PQSL_VISTASTRUBI5_DESCR_RAMO,5,183,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI5,IMDBDef8.PQSL_VISTASTRUBI5_REVISTBICOGE, "REVISTBICOGE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI5,IMDBDef8.PQSL_VISTASTRUBI5_REVISTBICOGE,5,21,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI5,IMDBDef8.PQSL_VISTASTRUBI5_CODICE, "CODICE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI5,IMDBDef8.PQSL_VISTASTRUBI5_CODICE,1,15,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI5,IMDBDef8.PQSL_VISTASTRUBI5_ORDERBY, "ORDERBY");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI5,IMDBDef8.PQSL_VISTASTRUBI5_ORDERBY,1,19,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI5,IMDBDef8.PQSL_VISTASTRUBI5_HASH, "HASH");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI5,IMDBDef8.PQSL_VISTASTRUBI5_HASH,5,298,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI5,IMDBDef8.PQSL_VISTASTRUBI5_ICON, "ICON");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI5,IMDBDef8.PQSL_VISTASTRUBI5_ICON,5,99,0);
+    IMDB.TblAddNew(IMDBDef8.PQRY_VISTASTRUBI5, 0);
+  }
+
+  private static void Init_PQRY_VISTASTRUBI6(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef8.PQRY_VISTASTRUBI6, 5);
+    IMDB.set_TblCode(IMDBDef8.PQRY_VISTASTRUBI6, "PQRY_VISTASTRUBI6");
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI6,IMDBDef8.PQSL_VISTASTRUBI6_DESCR_RAMO, "DESCR_RAMO");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI6,IMDBDef8.PQSL_VISTASTRUBI6_DESCR_RAMO,5,183,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI6,IMDBDef8.PQSL_VISTASTRUBI6_REVISTBICOGE, "REVISTBICOGE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI6,IMDBDef8.PQSL_VISTASTRUBI6_REVISTBICOGE,5,21,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI6,IMDBDef8.PQSL_VISTASTRUBI6_ORDERBY, "ORDERBY");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI6,IMDBDef8.PQSL_VISTASTRUBI6_ORDERBY,1,19,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI6,IMDBDef8.PQSL_VISTASTRUBI6_HASH, "HASH");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI6,IMDBDef8.PQSL_VISTASTRUBI6_HASH,5,596,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI6,IMDBDef8.PQSL_VISTASTRUBI6_ICON, "ICON");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI6,IMDBDef8.PQSL_VISTASTRUBI6_ICON,5,99,0);
+    IMDB.TblAddNew(IMDBDef8.PQRY_VISTASTRUBI6, 0);
+  }
+
+  private static void Init_PQRY_VISTASTRUBI7(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef8.PQRY_VISTASTRUBI7, 6);
+    IMDB.set_TblCode(IMDBDef8.PQRY_VISTASTRUBI7, "PQRY_VISTASTRUBI7");
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI7,IMDBDef8.PQSL_VISTASTRUBI7_DESCR_RAMO, "DESCR_RAMO");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI7,IMDBDef8.PQSL_VISTASTRUBI7_DESCR_RAMO,5,183,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI7,IMDBDef8.PQSL_VISTASTRUBI7_REVISTBICOGE, "REVISTBICOGE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI7,IMDBDef8.PQSL_VISTASTRUBI7_REVISTBICOGE,5,21,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI7,IMDBDef8.PQSL_VISTASTRUBI7_ORDERBY, "ORDERBY");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI7,IMDBDef8.PQSL_VISTASTRUBI7_ORDERBY,1,19,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI7,IMDBDef8.PQSL_VISTASTRUBI7_CODICE, "CODICE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI7,IMDBDef8.PQSL_VISTASTRUBI7_CODICE,1,15,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI7,IMDBDef8.PQSL_VISTASTRUBI7_HASH, "HASH");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI7,IMDBDef8.PQSL_VISTASTRUBI7_HASH,5,298,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI7,IMDBDef8.PQSL_VISTASTRUBI7_ICON, "ICON");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI7,IMDBDef8.PQSL_VISTASTRUBI7_ICON,5,99,0);
+    IMDB.TblAddNew(IMDBDef8.PQRY_VISTASTRUBI7, 0);
+  }
+
+  private static void Init_PQRY_VISTASTRUBI8(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef8.PQRY_VISTASTRUBI8, 5);
+    IMDB.set_TblCode(IMDBDef8.PQRY_VISTASTRUBI8, "PQRY_VISTASTRUBI8");
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI8,IMDBDef8.PQSL_VISTASTRUBI8_DESCR_RAMO, "DESCR_RAMO");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI8,IMDBDef8.PQSL_VISTASTRUBI8_DESCR_RAMO,5,183,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI8,IMDBDef8.PQSL_VISTASTRUBI8_REVISTBICOGE, "REVISTBICOGE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI8,IMDBDef8.PQSL_VISTASTRUBI8_REVISTBICOGE,5,21,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI8,IMDBDef8.PQSL_VISTASTRUBI8_ORDERBY, "ORDERBY");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI8,IMDBDef8.PQSL_VISTASTRUBI8_ORDERBY,1,19,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI8,IMDBDef8.PQSL_VISTASTRUBI8_HASH, "HASH");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI8,IMDBDef8.PQSL_VISTASTRUBI8_HASH,5,596,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI8,IMDBDef8.PQSL_VISTASTRUBI8_ICON, "ICON");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI8,IMDBDef8.PQSL_VISTASTRUBI8_ICON,5,99,0);
+    IMDB.TblAddNew(IMDBDef8.PQRY_VISTASTRUBI8, 0);
+  }
+
+  private static void Init_PQRY_VISTASTRUBI9(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef8.PQRY_VISTASTRUBI9, 6);
+    IMDB.set_TblCode(IMDBDef8.PQRY_VISTASTRUBI9, "PQRY_VISTASTRUBI9");
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI9,IMDBDef8.PQSL_VISTASTRUBI9_DESCR_RAMO, "DESCR_RAMO");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI9,IMDBDef8.PQSL_VISTASTRUBI9_DESCR_RAMO,5,183,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI9,IMDBDef8.PQSL_VISTASTRUBI9_REVISTBICOGE, "REVISTBICOGE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI9,IMDBDef8.PQSL_VISTASTRUBI9_REVISTBICOGE,5,21,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI9,IMDBDef8.PQSL_VISTASTRUBI9_ORDERBY, "ORDERBY");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI9,IMDBDef8.PQSL_VISTASTRUBI9_ORDERBY,1,19,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI9,IMDBDef8.PQSL_VISTASTRUBI9_CODICE, "CODICE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI9,IMDBDef8.PQSL_VISTASTRUBI9_CODICE,1,15,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI9,IMDBDef8.PQSL_VISTASTRUBI9_HASH, "HASH");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI9,IMDBDef8.PQSL_VISTASTRUBI9_HASH,5,298,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBI9,IMDBDef8.PQSL_VISTASTRUBI9_ICON, "ICON");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBI9,IMDBDef8.PQSL_VISTASTRUBI9_ICON,5,99,0);
+    IMDB.TblAddNew(IMDBDef8.PQRY_VISTASTRUBI9, 0);
+  }
+
+  private static void Init_PQRY_VISTASTRUB10(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef8.PQRY_VISTASTRUB10, 5);
+    IMDB.set_TblCode(IMDBDef8.PQRY_VISTASTRUB10, "PQRY_VISTASTRUB10");
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB10,IMDBDef8.PQSL_VISTASTRUB10_DESCR_RAMO, "DESCR_RAMO");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB10,IMDBDef8.PQSL_VISTASTRUB10_DESCR_RAMO,5,183,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB10,IMDBDef8.PQSL_VISTASTRUB10_REVISTBICOGE, "REVISTBICOGE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB10,IMDBDef8.PQSL_VISTASTRUB10_REVISTBICOGE,5,21,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB10,IMDBDef8.PQSL_VISTASTRUB10_ORDERBY, "ORDERBY");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB10,IMDBDef8.PQSL_VISTASTRUB10_ORDERBY,1,19,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB10,IMDBDef8.PQSL_VISTASTRUB10_HASH, "HASH");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB10,IMDBDef8.PQSL_VISTASTRUB10_HASH,5,596,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB10,IMDBDef8.PQSL_VISTASTRUB10_ICON, "ICON");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB10,IMDBDef8.PQSL_VISTASTRUB10_ICON,5,99,0);
+    IMDB.TblAddNew(IMDBDef8.PQRY_VISTASTRUB10, 0);
+  }
+
+  private static void Init_PQRY_VISTASTRUB11(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef8.PQRY_VISTASTRUB11, 6);
+    IMDB.set_TblCode(IMDBDef8.PQRY_VISTASTRUB11, "PQRY_VISTASTRUB11");
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB11,IMDBDef8.PQSL_VISTASTRUB11_DESCR_RAMO, "DESCR_RAMO");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB11,IMDBDef8.PQSL_VISTASTRUB11_DESCR_RAMO,5,183,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB11,IMDBDef8.PQSL_VISTASTRUB11_REVISTBICOGE, "REVISTBICOGE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB11,IMDBDef8.PQSL_VISTASTRUB11_REVISTBICOGE,5,21,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB11,IMDBDef8.PQSL_VISTASTRUB11_ORDERBY, "ORDERBY");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB11,IMDBDef8.PQSL_VISTASTRUB11_ORDERBY,1,19,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB11,IMDBDef8.PQSL_VISTASTRUB11_CODICE, "CODICE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB11,IMDBDef8.PQSL_VISTASTRUB11_CODICE,1,15,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB11,IMDBDef8.PQSL_VISTASTRUB11_HASH, "HASH");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB11,IMDBDef8.PQSL_VISTASTRUB11_HASH,5,298,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB11,IMDBDef8.PQSL_VISTASTRUB11_ICON, "ICON");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB11,IMDBDef8.PQSL_VISTASTRUB11_ICON,5,99,0);
+    IMDB.TblAddNew(IMDBDef8.PQRY_VISTASTRUB11, 0);
+  }
+
+  private static void Init_PQRY_VISTASTRUB12(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef8.PQRY_VISTASTRUB12, 5);
+    IMDB.set_TblCode(IMDBDef8.PQRY_VISTASTRUB12, "PQRY_VISTASTRUB12");
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB12,IMDBDef8.PQSL_VISTASTRUB12_DESCR_RAMO, "DESCR_RAMO");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB12,IMDBDef8.PQSL_VISTASTRUB12_DESCR_RAMO,5,183,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB12,IMDBDef8.PQSL_VISTASTRUB12_REVISTBICOGE, "REVISTBICOGE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB12,IMDBDef8.PQSL_VISTASTRUB12_REVISTBICOGE,5,21,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB12,IMDBDef8.PQSL_VISTASTRUB12_ORDERBY, "ORDERBY");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB12,IMDBDef8.PQSL_VISTASTRUB12_ORDERBY,1,19,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB12,IMDBDef8.PQSL_VISTASTRUB12_HASH, "HASH");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB12,IMDBDef8.PQSL_VISTASTRUB12_HASH,5,596,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB12,IMDBDef8.PQSL_VISTASTRUB12_ICON, "ICON");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB12,IMDBDef8.PQSL_VISTASTRUB12_ICON,5,99,0);
+    IMDB.TblAddNew(IMDBDef8.PQRY_VISTASTRUB12, 0);
+  }
+
+  private static void Init_PQRY_VISTASTRUB13(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef8.PQRY_VISTASTRUB13, 6);
+    IMDB.set_TblCode(IMDBDef8.PQRY_VISTASTRUB13, "PQRY_VISTASTRUB13");
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB13,IMDBDef8.PQSL_VISTASTRUB13_DESCR_RAMO, "DESCR_RAMO");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB13,IMDBDef8.PQSL_VISTASTRUB13_DESCR_RAMO,5,183,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB13,IMDBDef8.PQSL_VISTASTRUB13_REVISTBICOGE, "REVISTBICOGE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB13,IMDBDef8.PQSL_VISTASTRUB13_REVISTBICOGE,5,21,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB13,IMDBDef8.PQSL_VISTASTRUB13_ORDERBY, "ORDERBY");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB13,IMDBDef8.PQSL_VISTASTRUB13_ORDERBY,1,19,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB13,IMDBDef8.PQSL_VISTASTRUB13_CODICE, "CODICE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB13,IMDBDef8.PQSL_VISTASTRUB13_CODICE,1,15,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB13,IMDBDef8.PQSL_VISTASTRUB13_HASH, "HASH");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB13,IMDBDef8.PQSL_VISTASTRUB13_HASH,5,298,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB13,IMDBDef8.PQSL_VISTASTRUB13_ICON, "ICON");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB13,IMDBDef8.PQSL_VISTASTRUB13_ICON,5,99,0);
+    IMDB.TblAddNew(IMDBDef8.PQRY_VISTASTRUB13, 0);
+  }
+
+  private static void Init_PQRY_VISTASTRUB14(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef8.PQRY_VISTASTRUB14, 5);
+    IMDB.set_TblCode(IMDBDef8.PQRY_VISTASTRUB14, "PQRY_VISTASTRUB14");
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB14,IMDBDef8.PQSL_VISTASTRUB14_DESCR_RAMO, "DESCR_RAMO");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB14,IMDBDef8.PQSL_VISTASTRUB14_DESCR_RAMO,5,183,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB14,IMDBDef8.PQSL_VISTASTRUB14_REVISTBICOGE, "REVISTBICOGE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB14,IMDBDef8.PQSL_VISTASTRUB14_REVISTBICOGE,5,21,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB14,IMDBDef8.PQSL_VISTASTRUB14_ORDERBY, "ORDERBY");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB14,IMDBDef8.PQSL_VISTASTRUB14_ORDERBY,1,19,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB14,IMDBDef8.PQSL_VISTASTRUB14_HASH, "HASH");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB14,IMDBDef8.PQSL_VISTASTRUB14_HASH,5,596,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUB14,IMDBDef8.PQSL_VISTASTRUB14_ICON, "ICON");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUB14,IMDBDef8.PQSL_VISTASTRUB14_ICON,5,99,0);
+    IMDB.TblAddNew(IMDBDef8.PQRY_VISTASTRUB14, 0);
+  }
+
+  private static void Init_PQRY_VISTASTRUBIL(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef8.PQRY_VISTASTRUBIL, 4);
+    IMDB.set_TblCode(IMDBDef8.PQRY_VISTASTRUBIL, "PQRY_VISTASTRUBIL");
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBIL,IMDBDef8.PQSL_VISTASTRUBIL_DESCR_RAMO, "DESCR_RAMO");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBIL,IMDBDef8.PQSL_VISTASTRUBIL_DESCR_RAMO,5,183,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBIL,IMDBDef8.PQSL_VISTASTRUBIL_REVISTBICOGE, "REVISTBICOGE");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBIL,IMDBDef8.PQSL_VISTASTRUBIL_REVISTBICOGE,5,21,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBIL,IMDBDef8.PQSL_VISTASTRUBIL_ORDERBY, "ORDERBY");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBIL,IMDBDef8.PQSL_VISTASTRUBIL_ORDERBY,1,19,0);
+    IMDB.set_FldCode(IMDBDef8.PQRY_VISTASTRUBIL,IMDBDef8.PQSL_VISTASTRUBIL_HASH, "HASH");
+    IMDB.SetFldParams(IMDBDef8.PQRY_VISTASTRUBIL,IMDBDef8.PQSL_VISTASTRUBIL_HASH,5,298,0);
+    IMDB.TblAddNew(IMDBDef8.PQRY_VISTASTRUBIL, 0);
+  }
+
+
+
+  // **********************************************
+  // Costruttore per form multiple
+  // **********************************************
+  public Struttura(MyWebEntryPoint w, IMDBObj imdb)
+  {
+    //
+    SetMainFrm(w,imdb);
+  }
+
+  // **********************************************
+  // Funzione chiamata su form multipla
+  // durante l'inizializzazione
+  // **********************************************
+  public void SetMainFrm(WebEntryPoint w, IMDBObj i)
+  {
+    // Sono una form multipla, duplico IMDB
+    IMDB = new IMDBObj();
+    IMDB.set_DBSize(w.IwImdb.IMDB.DBSize());
+    ImdbInit(IMDB);
+    IMDB.SetMaster(w.IwImdb.IMDB);
+    super.SetMainFrm(w,i);
+  }
+  public void SetSubMainFrm(WebEntryPoint w, IMDBObj i)
+  {
+    // Sono una form multipla, duplico IMDB
+    IMDB = new IMDBObj();
+    IMDB.set_DBSize(w.IwImdb.IMDB.DBSize());
+    ImdbInit(IMDB);
+    IMDB.SetMaster(w.IwImdb.IMDB);
+    super.SetSubMainFrm(w, i);
+  }
+
+
+  // **********************************************
+  // Costruttore per form multiple
+  // **********************************************
+  public Struttura()
+  {
+    super();
+    //
+  }
+
+  // **********************************************
+  // Form Loaded
+  // **********************************************
+  public void Init(WebEntryPoint w, boolean flMulti, boolean flSubForm)
+  {
+    StringBuffer SQL;
+    int i;
+    ATreeItem Item;
+
+    MainFrm=(MyWebEntryPoint)w;
+    super.Init(w, flMulti, flSubForm);
+    //
+    FormIdx = MyGlb.FRM_STRUTTURA;
+    //
+    if (flMulti)
+      MainFrm.AddMultipleForm(this, flSubForm);
+    //
+    boolean oldIQ = MainFrm.InitializingQueries;
+    MainFrm.InitializingQueries = true;
+    //
+    RTCGuid = "C81DCD0F-D8AF-44A6-BAE0-A0CE5A0F00E4";
+    ResModeW = 3;
+    ResModeH = 3;
+    iVisualFlags = -2049;
+    DesignWidth = 680;
+    DesignHeight = 514;
+    set_Caption(new IDVariant("Struttura"));
+    //
+    Frames = new AFrame[2];
+    Frames[1] = new AFrame(1);
+    Frames[1].Parent = this;
+    Frames[1].Width = 680;
+    Frames[1].Height = 488;
+    Frames[1].Caption = "Struttura Bilancio";
+    Frames[1].Parent = this;
+    Frames[1].FixedHeight = 488;
+    TRE_STRUTTBILANC = new ATree(this);
+    Frames[1].Content = TRE_STRUTTBILANC;
+    TRE_STRUTTBILANC.Width = 680;
+    TRE_STRUTTBILANC.Height = 458;
+    TRE_STRUTTBILANC.FrIndex = 1;
+    TRE_STRUTTBILANC.Code = "TRE_STRUTTBILANC";
+    TRE_STRUTTBILANC.set_IsActive(true);
+    TRE_STRUTTBILANC.CtxMenuIdx = BaseCmdSetIdx + MyGlb.CMDS_MENUCONTTREE;
+    TRE_STRUTTBILANC.iGuid = "D377B699-1CF5-4966-AE54-94DED3EDBC4D";
+    TRE_STRUTTBILANC.SetItemCount(15);
+    Item = new ATreeItem();
+    TRE_STRUTTBILANC.SetItem(1,Item);
+    Item.ItemIndex = "N00001";
+    Item.Tooltip = "";
+    Item.Name = "Livellom 1";
+    Item.iGuid = "EF2F11CB-C803-4E0E-AE6A-D42832931F62";
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCR_RAMO as DESCR_RAMO, ");
+    SQL.append("  A.E_S as E_S, ");
+    SQL.append("  A.E_S || TO_CHAR ( A.LIVELLO ) || TO_CHAR ( A.SOTTOLIVELLO ) || LPAD(TO_CHAR ( A.CODICE ), 10, SUBSTR('0', 1, 1)) as HASH, ");
+    SQL.append("  DECODE(A.E_S, 'E', 'DirClose.gif', 'DirOpen.gif') as ICON ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL A ");
+    SQL.append("where (A.LIVELLO = 0) ");
+    SQL.append("and   (A.SOTTOLIVELLO = 0) ");
+    SQL.append("and   (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("order by ");
+    SQL.append("  A.E_S ");
+    Item.SetQuery(SQL, MainFrm.Cf4armDBObject.DB, MainFrm, "");
+    Item.SetIMDBTable(IMDBDef8.PQRY_VISTASTRUBI1);
+    Item.SetItemCount(1);
+    Item = new ATreeItem();
+    TRE_STRUTTBILANC.SetItem(2,Item);
+    Item.ItemIndex = "N00002";
+    Item.Tooltip = "";
+    Item.Name = "Livello 2";
+    Item.iGuid = "336879FB-EFE6-4B08-AA05-D7D4EE09CBBE";
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCR_RAMO as DESCR_RAMO, ");
+    SQL.append("  A.CODICE_GERARCHIA as CODICE_GERARCHIA, ");
+    SQL.append("  TRUNC(TO_NUMBER(A.CODICE_GERARCHIA)) as ORDERBY, ");
+    SQL.append("  A.E_S || TO_CHAR ( A.LIVELLO ) || TO_CHAR ( A.SOTTOLIVELLO ) || LPAD(TO_CHAR ( A.CODICE ), 10, SUBSTR('0', 1, 1)) as HASH, ");
+    SQL.append("  DECODE(A.E_S, 'E', 'PiramideAzzurra.bmp', 'RettBlu.bmp') as ICON ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL A ");
+    SQL.append("where (A.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (A.LIVELLO = 1) ");
+    SQL.append("and   (A.SOTTOLIVELLO = 0) ");
+    SQL.append("and   (EXISTS(");
+    SQL.append("( ");
+    SQL.append("select ");
+    SQL.append("  'X' ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL B ");
+    SQL.append("where (B.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (B.LIVELLO = 1) ");
+    SQL.append("and   (B.SOTTOLIVELLO = 1) ");
+    SQL.append("and   (B.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("))) ");
+    SQL.append("and   (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("order by 3 ");
+    Item.SetQuery(SQL, MainFrm.Cf4armDBObject.DB, MainFrm, "");
+    Item.SetIMDBTable(IMDBDef8.PQRY_VISTASTRUBI2);
+    Item.SetItemCount(1);
+    Item = new ATreeItem();
+    TRE_STRUTTBILANC.SetItem(3,Item);
+    Item.ItemIndex = "N00003";
+    Item.Tooltip = "";
+    Item.Name = "Livello 3";
+    Item.iGuid = "A27E34AA-FD50-4609-88EA-4CA1E6966D9E";
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCR_RAMO as DESCR_RAMO, ");
+    SQL.append("  A.CODICE_GERARCHIA as REVISTBICOGE, ");
+    SQL.append("  TRUNC(TO_NUMBER(A.CODICE_GERARCHIA)) as ORDERBY, ");
+    SQL.append("  A.CODICE as CODICE, ");
+    SQL.append("  A.E_S || TO_CHAR ( A.LIVELLO ) || TO_CHAR ( A.SOTTOLIVELLO ) || LPAD(TO_CHAR ( A.CODICE ), 10, SUBSTR('0', 1, 1)) as HASH, ");
+    SQL.append("  DECODE(A.E_S, 'E', 'PiramideAzzurra.bmp', 'RettBlu.bmp') as ICON ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL A ");
+    SQL.append("where (A.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (A.LIVELLO = 1) ");
+    SQL.append("and   (A.SOTTOLIVELLO = 1) ");
+    SQL.append("and   (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("order by 3 ");
+    Item.SetQuery(SQL, MainFrm.Cf4armDBObject.DB, MainFrm, "");
+    Item.SetIMDBTable(IMDBDef8.PQRY_VISTASTRUBI3);
+    Item.SetItemCount(1);
+    Item = new ATreeItem();
+    TRE_STRUTTBILANC.SetItem(4,Item);
+    Item.ItemIndex = "N00004";
+    Item.Tooltip = "";
+    Item.Name = "Livello 4";
+    Item.iGuid = "3FC3CD69-9651-4CC7-8331-CAA124D91A43";
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCR_RAMO as DESCR_RAMO, ");
+    SQL.append("  A.CODICE_GERARCHIA as REVISTBICOGE, ");
+    SQL.append("  TRUNC(TO_NUMBER(A.CODICE_GERARCHIA)) as ORDERBY, ");
+    SQL.append("  A.E_S || TO_CHAR ( A.LIVELLO ) || TO_CHAR ( A.SOTTOLIVELLO ) || LPAD(TO_CHAR ( A.CODICE ), 10, SUBSTR('0', 1, 1)) || ~~PQRY_VISTASTRUBI3.HASH~~ as HASH, ");
+    SQL.append("  DECODE(A.E_S, 'E', 'PiramideRosa.bmp', 'RettRosa.bmp') as ICON ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL A ");
+    SQL.append("where (A.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (A.LIVELLO = 2) ");
+    SQL.append("and   (A.SOTTOLIVELLO = 0) ");
+    SQL.append("and   (EXISTS(");
+    SQL.append("( ");
+    SQL.append("select ");
+    SQL.append("  'X' ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL B ");
+    SQL.append("where (B.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (B.LIVELLO = 2) ");
+    SQL.append("and   (B.SOTTOLIVELLO = 1) ");
+    SQL.append("and   (B.CODICE_PADRE_GERARCHIA = TO_CHAR ( ~~PQRY_VISTASTRUBI3.REVISTBICOGE~~ )) ");
+    SQL.append("and   (B.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("))) ");
+    SQL.append("and   (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("order by 3 ");
+    Item.SetQuery(SQL, MainFrm.Cf4armDBObject.DB, MainFrm, "");
+    Item.SetIMDBTable(IMDBDef8.PQRY_VISTASTRUBI4);
+    Item.SetItemCount(1);
+    Item = new ATreeItem();
+    TRE_STRUTTBILANC.SetItem(5,Item);
+    Item.ItemIndex = "N00005";
+    Item.Tooltip = "";
+    Item.Name = "Livello 5";
+    Item.iGuid = "9169325D-64F9-4D00-8D7C-AA0999E5525E";
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCR_RAMO as DESCR_RAMO, ");
+    SQL.append("  A.CODICE_GERARCHIA as REVISTBICOGE, ");
+    SQL.append("  A.CODICE as CODICE, ");
+    SQL.append("  TRUNC(TO_NUMBER(A.CODICE_GERARCHIA)) as ORDERBY, ");
+    SQL.append("  A.E_S || TO_CHAR ( A.LIVELLO ) || TO_CHAR ( A.SOTTOLIVELLO ) || LPAD(TO_CHAR ( A.CODICE ), 10, SUBSTR('0', 1, 1)) as HASH, ");
+    SQL.append("  DECODE(A.E_S, 'E', 'PiramideRosa.bmp', 'RettRosa.bmp') as ICON ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL A ");
+    SQL.append("where (A.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (A.LIVELLO = 2) ");
+    SQL.append("and   (A.SOTTOLIVELLO = 1) ");
+    SQL.append("and   (A.CODICE_PADRE_GERARCHIA = TO_CHAR ( ~~PQRY_VISTASTRUBI3.REVISTBICOGE~~ )) ");
+    SQL.append("and   (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("order by 4 ");
+    Item.SetQuery(SQL, MainFrm.Cf4armDBObject.DB, MainFrm, "");
+    Item.SetIMDBTable(IMDBDef8.PQRY_VISTASTRUBI5);
+    Item.SetItemCount(1);
+    Item = new ATreeItem();
+    TRE_STRUTTBILANC.SetItem(6,Item);
+    Item.ItemIndex = "N00006";
+    Item.Tooltip = "";
+    Item.Name = "Livello 6";
+    Item.iGuid = "4A096B41-DF70-4822-A0B1-9A3B1A811F32";
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCR_RAMO as DESCR_RAMO, ");
+    SQL.append("  A.CODICE_GERARCHIA as REVISTBICOGE, ");
+    SQL.append("  TRUNC(TO_NUMBER(A.CODICE_GERARCHIA)) as ORDERBY, ");
+    SQL.append("  A.E_S || TO_CHAR ( A.LIVELLO ) || TO_CHAR ( A.SOTTOLIVELLO ) || LPAD(TO_CHAR ( A.CODICE ), 10, SUBSTR('0', 1, 1)) || ~~PQRY_VISTASTRUBI5.HASH~~ as HASH, ");
+    SQL.append("  DECODE(A.E_S, 'E', 'PiramideVerde.bmp', 'RettVerde.bmp') as ICON ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL A ");
+    SQL.append("where (A.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (A.LIVELLO = 3) ");
+    SQL.append("and   (A.SOTTOLIVELLO = 0) ");
+    SQL.append("and   (EXISTS(");
+    SQL.append("( ");
+    SQL.append("select ");
+    SQL.append("  'X' ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL B ");
+    SQL.append("where (B.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (B.LIVELLO = 3) ");
+    SQL.append("and   (B.SOTTOLIVELLO = 1) ");
+    SQL.append("and   (B.CODICE_PADRE_GERARCHIA = TO_CHAR ( ~~PQRY_VISTASTRUBI5.REVISTBICOGE~~ )) ");
+    SQL.append("and   (B.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("))) ");
+    SQL.append("and   (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("order by 3 ");
+    Item.SetQuery(SQL, MainFrm.Cf4armDBObject.DB, MainFrm, "");
+    Item.SetIMDBTable(IMDBDef8.PQRY_VISTASTRUBI6);
+    Item.SetItemCount(1);
+    Item = new ATreeItem();
+    TRE_STRUTTBILANC.SetItem(7,Item);
+    Item.ItemIndex = "N00007";
+    Item.Tooltip = "";
+    Item.Name = "Livello 7";
+    Item.iGuid = "2A06A54B-A62A-4FF7-B439-B013933AA004";
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCR_RAMO as DESCR_RAMO, ");
+    SQL.append("  A.CODICE_GERARCHIA as REVISTBICOGE, ");
+    SQL.append("  TRUNC(TO_NUMBER(A.CODICE_GERARCHIA)) as ORDERBY, ");
+    SQL.append("  A.CODICE as CODICE, ");
+    SQL.append("  A.E_S || TO_CHAR ( A.LIVELLO ) || TO_CHAR ( A.SOTTOLIVELLO ) || LPAD(TO_CHAR ( A.CODICE ), 10, SUBSTR('0', 1, 1)) as HASH, ");
+    SQL.append("  DECODE(A.E_S, 'E', 'PiramideVerde.bmp', 'RettVerde.bmp') as ICON ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL A ");
+    SQL.append("where (A.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (A.LIVELLO = 3) ");
+    SQL.append("and   (A.SOTTOLIVELLO = 1) ");
+    SQL.append("and   (A.CODICE_PADRE_GERARCHIA = TO_CHAR ( ~~PQRY_VISTASTRUBI5.REVISTBICOGE~~ )) ");
+    SQL.append("and   (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("order by 3 ");
+    Item.SetQuery(SQL, MainFrm.Cf4armDBObject.DB, MainFrm, "");
+    Item.SetIMDBTable(IMDBDef8.PQRY_VISTASTRUBI7);
+    Item.SetItemCount(1);
+    Item = new ATreeItem();
+    TRE_STRUTTBILANC.SetItem(8,Item);
+    Item.ItemIndex = "N00008";
+    Item.Tooltip = "";
+    Item.Name = "Livello 8";
+    Item.iGuid = "7765500E-0DC0-4120-A73B-249A6BFCC625";
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCR_RAMO as DESCR_RAMO, ");
+    SQL.append("  A.CODICE_GERARCHIA as REVISTBICOGE, ");
+    SQL.append("  TRUNC(TO_NUMBER(A.CODICE_GERARCHIA)) as ORDERBY, ");
+    SQL.append("  A.E_S || TO_CHAR ( A.LIVELLO ) || TO_CHAR ( A.SOTTOLIVELLO ) || LPAD(TO_CHAR ( A.CODICE ), 10, SUBSTR('0', 1, 1)) || ~~PQRY_VISTASTRUBI7.HASH~~ as HASH, ");
+    SQL.append("  DECODE(A.E_S, 'E', 'CerchioRosso.bmp', 'RettRosso.bmp') as ICON ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL A ");
+    SQL.append("where (A.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (A.LIVELLO = 4) ");
+    SQL.append("and   (A.SOTTOLIVELLO = 0) ");
+    SQL.append("and   (EXISTS(");
+    SQL.append("( ");
+    SQL.append("select ");
+    SQL.append("  'X' ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL B ");
+    SQL.append("where (B.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (B.LIVELLO = 4) ");
+    SQL.append("and   (B.SOTTOLIVELLO = 1) ");
+    SQL.append("and   (B.CODICE_PADRE_GERARCHIA = TO_CHAR ( ~~PQRY_VISTASTRUBI7.REVISTBICOGE~~ )) ");
+    SQL.append("and   (B.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("))) ");
+    SQL.append("and   (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("order by 3 ");
+    Item.SetQuery(SQL, MainFrm.Cf4armDBObject.DB, MainFrm, "");
+    Item.SetIMDBTable(IMDBDef8.PQRY_VISTASTRUBI8);
+    Item.SetItemCount(1);
+    Item = new ATreeItem();
+    TRE_STRUTTBILANC.SetItem(9,Item);
+    Item.ItemIndex = "N00009";
+    Item.Tooltip = "";
+    Item.Name = "Livello 9";
+    Item.iGuid = "32B136FC-DFD5-4EEB-A19E-3FF670E9F96E";
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCR_RAMO as DESCR_RAMO, ");
+    SQL.append("  A.CODICE_GERARCHIA as REVISTBICOGE, ");
+    SQL.append("  TRUNC(TO_NUMBER(A.CODICE_GERARCHIA)) as ORDERBY, ");
+    SQL.append("  A.CODICE as CODICE, ");
+    SQL.append("  A.E_S || TO_CHAR ( A.LIVELLO ) || TO_CHAR ( A.SOTTOLIVELLO ) || LPAD(TO_CHAR ( A.CODICE ), 10, SUBSTR('0', 1, 1)) as HASH, ");
+    SQL.append("  DECODE(A.E_S, 'E', 'CerchioRosso.bmp', 'RettRosso.bmp') as ICON ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL A ");
+    SQL.append("where (A.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (A.LIVELLO = 4) ");
+    SQL.append("and   (A.SOTTOLIVELLO = 1) ");
+    SQL.append("and   (A.CODICE_PADRE_GERARCHIA = TO_CHAR ( ~~PQRY_VISTASTRUBI7.REVISTBICOGE~~ )) ");
+    SQL.append("and   (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("order by 3 ");
+    Item.SetQuery(SQL, MainFrm.Cf4armDBObject.DB, MainFrm, "");
+    Item.SetIMDBTable(IMDBDef8.PQRY_VISTASTRUBI9);
+    Item.SetItemCount(1);
+    Item = new ATreeItem();
+    TRE_STRUTTBILANC.SetItem(10,Item);
+    Item.ItemIndex = "N00010";
+    Item.Tooltip = "";
+    Item.Name = "Livello 10";
+    Item.iGuid = "4AFA176F-E929-4EF0-A7F9-9E8DC34F1817";
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCR_RAMO as DESCR_RAMO, ");
+    SQL.append("  A.CODICE_GERARCHIA as REVISTBICOGE, ");
+    SQL.append("  TRUNC(TO_NUMBER(A.CODICE_GERARCHIA)) as ORDERBY, ");
+    SQL.append("  A.E_S || TO_CHAR ( A.LIVELLO ) || TO_CHAR ( A.SOTTOLIVELLO ) || LPAD(TO_CHAR ( A.CODICE ), 10, SUBSTR('0', 1, 1)) || ~~PQRY_VISTASTRUBI9.HASH~~ as HASH, ");
+    SQL.append("  DECODE(A.E_S, 'E', 'PiramideGrigia.bmp', 'CerchioArancio.bmp') as ICON ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL A ");
+    SQL.append("where (A.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (A.LIVELLO = 5) ");
+    SQL.append("and   (A.SOTTOLIVELLO = 0) ");
+    SQL.append("and   (EXISTS(");
+    SQL.append("( ");
+    SQL.append("select ");
+    SQL.append("  'X' ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL B ");
+    SQL.append("where (B.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (B.LIVELLO = 5) ");
+    SQL.append("and   (B.SOTTOLIVELLO = 1) ");
+    SQL.append("and   (B.CODICE_PADRE_GERARCHIA = TO_CHAR ( ~~PQRY_VISTASTRUBI9.REVISTBICOGE~~ )) ");
+    SQL.append("and   (B.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("))) ");
+    SQL.append("and   (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("order by 3 ");
+    Item.SetQuery(SQL, MainFrm.Cf4armDBObject.DB, MainFrm, "");
+    Item.SetIMDBTable(IMDBDef8.PQRY_VISTASTRUB10);
+    Item.SetItemCount(1);
+    Item = new ATreeItem();
+    TRE_STRUTTBILANC.SetItem(11,Item);
+    Item.ItemIndex = "N00011";
+    Item.Tooltip = "";
+    Item.Name = "Livello 11";
+    Item.iGuid = "5B743BCD-783A-4798-854B-84C9A7EA46BE";
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCR_RAMO as DESCR_RAMO, ");
+    SQL.append("  A.CODICE_GERARCHIA as REVISTBICOGE, ");
+    SQL.append("  TRUNC(TO_NUMBER(A.CODICE_GERARCHIA)) as ORDERBY, ");
+    SQL.append("  A.CODICE as CODICE, ");
+    SQL.append("  A.E_S || TO_CHAR ( A.LIVELLO ) || TO_CHAR ( A.SOTTOLIVELLO ) || LPAD(TO_CHAR ( A.CODICE ), 10, SUBSTR('0', 1, 1)) as HASH, ");
+    SQL.append("  DECODE(A.E_S, 'E', 'PiramideGrigia.bmp', 'CerchioArancio.bmp') as ICON ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL A ");
+    SQL.append("where (A.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (A.LIVELLO = 5) ");
+    SQL.append("and   (A.SOTTOLIVELLO = 1) ");
+    SQL.append("and   (A.CODICE_PADRE_GERARCHIA = TO_CHAR ( ~~PQRY_VISTASTRUBI9.REVISTBICOGE~~ )) ");
+    SQL.append("and   (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("order by 3 ");
+    Item.SetQuery(SQL, MainFrm.Cf4armDBObject.DB, MainFrm, "");
+    Item.SetIMDBTable(IMDBDef8.PQRY_VISTASTRUB11);
+    Item.SetItemCount(1);
+    Item = new ATreeItem();
+    TRE_STRUTTBILANC.SetItem(12,Item);
+    Item.ItemIndex = "N00012";
+    Item.Tooltip = "";
+    Item.Name = "Livello 12";
+    Item.iGuid = "894C4853-A95E-4526-889A-7E78C9D47FC6";
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCR_RAMO as DESCR_RAMO, ");
+    SQL.append("  A.CODICE_GERARCHIA as REVISTBICOGE, ");
+    SQL.append("  TRUNC(TO_NUMBER(A.CODICE_GERARCHIA)) as ORDERBY, ");
+    SQL.append("  A.E_S || TO_CHAR ( A.LIVELLO ) || TO_CHAR ( A.SOTTOLIVELLO ) || LPAD(TO_CHAR ( A.CODICE ), 10, SUBSTR('0', 1, 1)) || ~~PQRY_VISTASTRUB11.HASH~~ as HASH, ");
+    SQL.append("  DECODE(A.E_S, 'E', 'EllisseAzzurra.bmp', 'EllisseVerde.bmp') as ICON ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL A ");
+    SQL.append("where (A.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (A.LIVELLO = 6) ");
+    SQL.append("and   (A.SOTTOLIVELLO = 0) ");
+    SQL.append("and   (EXISTS(");
+    SQL.append("( ");
+    SQL.append("select ");
+    SQL.append("  'X' ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL B ");
+    SQL.append("where (B.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (B.LIVELLO = 6) ");
+    SQL.append("and   (B.SOTTOLIVELLO = 1) ");
+    SQL.append("and   (B.CODICE_PADRE_GERARCHIA = TO_CHAR ( ~~PQRY_VISTASTRUB11.REVISTBICOGE~~ )) ");
+    SQL.append("and   (B.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("))) ");
+    SQL.append("and   (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("order by 3 ");
+    Item.SetQuery(SQL, MainFrm.Cf4armDBObject.DB, MainFrm, "");
+    Item.SetIMDBTable(IMDBDef8.PQRY_VISTASTRUB12);
+    Item.SetItemCount(1);
+    Item = new ATreeItem();
+    TRE_STRUTTBILANC.SetItem(13,Item);
+    Item.ItemIndex = "N00013";
+    Item.Tooltip = "";
+    Item.Name = "Livello 13";
+    Item.iGuid = "4B6E584D-2EF1-4392-8C4A-EB8595A2A56E";
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCR_RAMO as DESCR_RAMO, ");
+    SQL.append("  A.CODICE_GERARCHIA as REVISTBICOGE, ");
+    SQL.append("  TRUNC(TO_NUMBER(A.CODICE_GERARCHIA)) as ORDERBY, ");
+    SQL.append("  A.CODICE as CODICE, ");
+    SQL.append("  A.E_S || TO_CHAR ( A.LIVELLO ) || TO_CHAR ( A.SOTTOLIVELLO ) || LPAD(TO_CHAR ( A.CODICE ), 10, SUBSTR('0', 1, 1)) as HASH, ");
+    SQL.append("  DECODE(A.E_S, 'E', 'EllisseAzzurra.bmp', 'EllisseVerde.bmp') as ICON ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL A ");
+    SQL.append("where (A.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (A.LIVELLO = 6) ");
+    SQL.append("and   (A.SOTTOLIVELLO = 1) ");
+    SQL.append("and   (A.CODICE_PADRE_GERARCHIA = TO_CHAR ( ~~PQRY_VISTASTRUB11.REVISTBICOGE~~ )) ");
+    SQL.append("and   (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("order by 3 ");
+    Item.SetQuery(SQL, MainFrm.Cf4armDBObject.DB, MainFrm, "");
+    Item.SetIMDBTable(IMDBDef8.PQRY_VISTASTRUB13);
+    Item.SetItemCount(1);
+    Item = new ATreeItem();
+    TRE_STRUTTBILANC.SetItem(14,Item);
+    Item.ItemIndex = "N00014";
+    Item.Tooltip = "";
+    Item.Name = "Livello 14";
+    Item.iGuid = "E3E76616-6E60-4BC8-B3D8-040F8B5B73FF";
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCR_RAMO as DESCR_RAMO, ");
+    SQL.append("  A.CODICE_GERARCHIA as REVISTBICOGE, ");
+    SQL.append("  TRUNC(TO_NUMBER(A.CODICE_GERARCHIA)) as ORDERBY, ");
+    SQL.append("  A.E_S || TO_CHAR ( A.LIVELLO ) || TO_CHAR ( A.SOTTOLIVELLO ) || LPAD(TO_CHAR ( A.CODICE ), 10, SUBSTR('0', 1, 1)) || ~~PQRY_VISTASTRUB13.HASH~~ as HASH, ");
+    SQL.append("  DECODE(A.E_S, 'E', 'ledblack.gif', 'ledbrown.gif') as ICON ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL A ");
+    SQL.append("where (A.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (A.LIVELLO = 7) ");
+    SQL.append("and   (A.SOTTOLIVELLO = 0) ");
+    SQL.append("and   (EXISTS(");
+    SQL.append("( ");
+    SQL.append("select ");
+    SQL.append("  'X' ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL B ");
+    SQL.append("where (B.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (B.LIVELLO = 7) ");
+    SQL.append("and   (B.SOTTOLIVELLO = 1) ");
+    SQL.append("and   (B.CODICE_PADRE_GERARCHIA = TO_CHAR ( ~~PQRY_VISTASTRUB13.REVISTBICOGE~~ )) ");
+    SQL.append("and   (B.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("))) ");
+    SQL.append("and   (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("order by 3 ");
+    Item.SetQuery(SQL, MainFrm.Cf4armDBObject.DB, MainFrm, "");
+    Item.SetIMDBTable(IMDBDef8.PQRY_VISTASTRUB14);
+    Item.SetItemCount(1);
+    Item = new ATreeItem();
+    TRE_STRUTTBILANC.SetItem(15,Item);
+    Item.ItemIndex = "N00015";
+    Item.Tooltip = "";
+    Item.Name = "Livello 15";
+    Item.iGuid = "91CF739A-EB50-4059-94B1-147990CFE607";
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCR_RAMO as DESCR_RAMO, ");
+    SQL.append("  A.CODICE_GERARCHIA as REVISTBICOGE, ");
+    SQL.append("  TRUNC(TO_NUMBER(A.CODICE_GERARCHIA)) as ORDERBY, ");
+    SQL.append("  A.E_S || TO_CHAR ( A.LIVELLO ) || TO_CHAR ( A.SOTTOLIVELLO ) || LPAD(TO_CHAR ( A.CODICE ), 10, SUBSTR('0', 1, 1)) as HASH ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_BIL A ");
+    SQL.append("where (A.E_S = ~~PQRY_VISTASTRUBI1.E_S~~) ");
+    SQL.append("and   (A.LIVELLO = 7) ");
+    SQL.append("and   (A.SOTTOLIVELLO = 1) ");
+    SQL.append("and   (A.CODICE_PADRE_GERARCHIA = TO_CHAR ( ~~PQRY_VISTASTRUB13.REVISTBICOGE~~ )) ");
+    SQL.append("and   (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("order by 3 ");
+    Item.SetQuery(SQL, MainFrm.Cf4armDBObject.DB, MainFrm, "");
+    Item.SetIMDBTable(IMDBDef8.PQRY_VISTASTRUBIL);
+    Item = TRE_STRUTTBILANC.GetItem(1);
+    Item.SetItem(1, TRE_STRUTTBILANC.GetItem(2));
+    Item = TRE_STRUTTBILANC.GetItem(2);
+    Item.Parent = TRE_STRUTTBILANC.GetItem(1);
+    Item.SetItem(1, TRE_STRUTTBILANC.GetItem(3));
+    Item = TRE_STRUTTBILANC.GetItem(3);
+    Item.Parent = TRE_STRUTTBILANC.GetItem(2);
+    Item.SetItem(1, TRE_STRUTTBILANC.GetItem(4));
+    Item = TRE_STRUTTBILANC.GetItem(4);
+    Item.Parent = TRE_STRUTTBILANC.GetItem(3);
+    Item.SetItem(1, TRE_STRUTTBILANC.GetItem(5));
+    Item = TRE_STRUTTBILANC.GetItem(5);
+    Item.Parent = TRE_STRUTTBILANC.GetItem(4);
+    Item.SetItem(1, TRE_STRUTTBILANC.GetItem(6));
+    Item = TRE_STRUTTBILANC.GetItem(6);
+    Item.Parent = TRE_STRUTTBILANC.GetItem(5);
+    Item.SetItem(1, TRE_STRUTTBILANC.GetItem(7));
+    Item = TRE_STRUTTBILANC.GetItem(7);
+    Item.Parent = TRE_STRUTTBILANC.GetItem(6);
+    Item.SetItem(1, TRE_STRUTTBILANC.GetItem(8));
+    Item = TRE_STRUTTBILANC.GetItem(8);
+    Item.Parent = TRE_STRUTTBILANC.GetItem(7);
+    Item.SetItem(1, TRE_STRUTTBILANC.GetItem(9));
+    Item = TRE_STRUTTBILANC.GetItem(9);
+    Item.Parent = TRE_STRUTTBILANC.GetItem(8);
+    Item.SetItem(1, TRE_STRUTTBILANC.GetItem(10));
+    Item = TRE_STRUTTBILANC.GetItem(10);
+    Item.Parent = TRE_STRUTTBILANC.GetItem(9);
+    Item.SetItem(1, TRE_STRUTTBILANC.GetItem(11));
+    Item = TRE_STRUTTBILANC.GetItem(11);
+    Item.Parent = TRE_STRUTTBILANC.GetItem(10);
+    Item.SetItem(1, TRE_STRUTTBILANC.GetItem(12));
+    Item = TRE_STRUTTBILANC.GetItem(12);
+    Item.Parent = TRE_STRUTTBILANC.GetItem(11);
+    Item.SetItem(1, TRE_STRUTTBILANC.GetItem(13));
+    Item = TRE_STRUTTBILANC.GetItem(13);
+    Item.Parent = TRE_STRUTTBILANC.GetItem(12);
+    Item.SetItem(1, TRE_STRUTTBILANC.GetItem(14));
+    Item = TRE_STRUTTBILANC.GetItem(14);
+    Item.Parent = TRE_STRUTTBILANC.GetItem(13);
+    Item.SetItem(1, TRE_STRUTTBILANC.GetItem(15));
+    Item = TRE_STRUTTBILANC.GetItem(15);
+    Item.Parent = TRE_STRUTTBILANC.GetItem(14);
+    HelpFile = "";
+    MainFrm.InitializingQueries = false;
+    //
+    // Modifico alcune impostazioni per smartphone, potranno
+    // essere ulteriormente modificate nell'evento di Load
+    if (MainFrm.IsSmartPhone())
+    {
+      DockType = 0;
+      Docked = false;
+      ResModeW = Glb.FRESMODE_STRETCH;
+      ResModeH = Glb.FRESMODE_STRETCH;
+    }
+    //
+    for (i=1; i<Frames.length; i++)
+    {
+      if (Frames[i].Content instanceof IDPanel)
+      {
+        Frames[i].Content.MainFrm = w;
+        Frames[i].Content.Parent = this;
+        ((IDPanel)Frames[i].Content).CalcLayout();
+        ((IDPanel)Frames[i].Content).SetDOIMDB(IMDB);
+      }
+      if (Frames[i].Content instanceof OBook)
+        Frames[i].Content.MainFrm = w;
+      //
+      if (Frames[i].Content != null)
+        Frames[i].Content.Collapsable = w.ParamsObj().UseCollapsableFrames;
+      //
+      if (Frames[i].Content != null && Frames[i].HasCaptionToolbar==-1)
+        Frames[i].HasCaptionToolbar = MainFrm.CmdObj.HasCaptionToolbar(FormIdx, Frames[i].Index, Frames[i].Content.Code);
+    }
+    //
+    // Init sub-frames
+    for (i = 1; i < Frames.length; i++)
+    {
+      if (Frames[i].Content instanceof IDPanel)
+        for (int j = 0; j < ((IDPanel)Frames[i].Content).UFields(); j++)
+          ((IDPanel)Frames[i].Content).bFields(j).UpdateSubFrame();
+    }
+    //
+    for (i=1; i<Frames.length; i++)
+    {
+      if (Frames[i].Content instanceof OTabView)
+        ((OTabView)Frames[i].Content).SelectTab(1, true);
+    }
+    OrgWidth = Frames[1].Width + GetPadding(false);
+    OrgHeight = Frames[1].Height + GetPadding(true);
+    //
+    // Resetto il fuoco perchè le tabbed view lo possono modificare
+    FocusPriority=0;
+    ActiveElement="";
+    //
+    MainFrm.RolObj.ApplyRoles(FormIdx, this);
+    //
+    MainFrm.TimerObj.ActivateTimers(FormIdx, true);    
+    IntFormLoad();
+    //
+    // Solo le form non modali devono essere ridimensionate
+    if (!flSubForm && (!MainFrm.ParamsObj().TruePopup || OpenAs == Glb.OPEN_MDI))
+      Resize(w.ScreenW(), w.ScreenH());
+    //
+    JustLoaded = true;
+    UpdateControls();
+    MainFrm.InitializingQueries = oldIQ;
+  }
+
+
+  // **********************************************
+  // Command Activation Handler
+  // **********************************************
+  public void CmdClickCB(int CmdIdx)
+  {
+    fine:
+    {
+      if (CmdIdx==MyGlb.CMD_NUOVO16+BaseCmdLinIdx)
+      {
+        NUOVO();
+        break fine;
+      }
+      if (CmdIdx==MyGlb.CMD_APRI1+BaseCmdLinIdx)
+      {
+        Apri();
+        break fine;
+      }
+      if (CmdIdx==MyGlb.CMD_INSESUESESU1+BaseCmdLinIdx)
+      {
+        InserimentoSuEsercSuccessivi();
+        break fine;
+      }
+      if (CmdIdx==MyGlb.CMD_ESPANDITUT26+BaseCmdLinIdx)
+      {
+        EspandiTutto();
+        break fine;
+      }
+      if (CmdIdx==MyGlb.CMD_COMPRIMTUT27+BaseCmdLinIdx)
+      {
+        ComprimiTutto();
+        break fine;
+      }
+      if (CmdIdx==MyGlb.CMD_ESPANDINODO2+BaseCmdLinIdx)
+      {
+        EspandiNodo();
+        break fine;
+      }
+      if (CmdIdx==MyGlb.CMD_COMPRIMINOD2+BaseCmdLinIdx)
+      {
+        ComprimiNodo();
+        break fine;
+      }
+    }
+  }
+  
+  
+  // **********************************************
+  // Timer Activation Handler
+  // **********************************************
+  public void TimerTickCB(int TimerIdx)
+  {
+    fine:
+    {
+    }
+  }
+  
+  
+  // **********************************************
+  // Update Controls against IMDB variations
+  // **********************************************
+  public void UpdateControls()
+  {
+    try
+    {    
+      TRE_STRUTTBILANC.UpdateTree(MainFrm);
+      //
+    }
+    catch(Exception e)
+    {
+      e.printStackTrace(System.out);
+    }
+    JustLoaded = false;
+    DOSetCaption();
+    super.UpdateControls();
+  }
+  
+  
+  // **********************************************
+  // One of my modal form has been closed
+  // **********************************************
+  public void EndModal(int CallerIdx, boolean flRis)
+  {
+    IDVariant Cancel=new IDVariant();
+    IntEndModal(new IDVariant(CallerIdx), new IDVariant(flRis), Cancel);
+    if (Cancel.isTrue())
+    {
+      if (MainFrm != null) MainFrm.DTTObj.AddMsg(DTTEngine.DTTMSG_INFO, RTCGuid, 26, "Form.EndModal", "Form " + Caption() + " canceled further processing after EndModal event");
+      return;
+    }
+    //
+  }
+  
+
+  // **********************************************
+  // Enumerate books
+  // **********************************************
+  public CIDREObj SearchBook(String Code)
+  {
+    //
+    return null;
+  }
+
+  // **************************************************
+  // Torna TRUE se l'oggetto passato è una mia istanza
+  // **************************************************
+  public static boolean IsMyInstance(Object obj)
+  {
+    return (obj instanceof Struttura);
+  }
+
+  // **********************************************
+  // Restituisce il nome della classe
+  // **********************************************
+  public static String GetClassName(boolean FullName)
+  {
+    return (FullName ? Struttura.class.getName() : (Glb.ClassWithPackage(Struttura.class) ? Struttura.class.getName().substring(Struttura.class.getPackage().getName().length() + 1) : Struttura.class.getName()));
+  }
+  
+
+  // **********************************************
+  // Procedure Definition
+  // **********************************************  
+  // **********************************************************************
+  // Espandi Tutto
+  // **********************************************************************
+  public int EspandiTutto ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Espandi Tutto Body
+      // Procedure Body
+      // 
+      TRE_STRUTTBILANC.ExpandNodesLevel(MainFrm, (new IDVariant(15)).intValue(), (new IDVariant(-1)).booleanValue()); 
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("Struttura", "EspandiTutto", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Comprimi Tutto
+  // **********************************************************************
+  public int ComprimiTutto ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Comprimi Tutto Body
+      // Procedure Body
+      // 
+      TRE_STRUTTBILANC.ExpandNodesLevel(MainFrm, (new IDVariant(0)).intValue(), (new IDVariant(0)).booleanValue()); 
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("Struttura", "ComprimiTutto", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Nuovo Visibile
+  // Explain which processing is carried out by this procedure
+  // **********************************************************************
+  public int NuovoVisibile ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Nuovo Visibile Body
+      // Procedure Body
+      // 
+      NUOVOVISIBIL = (new IDVariant("SI"));
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("Struttura", "NuovoVisibile", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Nuovo Invisibile
+  // **********************************************************************
+  public int NuovoInvisibile ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Nuovo Invisibile Body
+      // Procedure Body
+      // 
+      NUOVOVISIBIL = (new IDVariant());
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("Struttura", "NuovoInvisibile", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // NUOVO
+  // **********************************************************************
+  public int NUOVO ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+    IDVariant v_DESCRLIVELLO = new IDVariant(0,IDVariant.STRING);
+    IDVariant v_CODICDELPADR = new IDVariant(0,IDVariant.INTEGER);
+    IDVariant v_CODICE = new IDVariant(0,IDVariant.STRING);
+    IDVariant v_CODICEGERARC = new IDVariant(0,IDVariant.STRING);
+    IDVariant v_SCHEMSTRUTID = new IDVariant(0,IDVariant.INTEGER);
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // NUOVO Body
+      // Procedure Body
+      // 
+      IMDB.set_Value(IMDBDef1.TBL_IN1, IMDBDef1.FLD_IN1_ROWNAMEPARTE, 0, IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMENTOSP, 0));
+      SQL = new StringBuffer();
+      SQL.append("select ");
+      SQL.append("  A.DESCR_LIVELLO as VISSTRBIDELI ");
+      SQL.append("from ");
+      SQL.append("  VISTA_STRUTTURA_BIL A ");
+      SQL.append("where (A.E_S = " + IDL.CSql(IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMENTOSP, 0), IDL.FMT_CHAR, MainFrm.Cf4armDBObject.DBO()) + ") ");
+      SQL.append("and   (A.LIVELLO = " + IDL.CSql(IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMELIVEL, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + " - 1) ");
+      SQL.append("and   (A.SOTTOLIVELLO = 0) ");
+      SQL.append("and   (A.ESERCIZIO = " + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+      QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+      if (!QV.EOF()) QV.MoveNext();
+      if (!QV.EOF())
+      {
+        v_DESCRLIVELLO = QV.Get("VISSTRBIDELI", IDVariant.STRING) ;
+      }
+      QV.Close();
+      SQL = new StringBuffer();
+      SQL.append("select ");
+      SQL.append("  A.SCHEMA_STRUTTURA_ID as VISTBISCSTID ");
+      SQL.append("from ");
+      SQL.append("  BIL_SCHEMA_STRUTTURA A ");
+      SQL.append("where (A.E_S = " + IDL.CSql(IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMENTOSP, 0), IDL.FMT_CHAR, MainFrm.Cf4armDBObject.DBO()) + ") ");
+      SQL.append("and   (A.LIVELLO = " + IDL.CSql(IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMELIVEL, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+      SQL.append("and   (A.ESERCIZIO = " + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+      QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+      if (!QV.EOF()) QV.MoveNext();
+      if (!QV.EOF())
+      {
+        v_SCHEMSTRUTID = QV.Get("VISTBISCSTID", IDVariant.INTEGER) ;
+      }
+      QV.Close();
+      IMDB.set_Value(IMDBDef1.TBL_IN1, IMDBDef1.FLD_IN1_ROWNAMDELIPA, 0, new IDVariant(v_DESCRLIVELLO));
+      IMDB.set_Value(IMDBDef1.TBL_IN1, IMDBDef1.FLD_IN1_ROWNAMECAPTI, 0, IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMECAPTI, 0));
+      IMDB.set_Value(IMDBDef1.TBL_IN1, IMDBDef1.FLD_IN1_ROWNAMELIVEL, 0, IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMELIVEL, 0));
+      IMDB.set_Value(IMDBDef1.TBL_IN1, IMDBDef1.FLD_IN1_ROWNAMSCSTID, 0, new IDVariant(v_SCHEMSTRUTID));
+      IMDB.set_Value(IMDBDef1.TBL_IN1, IMDBDef1.FLD_IN1_ROWNAMESTRID, 0, (new IDVariant()));
+      IMDB.set_Value(IMDBDef1.TBL_IN1, IMDBDef1.FLD_IN1_ROWNAMETIVAL, 0, IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMETIVAL, 0));
+      IMDB.set_Value(IMDBDef1.TBL_IN1, IMDBDef1.FLD_IN1_ROWNAMECODIC, 0, IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMECODIC, 0));
+      MainFrm.Show(MyGlb.FRM_NUOVSUSTRBIL, (new IDVariant(-1)).intValue(), this); 
+      ((NuovoSuStrutturaBilancio)MainFrm.GetForm(MyGlb.FRM_NUOVSUSTRBIL,0)).PAN_NUOVO.PanelCommand(Glb.PCM_INSERT);
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("Struttura", "NUOVO", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Apri
+  // **********************************************************************
+  public int Apri ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+    IDVariant v_DESCRLIVELLO = new IDVariant(0,IDVariant.STRING);
+    IDVariant v_STRUTTURAID = new IDVariant(0,IDVariant.INTEGER);
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Apri Body
+      // Procedure Body
+      // 
+      SQL = new StringBuffer();
+      SQL.append("select ");
+      SQL.append("  A.DESCR_LIVELLO as VISSTRBIDELI ");
+      SQL.append("from ");
+      SQL.append("  VISTA_STRUTTURA_BIL A ");
+      SQL.append("where (A.E_S = " + IDL.CSql(IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMENTOSP, 0), IDL.FMT_CHAR, MainFrm.Cf4armDBObject.DBO()) + ") ");
+      SQL.append("and   (A.LIVELLO = " + IDL.CSql(IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMELIVEL, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + " - 1) ");
+      SQL.append("and   (A.SOTTOLIVELLO = 0) ");
+      SQL.append("and   (A.ESERCIZIO = " + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+      QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+      if (!QV.EOF()) QV.MoveNext();
+      if (!QV.EOF())
+      {
+        v_DESCRLIVELLO = QV.Get("VISSTRBIDELI", IDVariant.STRING) ;
+      }
+      QV.Close();
+      SQL = new StringBuffer();
+      SQL.append("select ");
+      SQL.append("  A.STRUTTURA_ID as BILSTRUTTUID ");
+      SQL.append("from ");
+      SQL.append("  BIL_STRUTTURA A ");
+      SQL.append("where (A.E_S = " + IDL.CSql(IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMENTOSP, 0), IDL.FMT_CHAR, MainFrm.Cf4armDBObject.DBO()) + ") ");
+      SQL.append("and   (A.LIVELLO = " + IDL.CSql(IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMELIVEL, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + " - 1) ");
+      SQL.append("and   (A.CODICE = " + IDL.CSql(IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMECODIC, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+      SQL.append("and   (A.ESERCIZIO = " + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+      QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+      if (!QV.EOF()) QV.MoveNext();
+      if (!QV.EOF())
+      {
+        v_STRUTTURAID = QV.Get("BILSTRUTTUID", IDVariant.INTEGER) ;
+      }
+      QV.Close();
+      IMDB.set_Value(IMDBDef1.TBL_IN1, IMDBDef1.FLD_IN1_ROWNAMESTRID, 0, new IDVariant(v_STRUTTURAID));
+      IMDB.set_Value(IMDBDef1.TBL_IN1, IMDBDef1.FLD_IN1_ROWNAMEPARTE, 0, IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMENTOSP, 0));
+      IMDB.set_Value(IMDBDef1.TBL_IN1, IMDBDef1.FLD_IN1_ROWNAMDELIPA, 0, new IDVariant(v_DESCRLIVELLO));
+      IMDB.set_Value(IMDBDef1.TBL_IN1, IMDBDef1.FLD_IN1_ROWNAMECAPTI, 0, IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMECAPTI, 0));
+      IMDB.set_Value(IMDBDef1.TBL_IN1, IMDBDef1.FLD_IN1_ROWNAMELIVEL, 0, IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMELIVEL, 0));
+      MainFrm.Show(MyGlb.FRM_NUOVSUSTRBIL, (new IDVariant(-1)).intValue(), this); 
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("Struttura", "Apri", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Get Informazioni
+  // **********************************************************************
+  public IDVariant GetInformazioni ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+    IDVariant v_HASH = new IDVariant(0,IDVariant.STRING);
+    IDVariant v_RITORNO = new IDVariant(0,IDVariant.STRING);
+    IDVariant v_DESCRRAMO = new IDVariant(0,IDVariant.STRING);
+    IDVariant v_DESCRLIVELLO = new IDVariant(0,IDVariant.STRING);
+    IDVariant v_CODICE = new IDVariant(0,IDVariant.INTEGER);
+    IDVariant v_CODICEGERARC = new IDVariant(0,IDVariant.STRING);
+    IDVariant v_CODIPADRGERA = new IDVariant(0,IDVariant.STRING);
+    IDVariant v_STRUTTURAID = new IDVariant(0,IDVariant.INTEGER);
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Get Informazioni Body
+      // Procedure Body
+      // 
+      v_HASH = TRE_STRUTTBILANC.GetActiveNode();
+      SQL = new StringBuffer();
+      SQL.append("select ");
+      SQL.append("  A.DESCR_RAMO as VISSTRBIDERA, ");
+      SQL.append("  A.CODICE_GERARCHIA as VISSTRBICOGE ");
+      SQL.append("from ");
+      SQL.append("  VISTA_STRUTTURA_BIL A ");
+      SQL.append("where (A.E_S = SUBSTR(" + IDL.CSql(v_HASH, IDL.FMT_CHAR, MainFrm.Cf4armDBObject.DBO()) + ", 1, 1)) ");
+      SQL.append("and   (A.LIVELLO = TRUNC(TO_NUMBER(SUBSTR(" + IDL.CSql(v_HASH, IDL.FMT_CHAR, MainFrm.Cf4armDBObject.DBO()) + ", 2, 1))) + 1) ");
+      SQL.append("and   (A.SOTTOLIVELLO = 0) ");
+      SQL.append("and   (A.ESERCIZIO = " + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+      QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+      if (!QV.EOF()) QV.MoveNext();
+      if (!QV.EOF())
+      {
+        v_DESCRRAMO = QV.Get("VISSTRBIDERA", IDVariant.STRING) ;
+        v_CODICEGERARC = QV.Get("VISSTRBICOGE", IDVariant.STRING) ;
+      }
+      QV.Close();
+      SQL = new StringBuffer();
+      SQL.append("select ");
+      SQL.append("  A.DESCRIZIONE_LIVELLO as BILSCHSTDELI ");
+      SQL.append("from ");
+      SQL.append("  BIL_SCHEMA_STRUTTURA A ");
+      SQL.append("where (A.E_S = SUBSTR(" + IDL.CSql(v_HASH, IDL.FMT_CHAR, MainFrm.Cf4armDBObject.DBO()) + ", 1, 1)) ");
+      SQL.append("and   (A.LIVELLO = TRUNC(TO_NUMBER(SUBSTR(" + IDL.CSql(v_HASH, IDL.FMT_CHAR, MainFrm.Cf4armDBObject.DBO()) + ", 2, 1))) + 1) ");
+      SQL.append("and   (A.ESERCIZIO = " + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+      QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+      if (!QV.EOF()) QV.MoveNext();
+      if (!QV.EOF())
+      {
+        v_DESCRLIVELLO = QV.Get("BILSCHSTDELI", IDVariant.STRING) ;
+      }
+      QV.Close();
+      v_RITORNO = new IDVariant(v_DESCRLIVELLO);
+      // 
+      // conservo per passarli alla form nuovo
+      // 
+      {
+        IMDB.set_Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMELIVEL, 0, IDL.Add(IDL.ToInteger(IDL.SubStr(v_HASH, (new IDVariant(2)), (new IDVariant(1)))), (new IDVariant(1))));
+        IMDB.set_Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMENTOSP, 0, IDL.SubStr(v_HASH, (new IDVariant(1)), (new IDVariant(1))));
+        IMDB.set_Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMECODIC, 0, IDL.ToInteger(IDL.SubStr(v_HASH, IDL.Add((new IDVariant(3)), (new IDVariant(1))), (new IDVariant(14)))));
+        IMDB.set_Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMETIVAL, 0, new IDVariant(v_DESCRLIVELLO));
+        IMDB.set_Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMCODGER, 0, new IDVariant(v_CODICEGERARC));
+      }
+      return v_RITORNO;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("Struttura", "GetInformazioni", _e);
+      return new IDVariant();
+    }
+  }
+
+  // **********************************************************************
+  // Comprimi Nodo
+  // **********************************************************************
+  public int ComprimiNodo ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Comprimi Nodo Body
+      // Corpo Procedura
+      // 
+      ComprimiRicorsivo(TRE_STRUTTBILANC.GetActiveNode());
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("Struttura", "ComprimiNodo", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Comprimi Ricorsivo
+  // Hash - Input
+  // **********************************************************************
+  public int ComprimiRicorsivo (IDVariant Hash)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Comprimi Ricorsivo Body
+      // Corpo Procedura
+      // 
+      IDVariant v_NUMFIGLI = new IDVariant(0,IDVariant.INTEGER);
+      IDVariant v_NODO = new IDVariant(0,IDVariant.STRING);
+      v_NUMFIGLI = IDL.Sub(TRE_STRUTTBILANC.GetChildrenCount(Hash), (new IDVariant(1)));
+      while (v_NUMFIGLI.compareTo((new IDVariant(0)), true)>=0)
+      {
+        v_NODO = TRE_STRUTTBILANC.GetChildrenNode(Hash, v_NUMFIGLI);
+        v_NUMFIGLI = IDL.Sub(v_NUMFIGLI, (new IDVariant(1)));
+        ComprimiRicorsivo(v_NODO);
+      }
+      TRE_STRUTTBILANC.ExpandNode(MainFrm, Hash, (new IDVariant(0)).booleanValue(), (new IDVariant(0)).booleanValue()); 
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("Struttura", "ComprimiRicorsivo", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Espandi Nodo
+  // **********************************************************************
+  public int EspandiNodo ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Espandi Nodo Body
+      // Corpo Procedura
+      // 
+      EspandiRicorsivo(TRE_STRUTTBILANC.GetActiveNode());
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("Struttura", "EspandiNodo", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Espandi Ricorsivo
+  // Hash - Input
+  // **********************************************************************
+  public int EspandiRicorsivo (IDVariant Hash)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Espandi Ricorsivo Body
+      // Corpo Procedura
+      // 
+      IDVariant v_NUMFIGLI = new IDVariant(0,IDVariant.INTEGER);
+      IDVariant v_NODO = new IDVariant(0,IDVariant.STRING);
+      TRE_STRUTTBILANC.ExpandNode(MainFrm, Hash, (new IDVariant(-1)).booleanValue(), (new IDVariant(0)).booleanValue()); 
+      v_NUMFIGLI = IDL.Sub(TRE_STRUTTBILANC.GetChildrenCount(Hash), (new IDVariant(1)));
+      while (v_NUMFIGLI.compareTo((new IDVariant(0)), true)>=0)
+      {
+        v_NODO = TRE_STRUTTBILANC.GetChildrenNode(Hash, v_NUMFIGLI);
+        v_NUMFIGLI = IDL.Sub(v_NUMFIGLI, (new IDVariant(1)));
+        EspandiRicorsivo(v_NODO);
+      }
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("Struttura", "EspandiRicorsivo", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Load Event
+  // Evento notificato alla videata al momento del caricamento
+  // in memoria.
+  // **********************************************************************
+  private void IntFormLoad ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      MainFrm.IntFormLoad(this);
+      // 
+      // Load Event Body
+      // Procedure Body
+      // 
+      TRE_STRUTTBILANC.set_Collapsable((new IDVariant(0)).booleanValue());
+      NuovoInvisibile();
+      TRE_STRUTTBILANC.set_IsActive((new IDVariant(-1)).booleanValue());
+      set_Caption(IDL.Add(Caption(), MainFrm.ESERCIZIO));
+      MainFrm.CmdObj.set_CmdSetCaption(MyGlb.CMDS_MENUCONTTREE+BaseCmdSetIdx, (new IDVariant()).stringValue());
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("Struttura", "LoadEvent", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Menu Contestuale Tree On Open Popup Event
+  // Evento notificato dal CommandSet quando viene aperto
+  // come popup.
+  // Direction: E' un parametro di output che può essere impostato ad uno dei valori della lista PopupDirections per scegliere la posizione del menu popup rispetto all'oggetto che lo ha attivato. - Input/Output
+  // Cancel: Se impostato a True annulla la visualizzazione del popup. - Input/Output
+  // **********************************************************************
+  public void CMDS_MENUCONTTREE_OnOpenPopup(IDVariant Direction, IDVariant Cancel)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+    IDVariant v_CAPTIONCS = new IDVariant(0,IDVariant.STRING);
+    IDVariant v_NUOVONUOVA = new IDVariant(0,IDVariant.STRING);
+    IDVariant v_PRESPAZIO = new IDVariant(0,IDVariant.STRING);
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Menu Contestuale Tree On Open Popup Event Body
+      // Procedure Body
+      // 
+      if (NUOVOVISIBIL.equals((new IDVariant("SI")), true))
+      {
+        IDVariant I = new IDVariant(0,IDVariant.INTEGER);
+        // 
+        // ----------- Calcolo maschile o femminile per Nuovo
+        // o Nuova
+        // 
+        v_CAPTIONCS = GetInformazioni();
+        I = IDL.Find(v_CAPTIONCS, (new IDVariant(" ")));
+        if (I.compareTo((new IDVariant(0)), true)!=0)
+        {
+          v_PRESPAZIO = IDL.SubStr(v_CAPTIONCS, IDL.Sub(I, (new IDVariant(1))), (new IDVariant(1)));
+        }
+        else
+        {
+          v_PRESPAZIO = IDL.Right(v_CAPTIONCS, (new IDVariant(1)));
+        }
+        v_NUOVONUOVA = ((v_PRESPAZIO.equals(IDL.Lower((new IDVariant("A"))), true))?(new IDVariant("Nuova")):(new IDVariant("Nuovo")));
+        if (IDL.NullValue(v_CAPTIONCS,(new IDVariant(""))).compareTo((new IDVariant("")), true)!=0)
+        {
+          MainFrm.CmdObj.set_CmdVisible(MyGlb.CMD_NUOVO16+BaseCmdLinIdx, (new IDVariant(-1)).booleanValue());
+          MainFrm.CmdObj.SetCmdCaption(MyGlb.CMDS_MENUCONTTREE+BaseCmdSetIdx, new IDVariant(MainFrm.CmdObj.CmdLin[MyGlb.CMD_NUOVO16+BaseCmdLinIdx].GetIndex()).intValue(), v_CAPTIONCS.stringValue()); 
+        }
+        else
+        {
+          MainFrm.CmdObj.set_CmdVisible(MyGlb.CMD_NUOVO16+BaseCmdLinIdx, (new IDVariant(0)).booleanValue());
+        }
+        IMDB.set_Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMECAPTI, 0, new IDVariant(v_CAPTIONCS));
+        if (IDL.Sub(IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMELIVEL, 0), (new IDVariant(1))).compareTo((new IDVariant(0)), true)!=0)
+        {
+          MainFrm.CmdObj.set_CmdVisible(MyGlb.CMD_APRI1+BaseCmdLinIdx, (new IDVariant(-1)).booleanValue());
+          MainFrm.CmdObj.set_CmdVisible(MyGlb.CMD_INSESUESESU1+BaseCmdLinIdx, (new IDVariant(-1)).booleanValue());
+        }
+        else
+        {
+          MainFrm.CmdObj.set_CmdVisible(MyGlb.CMD_APRI1+BaseCmdLinIdx, (new IDVariant(0)).booleanValue());
+        }
+        if (IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMELIVEL, 0).compareTo((new IDVariant(1)), true)>0)
+        {
+          MainFrm.CmdObj.set_CmdVisible(MyGlb.CMD_INSESUESESU1+BaseCmdLinIdx, (new IDVariant(-1)).booleanValue());
+        }
+        else
+        {
+          MainFrm.CmdObj.set_CmdVisible(MyGlb.CMD_INSESUESESU1+BaseCmdLinIdx, (new IDVariant(0)).booleanValue());
+        }
+      }
+      else
+      {
+        MainFrm.CmdObj.set_CmdVisible(MyGlb.CMD_NUOVO16+BaseCmdLinIdx, (new IDVariant(0)).booleanValue());
+        MainFrm.CmdObj.set_CmdVisible(MyGlb.CMD_APRI1+BaseCmdLinIdx, (new IDVariant(0)).booleanValue());
+        MainFrm.CmdObj.set_CmdVisible(MyGlb.CMD_INSESUESESU1+BaseCmdLinIdx, (new IDVariant(0)).booleanValue());
+      }
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("Struttura", "MenuContestualeTreeOnOpenPopupEvent", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Inserimento Su Eserc Successivi
+  // Spiega quale elaborazione viene eseguita da questa
+  // procedura
+  // **********************************************************************
+  public int InserimentoSuEsercSuccessivi ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Inserimento Su Eserc Successivi Body
+      // Corpo Procedura
+      // 
+      MainFrm.Cf4armDBObject.set_ErrorMessage((new IDVariant("")).stringValue());
+      MainFrm.Cf4armDBObject.INSSTRUTTURAESERCSUCC(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMENTOSP, 0), IMDB.Value(IMDBDef1.TBL_DAPASSARE, IMDBDef1.FLD_DAPASSARE_ROWNAMCODGER, 0), IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSUSERNAME, 0));
+      if ((new IDVariant(MainFrm.Cf4armDBObject.ErrorMessage())).compareTo((new IDVariant("")), true)!=0)
+      {
+        MainFrm.set_AlertMessage((new IDVariant(MainFrm.Cf4armDBObject.ErrorMessage()))); 
+      }
+      else
+      {
+        MainFrm.set_AlertMessage((new IDVariant("Elaborazione eseguita"))); 
+      }
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("Struttura", "InserimentoSuEsercSuccessivi", _e);
+      return -1;
+    }
+  }
+
+  
+  
+  // **********************************************
+  // Event Stubs
+  // **********************************************  
+  // **********************************************************************
+  // Unload
+  // Evento notificato dal form prima della chiusura dello
+  // stesso
+  // **********************************************************************
+  public void IntFormUnload (IDVariant Cancel, IDVariant Confirm)
+  {
+    // Stub
+  }
+
+  // **********************************************************************
+  // Activate
+  // Evento notificato alla videata quando essa viene attivata
+  // cioè quando viene portata in primo piano
+  // **********************************************************************
+  public void Form_Activate()
+  {
+      MainFrm.Form_Activate(this);
+    // Stub
+  }
+
+  // **********************************************************************
+  // Deactivate
+  // Evento notificato alla videata quando essa viene messa
+  // in secondo piano
+  // **********************************************************************
+  public void Form_Deactivate(IDVariant Cancel)
+  {
+    // Stub
+  }
+
+  // **********************************************************************
+  // End Modal
+  // Evento notificato dall'oggetto form in applicazioni
+  // Web quando viene chiusa una finestra modale
+  // **********************************************************************
+  private void IntEndModal(IDVariant LookupForm,IDVariant Result,IDVariant Cancel)
+  {
+    // Stub
+  }
+
+  // **********************************************************************
+  // On Change Document
+  // Evento notificato al form quando viene cambiato il
+  // documento collegato
+  // **********************************************************************
+  public void OnChangeDocument(com.progamma.doc.IDDocument OldDocument)
+  {
+    // Stub
+  }
+
+  // **********************************************************************
+  // On Send Message
+  // Evento notificato quando una videata invia un messaggio
+  // tramite la procedura SendMessage
+  // **********************************************************************
+  public void OnSendMessage(IDVariant Message, WebForm Sender, com.progamma.doc.IDDocument Doc, IDVariant Par1, IDVariant Par2, IDVariant Par3, IDVariant Par4)
+  {
+    // Stub
+  }
+
+  
+  
+  // **********************************************
+  // Frame Events
+  // **********************************************
+  private void TRE_STRUTTBILANC_NodeClick(ATreeNode Node)
+  {
+    if (TRE_STRUTTBILANC.NodeClick(MainFrm, Node))
+    {
+      if (Node.Key.substring(0,6).equals("N00001"))
+      {
+      NuovoVisibile();
+      }
+      if (Node.Key.substring(0,6).equals("N00002"))
+      {
+      NuovoInvisibile();
+      }
+      if (Node.Key.substring(0,6).equals("N00003"))
+      {
+      NuovoVisibile();
+      }
+      if (Node.Key.substring(0,6).equals("N00004"))
+      {
+      NuovoInvisibile();
+      }
+      if (Node.Key.substring(0,6).equals("N00005"))
+      {
+      NuovoVisibile();
+      }
+      if (Node.Key.substring(0,6).equals("N00006"))
+      {
+      NuovoInvisibile();
+      }
+      if (Node.Key.substring(0,6).equals("N00007"))
+      {
+      NuovoVisibile();
+      }
+      if (Node.Key.substring(0,6).equals("N00008"))
+      {
+      NuovoInvisibile();
+      }
+      if (Node.Key.substring(0,6).equals("N00009"))
+      {
+      NuovoVisibile();
+      }
+      if (Node.Key.substring(0,6).equals("N00010"))
+      {
+      NuovoInvisibile();
+      }
+      if (Node.Key.substring(0,6).equals("N00011"))
+      {
+      NuovoVisibile();
+      }
+      if (Node.Key.substring(0,6).equals("N00012"))
+      {
+      NuovoInvisibile();
+      }
+      if (Node.Key.substring(0,6).equals("N00013"))
+      {
+      NuovoVisibile();
+      }
+      if (Node.Key.substring(0,6).equals("N00014"))
+      {
+      NuovoInvisibile();
+      }
+      if (Node.Key.substring(0,6).equals("N00015"))
+      {
+      NuovoVisibile();
+      }
+    }
+  }
+
+  
+  
+  // **********************************************
+  // Panel (long) initialization
+  // **********************************************
+  
+  
+  // **********************************************
+  // Panel events dispatching
+  // **********************************************
+  public void ValidateCell(IDPanel SrcObj, IDVariant ColIndex, IDVariant CellModified , IDVariant Cancel, IDVariant FldWasModified, IDVariant RowWasModified, IDVariant IsInsert)
+  {
+  }
+  
+  public void ValidateRow(IDPanel SrcObj, IDVariant Cancel)
+  {
+  }
+  
+  public void DynamicProperties(IDPanel SrcObj)
+  {
+  }
+  
+  public void CellActivated(IDPanel SrcObj, IDVariant ColIndex, IDVariant Cancel)
+  {
+  }
+  
+  public void OnChangePage(IDPanel SrcObj, IDVariant NewPage, IDVariant Cancel)
+  {
+  }
+  
+  public void OnChangeLayout(IDPanel SrcObj, IDVariant NewLayout, IDVariant Cancel)
+  {
+  }
+  
+  public void OnChangeRow(IDPanel SrcObj)
+  {
+  }
+
+  public void OnSelectingRow(IDPanel SrcObj)
+  {
+  }
+
+  public void OnSorting(IDPanel SrcObj, IDVariant FldIdx, IDVariant Cancel)
+  {
+  }
+
+  public void OnChangeSelection(IDPanel SrcObj, IDVariant NewVal, IDVariant Final, IDVariant Cancel)
+  {
+  }
+  
+  public void OnChangeLocking(IDPanel SrcObj, IDVariant NewLocking, IDVariant Cancel)
+  {
+  }
+  
+  public void OnChangeStatus(IDPanel SrcObj, IDVariant OldStatus)
+  {
+  }
+  
+  public void OnPanelCommand(IDPanel SrcObj, IDVariant Command, IDVariant Cancel, IDVariant UserOp)
+  {
+  }
+  
+  public void BeforeFind(IDPanel SrcObj, IDVariant Cancel)
+  {
+  }
+  
+  public void BeforeInsert(IDPanel SrcObj, IDVariant Cancel)
+  {
+  }
+  
+  public void BeforeUpdate(IDPanel SrcObj, IDVariant Cancel)
+  {
+  }
+
+  public void BeforeBlobUpdate(IDPanel SrcObj, IDVariant Cancel, IDVariant Column, IDVariant Size, IDVariant Extension, IDVariant FilePath)
+  {
+  }
+  
+  public void BeforeDelete(IDPanel SrcObj, IDVariant Cancel)
+  {
+  }
+  
+  public void AfterInsert(IDPanel SrcObj)
+  {
+  }
+  
+  public void AfterUpdate(IDPanel SrcObj)
+  {
+  }
+
+  public void AfterBlobUpdate(IDPanel SrcObj, IDVariant Column, IDVariant Size, IDVariant Extension)
+  {
+  }
+  
+  public void AfterDelete(IDPanel SrcObj)
+  {
+  }    
+
+  public void AfterFind(IDPanel SrcObj, IDVariant CmdFind)
+  {
+  }    
+
+  public void BeforeCommit(IDPanel SrcObj, IDVariant Cancel)
+  {
+  }
+  
+  public void AfterCommit(IDPanel SrcObj, IDVariant RowUpdated, IDVariant RowError)
+  {
+  }  
+
+  public void OnDBError(IDPanel SrcObj, IDVariant Cancel, IDVariant Skip, IDVariant ErrNum, IDVariant ErrMsg, IDVariant NativeErrNum, IDVariant PanOp, IDDocument Doc)
+  {
+  }  
+  
+  public void OnDownloadBlob(IDPanel SrcObj, IDVariant Cancel, IDVariant Column, IDVariant Size, IDVariant Extension, IDVariant Inline, IDVariant Filename, IDVariant MimeType)
+  {
+  }
+
+  public void OnPrint(IDPanel SrcObj, IDVariant Cancel, IDVariant Dest, IDVariant SetWC)
+  {
+  }  
+    
+  public void TabClick(OTabView SrcObj, IDVariant PreviousPage, IDVariant Cancel)
+  {
+  }    
+
+  public void NodeClick(ATree SrcObj, ATreeNode Node)
+  {
+    if (SrcObj == TRE_STRUTTBILANC) TRE_STRUTTBILANC_NodeClick(Node);
+  }    
+
+  public void OnTreeDropNode(ATree SrcObj, IDVariant SourceHash, IDVariant SourceTreeIndex, IDVariant DestinationHash, IDVariant ShiftKey, IDVariant AltKey, IDVariant ControlKey)
+  {
+  }    
+
+  public void OnTreeExpandNode(ATree SrcObj, IDVariant HashKey, IDVariant Cancel)
+  {
+  }
+  
+  public void OnTreeActivateNode(ATree SrcObj, IDVariant HashKey, IDVariant Cancel)
+  {
+  }
+
+  public void OnTreeChangeSelNode(ATree SrcObj, IDVariant HashKey, IDVariant Selected, IDVariant Cancel, IDVariant Final)
+  {
+  }
+  
+  public void OnTreeDropDoc(ATree SrcObj, IDDocument SourceDoc, IDDocument DestDoc, IDVariant ShiftKey, IDVariant AltKey, IDVariant ControlKey, IDVariant Cancel)
+  {
+  }    
+
+  public void OnTreeExpandDoc(ATree SrcObj, IDDocument Doc, IDVariant Cancel)
+  {
+  }
+  
+  public void OnTreeActivateDoc(ATree SrcObj, IDDocument Doc, IDVariant Cancel)
+  {
+  }
+  
+  public void OnTreeChangeSelDoc(ATree SrcObj, IDDocument Doc, IDVariant Selected, IDVariant Cancel, IDVariant Final)
+  {
+  }
+  
+  public void OnFormattingSection(OBook SrcObj, int SectionID)
+  {
+  }
+
+  public void OnAfterFormattingSection(OBook SrcObj, int SectionID)
+  {
+  }
+
+  public void OnFormattingPage(OBook SrcObj, int PageID)
+  {
+  }
+
+  public void OnChangingSpan(OBook SrcObj, int SpanIdx, IDVariant OldVal, IDVariant NewVal, IDVariant Cancel)
+  {
+  }
+
+  public void OnBoxDrop(OBook SrcObj, IDVariant SrcBoxIdx, IDVariant DstBoxIdx)
+  {
+  }
+
+  public void OnBoxTransform(OBook SrcObj, IDVariant BoxIdx, IDVariant NewX, IDVariant NewY, IDVariant NewW, IDVariant NewH, IDVariant Cancel)
+  {
+  }
+
+  public void OnConnecting(OBook SrcObj, IDConnection DBConn)
+  {
+  }
+
+  public void Activated(OBook SrcObj, int ObjID, String BoxName)
+  {
+  }
+
+  public void OnIMDBUpdate(OBook SrcObj, int ReportIdx)
+  {
+  }
+
+  public void OnPreview(OBook SrcObj)
+  {
+  }
+  
+  public void OnOpenPopup(ACommand SrcObj, IDVariant Direction, IDVariant Cancel) 
+  {
+    if (SrcObj.Code.equals("MENUCONTTREE")) CMDS_MENUCONTTREE_OnOpenPopup(Direction, Cancel);
+  }
+  
+  public void OnCmdSetCommand(ACommand SrcObj, IDVariant CmdIdx, IDVariant ChildIdx, IDVariant Cancel) 
+  {
+  }
+  
+  public void OnCmdSetGeneralDrag(ACommand SrcObj, IDVariant DragInfo, IDVariant CmdIdx, IDVariant ChildIdx)
+  {
+  }
+  
+  public void OnCmdSetGeneralDrop(ACommand SrcObj, IDVariant DragInfo, IDVariant CmdIdx, IDVariant ChildIdx)
+  {
+  }
+
+  public void OnChangeCollapse(WebFrame SrcObj, IDVariant Collapse, IDVariant Cancel)
+  {
+  }
+
+  public void OnGraphClick(WebFrame SrcObj, IDVariant NumSerie, IDVariant NumPoint)
+  {
+  }
+
+  public void OnGraphOptions(WebFrame SrcObj, IDVariant Options)
+  {
+  }
+  
+  public void OnRenderToolbar(WebFrame SrcObj, IDVariant CmdIdx, IDVariant Visible)
+  {
+  }
+
+  public void OnBookCommand(OBook SrcObj, IDVariant Command, IDVariant Cancel, IDVariant UserOp)
+  {
+  }
+
+  public void OnCmdSetChangeExpand(ACommand SrcObj, IDVariant Expand, IDVariant Cancel)
+  {
+  }
+
+  public void OnTreeChangeExpandNode(ATree SrcObj, IDVariant HashKey, IDVariant Expanded, IDVariant Cancel)
+  {
+  }
+
+  public void OnTreeChangeExpandDoc(ATree SrcObj, IDDocument Doc, IDVariant Expanded, IDVariant Cancel)
+  {
+  }
+  
+
+  public void OnMouseClick(IDPanel SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant c, IDVariant r, IDVariant cancel)
+  {
+  }
+
+  public void OnMouseDoubleClick(IDPanel SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant c, IDVariant r, IDVariant cancel)
+  {
+  }
+  
+  public void OnMouseClick(OBook SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant boxid, IDVariant cancel)
+  {
+  }
+
+  public void OnMouseDoubleClick(OBook SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant boxid, IDVariant cancel)
+  {
+  }
+  
+  public void OnMouseClick(ATree SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant nodehash, IDDocument doc, IDVariant cancel)
+  {
+  }
+
+  public void OnMouseDoubleClick(ATree SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant nodehash, IDDocument doc, IDVariant cancel)
+  {
+  }
+  
+  public void OnMouseClick(AGraph SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant numserie, IDVariant recordselected, IDVariant cancel)
+  {
+  }
+
+  public void OnMouseDoubleClick(AGraph SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant numserie, IDVariant recordselected, IDVariant cancel)
+  {
+  }
+  
+  public void OnMouseClick(OTabView SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant tabid, IDVariant cancel)
+  {
+  }
+
+  public void OnMouseDoubleClick(OTabView SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant tabid, IDVariant cancel)
+  {
+  }  
+  
+  public void OnReorderColum(IDPanel SrcObj, IDVariant sourcefield, IDVariant targetfield)
+  {
+  }
+  
+  public void OnResizeColum(IDPanel SrcObj, IDVariant sourcefield, IDVariant oldwidth)
+  {
+  }
+  
+
+  public void OnGenericDrag(IDPanel SrcObj, IDVariant draginfo,  IDVariant button, IDVariant colidx)
+  {
+  }
+
+  public void OnGenericDrop(IDPanel SrcObj, IDVariant draginfo, IDVariant cancel, IDVariant button, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant colidx, IDVariant rownum, IDDocument doc)
+  {
+  }
+  
+  public void OnGenericDrag(ATree SrcObj, IDVariant draginfo,  IDVariant button, IDVariant hashkey)
+  {
+  }
+
+  public void OnGenericDrop(ATree SrcObj, IDVariant draginfo, IDVariant cancel, IDVariant button, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant hashkey, IDDocument doc)
+  {
+  }  
+  
+  public void OnGenericDrag(OBook SrcObj, IDVariant draginfo,  IDVariant button, IDVariant boxid)
+  {
+  }
+
+  public void OnGenericDrop(OBook SrcObj, IDVariant draginfo, IDVariant cancel, IDVariant button, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant boxid)
+  {
+  }    
+  
+  public void OnGenericDrag(OTabView SrcObj, IDVariant draginfo, IDVariant button, IDVariant pageindex)
+  {
+  }
+
+  public void OnGenericDrop(OTabView SrcObj, IDVariant draginfo, IDVariant cancel, IDVariant button, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant pageindex)
+  {
+  }
+
+  public void OnExpandingGroup(IDPanel SrcObj, IDVariant expanded, IDVariant userOperation)
+  {
+  }  
+
+  public void OnChangeGroupCollapse(IDPanel SrcObj, IDVariant GrpIndex)
+  {
+  }
+  
+  public void OnShowMultipleSelection(IDPanel SrcObj, IDVariant NewValue, IDVariant Cancel, IDVariant UserOperation)
+  {
+  }
+  
+  public void OnChangeTextSelection(IDPanel SrcObj, IDVariant Field, IDVariant OldSelectionStart, IDVariant OldSelectionEnd)
+  {
+  }
+  
+  public void OnFocus(IDPanel SrcObj, IDVariant Field, IDVariant GotFocus)
+  {
+  }
+  
+  public void OnFrameKeyPress(WebFrame SrcObj, IDVariant KeySet, IDVariant KeyCode, IDVariant Skip)
+  {
+  }
+  
+  public void OnGetLKE(IDPanel SrcObj, IDCachedRowSet RS, IDVariant ntry, IDVariant nullv, IDVariant bskip, IDVariant bcancel, IDVariant fldindex)
+  {
+  }
+  
+  public void OnMouseOver(IDPanel SrcObj, IDVariant Field, IDVariant Row)
+  {
+  }
+  
+  public void OnFieldListVisibilityChanged(IDPanel SrcObj, IDVariant FieldIndex, IDVariant NewValue, IDVariant Final)
+  {
+  }
+}

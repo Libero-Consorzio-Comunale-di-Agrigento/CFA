@@ -1,0 +1,6 @@
+<CHARS>
+	<CHAR BAD="8216" >&apos;</CHAR>
+	<CHAR BAD="8217" >&apos;</CHAR>
+	<CHAR BAD="8220" >&quot;</CHAR>
+    <CHAR BAD="8211" >-</CHAR>
+</CHARS>

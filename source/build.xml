@@ -1,0 +1,511 @@
+<!-- A "project" describes a set of targets that may be requested
+     when Ant is executed.  The "default" attribute defines the
+     target which is executed if no specific target is requested,
+     and the "basedir" attribute defines the current working directory
+     from which Ant executes the requested task.  This is normally
+     set to the current working directory.
+-->
+
+
+<project name="Cfaid" default="compile" basedir=".">
+
+
+
+<!-- ===================== Property Definitions =========================== -->
+
+<!--
+
+  Each of the following properties are used in the build script.
+  Values for these properties are set by the first place they are
+  defined, from the following list:
+  * Definitions on the "ant" command line (ant -Dcatalina.home=xyz compile)
+  * Definitions from a "build.properties" file in the top level
+    source directory
+  * Definitions from a "build.properties" file in the developer's
+    home directory
+  * Default definitions in this build.xml file
+
+  You will note below that property values can be composed based on the
+  contents of previously defined properties.  This is a powerful technique
+  that helps you minimize the number of changes required when your development
+  environment is modified.  Note that property composition is allowed within
+  "build.properties" files as well as in the "build.xml" script.
+
+-->
+
+
+
+<!-- ==================== File and Directory Names ======================== -->
+
+<!--
+
+  These properties generally define file and directory names (or paths) that
+  affect where the build process stores its outputs.
+
+  app.name             Base name of this application, used to
+                       construct filenames and directories.
+                       Defaults to "myapp".
+
+  app.version          Version identifier for this application.
+
+  build.home           The directory into which the "prepare" and
+                       "compile" targets will generate their output.
+                       Defaults to "build".
+
+  catalina.home        The directory in which you have installed
+                       a binary distribution of Tomcat 4.  This will
+                       be used by the "deploy" target.
+
+  deploy.home          The name of the directory into which the
+                       deployment hierarchy will be created, and into
+                       which the build directory will be copied.
+                       Defaults to "${catalina.home}/webapps/${app.name}".
+
+  dist.home            The name of the base directory in which
+                       distribution files are created.
+                       Defaults to "dist".
+
+-->
+
+  <property name="app.name"      value="Cfaid"/>
+  <property name="app.version"   value="1.0"/>
+  <property name="build.home"    value="build"/>
+  <property name="catalina.home" value="${TOMCAT}"/>
+  <property name="deploy.home"   value="${catalina.home}/webapps/${app.name}"/>
+  <property name="tomcat.commonlib.dir" value="${tomcat.common.lib}"/>
+  <property name="tomcat.sharedlib.dir" value="${tomcat.shared.lib}"/>
+  <property name="tomcat.lib.dir"       value="${tomcat.lib}"/>
+
+
+<!--  ==================== Compilation Control Options ==================== -->
+
+<!--
+
+  These properties control option settings on the Javac compiler when it
+  is invoked using the <javac> task.
+
+  compile.debug        Should compilation include the debug option?
+
+  compile.deprecation  Should compilation include the deprecation option?
+
+  compile.optimize     Should compilation include the optimize option?
+
+-->
+
+  <property name="compile.debug"       value="true"/>
+  <property name="compile.deprecation" value="true"/>
+  <property name="compile.optimize"    value="false"/>
+
+
+
+<!-- ==================== External Dependencies =========================== -->
+
+
+<!--
+
+  Use property values to define the locations of external JAR files on which
+  your application will depend.  In general, these values will be used for
+  two purposes:
+  * Inclusion on the classpath that is passed to the Javac compiler
+  * Being copied into the "/WEB-INF/lib" directory during execution
+    of the "deploy" target.
+
+  Because we will automatically include all of the Java classes that Tomcat 4
+  exposes to web applications, we will not need to explicitly list any of those
+  dependencies.  You only need to worry about external dependencies for JAR
+  files that you are going to include inside your "/WEB-INF/lib" directory.
+
+-->
+
+<!-- Dummy external dependency -->
+<!--
+  <property name="foo.jar"
+           value="/path/to/foo.jar"/>
+-->
+
+
+<!-- ==================== Compilation Classpath =========================== -->
+
+<!--
+
+  Rather than relying on the CLASSPATH environment variable, Ant includes
+  features that makes it easy to dynamically construct the classpath you
+  need for each compilation.  The example below constructs the compile
+  classpath to include the servlet.jar file, as well as the other components
+  that Tomcat makes available to web applications automatically, plus anything
+  that you explicitly added.
+
+-->
+
+  <path id="compile.classpath">
+
+    <!-- Include all JAR files that will be included in /WEB-INF/lib -->
+    <!-- *** CUSTOMIZE HERE AS REQUIRED BY YOUR APPLICATION *** -->
+<!--
+    <pathelement location="${foo.jar}"/>
+-->
+
+    <!-- Include all elements that Tomcat exposes to applications -->
+    <pathelement location="${catalina.home}/common/classes"/>
+    <pathelement location="${IJLIB}/ijlib.jar"/>
+    <fileset dir="${tomcat.commonlib.dir}">
+      <include name="*.jar"/>
+      <exclude name="ijlib.jar"/>
+    </fileset>
+    <pathelement location="${catalina.home}/shared/classes"/>
+    <fileset dir="${tomcat.sharedlib.dir}">
+      <include name="*.jar"/>
+      <exclude name="ijlib.jar"/>
+    </fileset>
+    <fileset dir="${tomcat.lib.dir}">
+      <include name="*.jar"/>
+      <exclude name="ijlib.jar"/>
+    </fileset>
+    
+    <!-- Components -->
+    <fileset dir="${build.home}/WEB-INF/lib">
+      <include name="*.jar"/>
+    </fileset>
+  </path>
+
+
+
+<!-- ==================== All Target ====================================== -->
+
+<!--
+
+  The "all" target is a shortcut for running the "clean" target followed
+  by the "compile" target, to force a complete recompile.
+
+-->
+
+  <target name="all" depends="clean,compile"
+   description="Clean build and dist, then compile"/>
+
+
+
+<!-- ==================== Clean Target ==================================== -->
+
+<!--
+
+  The "clean" target deletes any previous "build" and "dist" directory,
+  so that you can be ensured the application can be built from scratch.
+
+-->
+
+  <target name="clean"
+   description="Delete old build and dist directories">
+    <delete dir="${build.home}"/>
+  </target>
+
+
+
+<!-- ==================== Compile Target ================================== -->
+
+<!--
+
+  The "compile" target transforms source files (from your "src" directory)
+  into object files in the appropriate location in the build directory.
+  This example assumes that you will be including your classes in an
+  unpacked directory hierarchy under "/WEB-INF/classes".
+
+-->
+
+  <target name="compile" depends="prepare"
+   description="Compile Java sources">
+
+    <!-- Compile Java classes as necessary -->
+    <mkdir    dir="${build.home}/WEB-INF/classes"/>
+    <mkdir    dir="${build.home}/WEB-INF/lib"/>
+    <javac srcdir="src"
+          destdir="${build.home}/WEB-INF/classes"
+           debug="${compile.debug}"
+     deprecation="${compile.deprecation}"
+        optimize="${compile.optimize}">
+        <classpath refid="compile.classpath"/>
+    </javac>
+
+    <!-- Copy associated resource files -->
+    <copy  todir="${build.home}/library/classes">
+    <fileset dir="src" includes="**/*.properties"/>
+    </copy>
+
+  </target>
+
+
+
+<!-- ==================== Deploy Target =================================== -->
+
+<!--
+
+  The "deploy" target copies the contents of the build directory into a
+  location required by our servlet container, and picks up any external
+  dependencies along the way.  AFter restarting the servlet container, you
+  can now test your web application.
+
+-->
+
+  <target name="deploy" depends="compile"
+   description="Deploy application to servlet container">
+
+    <!-- Copy the contents of the build directory -->
+    <mkdir     dir="${deploy.home}"/>
+    <touch    file="${build.home}/WEB-INF/classes/IDServlet.class"/>
+    <copy    todir="${deploy.home}">
+      <fileset dir="${build.home}"/>
+    </copy>
+    <touch>
+    	<fileset dir="${deploy.home}/WEB-INF/classes"/>
+    </touch>
+
+    <!-- Copy external dependencies as required -->
+    <!-- *** CUSTOMIZE HERE AS REQUIRED BY YOUR APPLICATION *** -->
+    <mkdir  dir="${deploy.home}/WEB-INF/lib"/>
+    <copy todir="${deploy.home}/WEB-INF/lib" file="${IJLIB}/ijlib.jar" overwrite="true"/>
+  </target>
+
+
+
+<!-- ==================== makejar Target ===================================== -->
+
+  <target name="makejar" depends="compile" description="Create JAR">
+
+    <!-- Create application JAR file -->
+    <jar jarfile="${app.name}.jar" basedir="${build.home}/WEB-INF/classes"/>
+
+  </target>
+
+
+
+<!-- ==================== Dist Target ===================================== -->
+
+
+<!--
+
+  The "dist" target creates a binary distribution of your application
+  in a directory structure ready to be archived in a tar.gz or zip file.
+  Note that this target depends on two others:
+  * "deploy" so that the entire web application (including external
+    dependencies) will have been assembled
+  * "javadoc" so that the application Javadocs will have been created
+
+-->
+
+  <target name="dist" depends="deploy,javadoc"
+   description="Create binary distribution">
+
+    <!-- Copy documentation subdirectory -->
+    <copy    todir="${dist.home}/docs">
+      <fileset dir="docs"/>
+    </copy>
+
+    <!-- Create application JAR file -->
+    <jar jarfile="${dist.home}/${app.name}.war"
+         basedir="${deploy.home}"/>
+
+    <!-- Copy additional files to ${dist.home} as necessary -->
+
+  </target>
+
+
+
+<!-- ==================== Javadoc Target ================================== -->
+
+<!--
+
+  The "javadoc" target creates Javadoc API documentation for the Java
+  classes included in your application.  Normally, this is only required
+  when preparing a distribution release, but is available as a separate
+  target in case the developer wants to create Javadocs independently.
+
+-->
+
+  <target name="javadoc" depends="compile"
+   description="Create Javadoc API documentation">
+
+    <mkdir          dir="${dist.home}/docs/api"/>
+    <javadoc sourcepath="src"
+                destdir="${dist.home}/docs/api"
+           packagenames="mypackage.*"/>
+
+  </target>
+
+<!-- ==================== Bootstrap Target ================================== -->
+
+<!--
+
+  This target copyies all bootstrap's files if needed
+
+-->
+
+  <target name="test.if.bootstrap.exists">
+    <available file="res/js/bootstrap.min.js" property="bootstrap.exists"/>
+  </target>
+
+  <target name="prepare.bootstrap" if="bootstrap.exists" depends="test.if.bootstrap.exists">
+    <!-- Bootstrap -->
+    <mkdir  dir="${build.home}/res"/>
+    <copy todir="${build.home}/res">
+      <fileset dir="res"/>
+    </copy>
+  </target>
+<!-- ==================== Prepare Target ================================== -->
+
+<!--
+
+  The "prepare" target is used to create the "build" destination directory,
+  and copy the static contents of your web application to it.  If you need
+  to copy static files from external dependencies, you can customize the
+  contents of this task.
+
+  Normally, this task is executed indirectly when needed.
+
+-->
+
+  <target name="prepare">
+
+    <!-- Create build directory and copy static content -->
+    <mkdir  dir="${build.home}"/>
+    <mkdir  dir="${build.home}/WEB-INF"/>
+    <copy todir="${build.home}/WEB-INF">
+      <fileset dir="web"/>
+    </copy>
+    <mkdir  dir="${build.home}/images"/>
+    <copy todir="${build.home}/images">
+      <fileset dir="images"/>
+    </copy>
+    <mkdir  dir="${build.home}/dttimg"/>
+    <copy todir="${build.home}/dttimg">
+      <fileset dir="dttimg"/>
+    </copy>
+    <mkdir  dir="${build.home}/temp"/>
+    <mkdir  dir="${build.home}/docs"/>
+    <mkdir  dir="${build.home}/logs"/>
+    <mkdir  dir="${build.home}/fonts"/>
+    <mkdir  dir="${build.home}/help"/>
+    <copy todir="${build.home}/help">
+      <fileset dir="help"/>
+		</copy>
+    <mkdir  dir="${build.home}/swfupload"/>
+    <copy todir="${build.home}/swfupload">
+      <fileset dir="swfupload"/>
+    </copy>
+    <mkdir  dir="${build.home}/soundman"/>
+    <copy todir="${build.home}/soundman">
+      <fileset dir="soundman"/>
+    </copy>
+    <mkdir  dir="${build.home}/mmedia"/>
+    <copy todir="${build.home}/mmedia">
+      <fileset dir="mmedia"/>
+		</copy>
+    <mkdir  dir="${build.home}/RD3"/>
+    <copy todir="${build.home}/RD3">
+      <fileset dir="RD3"/>
+		</copy>
+    <mkdir  dir="${build.home}/RD4"/>
+    <copy todir="${build.home}/RD4">
+      <fileset dir="RD4"/>
+		</copy>
+    <mkdir  dir="${build.home}/JScript"/>
+    <copy todir="${build.home}/JScript">
+      <fileset dir="JScript"/>
+		</copy>
+    <mkdir  dir="${build.home}/ckeditor"/>
+    <copy todir="${build.home}/ckeditor">
+      <fileset dir="ckeditor"/>
+		</copy>
+    <mkdir  dir="${build.home}/jqplot"/>
+    <copy todir="${build.home}/jqplot">
+      <fileset dir="jqplot"/>
+		</copy>
+<mkdir  dir="${build.home}/chartjs"/>
+    <copy todir="${build.home}/chartjs">
+      <fileset dir="chartjs"/>
+		</copy>
+    <copy todir="${build.home}" file="dtt.css"/>
+    <copy todir="${build.home}" file="dtt.js"/>
+    <copy todir="${build.home}" file="dttRD4.js"/>
+    <copy todir="${build.home}" file="iw.css" failonerror="false"/>
+    <copy todir="${build.home}" file="custom.css"/>
+    <copy todir="${build.home}" file="calpopup.js"/>
+    <copy todir="${build.home}" file="ijlib.js"/>
+    <copy todir="${build.home}" file="dragdrop.js"/>
+    <copy todir="${build.home}" file="custom.js"/>
+    <copy todir="${build.home}" file="custom3.js"/>
+    <copy todir="${build.home}" file="dttest.js"/>
+    <copy todir="${build.home}" file="dtthelp.js"/>
+    <copy todir="${build.home}" file="maskedinp.js"/>
+    <copy todir="${build.home}" file="calpopup.htm" failonerror="false"/>
+    <copy todir="${build.home}" file="qhelp.htm"/>
+    <copy todir="${build.home}" file="qhelp_eng.htm"/>
+    <copy todir="${build.home}" file="qhelp1.gif" failonerror="false"/>
+    <copy todir="${build.home}" file="qhelp2.gif" failonerror="false"/>
+    <copy todir="${build.home}" file="qhelp3.jpg" failonerror="false"/>
+    <copy todir="${build.home}" file="delaydlg.htm" failonerror="false"/>
+    <copy todir="${build.home}" file="rtcconst.ini"/>
+    <copy todir="${build.home}" file="Desktop.htm"/>
+    <copy todir="${build.home}" file="Desktop_sm.htm"/>
+    <copy todir="${build.home}" file="rd3.css"/>
+    <copy todir="${build.home}" file="rd3_sm.css"/>
+    <copy todir="${build.home}" file="firefox.css" failonerror="false"/>
+    <copy todir="${build.home}" file="safari.css"/>
+    <copy todir="${build.home}" file="chrome.css"/>
+    <copy todir="${build.home}" file="iphone.css" failonerror="false"/>
+    <copy todir="${build.home}" file="android.css" failonerror="false"/>
+    <copy todir="${build.home}" file="ie10.css"/>
+    <copy todir="${build.home}" file="calpopupip.htm" failonerror="false"/>
+    <copy todir="${build.home}" file="uploadcomplete.htm" failonerror="false"/>
+    <copy todir="${build.home}" file="application.manifest" overwrite="true"/>
+    <copy todir="${build.home}" file="unavailable.htm" failonerror="false"/>
+       <copy todir="${build.home}" file="tablet9.htm" failonerror="false"/>
+    <copy todir="${build.home}" file="phone3.htm" failonerror="false"/>
+    <copy todir="${build.home}" file="tablet7.htm" failonerror="false"/>
+    <copy todir="${build.home}" file="tablet10.htm" failonerror="false"/>
+    <copy todir="${build.home}" file="phone5.htm" failonerror="false"/>
+	<copy todir="${build.home}" file="simulator.js" failonerror="false"/>
+    <copy todir="${build.home}" file="IDCloud.htm" failonerror="false"/>
+    <copy todir="${build.home}/calimages">
+      <fileset dir="calimages"/>
+    </copy>
+	
+	<!-- personalizzazione finmatica -->
+    <copy todir="${build.home}" file="logout.htm"/>
+	<copy todir="${build.home}" file="error.htm"/>
+	<copy todir="${build.home}/images">
+      <fileset dir="images"/>
+    </copy>
+	<copy todir="${build.home}/images" file="images/logo.bmp" />
+    <mkdir  dir="${build.home}/fonts/"/>
+	<copy todir="${build.home}/WEB-INF/fonts">
+      <fileset dir="fonts"/>
+    </copy>
+    <mkdir  dir="${build.home}/reports/"/>
+	<copy todir="${build.home}/reports">
+      <fileset dir="reports"/>
+    </copy>
+	<!-- fine personalizzazione finmatica -->
+	
+    <copy todir="${build.home}/bootstrap/" file="bootstrap/bootstrap.min.337.css"/>
+    <copy todir="${build.home}/bootstrap/" file="bootstrap/bootstrap-theme.min.337.css"/>
+    <copy todir="${build.home}/bootstrap/" file="bootstrap/bootstrap.min.337.js"/>
+    <copy todir="${build.home}/bootstrap/" file="bootstrap/jquery.min.1124.js"/>
+    <copy todir="${build.home}/" file="firefox.css"/>
+    <copy todir="${build.home}/" file="logout.htm"/>
+    <copy todir="${build.home}/" file="error.htm"/>
+    <copy todir="${build.home}/" file="version.mnf"/>
+    <copy todir="${build.home}/" file="FIELDS_TO_BE_FIXED.xml"/>
+    <copy todir="${build.home}/" file="CHARS_TO_BE_FIXED.xml"/>
+    <copy todir="${build.home}/" file="qHelpCfaid.htm"/>
+    <copy todir="${build.home}/" file="qHelpCfaceid.htm"/>
+    <copy todir="${build.home}/" file="qHelpCfaesid.htm"/>
+    <copy todir="${build.home}/" file="qHelpCfafinid.htm"/>
+    <copy todir="${build.home}/" file="qHelpCfamuid.htm"/>
+    <copy todir="${build.home}/" file="qHelpCfaodid.htm"/>
+
+    <!-- Copy static files from external dependencies as needed -->
+
+  </target>
+
+
+
+</project>

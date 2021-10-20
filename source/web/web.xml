@@ -1,0 +1,47 @@
+<!DOCTYPE web-app 
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" 
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+    <display-name>Cfaid</display-name>
+
+    <description>Cfa</description>
+
+    <context-param>
+      <param-name>myparam</param-name>
+      <param-value>my value</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>Cfaid</servlet-name>
+        <servlet-class>IDServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Cfaid</servlet-name>
+        <url-pattern>/Cfaid.htm</url-pattern>
+        <!-- WebApi -->
+    </servlet-mapping>
+
+    <!-- Intra-app comunication section -->
+    <servlet>
+        <servlet-name>C_Cfaid</servlet-name>
+        <servlet-class>IDServletCOM</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>C_Cfaid</servlet-name>
+        <url-pattern>/C_Cfaid.htm</url-pattern>
+    </servlet-mapping>
+    <!-- End Intra-app comunication section -->
+
+    
+    <listener>
+      <listener-class>IDSessionListener</listener-class>
+    </listener>
+    
+    <listener>
+      <listener-class>IDContextListener</listener-class>
+    </listener>
+</web-app>

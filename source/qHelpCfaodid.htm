@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard Ordini e Disposizioni</title>
+<link rel="stylesheet" href="bootstrap/bootstrap.min.337.css">
+<link rel="stylesheet" href="bootstrap/bootstrap-theme.min.337.css">
+<script src="bootstrap/jquery.min.1124.js"></script>
+<script src="bootstrap/bootstrap.min.337.js"></script>
+<style type="text/css">
+	.list-group-item {
+			padding:6px;
+			text-align: center;
+			text-transform: uppercase;
+			background: #f2f2f2;
+			margin-bottom: 10px;
+			border: 0px;
+			color: #5372A0;
+			}
+	
+	.panel {
+		border: none;
+		}
+	
+	.panel-body{
+		background: #F2F2F2;
+		color:#5372A0;
+	}
+	
+	.panel-body-custom{
+		background: #DEE7F6;
+	}
+	
+	.titolo-crea{
+		color:#FBB03B;
+		text-align: center;
+		font-size: 22px;
+		font-weight: bold;
+		padding-bottom: 5px;}
+		
+	.titolo-controlla{
+		color:#5372A0;
+		text-align: center;
+		font-size: 22px;
+		font-weight: bold;
+		padding-bottom: 5px;}
+		
+	.titolo-comefare{
+		color:#59915F;
+		text-align: center;
+		font-size: 22px;
+		font-weight: bold;
+		padding-bottom: 5px;}
+		
+	.col-custom-white{
+		border-color: white;
+		border-width: 0px 4px 0px 0px;
+		border-style: solid;	
+		}
+	
+	.col-custom-gray{
+		border-color: #666666;
+		border-width: 0px 0px 0px 2px;
+		border-style: solid;	
+		}
+	
+	.dati_ente_titolo{
+		text-transform: uppercase;
+		font-size: 11px;
+		vertical-align:top;
+		}
+	
+	.dati_ente{		
+		font-size: 11px;
+		vertical-align:top;
+		color:#5372A0;
+		}
+	
+	.footer{
+		font-size: 10px;
+		vertical-align: middle;
+		}
+	.testo_grigio{
+		color:#666666;
+		}
+		
+	.bottone-custom {
+		border-radius: 0px;
+		border: 0px;
+		text-size:10px;
+		margin-bottom:5px;
+		
+		}
+
+	.help {
+		font-size: 12px;
+		text-align: justify;
+		text-justify: inter-word;
+		color:#666666;
+		}
+	.modal-header{
+		background-color:#5372a0;
+		color:white;
+		text-align: center;
+		}
+	.containerpad{
+		padding-left : 40px;
+		padding-right : 40px;
+		}
+	.visible {
+		visibility: visible;
+		opacity: 1;
+		transition: opacity 2s linear;
+		}
+	.hidden {
+		visibility: hidden;
+		opacity: 0;
+		transition: visibility 0s 2s, opacity 2s linear;
+		}
+
+</style>
+
+</head>
+<body>
+    <!-- Open the output in a new blank tab (Click the arrow next to "Show Output" button) and resize the browser window to understand how the Bootstrap responsive grid system works. -->
+	<div class="container-fluid">
+		
+		<hr>
+		 <!-- BLOCCO SALUTO -->
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-9">					
+						Ciao <strong><span id="nomeUtente" class="text-uppercase">Operatore</span></strong><br>
+						benvenuto in <strong><span id="nomeModulo" class="text-uppercase">ORDINI E DISPOSIZIONI.</span></strong><br>
+						Stai lavorando per l'unità organizzativa <b id="unita">UNITA ORGANIZZATIVA</b> e per l'esercizio <b id="esercizio">Esercizio</b>
+					</div>
+					<div class="col-sm-3 text-right">
+						<button type="button" class="btn btn-primary btn-block bottone-custom" onclick="javascript:doCommand('CAODIMSU');">CAMBIA UNITA'</button>
+						<button type="button" class="btn btn-primary btn-block bottone-custom" onclick="javascript:doCommand('CAODIMSE');">CAMBIA ESERCIZIO</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<hr>
+		<!-- BLOCCO OPERAZIONI -->	
+		<div class="row">
+			<div class="col-sm-4">
+			  <div class="titolo-crea">CREA</div>
+				<div class="list-group">
+					<a href="#" id="linkOrdine" class="list-group-item toggle" onclick="javascript:doCommand('ORDINE_INS');">Ordine</a>
+					<a href="#" id="linkDisposizione" class="list-group-item" onclick="javascript:doCommand('DISPOSIZIONE_INS');">Disposizione</a>
+					<a href="#" id="linkDistLiqOrd" class="list-group-item" onclick="javascript:doCommand('DISTINTA_ORD_INS');">Distinta liquidazioni ordini</a>
+					<a href="#" id="linkDistLiqDisp" class="list-group-item" onclick="javascript:doCommand('DISTINTA_DISP_INS');">Distinta liquidazioni disposizioni</a>
+					<a href="#" id="linkDistLiq" class="list-group-item" onclick="javascript:doCommand('DISTINTA_INS');">Distinta liquidazioni</a>
+				</div>
+			</div>
+			<div class="col-sm-4">
+			  <div class="titolo-controlla">CONTROLLA</div>
+				<div class="list-group">
+					<a href="#" id="linkFattElett" class="list-group-item" onclick="javascript:doCommand('CAOFATEL');"> <span class="badge" id="num_fatture" title="">0</span>Fatture elettroniche ricevute</a>
+					<a href="#" id="linkDisponibilita" class="list-group-item" onclick="javascript:doCommand('CAODESES');">Disponibilità</a>
+					<a href="#" id="linkSoggetto" class="list-group-item" onclick="javascript:doCommand('CAODSGSG');">Soggetto</a>
+					<a href="#" id="linkNotifiche" class="list-group-item" onclick="javascript:doCommand('CAONONOT');"> <span class="badge" id="num_notifiche" title="">0</span>Notifiche ricevute</a>					
+				</div>
+			  </div>
+			<div class="col-sm-4"> 
+				<div class="titolo-comefare">COME FARE PER</div>
+					<div class="list-group">
+						<a href="#help_cerca" class="list-group-item" data-toggle="collapse">Cercare un dato</a>
+						 
+							  <div id="help_cerca" class="collapse help">
+								Le videate per la visualizzazione/modifica dei dati vengono normalmente aperte in modalità di ricerca (campi evidenziati in verde). <br>
+								In questa modalità è possibile introdurre dei criteri di ricerca per i dati, e premere poi il tasto <img border="0" src="images/find_sm.gif" align="texttop">(trova) per eseguire la ricerca e visualizzare i risultati. <br>
+								Per introdurre i criteri di ricerca utilizzare la seguente notazione:<br>
+								- <b>Valore esatto</b>: introducendo un valore in un campo verranno ricercati tutti le righe che lo contengono.<br>
+								- <b>Maggiore o uguale, minore o uguale</b>: utilizzare il simbolo &gt(valore) o &lt(valore) <br>
+								- <b>Diverso</b>: utilizzare il simbolo #(valore)  <br>
+								- <b>Vuoto</b>: utilizzare il simbolo ! <br>
+								- <b>Non vuoto</b>: utilizzare il simbolo . <br>
+								- <b>Sotto stringa</b>: utilizzare il simbolo * o % per specificare ricerche in sotto stringa (ad esempio *qua*)<br>
+								- <b>Intervallo</b>: utilizzare la notazione (valore1):(valore2) <br>
+								- <b>Criteri multipli</b>: separare diversi criteri semplici con il ; per specificare criteri in addizione (ad esempio &lt10;&gt20 trova tutti i dati minori o uguali a 10 e maggiori o uguali a 20).
+							  </div>
+													
+						<a href="#help_seleziona" class="list-group-item" data-toggle="collapse">Selezionare e ordinare le righe</a>
+								<div id="help_seleziona" class="collapse help">
+								Nelle visualizzazioni in lista è presente sul lato sinistro della videata una serie di tasti<img border="0" src="images/rs.gif" align="texttop"> che 
+								fungono da selettore di riga. <br>E' possibile selezionare una riga premendo il relativo selettore. Quando una riga è attiva essa viene evidenziata.<br>
+								Nelle visualizzazioni in lista potete ordinare le righe in base ai valori di un campo cliccando sull'intestazione della colonna.
+								</div>
+						<a href="#help_modifica" class="list-group-item" data-toggle="collapse">Modificare campi e dati</a>
+								<div id="help_modifica" class="collapse help">
+									Per modificare i dati o inserire nuove righe potete semplicemente introdurre i nuovi dati sia in modalità tabella che in free-form. Potete modificare anche
+									più righe contemporaneamente. Al termine potete salvare i dati premendo il bottone <img border="0" src="images/update_sm.gif" align="texttop"> oppure annullare le modifiche con il bottone <img border="0" src="images/cancel_sm.gif" align="texttop">. <br>
+									Durante la modifica dei dati il pannello entra in modalità modificato e non è possibile visualizzare altre righe fino a che non si salvano o si annullano le modifiche. Per selezionare i dati tramite una combo box premere il tasto <img border="0" src="images/ppl.gif" align="texttop">. La combo box sparisce alla prossima pressione di un qualunque tasto.						
+								</div>						
+						<a href="#help_bottoni" class="list-group-item" data-toggle="collapse">Accelerare il lavoro</a>
+								<div id="help_bottoni" class="collapse help">
+									Ogni pannello di dati presenta la seguente serie di pulsanti:<br>
+									<ul>
+										<li>
+											<img border="0" src="images/top_sm.gif" align="texttop"><img border="0" src="images/prev_sm.gif" align="texttop"><img border="0" src="images/next_sm.gif" align="texttop"><img border="0" src="images/bottom_sm.gif" align="texttop">: mostrano le altre righe nella lista.
+										</li>
+										<li>
+											<img border="0" src="images/find_sm.gif" align="texttop">: esegue la ricerca dei dati secondo i criteri specificati.
+										</li>
+										<li>
+											<img border="0" src="images/search_sm.gif" align="texttop">: permette di inserire nuovi criteri di ricerca.
+										</li>
+										<li>
+											<img border="0" src="images/cancel_sm.gif" align="texttop">: in modalità di ricerca, cancella tutti i criteri, altrimenti annulla le 	
+											modifiche fatte ai dati.
+										</li>
+										<li>
+											<img border="0" src="images/new_sm.gif" align="texttop">: si predispone per l'inserimento di una nuova riga.
+										</li>
+										<li>
+											<img border="0" src="images/delete_sm.gif" align="top">: cancella la riga.
+										</li>
+										<li>
+											<img border="0" src="images/dupl_sm.gif" align="texttop">: duplica una riga.
+										</li>
+										<li>
+											<img border="0" src="images/update_sm.gif" align="texttop">: salva le modifiche.
+										</li>
+									</ul>
+								</div>
+						
+						
+					</div>
+				</div>
+			</div>				
+			<hr>
+			<!-- BLOCCO ENTE -->
+			<div class="row">
+				<div class="col-sm-8">
+					<div class="panel panel-default">
+						<div class="panel-body text-primary panel-body-custom">
+							<div class="row">
+								<div class="col-sm-2 col-custom-white">
+									
+									<img id="logo" src="logo_ente.png" class="img-responsive">
+								</div>
+								<div class="col-sm-6">		
+									<div class="row">
+										<div class="col-sm-2 dati_ente_titolo testo_grigio">Ente</div>
+										<div class="col-sm-10 dati_ente text-uppercase" id="ente">nome ente</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-2 dati_ente_titolo testo_grigio">Indirizzo</div>
+										<div class="col-sm-10 dati_ente" id="indirizzo">indirizzo</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-2 dati_ente_titolo testo_grigio">Email</div>
+										<div class="col-sm-10 dati_ente" id="mail">email</div>
+									</div>
+									<!--<div class="row">
+											<div class="col-sm-2 dati_ente_titolo testo_grigio"><abbr title="Codice univoco ufficio" class="initialism">CUU</abbr></div>
+											<div class="col-sm-10 dati_ente" id="cuu">CUU</div>
+										</div>-->
+								</div>
+								<div class="col-sm-4">
+									<div class="row">
+										<div class="col-sm-2 dati_ente_titolo testo_grigio">Tel</div>
+										<div class="col-sm-10 dati_ente" id="telefono">051 111111</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-2 dati_ente_titolo testo_grigio">Fax</div>
+										<div class="col-sm-10 dati_ente" id="fax">051 222222</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-2 dati_ente_titolo testo_grigio"><abbr title="Codice fiscale o partita iva" class="initialism">CF</abbr></div>
+										<div class="col-sm-10 dati_ente" id="cod_fiscale">01375710363</div>
+									</div>									
+									<div class="row">
+										<div class="col-sm-2 dati_ente_titolo testo_grigio"><abbr title="Economic Operators Registration and Identification" class="initialism">EORI</div>
+										<div class="col-sm-10 dati_ente" id="codEori">eori</div>
+									</div>										
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+				<div class="col-sm-4">
+					<a href="#voto" class="testo_grigio" data-toggle="modal" data-target="#votoModal">
+						<div class="panel panel-default">
+							<div class="panel-body text-primary panel-body-custom">
+								<div class="row text-center text-uppercase">
+									<h4>ti piace<br>la nuova homepage?</h4>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			<div class="modal fade" id="votoModal" tabindex="-1" role="dialog" aria-labelledby="Homepage" aria-hidden="true">
+				<div class="modal-dialog" name="votoFinestra">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title center">TI PIACE LA NUOVA HOMEPAGE?</h4>
+						</div>
+						<div class="modal-body">							
+							<form id="votoForm" method="post" class="form-horizontal center" data-toggle="validator" role="form">
+								<div class="form-group">													
+									<div class="row" id="VotoRadio">
+										<div class="col-xs-6 text-center">
+											<label class="radio-inline"><input type="radio" name="optradio" required>SI
+											</label>										
+										</div>
+									
+										<div class="col-xs-6 text-center">											
+											<label class="radio-inline"><input type="radio" name="optradio" required>NO
+											</label>											
+										</div>
+									</div>
+									<br>
+									<div class="row">
+										<div class="container col-xs-12 containerpad">
+											<textarea class="form-control" name="commento" rows="5" placeholder="Esprimi il tuo parere. Aiutaci a migliorare"></textarea>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-xs-5 col-xs-offset-3">
+										<button class="btn btn-primary" type="submit" onclick="javascript:inviaVoto();">Invia il tuo parere!</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>																			
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+
+
+			<div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="Grazie" aria-hidden="true"> 
+				<div class="modal-dialog"> 
+					<div class="modal-content"> 
+						<div class="modal-body"> 
+							<h5>Grazie per averci dato la tua opinione!</h5> 
+						</div> 
+						<div class="modal-footer"> 
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+							Chiudi
+							</button> 
+						</div> 
+					</div>
+				</div> 
+			</div>						
+					
+			
+		<hr>
+		<!-- BLOCCO ADS -->
+
+		<div class="panel panel-default footer">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-5 text-center">
+						<div class="row">
+							<div class="col-sm-6 text-uppercase text-right testo_grigio">
+								Segnala un problema
+							</div>
+							<div class="col-sm-6 text-left col-custom-gray">
+								<a href="http://www.ads.it/richiesta-di-assistenza/" target="_blank"> Apri una richiesta di assistenza</a><br>
+								Telefona al numero 051 6307411
+							</div>							
+						</div>
+					</div>
+					<div class="col-sm-2 text-center testo_grigio">
+						ADS S.p.A © 2016
+					</div>
+					<div class="col-sm-5 text-center">
+						<div class="col-sm-6 text-uppercase text-right testo_grigio">
+							Istruzioni
+						</div>
+						<div class="col-sm-6 text-left col-custom-gray">
+							<a href="http://vega.ads.it/faq/faqcf4.nsf/0/8B0836206D433DF8C1257F8B003AE2B9?opendocument">Ultime novità di versione</a>
+						</div>				
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+		
+		</div>
+		
+		<script>
+			function doCommand(cmd) {
+				var indeApp = window.parent;
+				var idEvent = new indeApp.IDEvent("cmd", "", null, 7, cmd);
+			}
+			
+			function setDatiStatici(userName, nomeModulo, UrlLogo) {
+			  document.getElementById('nomeUtente').innerHTML = userName;
+			  document.getElementById('nomeModulo').innerHTML = nomeModulo;
+			  document.getElementById('logo').src = UrlLogo;
+			}
+						
+			function setEsercizio(esercizio) {
+			  document.getElementById('esercizio').innerHTML = esercizio;			  
+			}
+						
+			function setAbilitazioni1(abOrdini, abDisposizione, abDistLiqOrd, abDistLiqDisp, abDistLiq ){
+			
+			  if (abOrdini=='N') 
+				$("#linkOrdine").hide();
+			  if (abDisposizione=='N') 
+				$("#linkDisposizione").hide();		
+			  if (abDistLiqOrd=='N') 
+				$("#linkDistLiqOrd").hide();
+			  if (abDistLiqDisp=='N') 
+				$("#linkDistLiqDisp").hide();
+			  if (abDistLiq=='N') 
+				$("#linkDistLiq").hide();				
+			}
+			
+			function setAbilitazioni2(abFattElettroniche, abDisponibilita, abSoggetti, abNotifiche ){
+			
+			  if (abFattElettroniche=='N') 
+				$("#linkFattElett").hide();
+			  if (abDisponibilita=='N') 
+				$("#linkDisponibilita").hide();		
+			  if (abSoggetti=='N') 
+				$("#linkSoggetto").hide();
+			  if (abNotifiche=='N') 
+				$("#linkNotifiche").hide();			
+			}
+			
+			function setDatiEnte1(ente, indirizzo, telefono, fax, mail) {
+			  document.getElementById('ente').innerHTML = ente;
+			  document.getElementById('indirizzo').innerHTML = indirizzo;
+			  document.getElementById('telefono').innerHTML = telefono;
+			  document.getElementById('fax').innerHTML = fax;
+			  document.getElementById('mail').innerHTML = mail;
+			}
+			
+			function setDatiEnte2(cod_fiscale, iban, cuu, codEori) {
+			  document.getElementById('cod_fiscale').innerHTML = cod_fiscale;
+			  //document.getElementById('iban').innerHTML = iban;
+			  //document.getElementById('cuu').innerHTML = cuu;
+			  document.getElementById('codEori').innerHTML = codEori;
+			}
+			
+			function setUnitaEFatture(unita,num_fatture, tool_fatture) {
+				var descUnita = unita;
+				document.getElementById('unita').innerHTML = descUnita.replace("&#39;", "'");
+				document.getElementById('num_fatture').innerHTML = num_fatture;	
+				document.getElementById('num_fatture').title = tool_fatture;	
+			}
+			
+			function setNotifiche(num_notifiche, tool_notifiche) {
+				document.getElementById('num_notifiche').innerHTML = num_notifiche;
+				document.getElementById('num_notifiche').title = tool_notifiche;				
+			}
+		
+			function getVoto(){
+				 var oRadio = document.forms[0].elements['optradio'];
+				 var voto = '';
+				 if(oRadio[0].checked) 
+					voto = 'SI'
+				 if(oRadio[1].checked) 
+					voto = 'NO'
+				 return voto;				 				 
+			}
+			
+			function getCommento(){
+				var commento = '';
+				commento = document.forms[0].elements['commento'].value;
+				return commento;					
+			}
+
+			function inviaVoto(){
+				//alert('chiamata inviaVoto');
+				var voto = '';
+				var oRadio = document.forms[0].elements['optradio'];
+				
+				if ((oRadio[0].checked) || (oRadio[1].checked)) {
+					voto = 'Espresso'; }
+
+				
+				if ( voto=='Espresso' ) {
+					doCommand('VOTA_DASHBOARD&VOTO='+getVoto()+'&COMMENTO='+getCommento());
+					$('#votoModal').modal('hide');
+					$('#welcomeModal').modal('show');
+					//
+					}				
+			}
+			
+			//svuota i campi dopo ogni invio del parere
+			$('.modal').on('hidden.bs.modal', function(){
+			$(this).find('form')[0].reset();
+			});
+						
+			$("form").submit(function() {
+				//annullo la submit che serve solo per il controllo dei campi
+				return false;
+			});
+		</script>
+</body>
+</html>                                		                                		

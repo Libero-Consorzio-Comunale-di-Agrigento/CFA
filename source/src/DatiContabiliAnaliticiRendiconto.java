@@ -1,0 +1,5336 @@
+// **********************************************
+// Dati Contabili Analitici Rendiconto
+// Project : Cfa
+// **********************************************
+
+import com.progamma.is.*;
+import com.progamma.*;
+import com.progamma.idre.*;
+import com.progamma.doc.*;
+
+import java.io.*;
+import java.util.*;
+import java.sql.*;
+
+
+public final class DatiContabiliAnaliticiRendiconto extends MyWebForm implements Serializable
+{  
+  MyWebEntryPoint MainFrm;
+  
+  // Frame constant definitions
+  OTabView TAB_DCATABBEVIEW;
+  private static int PFL_DATDERDAPRUS_ESERCIZIO1 = 0;
+  private static int PFL_DATDERDAPRUS_MISSIONE1 = 1;
+  private static int PFL_DATDERDAPRUS_PROGRAMMA1 = 2;
+  private static int PFL_DATDERDAPRUS_APRIMISPROG1 = 3;
+  private static int PFL_DATDERDAPRUS_LIVELLO8 = 4;
+  private static int PFL_DATDERDAPRUS_RESIDPASSINI = 5;
+  private static int PFL_DATDERDAPRUS_PREVDEFCOMP1 = 6;
+  private static int PFL_DATDERDAPRUS_PREVDEFCASS1 = 7;
+  private static int PFL_DATDERDAPRUS_RIACRESIPAS1 = 8;
+  private static int PFL_DATDERDAPRUS_UTENTEINSER1 = 9;
+  private static int PFL_DATDERDAPRUS_DATAINSERIM1 = 10;
+  private static int PFL_DATDERDAPRUS_UTENTULTIAG1 = 11;
+  private static int PFL_DATDERDAPRUS_DATAULTIMAG1 = 12;
+  private static int PFL_DATDERDAPRUS_SOMDIRESPAIN = 13;
+  private static int PFL_DATDERDAPRUS_SOMDIPREDEC1 = 14;
+  private static int PFL_DATDERDAPRUS_SOMDIPREDEC2 = 15;
+  private static int PFL_DATDERDAPRUS_SOMDIRIAREP1 = 16;
+
+  private static int PPQRY_BDAPDCARSPR1 = 0;
+
+  private static int PPQRY_APRI1 = 1;
+
+
+  IDPanel PAN_DATDERDAPRUS;
+  private static int PFL_DATDERDAPREN_ESERCIZIO2 = 0;
+  private static int PFL_DATDERDAPREN_LIVELLO4 = 1;
+  private static int PFL_DATDERDAPREN_RESIDUINIZIA = 2;
+  private static int PFL_DATDERDAPREN_PREVDEFCOMPE = 3;
+  private static int PFL_DATDERDAPREN_PREVDEFCASSA = 4;
+  private static int PFL_DATDERDAPREN_RIACRESIPASS = 5;
+  private static int PFL_DATDERDAPREN_UTENTEINSER2 = 6;
+  private static int PFL_DATDERDAPREN_DATAINSERIM2 = 7;
+  private static int PFL_DATDERDAPREN_UTENTULTIAG2 = 8;
+  private static int PFL_DATDERDAPREN_DATAULTIMAG2 = 9;
+  private static int PFL_DATDERDAPREN_SOMMDIRESINI = 10;
+  private static int PFL_DATDERDAPREN_SOMDIPREDECO = 11;
+  private static int PFL_DATDERDAPREN_SOMDIPREDECA = 12;
+  private static int PFL_DATDERDAPREN_SOMDIRIAREPA = 13;
+
+  private static int PPQRY_BDAPDCAREPRE = 0;
+
+
+  IDPanel PAN_DATDERDAPREN;
+  private static int PFL_DATIGESTUSCI_ESERCIZIO3 = 0;
+  private static int PFL_DATIGESTUSCI_MISSIONE2 = 1;
+  private static int PFL_DATIGESTUSCI_PROGRAMMA2 = 2;
+  private static int PFL_DATIGESTUSCI_APRIMISPROG2 = 3;
+  private static int PFL_DATIGESTUSCI_COFOG = 4;
+  private static int PFL_DATIGESTUSCI_LIVELLO9 = 5;
+  private static int PFL_DATIGESTUSCI_CODICEEUROP1 = 6;
+  private static int PFL_DATIGESTUSCI_SPESARICORR1 = 7;
+  private static int PFL_DATIGESTUSCI_CUP = 8;
+  private static int PFL_DATIGESTUSCI_IMPEGNATCOMP = 9;
+  private static int PFL_DATIGESTUSCI_FPV = 10;
+  private static int PFL_DATIGESTUSCI_PAGATORES1 = 11;
+  private static int PFL_DATIGESTUSCI_PAGATOCOMP1 = 12;
+  private static int PFL_DATIGESTUSCI_UTENTEINSER3 = 13;
+  private static int PFL_DATIGESTUSCI_DATAINSERIM3 = 14;
+  private static int PFL_DATIGESTUSCI_UTENTULTIAG3 = 15;
+  private static int PFL_DATIGESTUSCI_DATAULTIMAG3 = 16;
+  private static int PFL_DATIGESTUSCI_SOMMDIIMPCOM = 17;
+  private static int PFL_DATIGESTUSCI_SOMMADIFPV = 18;
+  private static int PFL_DATIGESTUSCI_SOMMDIPAGRES = 19;
+  private static int PFL_DATIGESTUSCI_SOMMDIPAGCOM = 20;
+  private static int PFL_DATIGESTUSCI_ORDLIVELLO6 = 21;
+
+  private static int PPQRY_BDAPDCARSGES = 0;
+
+  private static int PPQRY_APRI2 = 1;
+
+  private static int PPQRY_CODTRANSEUR1 = 2;
+
+
+  IDPanel PAN_DATIGESTUSCI;
+  private static int PFL_DATIGESTENTR_ESERCIZIO4 = 0;
+  private static int PFL_DATIGESTENTR_LIVELLO5 = 1;
+  private static int PFL_DATIGESTENTR_CODICEEUROPE = 2;
+  private static int PFL_DATIGESTENTR_SPESARICORRE = 3;
+  private static int PFL_DATIGESTENTR_ACCERTAMENTI = 4;
+  private static int PFL_DATIGESTENTR_RISCOSSICOM1 = 5;
+  private static int PFL_DATIGESTENTR_RISCOSSIORE1 = 6;
+  private static int PFL_DATIGESTENTR_UTENTEINSER4 = 7;
+  private static int PFL_DATIGESTENTR_DATAINSERIM4 = 8;
+  private static int PFL_DATIGESTENTR_UTENTULTIAG4 = 9;
+  private static int PFL_DATIGESTENTR_DATAULTIMAG4 = 10;
+  private static int PFL_DATIGESTENTR_SOMMADIACCER = 11;
+  private static int PFL_DATIGESTENTR_SOMMDIRISCOM = 12;
+  private static int PFL_DATIGESTENTR_SOMMDIRISRES = 13;
+  private static int PFL_DATIGESTENTR_ORDLIVELLO5 = 14;
+
+  private static int PPQRY_BDAPDCAREGES = 0;
+
+  private static int PPQRY_APRI3 = 1;
+
+  private static int PPQRY_CODTRANSEURO = 2;
+
+
+  IDPanel PAN_DATIGESTENTR;
+  private static int GRP_STATOPATRIMO_LIVELLOVII = 0;
+
+  private static int PFL_STATOPATRIMO_ESERCIZIO5 = 0;
+  private static int PFL_STATOPATRIMO_LIVELLO7 = 1;
+  private static int PFL_STATOPATRIMO_DESCRILIVEL7 = 2;
+  private static int PFL_STATOPATRIMO_DARE1 = 3;
+  private static int PFL_STATOPATRIMO_AVERE1 = 4;
+  private static int PFL_STATOPATRIMO_SALDOEXPRESS = 5;
+  private static int PFL_STATOPATRIMO_UTENTEINSER5 = 6;
+  private static int PFL_STATOPATRIMO_DATAINSERIM5 = 7;
+  private static int PFL_STATOPATRIMO_UTENTULTIAG5 = 8;
+  private static int PFL_STATOPATRIMO_DATAULTIMAG5 = 9;
+  private static int PFL_STATOPATRIMO_SOMMADIDARE1 = 10;
+  private static int PFL_STATOPATRIMO_SOMMADIAVER1 = 11;
+  private static int PFL_STATOPATRIMO_SOMMDISALEXP = 12;
+
+  private static int PPQRY_BDAPDCARENSP = 0;
+
+  private static int PPQRY_APRI4 = 1;
+  private static int PPQRY_STRUPIANCON1 = 2;
+
+
+  IDPanel PAN_STATOPATRIMO;
+  private static int GRP_CONTOECONOMI_LIVELLOVI = 0;
+
+  private static int PFL_CONTOECONOMI_ESERCIZIO = 0;
+  private static int PFL_CONTOECONOMI_MISSIONE = 1;
+  private static int PFL_CONTOECONOMI_PROGRAMMA = 2;
+  private static int PFL_CONTOECONOMI_APRIMISPROG = 3;
+  private static int PFL_CONTOECONOMI_LIVELLO6 = 4;
+  private static int PFL_CONTOECONOMI_STRPIACONDES = 5;
+  private static int PFL_CONTOECONOMI_DARE = 6;
+  private static int PFL_CONTOECONOMI_AVERE = 7;
+  private static int PFL_CONTOECONOMI_SALDO = 8;
+  private static int PFL_CONTOECONOMI_UTENTEINSERI = 9;
+  private static int PFL_CONTOECONOMI_DATAINSERIME = 10;
+  private static int PFL_CONTOECONOMI_UTENTULTIAGG = 11;
+  private static int PFL_CONTOECONOMI_DATAULTIMAGG = 12;
+  private static int PFL_CONTOECONOMI_SOMMADIDARE = 13;
+  private static int PFL_CONTOECONOMI_SOMMADIAVERE = 14;
+  private static int PFL_CONTOECONOMI_SOMMADISALDO = 15;
+
+  private static int PPQRY_BDAPDCARENCE = 0;
+
+  private static int PPQRY_APRI = 1;
+  private static int PPQRY_STRUPIANCONT = 2;
+
+
+  IDPanel PAN_CONTOECONOMI;
+  private static int PFL_PANNELELABOR_ETICGENEXBRL = 0;
+
+  private static int PPQRY_PARAMETRI632 = 0;
+
+
+  IDPanel PAN_PANNELELABOR;
+
+  // Definition of Global Variables
+
+ 
+  // **********************************************
+  // Inizializzatore tabelle IMDB di form
+  // **********************************************
+  public static void ImdbInit(IMDBObj IMDB)
+  {
+    //
+    //
+    Init_PQRY_BDAPDCARSPR1(IMDB);
+    Init_PQRY_BDAPDCAREPRE(IMDB);
+    Init_PQRY_BDAPDCARSGES(IMDB);
+    Init_PQRY_BDAPDCAREGES(IMDB);
+    Init_PQRY_BDAPDCARENSP(IMDB);
+    Init_PQRY_BDAPDCARENCE(IMDB);
+    Init_PQRY_PARAMETRI632(IMDB);
+  }
+
+  // IMDB DDL Procedures
+  private static void Init_PQRY_BDAPDCARSPR1(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef13.PQRY_BDAPDCARSPR1, 12);
+    IMDB.set_TblCode(IMDBDef13.PQRY_BDAPDCARSPR1, "PQRY_BDAPDCARSPR1");
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_ESERCIZIO, "ESERCIZIO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_ESERCIZIO,1,4,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_LIVELLO_4, "LIVELLO_4");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_LIVELLO_4,1,7,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_MISSIONE, "MISSIONE");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_MISSIONE,1,3,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_PROGRAMMA, "PROGRAMMA");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_PROGRAMMA,1,3,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_RESIDUI_PASSIVI_INI, "RESIDUI_PASSIVI_INI");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_RESIDUI_PASSIVI_INI,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_PREV_DEF_COMPETENZA, "PREV_DEF_COMPETENZA");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_PREV_DEF_COMPETENZA,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_PREV_DEF_CASSA, "PREV_DEF_CASSA");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_PREV_DEF_CASSA,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_RIACC_RESIDUI_PASSIVI, "RIACC_RESIDUI_PASSIVI");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_RIACC_RESIDUI_PASSIVI,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_UTENTE_INSERIMENTO, "UTENTE_INSERIMENTO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_UTENTE_INSERIMENTO,5,8,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_DATA_INSERIMENTO, "DATA_INSERIMENTO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_DATA_INSERIMENTO,6,10,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_UTENTE_ULTIMO_AGG, "UTENTE_ULTIMO_AGG");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_UTENTE_ULTIMO_AGG,5,8,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_DATA_ULTIMO_AGG, "DATA_ULTIMO_AGG");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSPR1,IMDBDef13.PQSL_BDAPDCARSPR1_DATA_ULTIMO_AGG,6,10,0);
+    IMDB.TblAddNew(IMDBDef13.PQRY_BDAPDCARSPR1, 0);
+  }
+
+  private static void Init_PQRY_BDAPDCAREPRE(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef13.PQRY_BDAPDCAREPRE, 10);
+    IMDB.set_TblCode(IMDBDef13.PQRY_BDAPDCAREPRE, "PQRY_BDAPDCAREPRE");
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_ESERCIZIO, "ESERCIZIO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_ESERCIZIO,1,4,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_LIVELLO_4, "LIVELLO_4");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_LIVELLO_4,1,7,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_RESIDUI_INIZIALI, "RESIDUI_INIZIALI");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_RESIDUI_INIZIALI,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_PREV_DEF_COMPETENZA, "PREV_DEF_COMPETENZA");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_PREV_DEF_COMPETENZA,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_PREV_DEF_CASSA, "PREV_DEF_CASSA");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_PREV_DEF_CASSA,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_RIACC_RESIDUI_ATTIVI, "RIACC_RESIDUI_ATTIVI");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_RIACC_RESIDUI_ATTIVI,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_UTENTE_INSERIMENTO, "UTENTE_INSERIMENTO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_UTENTE_INSERIMENTO,5,8,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_DATA_INSERIMENTO, "DATA_INSERIMENTO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_DATA_INSERIMENTO,6,10,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_UTENTE_ULTIMO_AGG, "UTENTE_ULTIMO_AGG");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_UTENTE_ULTIMO_AGG,5,8,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_DATA_ULTIMO_AGG, "DATA_ULTIMO_AGG");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREPRE,IMDBDef13.PQSL_BDAPDCAREPRE_DATA_ULTIMO_AGG,6,10,0);
+    IMDB.TblAddNew(IMDBDef13.PQRY_BDAPDCAREPRE, 0);
+  }
+
+  private static void Init_PQRY_BDAPDCARSGES(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef13.PQRY_BDAPDCARSGES, 17);
+    IMDB.set_TblCode(IMDBDef13.PQRY_BDAPDCARSGES, "PQRY_BDAPDCARSGES");
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_ESERCIZIO, "ESERCIZIO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_ESERCIZIO,1,4,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_MISSIONE, "MISSIONE");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_MISSIONE,1,3,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_PROGRAMMA, "PROGRAMMA");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_PROGRAMMA,1,3,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_COFOG, "COFOG");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_COFOG,1,3,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_LIVELLO_5, "LIVELLO_5");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_LIVELLO_5,3,10,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_CODICE_EUROPEO, "CODICE_EUROPEO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_CODICE_EUROPEO,1,2,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_SPESA_RICORRENTE, "SPESA_RICORRENTE");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_SPESA_RICORRENTE,1,1,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_CUP, "CUP");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_CUP,5,15,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_IMPEGNATO_COMP, "IMPEGNATO_COMP");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_IMPEGNATO_COMP,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_FPV, "FPV");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_FPV,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_PAGATO_RES, "PAGATO_RES");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_PAGATO_RES,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_PAGATO_COMP, "PAGATO_COMP");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_PAGATO_COMP,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_UTENTE_INSERIMENTO, "UTENTE_INSERIMENTO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_UTENTE_INSERIMENTO,5,8,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_DATA_INSERIMENTO, "DATA_INSERIMENTO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_DATA_INSERIMENTO,6,10,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_UTENTE_ULTIMO_AGG, "UTENTE_ULTIMO_AGG");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_UTENTE_ULTIMO_AGG,5,8,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_DATA_ULTIMO_AGG, "DATA_ULTIMO_AGG");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_DATA_ULTIMO_AGG,6,10,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_ORDLIVELLO5, "ORDLIVELLO5");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARSGES,IMDBDef13.PQSL_BDAPDCARSGES_ORDLIVELLO5,5,99,0);
+    IMDB.TblAddNew(IMDBDef13.PQRY_BDAPDCARSGES, 0);
+  }
+
+  private static void Init_PQRY_BDAPDCAREGES(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef13.PQRY_BDAPDCAREGES, 12);
+    IMDB.set_TblCode(IMDBDef13.PQRY_BDAPDCAREGES, "PQRY_BDAPDCAREGES");
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_ESERCIZIO, "ESERCIZIO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_ESERCIZIO,1,4,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_LIVELLO_5, "LIVELLO_5");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_LIVELLO_5,3,10,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_CODICE_EUROPEO, "CODICE_EUROPEO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_CODICE_EUROPEO,1,2,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_ENTRATA_RICORRENTE, "ENTRATA_RICORRENTE");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_ENTRATA_RICORRENTE,1,1,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_ACCERTAMENTI, "ACCERTAMENTI");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_ACCERTAMENTI,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_RISCOSSIONI_COMP, "RISCOSSIONI_COMP");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_RISCOSSIONI_COMP,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_RISCOSSIONI_RES, "RISCOSSIONI_RES");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_RISCOSSIONI_RES,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_UTENTE_INSERIMENTO, "UTENTE_INSERIMENTO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_UTENTE_INSERIMENTO,5,8,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_DATA_INSERIMENTO, "DATA_INSERIMENTO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_DATA_INSERIMENTO,6,10,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_UTENTE_ULTIMO_AGG, "UTENTE_ULTIMO_AGG");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_UTENTE_ULTIMO_AGG,5,8,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_DATA_ULTIMO_AGG, "DATA_ULTIMO_AGG");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_DATA_ULTIMO_AGG,6,10,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_ORDLIVELLO5, "ORDLIVELLO5");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCAREGES,IMDBDef13.PQSL_BDAPDCAREGES_ORDLIVELLO5,5,99,0);
+    IMDB.TblAddNew(IMDBDef13.PQRY_BDAPDCAREGES, 0);
+  }
+
+  private static void Init_PQRY_BDAPDCARENSP(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef13.PQRY_BDAPDCARENSP, 9);
+    IMDB.set_TblCode(IMDBDef13.PQRY_BDAPDCARENSP, "PQRY_BDAPDCARENSP");
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_ESERCIZIO, "ESERCIZIO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_ESERCIZIO,1,4,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_LIVELLO_7, "LIVELLO_7");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_LIVELLO_7,5,40,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_DARE, "DARE");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_DARE,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_AVERE, "AVERE");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_AVERE,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_UTENTE_INSERIMENTO, "UTENTE_INSERIMENTO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_UTENTE_INSERIMENTO,5,8,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_DATA_INSERIMENTO, "DATA_INSERIMENTO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_DATA_INSERIMENTO,6,10,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_UTENTE_ULTIMO_AGG, "UTENTE_ULTIMO_AGG");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_UTENTE_ULTIMO_AGG,5,8,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_DATA_ULTIMO_AGG, "DATA_ULTIMO_AGG");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_DATA_ULTIMO_AGG,6,10,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_SALDOEXPRESS, "SALDOEXPRESS");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENSP,IMDBDef13.PQSL_BDAPDCARENSP_SALDOEXPRESS,3,28,6);
+    IMDB.TblAddNew(IMDBDef13.PQRY_BDAPDCARENSP, 0);
+  }
+
+  private static void Init_PQRY_BDAPDCARENCE(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef13.PQRY_BDAPDCARENCE, 11);
+    IMDB.set_TblCode(IMDBDef13.PQRY_BDAPDCARENCE, "PQRY_BDAPDCARENCE");
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_ESERCIZIO, "ESERCIZIO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_ESERCIZIO,1,4,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_MISSIONE, "MISSIONE");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_MISSIONE,1,3,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_PROGRAMMA, "PROGRAMMA");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_PROGRAMMA,1,3,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_LIVELLO_6, "LIVELLO_6");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_LIVELLO_6,5,40,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_DARE, "DARE");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_DARE,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_AVERE, "AVERE");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_AVERE,3,14,2);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_UTENTE_INSERIMENTO, "UTENTE_INSERIMENTO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_UTENTE_INSERIMENTO,5,8,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_DATA_INSERIMENTO, "DATA_INSERIMENTO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_DATA_INSERIMENTO,6,10,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_UTENTE_ULTIMO_AGG, "UTENTE_ULTIMO_AGG");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_UTENTE_ULTIMO_AGG,5,8,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_DATA_ULTIMO_AGG, "DATA_ULTIMO_AGG");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_DATA_ULTIMO_AGG,6,10,0);
+    IMDB.set_FldCode(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_SALDO, "SALDO");
+    IMDB.SetFldParams(IMDBDef13.PQRY_BDAPDCARENCE,IMDBDef13.PQSL_BDAPDCARENCE_SALDO,3,28,6);
+    IMDB.TblAddNew(IMDBDef13.PQRY_BDAPDCARENCE, 0);
+  }
+
+  private static void Init_PQRY_PARAMETRI632(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef13.PQRY_PARAMETRI632, 0);
+    IMDB.set_TblCode(IMDBDef13.PQRY_PARAMETRI632, "PQRY_PARAMETRI632");
+    IMDB.TblAddNew(IMDBDef13.PQRY_PARAMETRI632, 0);
+  }
+
+
+
+  // **********************************************
+  // Costruttore per form multiple
+  // **********************************************
+  public DatiContabiliAnaliticiRendiconto(MyWebEntryPoint w, IMDBObj imdb)
+  {
+    //
+    SetMainFrm(w,imdb);
+  }
+
+  // **********************************************
+  // Funzione chiamata su form multipla
+  // durante l'inizializzazione
+  // **********************************************
+  public void SetMainFrm(WebEntryPoint w, IMDBObj i)
+  {
+    // Sono una form multipla, duplico IMDB
+    IMDB = new IMDBObj();
+    IMDB.set_DBSize(w.IwImdb.IMDB.DBSize());
+    ImdbInit(IMDB);
+    IMDB.SetMaster(w.IwImdb.IMDB);
+    super.SetMainFrm(w,i);
+  }
+  public void SetSubMainFrm(WebEntryPoint w, IMDBObj i)
+  {
+    // Sono una form multipla, duplico IMDB
+    IMDB = new IMDBObj();
+    IMDB.set_DBSize(w.IwImdb.IMDB.DBSize());
+    ImdbInit(IMDB);
+    IMDB.SetMaster(w.IwImdb.IMDB);
+    super.SetSubMainFrm(w, i);
+  }
+
+
+  // **********************************************
+  // Costruttore per form multiple
+  // **********************************************
+  public DatiContabiliAnaliticiRendiconto()
+  {
+    super();
+    //
+  }
+
+  // **********************************************
+  // Form Loaded
+  // **********************************************
+  public void Init(WebEntryPoint w, boolean flMulti, boolean flSubForm)
+  {
+    StringBuffer SQL;
+    int i;
+    ATreeItem Item;
+
+    MainFrm=(MyWebEntryPoint)w;
+    super.Init(w, flMulti, flSubForm);
+    //
+    FormIdx = MyGlb.FRM_DATCONANAREN;
+    //
+    if (flMulti)
+      MainFrm.AddMultipleForm(this, flSubForm);
+    //
+    boolean oldIQ = MainFrm.InitializingQueries;
+    MainFrm.InitializingQueries = true;
+    //
+    RTCGuid = "8247397B-6DF9-49B0-8B06-77930A0FFD4B";
+    ResModeW = 2;
+    ResModeH = 2;
+    iVisualFlags = -2049;
+    DesignWidth = 1152;
+    DesignHeight = 450;
+    set_Caption(new IDVariant("Dati Contabili Analitici"));
+    //
+    Frames = new AFrame[10];
+    Frames[1] = new AFrame(1);
+    Frames[1].Parent = this;
+    Frames[1].Width = 1152;
+    Frames[1].Height = 424;
+    Frames[1].Vertical = true;
+    Frames[1].FormFactor = 0.877358;
+    Frames[2] = new AFrame(2);
+    Frames[2].Parent = this;
+    Frames[1].ChildFrame1 = Frames[2];
+    Frames[2].Width = 1152;
+    Frames[2].Height = 372;
+    Frames[2].Caption = "DCA Tabbed View";
+    Frames[2].Parent = this;
+    Frames[2].FixedHeight = 372;
+    TAB_DCATABBEVIEW = new OTabView(this);
+    Frames[2].Content = TAB_DCATABBEVIEW;
+    TAB_DCATABBEVIEW.iGuid = "E6F59E15-17BE-4C1C-A350-D27DFBF51004";
+    TAB_DCATABBEVIEW.SetItemCount(6);
+    TAB_DCATABBEVIEW.Placement = 1;
+    TAB_DCATABBEVIEW.FrIndex = 2;
+    Frames[3] = new AFrame(3);
+    Frames[3].Parent = this;
+    Frames[3].InTabbed = true;
+    Frames[3].Caption = "Dati Derivanti dalla Previsione - Uscite";
+    Frames[3].Parent = this;
+    PAN_DATDERDAPRUS = new IDPanel(w, this, 3, "PAN_DATDERDAPRUS");
+    Frames[3].Content = PAN_DATDERDAPRUS;
+    PAN_DATDERDAPRUS.set_VisualFlag(Glb.PANVISPROP_HILITEROW,true);
+    PAN_DATDERDAPRUS.VS = MainFrm.VisualStyleList;
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_RECT, 0, 0, 0, 0, 1152-MyGlb.PAN_OFFS_X, 372-MyGlb.PAN_OFFS_Y- MyGlb.PAN_OFFS_PAGEY, 0, 0);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_PANEL, 0, "7B4E98F6-3E2A-47B6-873F-11577913C73E");
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_PANEL, 0, 0, 0, 0, 784, 236, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_STRETCH);
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_PANEL, 0, MyGlb.VIS_DEFAPANESTYL);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_PANEL, 0, 0, 32);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_PANEL, 0, MainFrm.GlbPanelFlags | MyGlb.PAN_SCROLLREC | MyGlb.PAN_HASLIST | MyGlb.PAN_CANDELETE | MyGlb.PAN_CANUPDATE | MyGlb.PAN_CANSELECT | MyGlb.PAN_CANINSERT | MyGlb.OBJ_VISIBLE | MyGlb.OBJ_ENABLED, -1);
+    PAN_DATDERDAPRUS.InitStatus = 2;
+    PAN_DATDERDAPRUS_Init();
+    PAN_DATDERDAPRUS_InitFields();
+    PAN_DATDERDAPRUS_InitQueries();
+    TAB_DCATABBEVIEW.SetItem(1, Frames[3], 0, "", "Dati Derivanti dalla Previsione - Uscite", "");
+    Frames[4] = new AFrame(4);
+    Frames[4].Parent = this;
+    Frames[4].InTabbed = true;
+    Frames[4].Caption = "Dati Derivanti dalla Previsione - Entrate";
+    Frames[4].Parent = this;
+    PAN_DATDERDAPREN = new IDPanel(w, this, 4, "PAN_DATDERDAPREN");
+    Frames[4].Content = PAN_DATDERDAPREN;
+    PAN_DATDERDAPREN.set_VisualFlag(Glb.PANVISPROP_HILITEROW,true);
+    PAN_DATDERDAPREN.VS = MainFrm.VisualStyleList;
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_RECT, 0, 0, 0, 0, 1152-MyGlb.PAN_OFFS_X, 372-MyGlb.PAN_OFFS_Y- MyGlb.PAN_OFFS_PAGEY, 0, 0);
+    PAN_DATDERDAPREN.SetRTCGuid(MyGlb.OBJ_PANEL, 0, "3EABD761-4744-4949-9700-51E6303520AC");
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_PANEL, 0, 0, 0, 0, 624, 236, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_STRETCH);
+    PAN_DATDERDAPREN.set_VisualStyle(MyGlb.OBJ_PANEL, 0, MyGlb.VIS_DEFAPANESTYL);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_PANEL, 0, 0, 32);
+    PAN_DATDERDAPREN.SetFlags(MyGlb.OBJ_PANEL, 0, MainFrm.GlbPanelFlags | MyGlb.PAN_SCROLLREC | MyGlb.PAN_HASLIST | MyGlb.PAN_CANDELETE | MyGlb.PAN_CANUPDATE | MyGlb.PAN_CANSELECT | MyGlb.PAN_CANINSERT | MyGlb.OBJ_VISIBLE | MyGlb.OBJ_ENABLED, -1);
+    PAN_DATDERDAPREN.InitStatus = 2;
+    PAN_DATDERDAPREN_Init();
+    PAN_DATDERDAPREN_InitFields();
+    PAN_DATDERDAPREN_InitQueries();
+    TAB_DCATABBEVIEW.SetItem(2, Frames[4], 0, "", "Dati Derivanti dalla Previsione - Entrate", "");
+    Frames[5] = new AFrame(5);
+    Frames[5].Parent = this;
+    Frames[5].InTabbed = true;
+    Frames[5].Caption = "Dati Gestionali - Uscite";
+    Frames[5].Parent = this;
+    PAN_DATIGESTUSCI = new IDPanel(w, this, 5, "PAN_DATIGESTUSCI");
+    Frames[5].Content = PAN_DATIGESTUSCI;
+    PAN_DATIGESTUSCI.set_VisualFlag(Glb.PANVISPROP_HILITEROW,true);
+    PAN_DATIGESTUSCI.VS = MainFrm.VisualStyleList;
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_RECT, 0, 0, 0, 0, 1152-MyGlb.PAN_OFFS_X, 372-MyGlb.PAN_OFFS_Y- MyGlb.PAN_OFFS_PAGEY, 0, 0);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_PANEL, 0, "8C30B80C-A33E-46E0-A723-929C768A87AB");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_PANEL, 0, 0, 0, 0, 1016, 236, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_STRETCH);
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_PANEL, 0, MyGlb.VIS_DEFAPANESTYL);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_PANEL, 0, 0, 32);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_PANEL, 0, MainFrm.GlbPanelFlags | MyGlb.PAN_SCROLLREC | MyGlb.PAN_HASLIST | MyGlb.PAN_CANDELETE | MyGlb.PAN_CANUPDATE | MyGlb.PAN_CANSELECT | MyGlb.PAN_CANINSERT | MyGlb.OBJ_VISIBLE | MyGlb.OBJ_ENABLED, -1);
+    PAN_DATIGESTUSCI.InitStatus = 2;
+    PAN_DATIGESTUSCI_Init();
+    PAN_DATIGESTUSCI_InitFields();
+    PAN_DATIGESTUSCI_InitQueries();
+    TAB_DCATABBEVIEW.SetItem(3, Frames[5], 0, "", "Dati Gestionali - Uscite", "");
+    Frames[6] = new AFrame(6);
+    Frames[6].Parent = this;
+    Frames[6].InTabbed = true;
+    Frames[6].Caption = "Dati Gestionali - Entrate";
+    Frames[6].Parent = this;
+    PAN_DATIGESTENTR = new IDPanel(w, this, 6, "PAN_DATIGESTENTR");
+    Frames[6].Content = PAN_DATIGESTENTR;
+    PAN_DATIGESTENTR.set_VisualFlag(Glb.PANVISPROP_HILITEROW,true);
+    PAN_DATIGESTENTR.VS = MainFrm.VisualStyleList;
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_RECT, 0, 0, 0, 0, 1152-MyGlb.PAN_OFFS_X, 372-MyGlb.PAN_OFFS_Y- MyGlb.PAN_OFFS_PAGEY, 0, 0);
+    PAN_DATIGESTENTR.SetRTCGuid(MyGlb.OBJ_PANEL, 0, "1346D4B0-847A-44F4-8971-370E49BB09EC");
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_PANEL, 0, 0, 0, 0, 920, 236, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_STRETCH);
+    PAN_DATIGESTENTR.set_VisualStyle(MyGlb.OBJ_PANEL, 0, MyGlb.VIS_DEFAPANESTYL);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_PANEL, 0, 0, 32);
+    PAN_DATIGESTENTR.SetFlags(MyGlb.OBJ_PANEL, 0, MainFrm.GlbPanelFlags | MyGlb.PAN_SCROLLREC | MyGlb.PAN_HASLIST | MyGlb.PAN_CANDELETE | MyGlb.PAN_CANUPDATE | MyGlb.PAN_CANSELECT | MyGlb.PAN_CANINSERT | MyGlb.OBJ_VISIBLE | MyGlb.OBJ_ENABLED, -1);
+    PAN_DATIGESTENTR.InitStatus = 2;
+    PAN_DATIGESTENTR_Init();
+    PAN_DATIGESTENTR_InitFields();
+    PAN_DATIGESTENTR_InitQueries();
+    TAB_DCATABBEVIEW.SetItem(4, Frames[6], 0, "", "Dati Gestionali - Entrate", "");
+    Frames[7] = new AFrame(7);
+    Frames[7].Parent = this;
+    Frames[7].InTabbed = true;
+    Frames[7].Caption = "Stato Patrimoniale";
+    Frames[7].Parent = this;
+    PAN_STATOPATRIMO = new IDPanel(w, this, 7, "PAN_STATOPATRIMO");
+    Frames[7].Content = PAN_STATOPATRIMO;
+    PAN_STATOPATRIMO.set_VisualFlag(Glb.PANVISPROP_HILITEROW,true);
+    PAN_STATOPATRIMO.VS = MainFrm.VisualStyleList;
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_RECT, 0, 0, 0, 0, 1152-MyGlb.PAN_OFFS_X, 372-MyGlb.PAN_OFFS_Y- MyGlb.PAN_OFFS_PAGEY, 0, 0);
+    PAN_STATOPATRIMO.SetRTCGuid(MyGlb.OBJ_PANEL, 0, "F747398D-6402-408A-9B4E-A13F73FCFB4D");
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_PANEL, 0, 0, 0, 0, 992, 236, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_STRETCH);
+    PAN_STATOPATRIMO.set_VisualStyle(MyGlb.OBJ_PANEL, 0, MyGlb.VIS_DEFAPANESTYL);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_PANEL, 0, 0, 32);
+    PAN_STATOPATRIMO.SetFlags(MyGlb.OBJ_PANEL, 0, MainFrm.GlbPanelFlags | MyGlb.PAN_SCROLLREC | MyGlb.PAN_HASLIST | MyGlb.PAN_CANDELETE | MyGlb.PAN_CANUPDATE | MyGlb.PAN_CANSELECT | MyGlb.PAN_CANINSERT | MyGlb.OBJ_VISIBLE | MyGlb.OBJ_ENABLED, -1);
+    PAN_STATOPATRIMO.InitStatus = 2;
+    PAN_STATOPATRIMO_Init();
+    PAN_STATOPATRIMO_InitFields();
+    PAN_STATOPATRIMO_InitQueries();
+    TAB_DCATABBEVIEW.SetItem(5, Frames[7], 0, "", "Stato Patrimoniale", "");
+    Frames[8] = new AFrame(8);
+    Frames[8].Parent = this;
+    Frames[8].InTabbed = true;
+    Frames[8].Caption = "Conto Economico";
+    Frames[8].Parent = this;
+    PAN_CONTOECONOMI = new IDPanel(w, this, 8, "PAN_CONTOECONOMI");
+    Frames[8].Content = PAN_CONTOECONOMI;
+    PAN_CONTOECONOMI.set_VisualFlag(Glb.PANVISPROP_HILITEROW,true);
+    PAN_CONTOECONOMI.VS = MainFrm.VisualStyleList;
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_RECT, 0, 0, 0, 0, 1152-MyGlb.PAN_OFFS_X, 372-MyGlb.PAN_OFFS_Y- MyGlb.PAN_OFFS_PAGEY, 0, 0);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_PANEL, 0, "BAF60068-7C68-4FD4-A316-1B5939E0377B");
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_PANEL, 0, 0, 0, 0, 1048, 236, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_STRETCH);
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_PANEL, 0, MyGlb.VIS_DEFAPANESTYL);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_PANEL, 0, 0, 32);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_PANEL, 0, MainFrm.GlbPanelFlags | MyGlb.PAN_SCROLLREC | MyGlb.PAN_HASLIST | MyGlb.PAN_CANDELETE | MyGlb.PAN_CANUPDATE | MyGlb.PAN_CANSELECT | MyGlb.PAN_CANINSERT | MyGlb.OBJ_VISIBLE | MyGlb.OBJ_ENABLED, -1);
+    PAN_CONTOECONOMI.InitStatus = 2;
+    PAN_CONTOECONOMI_Init();
+    PAN_CONTOECONOMI_InitFields();
+    PAN_CONTOECONOMI_InitQueries();
+    TAB_DCATABBEVIEW.SetItem(6, Frames[8], 0, "", "Conto Economico", "");
+    Frames[9] = new AFrame(9);
+    Frames[9].Parent = this;
+    Frames[1].ChildFrame2 = Frames[9];
+    Frames[9].Width = 1152;
+    Frames[9].Height = 52;
+    Frames[9].FrHidden = true;
+    Frames[9].Caption = "Pannello Elabora";
+    Frames[9].Parent = this;
+    Frames[9].FixedHeight = 52;
+    Frames[9].MinHeight = Frames[9].Height;
+    Frames[9].MaxHeight = Frames[9].Height;
+    PAN_PANNELELABOR = new IDPanel(w, this, 9, "PAN_PANNELELABOR");
+    Frames[9].Content = PAN_PANNELELABOR;
+    PAN_PANNELELABOR.Lockable = false;
+    PAN_PANNELELABOR.iLocked = false;
+    PAN_PANNELELABOR.set_VisualFlag(Glb.PANVISPROP_HILITEROW,true);
+    PAN_PANNELELABOR.VS = MainFrm.VisualStyleList;
+    PAN_PANNELELABOR.SetRect(MyGlb.OBJ_RECT, 0, 0, 0, 0, 1152-MyGlb.PAN_OFFS_X, 52-MyGlb.PAN_OFFS_Y, 0, 0);
+    PAN_PANNELELABOR.SetRTCGuid(MyGlb.OBJ_PANEL, 0, "74200054-91CE-49EB-9C32-23C5DBE1F0AD");
+    PAN_PANNELELABOR.SetRect(MyGlb.OBJ_PANEL, 0, 0, 0, 0, 136, 156, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_STRETCH);
+    PAN_PANNELELABOR.set_VisualStyle(MyGlb.OBJ_PANEL, 0, MyGlb.VIS_DEFAPANESTYL);
+    PAN_PANNELELABOR.SetHeaderSize(MyGlb.OBJ_PANEL, 0, 0, 32);
+    PAN_PANNELELABOR.SetFlags(MyGlb.OBJ_PANEL, 0, MainFrm.GlbPanelFlags | MyGlb.PAN_SCROLLREC | MyGlb.PAN_HASFORM | MyGlb.PAN_STARTFORM | MyGlb.PAN_CANUPDATE | MyGlb.PAN_CANSELECT | MyGlb.PAN_AUTOSAVE | MyGlb.OBJ_VISIBLE | MyGlb.OBJ_ENABLED, -1);
+    PAN_PANNELELABOR.InitStatus = 2;
+    PAN_PANNELELABOR_Init();
+    PAN_PANNELELABOR_InitFields();
+    PAN_PANNELELABOR_InitQueries();
+    HelpFile = "";
+    MainFrm.InitializingQueries = false;
+    //
+    // Modifico alcune impostazioni per smartphone, potranno
+    // essere ulteriormente modificate nell'evento di Load
+    if (MainFrm.IsSmartPhone())
+    {
+      DockType = 0;
+      Docked = false;
+      ResModeW = Glb.FRESMODE_STRETCH;
+      ResModeH = Glb.FRESMODE_STRETCH;
+    }
+    //
+    for (i=1; i<Frames.length; i++)
+    {
+      if (Frames[i].Content instanceof IDPanel)
+      {
+        Frames[i].Content.MainFrm = w;
+        Frames[i].Content.Parent = this;
+        ((IDPanel)Frames[i].Content).CalcLayout();
+        ((IDPanel)Frames[i].Content).SetDOIMDB(IMDB);
+      }
+      if (Frames[i].Content instanceof OBook)
+        Frames[i].Content.MainFrm = w;
+      //
+      if (Frames[i].Content != null)
+        Frames[i].Content.Collapsable = w.ParamsObj().UseCollapsableFrames;
+      //
+      if (Frames[i].Content != null && Frames[i].HasCaptionToolbar==-1)
+        Frames[i].HasCaptionToolbar = MainFrm.CmdObj.HasCaptionToolbar(FormIdx, Frames[i].Index, Frames[i].Content.Code);
+    }
+    //
+    // Init sub-frames
+    for (i = 1; i < Frames.length; i++)
+    {
+      if (Frames[i].Content instanceof IDPanel)
+        for (int j = 0; j < ((IDPanel)Frames[i].Content).UFields(); j++)
+          ((IDPanel)Frames[i].Content).bFields(j).UpdateSubFrame();
+    }
+    //
+    for (i=1; i<Frames.length; i++)
+    {
+      if (Frames[i].Content instanceof OTabView)
+        ((OTabView)Frames[i].Content).SelectTab(1, true);
+    }
+    OrgWidth = Frames[1].Width + GetPadding(false);
+    OrgHeight = Frames[1].Height + GetPadding(true);
+    //
+    // Resetto il fuoco perchè le tabbed view lo possono modificare
+    FocusPriority=0;
+    ActiveElement="";
+    //
+    MainFrm.RolObj.ApplyRoles(FormIdx, this);
+    //
+    MainFrm.TimerObj.ActivateTimers(FormIdx, true);    
+    IntFormLoad();
+    //
+    // Solo le form non modali devono essere ridimensionate
+    if (!flSubForm && (!MainFrm.ParamsObj().TruePopup || OpenAs == Glb.OPEN_MDI))
+      Resize(w.ScreenW(), w.ScreenH());
+    //
+    JustLoaded = true;
+    UpdateControls();
+    MainFrm.InitializingQueries = oldIQ;
+  }
+
+
+  // **********************************************
+  // Command Activation Handler
+  // **********************************************
+  public void CmdClickCB(int CmdIdx)
+  {
+    fine:
+    {
+      if (CmdIdx==MyGlb.CMD_FUNAGGDAGEUS+BaseCmdLinIdx)
+      {
+        MainFrm.CmdObj.ShowPopup(MyGlb.CMDS_FUNAGGDAGEU1+BaseCmdSetIdx, "M" + (MyGlb.CMD_FUNAGGDAGEUS+BaseCmdLinIdx), FormIdx, 1);
+        break fine;
+      }
+      if (CmdIdx==MyGlb.CMD_CONTROLIQUID+BaseCmdLinIdx)
+      {
+        ControlloLiquidazioni();
+        break fine;
+      }
+      if (CmdIdx==MyGlb.CMD_FUNAGGDAGEEN+BaseCmdLinIdx)
+      {
+        MainFrm.CmdObj.ShowPopup(MyGlb.CMDS_FUNAGGDAGEE1+BaseCmdSetIdx, "M" + (MyGlb.CMD_FUNAGGDAGEEN+BaseCmdLinIdx), FormIdx, 1);
+        break fine;
+      }
+      if (CmdIdx==MyGlb.CMD_CONTROORDINA+BaseCmdLinIdx)
+      {
+        ControlloOrdinativi();
+        break fine;
+      }
+    }
+  }
+  
+  
+  // **********************************************
+  // Timer Activation Handler
+  // **********************************************
+  public void TimerTickCB(int TimerIdx)
+  {
+    fine:
+    {
+    }
+  }
+  
+  
+  // **********************************************
+  // Update Controls against IMDB variations
+  // **********************************************
+  public void UpdateControls()
+  {
+    try
+    {    
+      PAN_DATDERDAPRUS.UpdatePanel(MainFrm);
+      PAN_DATDERDAPREN.UpdatePanel(MainFrm);
+      PAN_DATIGESTUSCI.UpdatePanel(MainFrm);
+      PAN_DATIGESTENTR.UpdatePanel(MainFrm);
+      PAN_STATOPATRIMO.UpdatePanel(MainFrm);
+      PAN_CONTOECONOMI.UpdatePanel(MainFrm);
+      PAN_PANNELELABOR.UpdatePanel(MainFrm);
+      //
+    }
+    catch(Exception e)
+    {
+      e.printStackTrace(System.out);
+    }
+    JustLoaded = false;
+    DOSetCaption();
+    super.UpdateControls();
+  }
+  
+  
+  // **********************************************
+  // One of my modal form has been closed
+  // **********************************************
+  public void EndModal(int CallerIdx, boolean flRis)
+  {
+    IDVariant Cancel=new IDVariant();
+    IntEndModal(new IDVariant(CallerIdx), new IDVariant(flRis), Cancel);
+    if (Cancel.isTrue())
+    {
+      if (MainFrm != null) MainFrm.DTTObj.AddMsg(DTTEngine.DTTMSG_INFO, RTCGuid, 26, "Form.EndModal", "Form " + Caption() + " canceled further processing after EndModal event");
+      return;
+    }
+    //
+    if (CallerIdx == MyGlb.FRM_SCELMISSPROG && flRis && IdxPanelActived == PAN_DATDERDAPRUS.FrIndex)
+    {
+      if (IdxFieldActived ==PFL_DATDERDAPRUS_APRIMISPROG1) {
+      }
+    }
+    if (CallerIdx == MyGlb.FRM_SCELMACRLIV4 && flRis && IdxPanelActived == PAN_DATDERDAPRUS.FrIndex)
+    {
+      if (IdxFieldActived ==PFL_DATDERDAPRUS_LIVELLO8) {
+      }
+    }
+    if (CallerIdx == MyGlb.FRM_SCMALI4SEMIP && flRis && IdxPanelActived == PAN_DATDERDAPREN.FrIndex)
+    {
+      if (IdxFieldActived ==PFL_DATDERDAPREN_LIVELLO4) {
+      }
+    }
+    if (CallerIdx == MyGlb.FRM_SCELMISSPROG && flRis && IdxPanelActived == PAN_DATIGESTUSCI.FrIndex)
+    {
+      if (IdxFieldActived ==PFL_DATIGESTUSCI_APRIMISPROG2) {
+      }
+    }
+    if (CallerIdx == MyGlb.FRM_SCECOFCOMIPR && flRis && IdxPanelActived == PAN_DATIGESTUSCI.FrIndex)
+    {
+      if (IdxFieldActived ==PFL_DATIGESTUSCI_COFOG) {
+      }
+    }
+    if (CallerIdx == MyGlb.FRM_SCELTMACR4E5 && flRis && IdxPanelActived == PAN_DATIGESTUSCI.FrIndex)
+    {
+      if (IdxFieldActived ==PFL_DATIGESTUSCI_LIVELLO9) {
+      }
+    }
+    if (CallerIdx == MyGlb.FRM_SCELTMACR4E5 && flRis && IdxPanelActived == PAN_DATIGESTENTR.FrIndex)
+    {
+      if (IdxFieldActived ==PFL_DATIGESTENTR_LIVELLO5) {
+      }
+    }
+    if (CallerIdx == MyGlb.FRM_SCELSTRUCONT && flRis && IdxPanelActived == PAN_STATOPATRIMO.FrIndex)
+    {
+      if (IdxFieldActived ==PFL_STATOPATRIMO_LIVELLO7) {
+      }
+    }
+    if (CallerIdx == MyGlb.FRM_SCELMISSPROG && flRis && IdxPanelActived == PAN_CONTOECONOMI.FrIndex)
+    {
+      if (IdxFieldActived ==PFL_CONTOECONOMI_APRIMISPROG) {
+      }
+    }
+    if (CallerIdx == MyGlb.FRM_SCELSTRUCONT && flRis && IdxPanelActived == PAN_CONTOECONOMI.FrIndex)
+    {
+      if (IdxFieldActived ==PFL_CONTOECONOMI_LIVELLO6) {
+      }
+    }
+  }
+  
+
+  // **********************************************
+  // Enumerate books
+  // **********************************************
+  public CIDREObj SearchBook(String Code)
+  {
+    //
+    return null;
+  }
+
+  // **************************************************
+  // Torna TRUE se l'oggetto passato è una mia istanza
+  // **************************************************
+  public static boolean IsMyInstance(Object obj)
+  {
+    return (obj instanceof DatiContabiliAnaliticiRendiconto);
+  }
+
+  // **********************************************
+  // Restituisce il nome della classe
+  // **********************************************
+  public static String GetClassName(boolean FullName)
+  {
+    return (FullName ? DatiContabiliAnaliticiRendiconto.class.getName() : (Glb.ClassWithPackage(DatiContabiliAnaliticiRendiconto.class) ? DatiContabiliAnaliticiRendiconto.class.getName().substring(DatiContabiliAnaliticiRendiconto.class.getPackage().getName().length() + 1) : DatiContabiliAnaliticiRendiconto.class.getName()));
+  }
+  
+
+  // **********************************************
+  // Procedure Definition
+  // **********************************************  
+  // **********************************************************************
+  // Seleziona Miss Prog
+  // **********************************************************************
+  public int SelezionaMissProg ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Seleziona Miss Prog Body
+      // Corpo Procedura
+      // 
+      MainFrm.Show(MyGlb.FRM_SCELMISSPROG, (new IDVariant(-1)).intValue(), this); 
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "SelezionaMissProg", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Seleziona Livello 6
+  // **********************************************************************
+  public int SelezionaLivello6 ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Seleziona Livello 6 Body
+      // Corpo Procedura
+      // 
+      IMDB.set_Value(IMDBDef1.TBL_PARAM76, IMDBDef1.FLD_PARAM76_NOMOGGTIPPIA, 0, (new IDVariant("E")));
+      IMDB.set_Value(IMDBDef1.TBL_PARAM76, IMDBDef1.FLD_PARAM76_NOMEOGGELIVE, 0, (new IDVariant(6)));
+      IMDB.set_Value(IMDBDef1.TBL_PARAM76, IMDBDef1.FLD_PARAM76_NOMOGGNAPASO, 0, (new IDVariant("SI")));
+      MainFrm.Show(MyGlb.FRM_SCELSTRUCONT, (new IDVariant(-1)).intValue(), this); 
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "SelezionaLivello6", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Seleziona Livello 7
+  // **********************************************************************
+  public int SelezionaLivello7 ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Seleziona Livello 7 Body
+      // Corpo Procedura
+      // 
+      IMDB.set_Value(IMDBDef1.TBL_PARAM76, IMDBDef1.FLD_PARAM76_NOMOGGTIPPIA, 0, (new IDVariant("PA")));
+      IMDB.set_Value(IMDBDef1.TBL_PARAM76, IMDBDef1.FLD_PARAM76_NOMEOGGELIVE, 0, (new IDVariant(7)));
+      IMDB.set_Value(IMDBDef1.TBL_PARAM76, IMDBDef1.FLD_PARAM76_NOMOGGNAPASO, 0, (new IDVariant()));
+      MainFrm.Show(MyGlb.FRM_SCELSTRUCONT, (new IDVariant(-1)).intValue(), this); 
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "SelezionaLivello7", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Seleziona Livello 4 Spesa
+  // **********************************************************************
+  public int SelezionaLivello4Spesa ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Seleziona Livello 4 Spesa Body
+      // Corpo Procedura
+      // 
+      if (!(IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_MISSIONE, 0))) && !(IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_PROGRAMMA, 0))))
+      {
+        IMDB.set_Value(IMDBDef1.TBL_PARS36, IMDBDef1.FLD_PARS36_NOMEOGGEESER, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0));
+        IMDB.set_Value(IMDBDef1.TBL_PARS36, IMDBDef1.FLD_PARS36_NOMEOGGETTES, 0, (new IDVariant("S")));
+        IMDB.set_Value(IMDBDef1.TBL_PARS36, IMDBDef1.FLD_PARS36_NOMOGGMISTIT, 0, IMDB.Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_MISSIONE, 0));
+        IMDB.set_Value(IMDBDef1.TBL_PARS36, IMDBDef1.FLD_PARS36_NOMOGGPROTIP, 0, IMDB.Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_PROGRAMMA, 0));
+        MainFrm.Show(MyGlb.FRM_SCELMACRLIV4, (new IDVariant(1)).intValue(), this); 
+      }
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "SelezionaLivello4Spesa", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Seleziona Livello 4 Entrata
+  // **********************************************************************
+  public int SelezionaLivello4Entrata ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Seleziona Livello 4 Entrata Body
+      // Corpo Procedura
+      // 
+      IMDB.set_Value(IMDBDef1.TBL_PARS94, IMDBDef1.FLD_PARS94_NOMEOGGEESER, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0));
+      IMDB.set_Value(IMDBDef1.TBL_PARS94, IMDBDef1.FLD_PARS94_NOMEOGGETTES, 0, (new IDVariant("E")));
+      MainFrm.Show(MyGlb.FRM_SCMALI4SEMIP, (new IDVariant(1)).intValue(), this); 
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "SelezionaLivello4Entrata", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Seleziona Livello 5 Spesa
+  // **********************************************************************
+  public int SelezionaLivello5Spesa ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Seleziona Livello 5 Spesa Body
+      // Corpo Procedura
+      // 
+      IMDB.set_Value(IMDBDef1.TBL_PARS95, IMDBDef1.FLD_PARS95_NOMEOGGEESER, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0));
+      IMDB.set_Value(IMDBDef1.TBL_PARS95, IMDBDef1.FLD_PARS95_NOMEOGGETTES, 0, (new IDVariant("S")));
+      IMDB.set_Value(IMDBDef1.TBL_PARS95, IMDBDef1.FLD_PARS95_NOMOGGMISTIT, 0, IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_MISSIONE, 0));
+      IMDB.set_Value(IMDBDef1.TBL_PARS95, IMDBDef1.FLD_PARS95_NOMOGGPROTIP, 0, IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_PROGRAMMA, 0));
+      MainFrm.Show(MyGlb.FRM_SCELTMACR4E5, (new IDVariant(1)).intValue(), this); 
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "SelezionaLivello5Spesa", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Seleziona Livello 5 Entrata
+  // **********************************************************************
+  public int SelezionaLivello5Entrata ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Seleziona Livello 5 Entrata Body
+      // Corpo Procedura
+      // 
+      IMDB.set_Value(IMDBDef1.TBL_PARS95, IMDBDef1.FLD_PARS95_NOMEOGGEESER, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0));
+      IMDB.set_Value(IMDBDef1.TBL_PARS95, IMDBDef1.FLD_PARS95_NOMEOGGETTES, 0, (new IDVariant("E")));
+      IMDB.set_Value(IMDBDef1.TBL_PARS95, IMDBDef1.FLD_PARS95_NOMOGGMISTIT, 0, (new IDVariant()));
+      IMDB.set_Value(IMDBDef1.TBL_PARS95, IMDBDef1.FLD_PARS95_NOMOGGPROTIP, 0, (new IDVariant()));
+      MainFrm.Show(MyGlb.FRM_SCELTMACR4E5, (new IDVariant(1)).intValue(), this); 
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "SelezionaLivello5Entrata", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Seleziona Cofog
+  // **********************************************************************
+  public int SelezionaCofog ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Seleziona Cofog Body
+      // Corpo Procedura
+      // 
+      IMDB.set_Value(IMDBDef1.TBL_PARS96, IMDBDef1.FLD_PARS96_NOMEOGGEESER, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0));
+      IMDB.set_Value(IMDBDef1.TBL_PARS96, IMDBDef1.FLD_PARS96_NOMEOGGETTES, 0, (new IDVariant("S")));
+      IMDB.set_Value(IMDBDef1.TBL_PARS96, IMDBDef1.FLD_PARS96_NOMOGGCODIBI, 0, IDL.Add(IDL.FillLR(IDL.ToString(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_MISSIONE, 0)), (new IDVariant(2)), (new IDVariant("0")), true), IDL.FillLR(IDL.ToString(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_PROGRAMMA, 0)), (new IDVariant(2)), (new IDVariant("0")), true)));
+      MainFrm.Show(MyGlb.FRM_SCECOFCOMIPR, (new IDVariant(-1)).intValue(), this); 
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "SelezionaCofog", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Elabora
+  // Spiega quale elaborazione viene eseguita da questa
+  // procedura
+  // **********************************************************************
+  public int Elabora ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+    IDCachedRowSet C4;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Elabora Body
+      // Corpo Procedura
+      // 
+      IDVariant v_PROGRESSIVO = null;
+      v_PROGRESSIVO = (new IDVariant());
+      MainFrm.Cf4armDBObject.set_ErrorMessage((new IDVariant("")).stringValue());
+      MainFrm.Cf4armDBObject.BDAPRENDDATICONTABILICONS((new IDVariant("RENDDCA")), IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSUSERNAME, 0), MainFrm.PROGRESESSIO, v_PROGRESSIVO, (new IDVariant("SI")));
+      if ((new IDVariant(MainFrm.Cf4armDBObject.ErrorMessage())).compareTo((new IDVariant("")), true)!=0)
+      {
+        MainFrm.set_AlertMessage((new IDVariant(MainFrm.Cf4armDBObject.ErrorMessage()))); 
+      }
+      else
+      {
+        IDVariant v_PERCORSO = new IDVariant(0,IDVariant.STRING);
+        IDVariant v_NOMEFILEXML = null;
+        v_NOMEFILEXML = IDL.Add(IDL.Add(IDL.Add(IDL.ToString(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0)), IMDB.Value(IMDBDef7.TBL_T64, IMDBDef7.FLD_T64_DATENTCODBDA, 0)), (new IDVariant("RENDDCA"))), (new IDVariant(".xbrl")));
+        SQL = new StringBuffer();
+        SQL.append("select ");
+        SQL.append("  A.FILE_DATI as WOREXPIDFIDA ");
+        SQL.append("from ");
+        SQL.append("  WORK_EXPORT_ID A ");
+        SQL.append("where (A.PROGRESSIVO = " + IDL.CSql(v_PROGRESSIVO, IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+        C4 = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+        if (!C4.EOF()) C4.MoveNext();
+        while (!C4.EOF())
+        {
+          v_PERCORSO = Glb.SaveBlob(MainFrm,C4.Get("WOREXPIDFIDA"),IDL.Add((new IDVariant(MainFrm.RealPath)), (new IDVariant("/temp"))),v_NOMEFILEXML);
+          C4.MoveNext();
+        }
+        C4.Close();
+        if (v_PERCORSO.compareTo((new IDVariant("")), true)!=0)
+        {
+          MainFrm.AddTempFile(v_PERCORSO.stringValue()); 
+          MainFrm.set_RedirectTo(IDL.Add((new IDVariant("temp/")), v_NOMEFILEXML));
+          MainFrm.set_RedirectNewWindow((new IDVariant(-1)).booleanValue());
+          MainFrm.set_RedirectFeatures((new IDVariant("save"))); 
+        }
+      }
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "Elabora", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Controllo Liquidazioni
+  // Spiega quale elaborazione viene eseguita da questa
+  // procedura
+  // **********************************************************************
+  public int ControlloLiquidazioni ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Controllo Liquidazioni Body
+      // Corpo Procedura
+      // 
+      MainFrm.SetParametroStampaJasper((new IDVariant("P_ESERCIZIO")), IDL.ToString(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0)));
+      IDVariant v_NOMESTAMPA = null;
+      v_NOMESTAMPA = (new IDVariant("bdap_controllo_liquidazioni"));
+      IDVariant v_STIPOESTRAZI = null;
+      v_STIPOESTRAZI = (new IDVariant("xls"));
+      MainFrm.LanciaStampaJasper(v_NOMESTAMPA, (new IDVariant("")), (new IDVariant("")), v_STIPOESTRAZI);
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "ControlloLiquidazioni", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Controllo Ordinativi
+  // Spiega quale elaborazione viene eseguita da questa
+  // procedura
+  // **********************************************************************
+  public int ControlloOrdinativi ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Controllo Ordinativi Body
+      // Corpo Procedura
+      // 
+      MainFrm.SetParametroStampaJasper((new IDVariant("P_ESERCIZIO")), IDL.ToString(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0)));
+      IDVariant v_NOMESTAMPA = null;
+      v_NOMESTAMPA = (new IDVariant("bdap_controllo_ordinativi"));
+      IDVariant v_STIPOESTRAZI = null;
+      v_STIPOESTRAZI = (new IDVariant("xls"));
+      MainFrm.LanciaStampaJasper(v_NOMESTAMPA, (new IDVariant("")), (new IDVariant("")), v_STIPOESTRAZI);
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "ControlloOrdinativi", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // End Modal
+  // Evento notificato dall'oggetto form in applicazioni
+  // Web quando viene chiusa una finestra modale
+  // LookupForm - Input
+  // Result - Input
+  // Cancel - Input/Output
+  // **********************************************************************
+  private void IntEndModal(IDVariant LookupForm,IDVariant Result,IDVariant Cancel)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // End Modal Body
+      // Corpo Procedura
+      // 
+      if (LookupForm.equals((new IDVariant(MyGlb.FRM_SCELMISSPROG)), true) && Result.booleanValue())
+      {
+        if (new IDVariant(TAB_DCATABBEVIEW.SelectedPageIndex()).equals((new IDVariant(PAN_DATDERDAPRUS.FrIndex)), true))
+        {
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_MISSIONE, 0, IDL.ToInteger(IMDB.Value(IMDBDef7.PQRY_VISTATITOLIT, IMDBDef7.PQSL_VISTATITOLIT_VISTATMISSIO, 0)));
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_PROGRAMMA, 0, IDL.ToInteger(IDL.SubStr(IMDB.Value(IMDBDef7.PQRY_VISTATITOLIT, IMDBDef7.PQSL_VISTATITOLIT_VISTATPROGRA, 0), (new IDVariant(3)), (new IDVariant(2)))));
+        }
+        if (new IDVariant(TAB_DCATABBEVIEW.SelectedPageIndex()).equals((new IDVariant(PAN_DATIGESTUSCI.FrIndex)), true))
+        {
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_MISSIONE, 0, IDL.ToInteger(IMDB.Value(IMDBDef7.PQRY_VISTATITOLIT, IMDBDef7.PQSL_VISTATITOLIT_VISTATMISSIO, 0)));
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_PROGRAMMA, 0, IDL.ToInteger(IDL.SubStr(IMDB.Value(IMDBDef7.PQRY_VISTATITOLIT, IMDBDef7.PQSL_VISTATITOLIT_VISTATPROGRA, 0), (new IDVariant(3)), (new IDVariant(2)))));
+        }
+        if (new IDVariant(TAB_DCATABBEVIEW.SelectedPageIndex()).equals((new IDVariant(PAN_CONTOECONOMI.FrIndex)), true))
+        {
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_MISSIONE, 0, IDL.ToInteger(IMDB.Value(IMDBDef7.PQRY_VISTATITOLIT, IMDBDef7.PQSL_VISTATITOLIT_VISTATMISSIO, 0)));
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_PROGRAMMA, 0, IDL.ToInteger(IDL.SubStr(IMDB.Value(IMDBDef7.PQRY_VISTATITOLIT, IMDBDef7.PQSL_VISTATITOLIT_VISTATPROGRA, 0), (new IDVariant(3)), (new IDVariant(2)))));
+        }
+      }
+      if (LookupForm.equals((new IDVariant(MyGlb.FRM_SCELSTRUCONT)), true) && Result.booleanValue())
+      {
+        if (new IDVariant(TAB_DCATABBEVIEW.SelectedPageIndex()).equals((new IDVariant(PAN_STATOPATRIMO.FrIndex)), true))
+        {
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENSP, IMDBDef13.PQSL_BDAPDCARENSP_LIVELLO_7, 0, IMDB.Value(IMDBDef8.PQRY_STRUTTUCONTI, IMDBDef8.PQSL_STRUTTUCONTI_CEECONTICODI, 0));
+        }
+        if (new IDVariant(TAB_DCATABBEVIEW.SelectedPageIndex()).equals((new IDVariant(PAN_CONTOECONOMI.FrIndex)), true))
+        {
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_LIVELLO_6, 0, IMDB.Value(IMDBDef8.PQRY_STRUTTUCONTI, IMDBDef8.PQSL_STRUTTUCONTI_CEECONTICODI, 0));
+        }
+      }
+      if (LookupForm.equals((new IDVariant(MyGlb.FRM_SCELMACRLIV4)), true) && Result.booleanValue())
+      {
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_LIVELLO_4, 0, IMDB.Value(IMDBDef7.PQRY_VISTSTRURIC4, IMDBDef7.PQSL_VISTSTRURIC4_VISSTRRICCOD, 0));
+      }
+      if (LookupForm.equals((new IDVariant(MyGlb.FRM_SCMALI4SEMIP)), true) && Result.booleanValue())
+      {
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCAREPRE, IMDBDef13.PQSL_BDAPDCAREPRE_LIVELLO_4, 0, IMDB.Value(IMDBDef8.PQRY_VISTSTRURIC1, IMDBDef8.PQSL_VISTSTRURIC1_VISSTRRICCOD, 0));
+      }
+      if (LookupForm.equals((new IDVariant(MyGlb.FRM_SCELTMACR4E5)), true) && Result.booleanValue())
+      {
+        if (new IDVariant(TAB_DCATABBEVIEW.SelectedPageIndex()).equals((new IDVariant(PAN_DATIGESTUSCI.FrIndex)), true))
+        {
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_LIVELLO_5, 0, new IDVariant(IMDB.Value(IMDBDef8.PQRY_VISTSTRURICL, IMDBDef8.PQSL_VISTSTRURICL_RECORDCODICE, 0),IDVariant.DECIMAL));
+        }
+        if (new IDVariant(TAB_DCATABBEVIEW.SelectedPageIndex()).equals((new IDVariant(PAN_DATIGESTENTR.FrIndex)), true))
+        {
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCAREGES, IMDBDef13.PQSL_BDAPDCAREGES_LIVELLO_5, 0, new IDVariant(IMDB.Value(IMDBDef8.PQRY_VISTSTRURICL, IMDBDef8.PQSL_VISTSTRURICL_RECORDCODICE, 0),IDVariant.DECIMAL));
+        }
+      }
+      if (LookupForm.equals((new IDVariant(MyGlb.FRM_SCECOFCOMIPR)), true) && Result.booleanValue())
+      {
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_COFOG, 0, IMDB.Value(IMDBDef8.PQRY_VISTARICLASS, IMDBDef8.PQSL_VISTARICLASS_RECORDCODICE, 0));
+      }
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "EndModal", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Load
+  // Evento notificato alla videata al momento del caricamento
+  // in memoria.
+  // **********************************************************************
+  private void IntFormLoad ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      MainFrm.IntFormLoad(this);
+      // 
+      // Load Body
+      // Corpo Procedura
+      // 
+      PAN_DATIGESTUSCI.SetFieldValidation(PFL_DATIGESTUSCI_CUP, (new IDVariant(-1)).booleanValue()); 
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "Load", _e);
+    }
+  }
+
+  // **********************************************************************
+  // DCA Tabbed View Change Page
+  // Questo evento viene notificato dall'oggetto Tabbed
+  // View quando viene cambiata la pagina attiva.
+  // Previous Page - Input
+  // Cancel - Input/Output
+  // **********************************************************************
+  private void TAB_DCATABBEVIEW_IntClick(IDVariant PreviousPage, IDVariant Cancel)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // DCA Tabbed View Change Page Body
+      // Corpo Procedura
+      // 
+      if (new IDVariant(PAN_DATDERDAPRUS.Status()).equals((new IDVariant(3)), true) || new IDVariant(PAN_DATDERDAPREN.Status()).equals((new IDVariant(3)), true) || new IDVariant(PAN_DATIGESTUSCI.Status()).equals((new IDVariant(3)), true) || new IDVariant(PAN_DATIGESTENTR.Status()).equals((new IDVariant(3)), true) || new IDVariant(PAN_STATOPATRIMO.Status()).equals((new IDVariant(3)), true) || new IDVariant(PAN_CONTOECONOMI.Status()).equals((new IDVariant(3)), true))
+      {
+        IDVariant v_AVVISO = new IDVariant(0,IDVariant.STRING);
+        v_AVVISO = (new IDVariant("Confermare o annulare le modifiche prima di cambia"));
+        MainFrm.set_AlertMessage(v_AVVISO); 
+        Cancel.set((new IDVariant(-1)));
+      }
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "DCATabbedViewChangePage", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Dati Derivanti dalla Previsione - Uscite On Updating Row
+  // Evento notificato dal pannello quando un utente modifica
+  // i dati presenti nel pannello
+  // Column - Input
+  // Field Modified - Input
+  // Field Was Modified - Input
+  // Row Was Modified - Input
+  // Inserting - Input
+  // Cancel - Input/Output
+  // **********************************************************************
+  private void PAN_DATDERDAPRUS_OnUpdatingRow(IDVariant Column, IDVariant FieldModified, IDVariant FieldWasModified, IDVariant RowWasModified, IDVariant Inserting, IDVariant Cancel)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Dati Derivanti dalla Previsione - Uscite On Updating Row Body
+      // Corpo Procedura
+      // 
+      if (Inserting.booleanValue())
+      {
+        if (IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_ESERCIZIO, 0)))
+        {
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_ESERCIZIO, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0));
+        }
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_UTENTE_INSERIMENTO, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSUSERNAME, 0));
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_DATA_INSERIMENTO, 0, IDL.Today());
+      }
+      else
+      {
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_UTENTE_ULTIMO_AGG, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSUSERNAME, 0));
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_DATA_ULTIMO_AGG, 0, IDL.Today());
+      }
+      if ((Column.equals((new IDVariant(PFL_DATDERDAPRUS_MISSIONE1)), true) || Column.equals((new IDVariant(PFL_DATDERDAPRUS_PROGRAMMA1)), true)) && FieldWasModified.booleanValue())
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_MISSIONE, 0))) && !(IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_PROGRAMMA, 0))))
+        {
+          IDVariant v_VCOUNT = new IDVariant(0,IDVariant.INTEGER);
+          IDVariant v_MISSIONE = null;
+          v_MISSIONE = IDL.FillLR(IDL.ToString(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_MISSIONE, 0)), (new IDVariant(2)), (new IDVariant("0")), true);
+          IDVariant v_PROGRAMMA = null;
+          v_PROGRAMMA = IDL.Add(IDL.FillLR(IDL.ToString(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_MISSIONE, 0)), (new IDVariant(2)), (new IDVariant("0")), true), IDL.FillLR(IDL.ToString(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_PROGRAMMA, 0)), (new IDVariant(2)), (new IDVariant("0")), true));
+          SQL = new StringBuffer();
+          SQL.append("select ");
+          SQL.append("  COUNT(*) as COUNT1 ");
+          SQL.append("from ");
+          SQL.append("  VISTA_MISSIONI_PROGRAMMI A ");
+          SQL.append("where (A.ESERCIZIO = " + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+          SQL.append("and   (A.MISSIONE = " + IDL.CSql(v_MISSIONE, IDL.FMT_CHAR, MainFrm.Cf4armDBObject.DBO()) + ") ");
+          SQL.append("and   (A.PROGRAMMA = " + IDL.CSql(v_PROGRAMMA, IDL.FMT_CHAR, MainFrm.Cf4armDBObject.DBO()) + ") ");
+          QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+          if (!QV.EOF()) QV.MoveNext();
+          if (!QV.EOF())
+          {
+            v_VCOUNT = QV.Get("COUNT1", IDVariant.INTEGER) ;
+          }
+          QV.Close();
+          if (v_VCOUNT.equals((new IDVariant(0)), true))
+          {
+            IDVariant v_AVVISO = new IDVariant(0,IDVariant.STRING);
+            v_AVVISO = (new IDVariant("Missione/Programma non presente in Bilancio"));
+            MainFrm.set_AlertMessage(v_AVVISO); 
+            IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_MISSIONE, 0, (new IDVariant()));
+            IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_PROGRAMMA, 0, (new IDVariant()));
+            return;
+          }
+        }
+      }
+      if (Column.equals((new IDVariant(PFL_DATDERDAPRUS_LIVELLO8)), true) && FieldWasModified.booleanValue())
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_LIVELLO_4, 0))))
+        {
+          IDVariant v_VCOUNT = new IDVariant(0,IDVariant.INTEGER);
+          SQL = new StringBuffer();
+          SQL.append("select ");
+          SQL.append("  COUNT(*) as COUNT1 ");
+          SQL.append("from ");
+          SQL.append("  VISTA_STRUTTURA_RICL A ");
+          SQL.append("where (A.CODICE_TIPO_RICL = 'MACRO') ");
+          SQL.append("and   (A.E_S = 'S') ");
+          SQL.append("and   (A.LIVELLO = 4) ");
+          SQL.append("and   ((" + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + " BETWEEN A.ESERCIZIO_INIZIO AND A.ESERCIZIO_SCADENZA)) ");
+          SQL.append("and   (CONTROLLA_COD_STRUTT_MACRO4(" + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ",'S',A.CODICE," + IDL.CSql(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_MISSIONE, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + "," + IDL.CSql(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_PROGRAMMA, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") = 'SI') ");
+          SQL.append("and   (A.CODICE = " + IDL.CSql(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_LIVELLO_4, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+          QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+          if (!QV.EOF()) QV.MoveNext();
+          if (!QV.EOF())
+          {
+            v_VCOUNT = QV.Get("COUNT1", IDVariant.INTEGER) ;
+          }
+          QV.Close();
+          if (v_VCOUNT.equals((new IDVariant(0)), true))
+          {
+            IDVariant v_AVVISO = new IDVariant(0,IDVariant.STRING);
+            v_AVVISO = (new IDVariant("Codice Livello IV non esistente o non compatibile con la Missione/Programma."));
+            MainFrm.set_AlertMessage(v_AVVISO); 
+            IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSPR1, IMDBDef13.PQSL_BDAPDCARSPR1_LIVELLO_4, 0, (new IDVariant()));
+          }
+        }
+      }
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "DatiDerivantidallaPrevisione-UsciteOnUpdatingRow", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Dati Derivanti dalla Previsione - Uscite On Command
+  // Evento notificato dal pannello prima di eseguire un
+  // comando di pannello.
+  // Command - Input
+  // Cancel - Input/Output
+  // User Operation - Input
+  // **********************************************************************
+  private void PAN_DATDERDAPRUS_OnPanelCommand(IDVariant Command,IDVariant Cancel,IDVariant UserOperation)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Dati Derivanti dalla Previsione - Uscite On Command Body
+      // Corpo Procedura
+      // 
+      if (Command.equals((new IDVariant(32)), true))
+      {
+        PAN_DATDERDAPRUS.PanelCommand(Glb.PCM_REQUERY);
+      }
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "DatiDerivantidallaPrevisione-UsciteOnCommand", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Dati Derivanti dalla Previsione - Entrate On Updating Row
+  // Evento notificato dal pannello quando un utente modifica
+  // i dati presenti nel pannello
+  // Column - Input
+  // Field Modified - Input
+  // Field Was Modified - Input
+  // Row Was Modified - Input
+  // Inserting - Input
+  // Cancel - Input/Output
+  // **********************************************************************
+  private void PAN_DATDERDAPREN_OnUpdatingRow(IDVariant Column, IDVariant FieldModified, IDVariant FieldWasModified, IDVariant RowWasModified, IDVariant Inserting, IDVariant Cancel)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Dati Derivanti dalla Previsione - Entrate On Updating Row Body
+      // Corpo Procedura
+      // 
+      if (Inserting.booleanValue())
+      {
+        if (IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCAREPRE, IMDBDef13.PQSL_BDAPDCAREPRE_ESERCIZIO, 0)))
+        {
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCAREPRE, IMDBDef13.PQSL_BDAPDCAREPRE_ESERCIZIO, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0));
+        }
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCAREPRE, IMDBDef13.PQSL_BDAPDCAREPRE_UTENTE_INSERIMENTO, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSUSERNAME, 0));
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCAREPRE, IMDBDef13.PQSL_BDAPDCAREPRE_DATA_INSERIMENTO, 0, IDL.Today());
+      }
+      else
+      {
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCAREPRE, IMDBDef13.PQSL_BDAPDCAREPRE_UTENTE_ULTIMO_AGG, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSUSERNAME, 0));
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCAREPRE, IMDBDef13.PQSL_BDAPDCAREPRE_DATA_ULTIMO_AGG, 0, IDL.Today());
+      }
+      if (Column.equals((new IDVariant(PFL_DATDERDAPREN_LIVELLO4)), true) && FieldWasModified.booleanValue())
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCAREPRE, IMDBDef13.PQSL_BDAPDCAREPRE_LIVELLO_4, 0))))
+        {
+          IDVariant v_VCOUNT = new IDVariant(0,IDVariant.INTEGER);
+          SQL = new StringBuffer();
+          SQL.append("select ");
+          SQL.append("  COUNT(*) as COUNT1 ");
+          SQL.append("from ");
+          SQL.append("  VISTA_STRUTTURA_RICL A ");
+          SQL.append("where (A.CODICE_TIPO_RICL = 'MACRO') ");
+          SQL.append("and   (A.E_S = 'E') ");
+          SQL.append("and   (A.LIVELLO = 4) ");
+          SQL.append("and   ((" + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + " BETWEEN A.ESERCIZIO_INIZIO AND A.ESERCIZIO_SCADENZA)) ");
+          SQL.append("and   (A.CODICE = " + IDL.CSql(IMDB.Value(IMDBDef13.PQRY_BDAPDCAREPRE, IMDBDef13.PQSL_BDAPDCAREPRE_LIVELLO_4, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+          QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+          if (!QV.EOF()) QV.MoveNext();
+          if (!QV.EOF())
+          {
+            v_VCOUNT = QV.Get("COUNT1", IDVariant.INTEGER) ;
+          }
+          QV.Close();
+          if (v_VCOUNT.equals((new IDVariant(0)), true))
+          {
+            IDVariant v_AVVISO = new IDVariant(0,IDVariant.STRING);
+            v_AVVISO = (new IDVariant("Codice Livello IV non esistente."));
+            MainFrm.set_AlertMessage(v_AVVISO); 
+            IMDB.set_Value(IMDBDef13.PQRY_BDAPDCAREPRE, IMDBDef13.PQSL_BDAPDCAREPRE_LIVELLO_4, 0, (new IDVariant()));
+          }
+        }
+      }
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "DatiDerivantidallaPrevisione-EntrateOnUpdatingRow", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Dati Derivanti dalla Previsione - Entrate On Command
+  // Evento notificato dal pannello prima di eseguire un
+  // comando di pannello.
+  // Command - Input
+  // Cancel - Input/Output
+  // User Operation - Input
+  // **********************************************************************
+  private void PAN_DATDERDAPREN_OnPanelCommand(IDVariant Command,IDVariant Cancel,IDVariant UserOperation)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Dati Derivanti dalla Previsione - Entrate On Command Body
+      // Corpo Procedura
+      // 
+      if (Command.equals((new IDVariant(32)), true))
+      {
+        PAN_DATDERDAPREN.PanelCommand(Glb.PCM_REQUERY);
+      }
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "DatiDerivantidallaPrevisione-EntrateOnCommand", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Dati Gestionali - Uscite On Updating Row
+  // Evento notificato dal pannello quando un utente modifica
+  // i dati presenti nel pannello
+  // Column - Input
+  // Field Modified - Input
+  // Field Was Modified - Input
+  // Row Was Modified - Input
+  // Inserting - Input
+  // Cancel - Input/Output
+  // **********************************************************************
+  private void PAN_DATIGESTUSCI_OnUpdatingRow(IDVariant Column, IDVariant FieldModified, IDVariant FieldWasModified, IDVariant RowWasModified, IDVariant Inserting, IDVariant Cancel)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Dati Gestionali - Uscite On Updating Row Body
+      // Corpo Procedura
+      // 
+      if (Inserting.booleanValue())
+      {
+        if (IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_ESERCIZIO, 0)))
+        {
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_ESERCIZIO, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0));
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_SPESA_RICORRENTE, 0, (new IDVariant(3)));
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_CUP, 0, (new IDVariant("-")));
+        }
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_UTENTE_INSERIMENTO, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSUSERNAME, 0));
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_DATA_INSERIMENTO, 0, IDL.Today());
+      }
+      else
+      {
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_UTENTE_ULTIMO_AGG, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSUSERNAME, 0));
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_DATA_ULTIMO_AGG, 0, IDL.Today());
+      }
+      if ((Column.equals((new IDVariant(PFL_DATIGESTUSCI_MISSIONE2)), true) || Column.equals((new IDVariant(PFL_DATIGESTUSCI_PROGRAMMA2)), true)) && FieldWasModified.booleanValue())
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_MISSIONE, 0))) && !(IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_PROGRAMMA, 0))))
+        {
+          IDVariant v_VCOUNT = new IDVariant(0,IDVariant.INTEGER);
+          IDVariant v_MISSIONE = null;
+          v_MISSIONE = IDL.FillLR(IDL.ToString(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_MISSIONE, 0)), (new IDVariant(2)), (new IDVariant("0")), true);
+          IDVariant v_PROGRAMMA = null;
+          v_PROGRAMMA = IDL.Add(IDL.FillLR(IDL.ToString(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_MISSIONE, 0)), (new IDVariant(2)), (new IDVariant("0")), true), IDL.FillLR(IDL.ToString(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_PROGRAMMA, 0)), (new IDVariant(2)), (new IDVariant("0")), true));
+          SQL = new StringBuffer();
+          SQL.append("select ");
+          SQL.append("  COUNT(*) as COUNT1 ");
+          SQL.append("from ");
+          SQL.append("  VISTA_MISSIONI_PROGRAMMI A ");
+          SQL.append("where (A.ESERCIZIO = " + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+          SQL.append("and   (A.MISSIONE = " + IDL.CSql(v_MISSIONE, IDL.FMT_CHAR, MainFrm.Cf4armDBObject.DBO()) + ") ");
+          SQL.append("and   (A.PROGRAMMA = " + IDL.CSql(v_PROGRAMMA, IDL.FMT_CHAR, MainFrm.Cf4armDBObject.DBO()) + ") ");
+          QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+          if (!QV.EOF()) QV.MoveNext();
+          if (!QV.EOF())
+          {
+            v_VCOUNT = QV.Get("COUNT1", IDVariant.INTEGER) ;
+          }
+          QV.Close();
+          if (v_VCOUNT.equals((new IDVariant(0)), true))
+          {
+            IDVariant v_AVVISO = new IDVariant(0,IDVariant.STRING);
+            v_AVVISO = (new IDVariant("Missione/Programma non presente in Bilancio"));
+            MainFrm.set_AlertMessage(v_AVVISO); 
+            IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_MISSIONE, 0, (new IDVariant()));
+            IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_PROGRAMMA, 0, (new IDVariant()));
+            return;
+          }
+        }
+      }
+      if (Column.equals((new IDVariant(PFL_DATIGESTUSCI_LIVELLO9)), true) && FieldWasModified.booleanValue())
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_LIVELLO_5, 0))))
+        {
+          IDVariant v_VCOUNT = new IDVariant(0,IDVariant.INTEGER);
+          SQL = new StringBuffer();
+          SQL.append("select ");
+          SQL.append("  COUNT(*) as COUNT1 ");
+          SQL.append("from ");
+          SQL.append("  VISTA_STRUTTURA_RICL A ");
+          SQL.append("where (A.CODICE_TIPO_RICL = 'MACRO_5') ");
+          SQL.append("and   (A.E_S = 'S') ");
+          SQL.append("and   (A.LIVELLO = 2) ");
+          SQL.append("and   ((" + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + " BETWEEN A.ESERCIZIO_INIZIO AND A.ESERCIZIO_SCADENZA)) ");
+          SQL.append("and   (CONTROLLA_COD_STRUTT_MACRO4(" + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ",'S',A.CODICE," + IDL.CSql(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_MISSIONE, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + "," + IDL.CSql(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_PROGRAMMA, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") = 'SI') ");
+          SQL.append("and   (A.CODICE = " + IDL.CSql(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_LIVELLO_5, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+          QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+          if (!QV.EOF()) QV.MoveNext();
+          if (!QV.EOF())
+          {
+            v_VCOUNT = QV.Get("COUNT1", IDVariant.INTEGER) ;
+          }
+          QV.Close();
+          if (v_VCOUNT.equals((new IDVariant(0)), true))
+          {
+            SQL = new StringBuffer();
+            SQL.append("select ");
+            SQL.append("  COUNT(*) as COUNT1 ");
+            SQL.append("from ");
+            SQL.append("  VISTA_STRUTTURA_RICL A ");
+            SQL.append("where (A.CODICE_TIPO_RICL = 'MACRO') ");
+            SQL.append("and   (A.E_S = 'S') ");
+            SQL.append("and   (A.LIVELLO = 4) ");
+            SQL.append("and   ((" + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + " BETWEEN A.ESERCIZIO_INIZIO AND A.ESERCIZIO_SCADENZA)) ");
+            SQL.append("and   (CONTROLLA_COD_STRUTT_MACRO4(" + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ",'S',A.CODICE," + IDL.CSql(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_MISSIONE, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + "," + IDL.CSql(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_PROGRAMMA, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") = 'SI') ");
+            SQL.append("and   (A.CODICE = " + IDL.CSql(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_LIVELLO_5, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+            QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+            if (!QV.EOF()) QV.MoveNext();
+            if (!QV.EOF())
+            {
+              v_VCOUNT = QV.Get("COUNT1", IDVariant.INTEGER) ;
+            }
+            QV.Close();
+            if (v_VCOUNT.equals((new IDVariant(0)), true))
+            {
+              IDVariant v_AVVISO = new IDVariant(0,IDVariant.STRING);
+              v_AVVISO = (new IDVariant("Codice Livello IV/V non esistente o non compatibile con la Missione/Programma."));
+              MainFrm.set_AlertMessage(v_AVVISO); 
+              IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_LIVELLO_5, 0, (new IDVariant()));
+            }
+          }
+        }
+      }
+      if (Column.equals((new IDVariant(PFL_DATIGESTUSCI_COFOG)), true) && FieldWasModified.booleanValue())
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_COFOG, 0))))
+        {
+          IDVariant v_VCOUNT = new IDVariant(0,IDVariant.INTEGER);
+          SQL = new StringBuffer();
+          SQL.append("select ");
+          SQL.append("  COUNT(*) as COUNT1 ");
+          SQL.append("from ");
+          SQL.append("  VISTA_STRUTTURA_RICL A, ");
+          SQL.append("  PROGRAMMI_COFOG B ");
+          SQL.append("where (B.COFOG = A.CODICE) ");
+          SQL.append("and   (A.CODICE_TIPO_RICL = 'COFOG') ");
+          SQL.append("and   (A.E_S = 'S') ");
+          SQL.append("and   (A.LIVELLO = A.MAX_LIVELLO_RICL) ");
+          SQL.append("and   ((" + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + " BETWEEN A.ESERCIZIO_INIZIO AND A.ESERCIZIO_SCADENZA)) ");
+          SQL.append("and   (B.PROGRAMMA = LPAD(TO_CHAR ( " + IDL.CSql(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_MISSIONE, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + " ), 2, SUBSTR('0', 1, 1)) || LPAD(TO_CHAR ( " + IDL.CSql(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_PROGRAMMA, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + " ), 2, SUBSTR('0', 1, 1))) ");
+          SQL.append("and   (A.CODICE = " + IDL.CSql(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_COFOG, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+          QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+          if (!QV.EOF()) QV.MoveNext();
+          if (!QV.EOF())
+          {
+            v_VCOUNT = QV.Get("COUNT1", IDVariant.INTEGER) ;
+          }
+          QV.Close();
+          if (v_VCOUNT.equals((new IDVariant(0)), true))
+          {
+            IDVariant v_AVVISO = new IDVariant(0,IDVariant.STRING);
+            v_AVVISO = (new IDVariant("Codice Cofog non esistente o non compatibile con la Missione/Programma."));
+            MainFrm.set_AlertMessage(v_AVVISO); 
+            IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_COFOG, 0, (new IDVariant()));
+          }
+        }
+      }
+      if (Column.equals((new IDVariant(PFL_DATIGESTUSCI_CUP)), true) && FieldWasModified.booleanValue())
+      {
+        if (IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_CUP, 0)))
+        {
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARSGES, IMDBDef13.PQSL_BDAPDCARSGES_CUP, 0, (new IDVariant("-")));
+        }
+      }
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "DatiGestionali-UsciteOnUpdatingRow", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Dati Gestionali - Uscite On Dynamic Properties
+  // Consente l'aggiustamento delle proprietà visuali delle
+  // singole celle del pannello.
+  // **********************************************************************
+  private void PAN_DATIGESTUSCI_DynamicProperties ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      MainFrm.DynamicProperties(PAN_DATIGESTUSCI);
+      // 
+      // Dati Gestionali - Uscite On Dynamic Properties Body
+      // Corpo Procedura
+      // 
+      PAN_DATIGESTUSCI.set_ToolTip(Glb.OBJ_FIELD,PFL_DATIGESTUSCI_CODICEEUROP1,(new IDVariant(PAN_DATIGESTUSCI.FieldText(PFL_DATIGESTUSCI_CODICEEUROP1))).stringValue()); 
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "DatiGestionali-UsciteOnDynamicProperties", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Dati Gestionali - Uscite On Command
+  // Evento notificato dal pannello prima di eseguire un
+  // comando di pannello.
+  // Command - Input
+  // Cancel - Input/Output
+  // User Operation - Input
+  // **********************************************************************
+  private void PAN_DATIGESTUSCI_OnPanelCommand(IDVariant Command,IDVariant Cancel,IDVariant UserOperation)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Dati Gestionali - Uscite On Command Body
+      // Corpo Procedura
+      // 
+      if (Command.equals((new IDVariant(32)), true))
+      {
+        PAN_DATIGESTUSCI.PanelCommand(Glb.PCM_REQUERY);
+      }
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "DatiGestionali-UsciteOnCommand", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Dati Gestionali - Entrate On Updating Row
+  // Evento notificato dal pannello quando un utente modifica
+  // i dati presenti nel pannello
+  // Column - Input
+  // Field Modified - Input
+  // Field Was Modified - Input
+  // Row Was Modified - Input
+  // Inserting - Input
+  // Cancel - Input/Output
+  // **********************************************************************
+  private void PAN_DATIGESTENTR_OnUpdatingRow(IDVariant Column, IDVariant FieldModified, IDVariant FieldWasModified, IDVariant RowWasModified, IDVariant Inserting, IDVariant Cancel)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Dati Gestionali - Entrate On Updating Row Body
+      // Corpo Procedura
+      // 
+      if (Inserting.booleanValue())
+      {
+        if (IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCAREGES, IMDBDef13.PQSL_BDAPDCAREGES_ESERCIZIO, 0)))
+        {
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCAREGES, IMDBDef13.PQSL_BDAPDCAREGES_ESERCIZIO, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0));
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCAREGES, IMDBDef13.PQSL_BDAPDCAREGES_ENTRATA_RICORRENTE, 0, (new IDVariant(1)));
+        }
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCAREGES, IMDBDef13.PQSL_BDAPDCAREGES_UTENTE_INSERIMENTO, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSUSERNAME, 0));
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCAREGES, IMDBDef13.PQSL_BDAPDCAREGES_DATA_INSERIMENTO, 0, IDL.Today());
+      }
+      else
+      {
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCAREGES, IMDBDef13.PQSL_BDAPDCAREGES_UTENTE_ULTIMO_AGG, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSUSERNAME, 0));
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCAREGES, IMDBDef13.PQSL_BDAPDCAREGES_DATA_ULTIMO_AGG, 0, IDL.Today());
+      }
+      if (Column.equals((new IDVariant(PFL_DATIGESTENTR_LIVELLO5)), true) && FieldWasModified.booleanValue())
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCAREGES, IMDBDef13.PQSL_BDAPDCAREGES_LIVELLO_5, 0))))
+        {
+          IDVariant v_VCOUNT = new IDVariant(0,IDVariant.INTEGER);
+          SQL = new StringBuffer();
+          SQL.append("select ");
+          SQL.append("  COUNT(*) as COUNT1 ");
+          SQL.append("from ");
+          SQL.append("  VISTA_STRUTTURA_RICL A ");
+          SQL.append("where (A.CODICE_TIPO_RICL = 'MACRO_5') ");
+          SQL.append("and   (A.E_S = 'E') ");
+          SQL.append("and   (A.LIVELLO = 2) ");
+          SQL.append("and   ((" + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + " BETWEEN A.ESERCIZIO_INIZIO AND A.ESERCIZIO_SCADENZA)) ");
+          SQL.append("and   (A.CODICE = " + IDL.CSql(IMDB.Value(IMDBDef13.PQRY_BDAPDCAREGES, IMDBDef13.PQSL_BDAPDCAREGES_LIVELLO_5, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+          QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+          if (!QV.EOF()) QV.MoveNext();
+          if (!QV.EOF())
+          {
+            v_VCOUNT = QV.Get("COUNT1", IDVariant.INTEGER) ;
+          }
+          QV.Close();
+          if (v_VCOUNT.equals((new IDVariant(0)), true))
+          {
+            SQL = new StringBuffer();
+            SQL.append("select ");
+            SQL.append("  COUNT(*) as COUNT1 ");
+            SQL.append("from ");
+            SQL.append("  VISTA_STRUTTURA_RICL A ");
+            SQL.append("where (A.CODICE_TIPO_RICL = 'MACRO') ");
+            SQL.append("and   (A.E_S = 'E') ");
+            SQL.append("and   (A.LIVELLO = 4) ");
+            SQL.append("and   ((" + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + " BETWEEN A.ESERCIZIO_INIZIO AND A.ESERCIZIO_SCADENZA)) ");
+            SQL.append("and   (A.CODICE = " + IDL.CSql(IMDB.Value(IMDBDef13.PQRY_BDAPDCAREGES, IMDBDef13.PQSL_BDAPDCAREGES_LIVELLO_5, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+            QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+            if (!QV.EOF()) QV.MoveNext();
+            if (!QV.EOF())
+            {
+              v_VCOUNT = QV.Get("COUNT1", IDVariant.INTEGER) ;
+            }
+            QV.Close();
+            if (v_VCOUNT.equals((new IDVariant(0)), true))
+            {
+              IDVariant v_AVVISO = new IDVariant(0,IDVariant.STRING);
+              v_AVVISO = (new IDVariant("Codice Livello IV/V non esistente."));
+              MainFrm.set_AlertMessage(v_AVVISO); 
+              IMDB.set_Value(IMDBDef13.PQRY_BDAPDCAREGES, IMDBDef13.PQSL_BDAPDCAREGES_LIVELLO_5, 0, (new IDVariant()));
+            }
+          }
+        }
+      }
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "DatiGestionali-EntrateOnUpdatingRow", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Dati Gestionali - Entrate On Dynamic Properties
+  // Consente l'aggiustamento delle proprietà visuali delle
+  // singole celle del pannello.
+  // **********************************************************************
+  private void PAN_DATIGESTENTR_DynamicProperties ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      MainFrm.DynamicProperties(PAN_DATIGESTENTR);
+      // 
+      // Dati Gestionali - Entrate On Dynamic Properties Body
+      // Corpo Procedura
+      // 
+      PAN_DATIGESTENTR.set_ToolTip(Glb.OBJ_FIELD,PFL_DATIGESTENTR_CODICEEUROPE,(new IDVariant(PAN_DATIGESTENTR.FieldText(PFL_DATIGESTENTR_CODICEEUROPE))).stringValue()); 
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "DatiGestionali-EntrateOnDynamicProperties", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Dati Gestionali - Entrate On Command
+  // Evento notificato dal pannello prima di eseguire un
+  // comando di pannello.
+  // Command - Input
+  // Cancel - Input/Output
+  // User Operation - Input
+  // **********************************************************************
+  private void PAN_DATIGESTENTR_OnPanelCommand(IDVariant Command,IDVariant Cancel,IDVariant UserOperation)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Dati Gestionali - Entrate On Command Body
+      // Corpo Procedura
+      // 
+      if (Command.equals((new IDVariant(32)), true))
+      {
+        PAN_DATIGESTENTR.PanelCommand(Glb.PCM_REQUERY);
+      }
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "DatiGestionali-EntrateOnCommand", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Stato Patrimoniale On Updating Row
+  // Evento notificato dal pannello quando un utente modifica
+  // i dati presenti nel pannello
+  // Column - Input
+  // Field Modified - Input
+  // Field Was Modified - Input
+  // Row Was Modified - Input
+  // Inserting - Input
+  // Cancel - Input/Output
+  // **********************************************************************
+  private void PAN_STATOPATRIMO_OnUpdatingRow(IDVariant Column, IDVariant FieldModified, IDVariant FieldWasModified, IDVariant RowWasModified, IDVariant Inserting, IDVariant Cancel)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Stato Patrimoniale On Updating Row Body
+      // Corpo Procedura
+      // 
+      if (Inserting.booleanValue())
+      {
+        if (IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCARENSP, IMDBDef13.PQSL_BDAPDCARENSP_ESERCIZIO, 0)))
+        {
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENSP, IMDBDef13.PQSL_BDAPDCARENSP_ESERCIZIO, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0));
+        }
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENSP, IMDBDef13.PQSL_BDAPDCARENSP_UTENTE_INSERIMENTO, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSUSERNAME, 0));
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENSP, IMDBDef13.PQSL_BDAPDCARENSP_DATA_INSERIMENTO, 0, IDL.Today());
+      }
+      else
+      {
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENSP, IMDBDef13.PQSL_BDAPDCARENSP_UTENTE_ULTIMO_AGG, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSUSERNAME, 0));
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENSP, IMDBDef13.PQSL_BDAPDCARENSP_DATA_ULTIMO_AGG, 0, IDL.Today());
+      }
+      if ((Column.equals((new IDVariant(PFL_STATOPATRIMO_DARE1)), true) || Column.equals((new IDVariant(PFL_STATOPATRIMO_AVERE1)), true)) && FieldWasModified.booleanValue())
+      {
+        IDVariant v_VGETTICASAEC = new IDVariant(0,IDVariant.STRING);
+        SQL = new StringBuffer();
+        SQL.append("select ");
+        SQL.append("  GET_TIPO_CALCOLO_SALDO_ECO(" + IDL.CSql(IMDB.Value(IMDBDef13.PQRY_BDAPDCARENSP, IMDBDef13.PQSL_BDAPDCARENSP_LIVELLO_7, 0), IDL.FMT_CHAR, MainFrm.Cf4armDBObject.DBO()) + "," + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ",'P') as GTCSEBDSL7DC ");
+        SQL.append("from ");
+        SQL.append("  DUAL A ");
+        QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+        if (!QV.EOF()) QV.MoveNext();
+        if (!QV.EOF())
+        {
+          v_VGETTICASAEC = QV.Get("GTCSEBDSL7DC", IDVariant.STRING) ;
+        }
+        QV.Close();
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENSP, IMDBDef13.PQSL_BDAPDCARENSP_SALDOEXPRESS, 0, ((IDL.NullValue(v_VGETTICASAEC,(new IDVariant("D-A"))).equals((new IDVariant("D-A")), true))?IDL.Sub(IMDB.Value(IMDBDef13.PQRY_BDAPDCARENSP, IMDBDef13.PQSL_BDAPDCARENSP_DARE, 0), IMDB.Value(IMDBDef13.PQRY_BDAPDCARENSP, IMDBDef13.PQSL_BDAPDCARENSP_AVERE, 0)):IDL.Sub(IMDB.Value(IMDBDef13.PQRY_BDAPDCARENSP, IMDBDef13.PQSL_BDAPDCARENSP_AVERE, 0), IMDB.Value(IMDBDef13.PQRY_BDAPDCARENSP, IMDBDef13.PQSL_BDAPDCARENSP_DARE, 0))));
+      }
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "StatoPatrimonialeOnUpdatingRow", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Stato Patrimoniale On Dynamic Properties
+  // Consente l'aggiustamento delle proprietà visuali delle
+  // singole celle del pannello.
+  // **********************************************************************
+  private void PAN_STATOPATRIMO_DynamicProperties ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      MainFrm.DynamicProperties(PAN_STATOPATRIMO);
+      // 
+      // Stato Patrimoniale On Dynamic Properties Body
+      // Corpo Procedura
+      // 
+      PAN_STATOPATRIMO.set_ToolTip(Glb.OBJ_FIELD,PFL_STATOPATRIMO_DESCRILIVEL7,(new IDVariant(PAN_STATOPATRIMO.FieldText(PFL_STATOPATRIMO_DESCRILIVEL7))).stringValue()); 
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "StatoPatrimonialeOnDynamicProperties", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Stato Patrimoniale On Command
+  // Evento notificato dal pannello prima di eseguire un
+  // comando di pannello.
+  // Command - Input
+  // Cancel - Input/Output
+  // User Operation - Input
+  // **********************************************************************
+  private void PAN_STATOPATRIMO_OnPanelCommand(IDVariant Command,IDVariant Cancel,IDVariant UserOperation)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Stato Patrimoniale On Command Body
+      // Corpo Procedura
+      // 
+      if (Command.equals((new IDVariant(32)), true))
+      {
+        PAN_STATOPATRIMO.PanelCommand(Glb.PCM_REQUERY);
+      }
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "StatoPatrimonialeOnCommand", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Conto Economico On Updating Row
+  // Evento notificato dal pannello quando un utente modifica
+  // i dati presenti nel pannello
+  // Column - Input
+  // Field Modified - Input
+  // Field Was Modified - Input
+  // Row Was Modified - Input
+  // Inserting - Input
+  // Cancel - Input/Output
+  // **********************************************************************
+  private void PAN_CONTOECONOMI_OnUpdatingRow(IDVariant Column, IDVariant FieldModified, IDVariant FieldWasModified, IDVariant RowWasModified, IDVariant Inserting, IDVariant Cancel)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Conto Economico On Updating Row Body
+      // Corpo Procedura
+      // 
+      if (Inserting.booleanValue())
+      {
+        if (IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_ESERCIZIO, 0)))
+        {
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_ESERCIZIO, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0));
+        }
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_UTENTE_INSERIMENTO, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSUSERNAME, 0));
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_DATA_INSERIMENTO, 0, IDL.Today());
+      }
+      else
+      {
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_UTENTE_ULTIMO_AGG, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSUSERNAME, 0));
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_DATA_ULTIMO_AGG, 0, IDL.Today());
+      }
+      if ((Column.equals((new IDVariant(PFL_CONTOECONOMI_MISSIONE)), true) || Column.equals((new IDVariant(PFL_CONTOECONOMI_PROGRAMMA)), true)) && FieldWasModified.booleanValue())
+      {
+        if (Column.equals((new IDVariant(PFL_CONTOECONOMI_MISSIONE)), true) && IDL.NullValue(IMDB.Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_MISSIONE, 0),(new IDVariant(-1))).equals((new IDVariant(0)), true))
+        {
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_PROGRAMMA, 0, (new IDVariant(0)));
+        }
+        if (Column.equals((new IDVariant(PFL_CONTOECONOMI_PROGRAMMA)), true) && IDL.NullValue(IMDB.Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_PROGRAMMA, 0),(new IDVariant(-1))).equals((new IDVariant(0)), true))
+        {
+          IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_MISSIONE, 0, (new IDVariant(0)));
+        }
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_MISSIONE, 0))) && !(IDL.IsNull(IMDB.Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_PROGRAMMA, 0))))
+        {
+          if (IMDB.Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_MISSIONE, 0).compareTo((new IDVariant(0)), true)!=0 || IMDB.Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_PROGRAMMA, 0).compareTo((new IDVariant(0)), true)!=0)
+          {
+            IDVariant v_VCOUNT = new IDVariant(0,IDVariant.INTEGER);
+            IDVariant v_MISSIONE = null;
+            v_MISSIONE = IDL.FillLR(IDL.ToString(IMDB.Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_MISSIONE, 0)), (new IDVariant(2)), (new IDVariant("0")), true);
+            IDVariant v_PROGRAMMA = null;
+            v_PROGRAMMA = IDL.Add(IDL.FillLR(IDL.ToString(IMDB.Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_MISSIONE, 0)), (new IDVariant(2)), (new IDVariant("0")), true), IDL.FillLR(IDL.ToString(IMDB.Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_PROGRAMMA, 0)), (new IDVariant(2)), (new IDVariant("0")), true));
+            SQL = new StringBuffer();
+            SQL.append("select ");
+            SQL.append("  COUNT(*) as COUNT1 ");
+            SQL.append("from ");
+            SQL.append("  VISTA_MISSIONI_PROGRAMMI A ");
+            SQL.append("where (A.ESERCIZIO = " + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+            SQL.append("and   (A.MISSIONE = " + IDL.CSql(v_MISSIONE, IDL.FMT_CHAR, MainFrm.Cf4armDBObject.DBO()) + ") ");
+            SQL.append("and   (A.PROGRAMMA = " + IDL.CSql(v_PROGRAMMA, IDL.FMT_CHAR, MainFrm.Cf4armDBObject.DBO()) + ") ");
+            QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+            if (!QV.EOF()) QV.MoveNext();
+            if (!QV.EOF())
+            {
+              v_VCOUNT = QV.Get("COUNT1", IDVariant.INTEGER) ;
+            }
+            QV.Close();
+            if (v_VCOUNT.equals((new IDVariant(0)), true))
+            {
+              IDVariant v_AVVISO = new IDVariant(0,IDVariant.STRING);
+              v_AVVISO = (new IDVariant("Missione/Programma non presente in Bilancio"));
+              MainFrm.set_AlertMessage(v_AVVISO); 
+              IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_MISSIONE, 0, (new IDVariant()));
+              IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_PROGRAMMA, 0, (new IDVariant()));
+              return;
+            }
+          }
+        }
+      }
+      if ((Column.equals((new IDVariant(PFL_CONTOECONOMI_DARE)), true) || Column.equals((new IDVariant(PFL_CONTOECONOMI_AVERE)), true)) && FieldWasModified.booleanValue())
+      {
+        IDVariant v_VGETTICASAEC = new IDVariant(0,IDVariant.STRING);
+        SQL = new StringBuffer();
+        SQL.append("select ");
+        SQL.append("  GET_TIPO_CALCOLO_SALDO_ECO(" + IDL.CSql(IMDB.Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_LIVELLO_6, 0), IDL.FMT_CHAR, MainFrm.Cf4armDBObject.DBO()) + "," + IDL.CSql(IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ",'E') as GTCSEBDCL6DC ");
+        SQL.append("from ");
+        SQL.append("  DUAL A ");
+        QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+        if (!QV.EOF()) QV.MoveNext();
+        if (!QV.EOF())
+        {
+          v_VGETTICASAEC = QV.Get("GTCSEBDCL6DC", IDVariant.STRING) ;
+        }
+        QV.Close();
+        IMDB.set_Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_SALDO, 0, ((IDL.NullValue(v_VGETTICASAEC,(new IDVariant("D-A"))).equals((new IDVariant("D-A")), true))?IDL.Sub(IMDB.Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_DARE, 0), IMDB.Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_AVERE, 0)):IDL.Sub(IMDB.Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_AVERE, 0), IMDB.Value(IMDBDef13.PQRY_BDAPDCARENCE, IMDBDef13.PQSL_BDAPDCARENCE_DARE, 0))));
+      }
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "ContoEconomicoOnUpdatingRow", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Conto Economico On Dynamic Properties
+  // Consente l'aggiustamento delle proprietà visuali delle
+  // singole celle del pannello.
+  // **********************************************************************
+  private void PAN_CONTOECONOMI_DynamicProperties ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      MainFrm.DynamicProperties(PAN_CONTOECONOMI);
+      // 
+      // Conto Economico On Dynamic Properties Body
+      // Corpo Procedura
+      // 
+      PAN_CONTOECONOMI.set_ToolTip(Glb.OBJ_FIELD,PFL_CONTOECONOMI_STRPIACONDES,(new IDVariant(PAN_CONTOECONOMI.FieldText(PFL_CONTOECONOMI_STRPIACONDES))).stringValue()); 
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "ContoEconomicoOnDynamicProperties", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Conto Economico On Command
+  // Evento notificato dal pannello prima di eseguire un
+  // comando di pannello.
+  // Command - Input
+  // Cancel - Input/Output
+  // User Operation - Input
+  // **********************************************************************
+  private void PAN_CONTOECONOMI_OnPanelCommand(IDVariant Command,IDVariant Cancel,IDVariant UserOperation)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Conto Economico On Command Body
+      // Corpo Procedura
+      // 
+      if (Command.equals((new IDVariant(32)), true))
+      {
+        PAN_CONTOECONOMI.PanelCommand(Glb.PCM_REQUERY);
+      }
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("DatiContabiliAnaliticiRendiconto", "ContoEconomicoOnCommand", _e);
+    }
+  }
+
+  
+  
+  // **********************************************
+  // Event Stubs
+  // **********************************************  
+  // **********************************************************************
+  // Unload
+  // Evento notificato dal form prima della chiusura dello
+  // stesso
+  // **********************************************************************
+  public void IntFormUnload (IDVariant Cancel, IDVariant Confirm)
+  {
+    // Stub
+  }
+
+  // **********************************************************************
+  // Activate
+  // Evento notificato alla videata quando essa viene attivata
+  // cioè quando viene portata in primo piano
+  // **********************************************************************
+  public void Form_Activate()
+  {
+      MainFrm.Form_Activate(this);
+    // Stub
+  }
+
+  // **********************************************************************
+  // Deactivate
+  // Evento notificato alla videata quando essa viene messa
+  // in secondo piano
+  // **********************************************************************
+  public void Form_Deactivate(IDVariant Cancel)
+  {
+    // Stub
+  }
+
+  // **********************************************************************
+  // On Change Document
+  // Evento notificato al form quando viene cambiato il
+  // documento collegato
+  // **********************************************************************
+  public void OnChangeDocument(com.progamma.doc.IDDocument OldDocument)
+  {
+    // Stub
+  }
+
+  // **********************************************************************
+  // On Send Message
+  // Evento notificato quando una videata invia un messaggio
+  // tramite la procedura SendMessage
+  // **********************************************************************
+  public void OnSendMessage(IDVariant Message, WebForm Sender, com.progamma.doc.IDDocument Doc, IDVariant Par1, IDVariant Par2, IDVariant Par3, IDVariant Par4)
+  {
+    // Stub
+  }
+
+  
+  
+  // **********************************************
+  // Frame Events
+  // **********************************************
+  private void TAB_DCATABBEVIEW_Click(IDVariant OldPage, IDVariant Cancel)
+  {
+    TAB_DCATABBEVIEW_IntClick(OldPage, Cancel);
+  }
+
+  // **********************************************************************
+  // On Database Error
+  // Evento notificato dal pannello al verificarsi di un
+  // errore di database durante un'operazione di salvataggio
+  // dei dati.
+  // **********************************************************************
+  private void PAN_DATDERDAPRUS_OnDBError(IDVariant Cancel, IDVariant Skip, IDVariant ErrorNumber, IDVariant ErrorMessage, IDVariant NativeErrorNumber, IDVariant PanelOperation, com.progamma.doc.IDDocument Doc)
+  {
+      MainFrm.OnDBError(PAN_DATDERDAPRUS, Cancel, Skip, ErrorNumber, ErrorMessage, NativeErrorNumber, PanelOperation, Doc);
+    // Stub
+  }
+
+  // **********************************************************************
+  // On Validate Row
+  // Evento notificato dal pannello quando un utente modifica
+  // i dati presenti nel pannello
+  // **********************************************************************
+  private void PAN_DATDERDAPRUS_IntValidateRow (IDVariant Cancel)
+  {
+      MainFrm.IntValidateRow(PAN_DATDERDAPRUS, Cancel);
+    // Stub
+  }
+
+  // **********************************************************************
+  // On Dynamic Properties
+  // Consente l'aggiustamento delle proprietà visuali delle
+  // singole celle del pannello.
+  // **********************************************************************
+  private void PAN_DATDERDAPRUS_DynamicProperties ()
+  {
+      MainFrm.DynamicProperties(PAN_DATDERDAPRUS);
+    // Stub
+  }
+
+  private void PAN_DATDERDAPRUS_CellActivated(IDVariant ColIndex, IDVariant Cancel)
+  {
+    int i = 0;
+    if (ColIndex.intValue() == PFL_DATDERDAPRUS_APRIMISPROG1)
+    {
+      this.IdxPanelActived = this.PAN_DATDERDAPRUS.FrIndex;
+      this.IdxFieldActived = ColIndex.intValue();
+      SelezionaMissProg();
+      Cancel.set(IDVariant.TRUE);
+    }
+    if (ColIndex.intValue() == PFL_DATDERDAPRUS_LIVELLO8)
+    {
+      this.IdxPanelActived = this.PAN_DATDERDAPRUS.FrIndex;
+      this.IdxFieldActived = ColIndex.intValue();
+      SelezionaLivello4Spesa();
+      Cancel.set(IDVariant.TRUE);
+    }
+  }
+
+  private void PAN_DATDERDAPRUS_ValidateCell(IDVariant ColIndex, IDVariant CellModified, IDVariant Cancel, IDVariant FldWasModified, IDVariant RowWasModified, IDVariant IsInsert)
+  {
+    try
+    {
+      PAN_DATDERDAPRUS_OnUpdatingRow(ColIndex, CellModified, FldWasModified, RowWasModified, IsInsert, Cancel);
+    }
+    catch(Exception e) {}
+  }
+
+  private void PAN_DATDERDAPRUS_ValidateRow(IDVariant Cancel)
+  {
+    try
+    {
+      if (Cancel.isFalse())
+      {
+        PAN_DATDERDAPRUS_IntValidateRow(Cancel);
+      }
+    } catch ( Exception e) { }
+  }
+
+  // **********************************************************************
+  // On Database Error
+  // Evento notificato dal pannello al verificarsi di un
+  // errore di database durante un'operazione di salvataggio
+  // dei dati.
+  // **********************************************************************
+  private void PAN_DATDERDAPREN_OnDBError(IDVariant Cancel, IDVariant Skip, IDVariant ErrorNumber, IDVariant ErrorMessage, IDVariant NativeErrorNumber, IDVariant PanelOperation, com.progamma.doc.IDDocument Doc)
+  {
+      MainFrm.OnDBError(PAN_DATDERDAPREN, Cancel, Skip, ErrorNumber, ErrorMessage, NativeErrorNumber, PanelOperation, Doc);
+    // Stub
+  }
+
+  // **********************************************************************
+  // On Validate Row
+  // Evento notificato dal pannello quando un utente modifica
+  // i dati presenti nel pannello
+  // **********************************************************************
+  private void PAN_DATDERDAPREN_IntValidateRow (IDVariant Cancel)
+  {
+      MainFrm.IntValidateRow(PAN_DATDERDAPREN, Cancel);
+    // Stub
+  }
+
+  // **********************************************************************
+  // On Dynamic Properties
+  // Consente l'aggiustamento delle proprietà visuali delle
+  // singole celle del pannello.
+  // **********************************************************************
+  private void PAN_DATDERDAPREN_DynamicProperties ()
+  {
+      MainFrm.DynamicProperties(PAN_DATDERDAPREN);
+    // Stub
+  }
+
+  private void PAN_DATDERDAPREN_CellActivated(IDVariant ColIndex, IDVariant Cancel)
+  {
+    int i = 0;
+    if (ColIndex.intValue() == PFL_DATDERDAPREN_LIVELLO4)
+    {
+      this.IdxPanelActived = this.PAN_DATDERDAPREN.FrIndex;
+      this.IdxFieldActived = ColIndex.intValue();
+      SelezionaLivello4Entrata();
+      Cancel.set(IDVariant.TRUE);
+    }
+  }
+
+  private void PAN_DATDERDAPREN_ValidateCell(IDVariant ColIndex, IDVariant CellModified, IDVariant Cancel, IDVariant FldWasModified, IDVariant RowWasModified, IDVariant IsInsert)
+  {
+    try
+    {
+      PAN_DATDERDAPREN_OnUpdatingRow(ColIndex, CellModified, FldWasModified, RowWasModified, IsInsert, Cancel);
+    }
+    catch(Exception e) {}
+  }
+
+  private void PAN_DATDERDAPREN_ValidateRow(IDVariant Cancel)
+  {
+    try
+    {
+      if (Cancel.isFalse())
+      {
+        PAN_DATDERDAPREN_IntValidateRow(Cancel);
+      }
+    } catch ( Exception e) { }
+  }
+
+  // **********************************************************************
+  // On Database Error
+  // Evento notificato dal pannello al verificarsi di un
+  // errore di database durante un'operazione di salvataggio
+  // dei dati.
+  // **********************************************************************
+  private void PAN_DATIGESTUSCI_OnDBError(IDVariant Cancel, IDVariant Skip, IDVariant ErrorNumber, IDVariant ErrorMessage, IDVariant NativeErrorNumber, IDVariant PanelOperation, com.progamma.doc.IDDocument Doc)
+  {
+      MainFrm.OnDBError(PAN_DATIGESTUSCI, Cancel, Skip, ErrorNumber, ErrorMessage, NativeErrorNumber, PanelOperation, Doc);
+    // Stub
+  }
+
+  // **********************************************************************
+  // On Validate Row
+  // Evento notificato dal pannello quando un utente modifica
+  // i dati presenti nel pannello
+  // **********************************************************************
+  private void PAN_DATIGESTUSCI_IntValidateRow (IDVariant Cancel)
+  {
+      MainFrm.IntValidateRow(PAN_DATIGESTUSCI, Cancel);
+    // Stub
+  }
+
+  private void PAN_DATIGESTUSCI_CellActivated(IDVariant ColIndex, IDVariant Cancel)
+  {
+    int i = 0;
+    if (ColIndex.intValue() == PFL_DATIGESTUSCI_APRIMISPROG2)
+    {
+      this.IdxPanelActived = this.PAN_DATIGESTUSCI.FrIndex;
+      this.IdxFieldActived = ColIndex.intValue();
+      SelezionaMissProg();
+      Cancel.set(IDVariant.TRUE);
+    }
+    if (ColIndex.intValue() == PFL_DATIGESTUSCI_COFOG)
+    {
+      this.IdxPanelActived = this.PAN_DATIGESTUSCI.FrIndex;
+      this.IdxFieldActived = ColIndex.intValue();
+      SelezionaCofog();
+      Cancel.set(IDVariant.TRUE);
+    }
+    if (ColIndex.intValue() == PFL_DATIGESTUSCI_LIVELLO9)
+    {
+      this.IdxPanelActived = this.PAN_DATIGESTUSCI.FrIndex;
+      this.IdxFieldActived = ColIndex.intValue();
+      SelezionaLivello5Spesa();
+      Cancel.set(IDVariant.TRUE);
+    }
+  }
+
+  private void PAN_DATIGESTUSCI_ValidateCell(IDVariant ColIndex, IDVariant CellModified, IDVariant Cancel, IDVariant FldWasModified, IDVariant RowWasModified, IDVariant IsInsert)
+  {
+    try
+    {
+      PAN_DATIGESTUSCI_OnUpdatingRow(ColIndex, CellModified, FldWasModified, RowWasModified, IsInsert, Cancel);
+    }
+    catch(Exception e) {}
+  }
+
+  private void PAN_DATIGESTUSCI_ValidateRow(IDVariant Cancel)
+  {
+    try
+    {
+      if (Cancel.isFalse())
+      {
+        PAN_DATIGESTUSCI_IntValidateRow(Cancel);
+      }
+    } catch ( Exception e) { }
+  }
+
+  // **********************************************************************
+  // On Database Error
+  // Evento notificato dal pannello al verificarsi di un
+  // errore di database durante un'operazione di salvataggio
+  // dei dati.
+  // **********************************************************************
+  private void PAN_DATIGESTENTR_OnDBError(IDVariant Cancel, IDVariant Skip, IDVariant ErrorNumber, IDVariant ErrorMessage, IDVariant NativeErrorNumber, IDVariant PanelOperation, com.progamma.doc.IDDocument Doc)
+  {
+      MainFrm.OnDBError(PAN_DATIGESTENTR, Cancel, Skip, ErrorNumber, ErrorMessage, NativeErrorNumber, PanelOperation, Doc);
+    // Stub
+  }
+
+  // **********************************************************************
+  // On Validate Row
+  // Evento notificato dal pannello quando un utente modifica
+  // i dati presenti nel pannello
+  // **********************************************************************
+  private void PAN_DATIGESTENTR_IntValidateRow (IDVariant Cancel)
+  {
+      MainFrm.IntValidateRow(PAN_DATIGESTENTR, Cancel);
+    // Stub
+  }
+
+  private void PAN_DATIGESTENTR_CellActivated(IDVariant ColIndex, IDVariant Cancel)
+  {
+    int i = 0;
+    if (ColIndex.intValue() == PFL_DATIGESTENTR_LIVELLO5)
+    {
+      this.IdxPanelActived = this.PAN_DATIGESTENTR.FrIndex;
+      this.IdxFieldActived = ColIndex.intValue();
+      SelezionaLivello5Entrata();
+      Cancel.set(IDVariant.TRUE);
+    }
+  }
+
+  private void PAN_DATIGESTENTR_ValidateCell(IDVariant ColIndex, IDVariant CellModified, IDVariant Cancel, IDVariant FldWasModified, IDVariant RowWasModified, IDVariant IsInsert)
+  {
+    try
+    {
+      PAN_DATIGESTENTR_OnUpdatingRow(ColIndex, CellModified, FldWasModified, RowWasModified, IsInsert, Cancel);
+    }
+    catch(Exception e) {}
+  }
+
+  private void PAN_DATIGESTENTR_ValidateRow(IDVariant Cancel)
+  {
+    try
+    {
+      if (Cancel.isFalse())
+      {
+        PAN_DATIGESTENTR_IntValidateRow(Cancel);
+      }
+    } catch ( Exception e) { }
+  }
+
+  // **********************************************************************
+  // On Database Error
+  // Evento notificato dal pannello al verificarsi di un
+  // errore di database durante un'operazione di salvataggio
+  // dei dati.
+  // **********************************************************************
+  private void PAN_STATOPATRIMO_OnDBError(IDVariant Cancel, IDVariant Skip, IDVariant ErrorNumber, IDVariant ErrorMessage, IDVariant NativeErrorNumber, IDVariant PanelOperation, com.progamma.doc.IDDocument Doc)
+  {
+      MainFrm.OnDBError(PAN_STATOPATRIMO, Cancel, Skip, ErrorNumber, ErrorMessage, NativeErrorNumber, PanelOperation, Doc);
+    // Stub
+  }
+
+  // **********************************************************************
+  // On Validate Row
+  // Evento notificato dal pannello quando un utente modifica
+  // i dati presenti nel pannello
+  // **********************************************************************
+  private void PAN_STATOPATRIMO_IntValidateRow (IDVariant Cancel)
+  {
+      MainFrm.IntValidateRow(PAN_STATOPATRIMO, Cancel);
+    // Stub
+  }
+
+  private void PAN_STATOPATRIMO_CellActivated(IDVariant ColIndex, IDVariant Cancel)
+  {
+    int i = 0;
+    if (ColIndex.intValue() == PFL_STATOPATRIMO_LIVELLO7)
+    {
+      this.IdxPanelActived = this.PAN_STATOPATRIMO.FrIndex;
+      this.IdxFieldActived = ColIndex.intValue();
+      SelezionaLivello7();
+      Cancel.set(IDVariant.TRUE);
+    }
+  }
+
+  private void PAN_STATOPATRIMO_ValidateCell(IDVariant ColIndex, IDVariant CellModified, IDVariant Cancel, IDVariant FldWasModified, IDVariant RowWasModified, IDVariant IsInsert)
+  {
+    try
+    {
+      PAN_STATOPATRIMO_OnUpdatingRow(ColIndex, CellModified, FldWasModified, RowWasModified, IsInsert, Cancel);
+    }
+    catch(Exception e) {}
+  }
+
+  private void PAN_STATOPATRIMO_ValidateRow(IDVariant Cancel)
+  {
+    try
+    {
+      if (Cancel.isFalse())
+      {
+        PAN_STATOPATRIMO_IntValidateRow(Cancel);
+      }
+    } catch ( Exception e) { }
+  }
+
+  // **********************************************************************
+  // On Database Error
+  // Evento notificato dal pannello al verificarsi di un
+  // errore di database durante un'operazione di salvataggio
+  // dei dati.
+  // **********************************************************************
+  private void PAN_CONTOECONOMI_OnDBError(IDVariant Cancel, IDVariant Skip, IDVariant ErrorNumber, IDVariant ErrorMessage, IDVariant NativeErrorNumber, IDVariant PanelOperation, com.progamma.doc.IDDocument Doc)
+  {
+      MainFrm.OnDBError(PAN_CONTOECONOMI, Cancel, Skip, ErrorNumber, ErrorMessage, NativeErrorNumber, PanelOperation, Doc);
+    // Stub
+  }
+
+  // **********************************************************************
+  // On Validate Row
+  // Evento notificato dal pannello quando un utente modifica
+  // i dati presenti nel pannello
+  // **********************************************************************
+  private void PAN_CONTOECONOMI_IntValidateRow (IDVariant Cancel)
+  {
+      MainFrm.IntValidateRow(PAN_CONTOECONOMI, Cancel);
+    // Stub
+  }
+
+  private void PAN_CONTOECONOMI_CellActivated(IDVariant ColIndex, IDVariant Cancel)
+  {
+    int i = 0;
+    if (ColIndex.intValue() == PFL_CONTOECONOMI_APRIMISPROG)
+    {
+      this.IdxPanelActived = this.PAN_CONTOECONOMI.FrIndex;
+      this.IdxFieldActived = ColIndex.intValue();
+      SelezionaMissProg();
+      Cancel.set(IDVariant.TRUE);
+    }
+    if (ColIndex.intValue() == PFL_CONTOECONOMI_LIVELLO6)
+    {
+      this.IdxPanelActived = this.PAN_CONTOECONOMI.FrIndex;
+      this.IdxFieldActived = ColIndex.intValue();
+      SelezionaLivello6();
+      Cancel.set(IDVariant.TRUE);
+    }
+  }
+
+  private void PAN_CONTOECONOMI_ValidateCell(IDVariant ColIndex, IDVariant CellModified, IDVariant Cancel, IDVariant FldWasModified, IDVariant RowWasModified, IDVariant IsInsert)
+  {
+    try
+    {
+      PAN_CONTOECONOMI_OnUpdatingRow(ColIndex, CellModified, FldWasModified, RowWasModified, IsInsert, Cancel);
+    }
+    catch(Exception e) {}
+  }
+
+  private void PAN_CONTOECONOMI_ValidateRow(IDVariant Cancel)
+  {
+    try
+    {
+      if (Cancel.isFalse())
+      {
+        PAN_CONTOECONOMI_IntValidateRow(Cancel);
+      }
+    } catch ( Exception e) { }
+  }
+
+  // **********************************************************************
+  // On Database Error
+  // Evento notificato dal pannello al verificarsi di un
+  // errore di database durante un'operazione di salvataggio
+  // dei dati.
+  // **********************************************************************
+  private void PAN_PANNELELABOR_OnDBError(IDVariant Cancel, IDVariant Skip, IDVariant ErrorNumber, IDVariant ErrorMessage, IDVariant NativeErrorNumber, IDVariant PanelOperation, com.progamma.doc.IDDocument Doc)
+  {
+      MainFrm.OnDBError(PAN_PANNELELABOR, Cancel, Skip, ErrorNumber, ErrorMessage, NativeErrorNumber, PanelOperation, Doc);
+    // Stub
+  }
+
+  // **********************************************************************
+  // On Validate Row
+  // Evento notificato dal pannello quando un utente modifica
+  // i dati presenti nel pannello
+  // **********************************************************************
+  private void PAN_PANNELELABOR_IntValidateRow (IDVariant Cancel)
+  {
+      MainFrm.IntValidateRow(PAN_PANNELELABOR, Cancel);
+    // Stub
+  }
+
+  // **********************************************************************
+  // On Dynamic Properties
+  // Consente l'aggiustamento delle proprietà visuali delle
+  // singole celle del pannello.
+  // **********************************************************************
+  private void PAN_PANNELELABOR_DynamicProperties ()
+  {
+      MainFrm.DynamicProperties(PAN_PANNELELABOR);
+    // Stub
+  }
+
+  private void PAN_PANNELELABOR_CellActivated(IDVariant ColIndex, IDVariant Cancel)
+  {
+    int i = 0;
+    if (ColIndex.intValue() == PFL_PANNELELABOR_ETICGENEXBRL)
+    {
+      this.IdxPanelActived = this.PAN_PANNELELABOR.FrIndex;
+      this.IdxFieldActived = ColIndex.intValue();
+      Elabora();
+      Cancel.set(IDVariant.TRUE);
+    }
+  }
+
+  private void PAN_PANNELELABOR_ValidateCell(IDVariant ColIndex, IDVariant CellModified, IDVariant Cancel, IDVariant FldWasModified, IDVariant RowWasModified, IDVariant IsInsert)
+  {
+    try
+    {
+    }
+    catch(Exception e) {}
+  }
+
+  private void PAN_PANNELELABOR_ValidateRow(IDVariant Cancel)
+  {
+    try
+    {
+      if (Cancel.isFalse())
+      {
+        PAN_PANNELELABOR_IntValidateRow(Cancel);
+      }
+    } catch ( Exception e) { }
+  }
+
+  
+  
+  // **********************************************
+  // Panel (long) initialization
+  // **********************************************
+  private void PAN_DATDERDAPRUS_Init()
+  {
+
+    PAN_DATDERDAPRUS.SetSize(MyGlb.OBJ_PAGE, 0);
+    PAN_DATDERDAPRUS.SetSize(MyGlb.OBJ_GROUP, 0);
+    PAN_DATDERDAPRUS.SetSize(MyGlb.OBJ_FIELD, 17);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_ESERCIZIO1, "55FEA1AD-BE6F-4175-942A-16570016CBDA");
+    PAN_DATDERDAPRUS.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_ESERCIZIO1, "Esercizio");
+    PAN_DATDERDAPRUS.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_ESERCIZIO1, "");
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_ESERCIZIO1, MyGlb.VIS_NORMALFIELDS);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_ESERCIZIO1, 0 | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_MISSIONE1, "F59A82C4-C9CF-4D68-ADA9-61B75426E27E");
+    PAN_DATDERDAPRUS.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_MISSIONE1, "Missione");
+    PAN_DATDERDAPRUS.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_MISSIONE1, "");
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_MISSIONE1, MyGlb.VIS_NORMALFIELDS);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_MISSIONE1, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PROGRAMMA1, "7BE87D5F-01D1-499D-B5CE-B39CDB4C8FF1");
+    PAN_DATDERDAPRUS.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PROGRAMMA1, "Programma");
+    PAN_DATDERDAPRUS.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PROGRAMMA1, "");
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PROGRAMMA1, MyGlb.VIS_NORMALFIELDS);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PROGRAMMA1, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_APRIMISPROG1, "AD7AA2B4-24CA-4476-86E2-50EC84D5B837");
+    PAN_DATDERDAPRUS.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_APRIMISPROG1, " ");
+    PAN_DATDERDAPRUS.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_APRIMISPROG1, "");
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_APRIMISPROG1, MyGlb.VIS_HYPELINKIMMA);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_APRIMISPROG1, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_CANACTIVATE | MyGlb.FLD_ISOPT, -1);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_LIVELLO8, "1610E90C-5980-4A26-B36B-E638D737FB25");
+    PAN_DATDERDAPRUS.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_LIVELLO8, "Livello IV");
+    PAN_DATDERDAPRUS.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_LIVELLO8, "");
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_LIVELLO8, MyGlb.VIS_NORMALFIELDS);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_LIVELLO8, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_CANACTIVATE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RESIDPASSINI, "67E5362A-CE91-42FF-A6FF-E5B7A8FB0A58");
+    PAN_DATDERDAPRUS.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RESIDPASSINI, "Residui Passivi Iniziali al 1 Gennaio");
+    PAN_DATDERDAPRUS.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RESIDPASSINI, "");
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RESIDPASSINI, MyGlb.VIS_NORFIECF4IMP);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RESIDPASSINI, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCOMP1, "B83B410E-0216-4D18-B94D-A1A51706B015");
+    PAN_DATDERDAPRUS.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCOMP1, "Previsioni Definitive di Competenza");
+    PAN_DATDERDAPRUS.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCOMP1, "");
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCOMP1, MyGlb.VIS_NORFIECF4IMP);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCOMP1, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCASS1, "1499B1E4-FE75-4397-B8E2-D65E66451A56");
+    PAN_DATDERDAPRUS.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCASS1, "Previsioni Definitive di Cassa");
+    PAN_DATDERDAPRUS.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCASS1, "");
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCASS1, MyGlb.VIS_NORFIECF4IMP);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCASS1, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RIACRESIPAS1, "D5CE42F5-F9A2-4BFC-A71A-AB8DB43CCF34");
+    PAN_DATDERDAPRUS.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RIACRESIPAS1, "Riaccertamento Residui Passivi");
+    PAN_DATDERDAPRUS.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RIACRESIPAS1, "");
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RIACRESIPAS1, MyGlb.VIS_NORFIECF4IMP);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RIACRESIPAS1, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTEINSER1, "65ACACB8-3198-4B96-B70B-E8FA63D9D5DA");
+    PAN_DATDERDAPRUS.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTEINSER1, "UTENTE INSERIMENTO");
+    PAN_DATDERDAPRUS.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTEINSER1, "");
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTEINSER1, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTEINSER1, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAINSERIM1, "44806DAC-D1ED-48E2-835F-4FDCC5B0DA2C");
+    PAN_DATDERDAPRUS.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAINSERIM1, "DATA INSERIMENTO");
+    PAN_DATDERDAPRUS.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAINSERIM1, "");
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAINSERIM1, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAINSERIM1, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTULTIAG1, "2D3E0687-9C4E-4559-94FA-FD8B898C5B8B");
+    PAN_DATDERDAPRUS.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTULTIAG1, "UTENTE ULTIMO AGG");
+    PAN_DATDERDAPRUS.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTULTIAG1, "");
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTULTIAG1, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTULTIAG1, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAULTIMAG1, "B2BDC2E0-4A7F-4F4C-96E1-A0FFF798CDAE");
+    PAN_DATDERDAPRUS.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAULTIMAG1, "DATA ULTIMO AGG");
+    PAN_DATDERDAPRUS.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAULTIMAG1, "");
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAULTIMAG1, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAULTIMAG1, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRESPAIN, "90F4DB50-2B64-4E81-A394-B4775B253C52");
+    PAN_DATDERDAPRUS.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRESPAIN, "");
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRESPAIN, MyGlb.VIS_DISABIIMPORT);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRESPAIN, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_DATDERDAPRUS.SetSumField(PFL_DATDERDAPRUS_SOMDIRESPAIN, PFL_DATDERDAPRUS_RESIDPASSINI);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC1, "70E08489-5EA9-472E-9146-77C8EC9997C2");
+    PAN_DATDERDAPRUS.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC1, "");
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC1, MyGlb.VIS_DISABIIMPORT);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC1, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_DATDERDAPRUS.SetSumField(PFL_DATDERDAPRUS_SOMDIPREDEC1, PFL_DATDERDAPRUS_PREVDEFCOMP1);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC2, "EBB3B2F7-D240-4E66-8DB4-A8B90015324E");
+    PAN_DATDERDAPRUS.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC2, "");
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC2, MyGlb.VIS_DISABIIMPORT);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC2, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_DATDERDAPRUS.SetSumField(PFL_DATDERDAPRUS_SOMDIPREDEC2, PFL_DATDERDAPRUS_PREVDEFCASS1);
+    PAN_DATDERDAPRUS.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRIAREP1, "2672E0F8-15A4-4734-BB0F-CA7C7212F5B8");
+    PAN_DATDERDAPRUS.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRIAREP1, "");
+    PAN_DATDERDAPRUS.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRIAREP1, MyGlb.VIS_DISABIIMPORT);
+    PAN_DATDERDAPRUS.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRIAREP1, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_DATDERDAPRUS.SetSumField(PFL_DATDERDAPRUS_SOMDIRIAREP1, PFL_DATDERDAPRUS_RIACRESIPAS1);
+  }
+
+  private void PAN_DATDERDAPRUS_InitFields()
+  {
+
+    StringBuffer SQL = new StringBuffer();
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_ESERCIZIO1, MyGlb.PANEL_LIST, 0, 36, 60, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_ESERCIZIO1, MyGlb.PANEL_LIST, 68);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_ESERCIZIO1, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_ESERCIZIO1, MyGlb.PANEL_LIST, "Esercizio");
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_ESERCIZIO1, MyGlb.PANEL_FORM, 4, 4, 208, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_ESERCIZIO1, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_ESERCIZIO1, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_ESERCIZIO1, MyGlb.PANEL_FORM, "Esercizio");
+    PAN_DATDERDAPRUS.SetFieldPage(PFL_DATDERDAPRUS_ESERCIZIO1, -1, -1);
+    PAN_DATDERDAPRUS.SetFieldPanel(PFL_DATDERDAPRUS_ESERCIZIO1, PPQRY_BDAPDCARSPR1, "A.ESERCIZIO", "ESERCIZIO", 1, 4, 0, -13997);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_MISSIONE1, MyGlb.PANEL_LIST, 0, 36, 60, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_MISSIONE1, MyGlb.PANEL_LIST, 64);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_MISSIONE1, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_MISSIONE1, MyGlb.PANEL_LIST, "Missione");
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_MISSIONE1, MyGlb.PANEL_FORM, 4, 52, 208, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_MISSIONE1, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_MISSIONE1, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_MISSIONE1, MyGlb.PANEL_FORM, "Missione");
+    PAN_DATDERDAPRUS.SetFieldPage(PFL_DATDERDAPRUS_MISSIONE1, -1, -1);
+    PAN_DATDERDAPRUS.SetFieldPanel(PFL_DATDERDAPRUS_MISSIONE1, PPQRY_BDAPDCARSPR1, "A.MISSIONE", "MISSIONE", 1, 3, 0, -13997);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PROGRAMMA1, MyGlb.PANEL_LIST, 60, 36, 76, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PROGRAMMA1, MyGlb.PANEL_LIST, 84);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PROGRAMMA1, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PROGRAMMA1, MyGlb.PANEL_LIST, "Programma");
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PROGRAMMA1, MyGlb.PANEL_FORM, 4, 76, 208, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PROGRAMMA1, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PROGRAMMA1, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PROGRAMMA1, MyGlb.PANEL_FORM, "Programma");
+    PAN_DATDERDAPRUS.SetFieldPage(PFL_DATDERDAPRUS_PROGRAMMA1, -1, -1);
+    PAN_DATDERDAPRUS.SetFieldPanel(PFL_DATDERDAPRUS_PROGRAMMA1, PPQRY_BDAPDCARSPR1, "A.PROGRAMMA", "PROGRAMMA", 1, 3, 0, -13997);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_APRIMISPROG1, MyGlb.PANEL_LIST, 136, 36, 24, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_APRIMISPROG1, MyGlb.PANEL_LIST, 84);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_APRIMISPROG1, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_APRIMISPROG1, MyGlb.PANEL_LIST, " ");
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_APRIMISPROG1, MyGlb.PANEL_FORM, 4, 196, 128, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_APRIMISPROG1, MyGlb.PANEL_FORM, 84);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_APRIMISPROG1, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_APRIMISPROG1, MyGlb.PANEL_FORM, " ");
+    PAN_DATDERDAPRUS.SetFieldPage(PFL_DATDERDAPRUS_APRIMISPROG1, -1, -1);
+    PAN_DATDERDAPRUS.SetFieldPanel(PFL_DATDERDAPRUS_APRIMISPROG1, PPQRY_APRI1, "'A'", "APRIMISPROG", 5, 1, 0, -13997);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant("A")), "Apri", "", "wsearch1.gif", -1);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant("I")), "Info", "", "info.gif", -1);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant("E")), "Delete", "", "wdelete.gif", -1);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant("N")), "Nota Vuota", "", "nota bianca.gif", -1);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant("P")), "Nota Piena", "", "nota scritta.gif", -1);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant("S")), "Note Standard", "", "testo.gif", -1);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant("D")), "Dettagli", "", "dettaglio.gif", -1);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant()), "Vuoto", "", "", -1);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant("G")), "Incolla", "", "Paste.gif", -1);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant("F")), "RiepilogoIVA", "", "info_g.gif", -1);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant("T")), "Download", "", "clip_sm.gif", -1);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant("ZIP")), "ZIP", "", "zip_file.png", -1);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant("CSV")), "CSV", "", "csv.gif", -1);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant("PAGOPA")), "PagoPA", "PagoPA", "pagopa.png", -1);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant("IMPPARZ")), "ImportoParziale", "", "varimp.gif", -1);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant("IMPTOT")), "ImportoTotale", "", "varacc.gif", -1);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant("K")), "Note Accr", "", "signed.png", -1);
+    PAN_DATDERDAPRUS.SetValueListItem(PFL_DATDERDAPRUS_APRIMISPROG1, (new IDVariant("FCE")), "Fascicolo Contabile", "Fascicolo Contabile", "search_db_16.png", -1);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_LIVELLO8, MyGlb.PANEL_LIST, 160, 36, 80, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_LIVELLO8, MyGlb.PANEL_LIST, 64);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_LIVELLO8, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_LIVELLO8, MyGlb.PANEL_LIST, "Livello IV");
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_LIVELLO8, MyGlb.PANEL_FORM, 4, 28, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_LIVELLO8, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_LIVELLO8, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_LIVELLO8, MyGlb.PANEL_FORM, "Livello IV");
+    PAN_DATDERDAPRUS.SetFieldPage(PFL_DATDERDAPRUS_LIVELLO8, -1, -1);
+    PAN_DATDERDAPRUS.SetFieldPanel(PFL_DATDERDAPRUS_LIVELLO8, PPQRY_BDAPDCARSPR1, "A.LIVELLO_4", "LIVELLO_4", 1, 7, 0, -13997);
+    PAN_DATDERDAPRUS.set_Alignment(PFL_DATDERDAPRUS_LIVELLO8, 2);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RESIDPASSINI, MyGlb.PANEL_LIST, 240, 36, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RESIDPASSINI, MyGlb.PANEL_LIST, 124);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RESIDPASSINI, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RESIDPASSINI, MyGlb.PANEL_LIST, "Residui Passivi Iniziali al 1 Gennaio");
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RESIDPASSINI, MyGlb.PANEL_FORM, 4, 100, 280, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RESIDPASSINI, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RESIDPASSINI, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RESIDPASSINI, MyGlb.PANEL_FORM, "Res. Pass. Iniz. al 1 Genn.");
+    PAN_DATDERDAPRUS.SetFieldPage(PFL_DATDERDAPRUS_RESIDPASSINI, -1, -1);
+    PAN_DATDERDAPRUS.SetFieldPanel(PFL_DATDERDAPRUS_RESIDPASSINI, PPQRY_BDAPDCARSPR1, "A.RESIDUI_PASSIVI_INI", "RESIDUI_PASSIVI_INI", 3, 14, 2, -13997);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCOMP1, MyGlb.PANEL_LIST, 376, 36, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCOMP1, MyGlb.PANEL_LIST, 136);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCOMP1, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCOMP1, MyGlb.PANEL_LIST, "Previsioni Definitive di Competenza");
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCOMP1, MyGlb.PANEL_FORM, 4, 124, 248, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCOMP1, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCOMP1, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCOMP1, MyGlb.PANEL_FORM, "Previs. Defin. di Compet.");
+    PAN_DATDERDAPRUS.SetFieldPage(PFL_DATDERDAPRUS_PREVDEFCOMP1, -1, -1);
+    PAN_DATDERDAPRUS.SetFieldPanel(PFL_DATDERDAPRUS_PREVDEFCOMP1, PPQRY_BDAPDCARSPR1, "A.PREV_DEF_COMPETENZA", "PREV_DEF_COMPETENZA", 3, 14, 2, -13997);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCASS1, MyGlb.PANEL_LIST, 512, 36, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCASS1, MyGlb.PANEL_LIST, 100);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCASS1, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCASS1, MyGlb.PANEL_LIST, "Previsioni Definitive di Cassa");
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCASS1, MyGlb.PANEL_FORM, 4, 148, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCASS1, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCASS1, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_PREVDEFCASS1, MyGlb.PANEL_FORM, "Previs. Definitive di Cassa");
+    PAN_DATDERDAPRUS.SetFieldPage(PFL_DATDERDAPRUS_PREVDEFCASS1, -1, -1);
+    PAN_DATDERDAPRUS.SetFieldPanel(PFL_DATDERDAPRUS_PREVDEFCASS1, PPQRY_BDAPDCARSPR1, "A.PREV_DEF_CASSA", "PREV_DEF_CASSA", 3, 14, 2, -13997);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RIACRESIPAS1, MyGlb.PANEL_LIST, 648, 36, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RIACRESIPAS1, MyGlb.PANEL_LIST, 144);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RIACRESIPAS1, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RIACRESIPAS1, MyGlb.PANEL_LIST, "Riaccertamento Residui Passivi");
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RIACRESIPAS1, MyGlb.PANEL_FORM, 4, 172, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RIACRESIPAS1, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RIACRESIPAS1, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_RIACRESIPAS1, MyGlb.PANEL_FORM, "Riaccert. Residui Passivi");
+    PAN_DATDERDAPRUS.SetFieldPage(PFL_DATDERDAPRUS_RIACRESIPAS1, -1, -1);
+    PAN_DATDERDAPRUS.SetFieldPanel(PFL_DATDERDAPRUS_RIACRESIPAS1, PPQRY_BDAPDCARSPR1, "A.RIACC_RESIDUI_PASSIVI", "RIACC_RESIDUI_PASSIVI", 3, 14, 2, -13997);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTEINSER1, MyGlb.PANEL_LIST, 628, 36, 64, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTEINSER1, MyGlb.PANEL_LIST, 128);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTEINSER1, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTEINSER1, MyGlb.PANEL_LIST, "UTEN. INSER.");
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTEINSER1, MyGlb.PANEL_FORM, 4, 196, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTEINSER1, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTEINSER1, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTEINSER1, MyGlb.PANEL_FORM, "UTENTE INSERIMENTO");
+    PAN_DATDERDAPRUS.SetFieldPage(PFL_DATDERDAPRUS_UTENTEINSER1, -1, -1);
+    PAN_DATDERDAPRUS.SetFieldPanel(PFL_DATDERDAPRUS_UTENTEINSER1, PPQRY_BDAPDCARSPR1, "A.UTENTE_INSERIMENTO", "UTENTE_INSERIMENTO", 5, 8, 0, -13997);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAINSERIM1, MyGlb.PANEL_LIST, 692, 36, 88, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAINSERIM1, MyGlb.PANEL_LIST, 120);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAINSERIM1, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAINSERIM1, MyGlb.PANEL_LIST, "DATA INSERIMENTO");
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAINSERIM1, MyGlb.PANEL_FORM, 4, 220, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAINSERIM1, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAINSERIM1, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAINSERIM1, MyGlb.PANEL_FORM, "DATA INSERIMENTO");
+    PAN_DATDERDAPRUS.SetFieldPage(PFL_DATDERDAPRUS_DATAINSERIM1, -1, -1);
+    PAN_DATDERDAPRUS.SetFieldPanel(PFL_DATDERDAPRUS_DATAINSERIM1, PPQRY_BDAPDCARSPR1, "A.DATA_INSERIMENTO", "DATA_INSERIMENTO", 6, 10, 0, -13997);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTULTIAG1, MyGlb.PANEL_LIST, 780, 36, 72, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTULTIAG1, MyGlb.PANEL_LIST, 124);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTULTIAG1, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTULTIAG1, MyGlb.PANEL_LIST, "UTEN. ULT. AGG");
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTULTIAG1, MyGlb.PANEL_FORM, 4, 244, 240, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTULTIAG1, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTULTIAG1, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_UTENTULTIAG1, MyGlb.PANEL_FORM, "UTENTE ULTIMO AGG");
+    PAN_DATDERDAPRUS.SetFieldPage(PFL_DATDERDAPRUS_UTENTULTIAG1, -1, -1);
+    PAN_DATDERDAPRUS.SetFieldPanel(PFL_DATDERDAPRUS_UTENTULTIAG1, PPQRY_BDAPDCARSPR1, "A.UTENTE_ULTIMO_AGG", "UTENTE_ULTIMO_AGG", 5, 8, 0, -13997);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAULTIMAG1, MyGlb.PANEL_LIST, 852, 36, 88, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAULTIMAG1, MyGlb.PANEL_LIST, 116);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAULTIMAG1, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAULTIMAG1, MyGlb.PANEL_LIST, "DATA ULTIMO AGG");
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAULTIMAG1, MyGlb.PANEL_FORM, 4, 268, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAULTIMAG1, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAULTIMAG1, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPRUS.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_DATAULTIMAG1, MyGlb.PANEL_FORM, "DATA ULTIMO AGG");
+    PAN_DATDERDAPRUS.SetFieldPage(PFL_DATDERDAPRUS_DATAULTIMAG1, -1, -1);
+    PAN_DATDERDAPRUS.SetFieldPanel(PFL_DATDERDAPRUS_DATAULTIMAG1, PPQRY_BDAPDCARSPR1, "A.DATA_ULTIMO_AGG", "DATA_ULTIMO_AGG", 6, 10, 0, -13997);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRESPAIN, MyGlb.PANEL_LIST, 240, 240, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRESPAIN, MyGlb.PANEL_LIST, 0);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRESPAIN, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRESPAIN, MyGlb.PANEL_FORM, 356, 248, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRESPAIN, MyGlb.PANEL_FORM, 0);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRESPAIN, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPRUS.SetFieldPage(PFL_DATDERDAPRUS_SOMDIRESPAIN, -1, -1);
+    PAN_DATDERDAPRUS.SetFieldPanel(PFL_DATDERDAPRUS_SOMDIRESPAIN, -1, "", "SOMDIRESPAIN", 0, 0, 0, -13997);
+    PAN_DATDERDAPRUS.set_Alignment(PFL_DATDERDAPRUS_SOMDIRESPAIN, 4);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC1, MyGlb.PANEL_LIST, 376, 240, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC1, MyGlb.PANEL_LIST, 0);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC1, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC1, MyGlb.PANEL_FORM, 364, 256, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC1, MyGlb.PANEL_FORM, 0);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC1, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPRUS.SetFieldPage(PFL_DATDERDAPRUS_SOMDIPREDEC1, -1, -1);
+    PAN_DATDERDAPRUS.SetFieldPanel(PFL_DATDERDAPRUS_SOMDIPREDEC1, -1, "", "SOMDIPREDEC1", 0, 0, 0, -13997);
+    PAN_DATDERDAPRUS.set_Alignment(PFL_DATDERDAPRUS_SOMDIPREDEC1, 4);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC2, MyGlb.PANEL_LIST, 512, 240, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC2, MyGlb.PANEL_LIST, 0);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC2, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC2, MyGlb.PANEL_FORM, 372, 264, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC2, MyGlb.PANEL_FORM, 0);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIPREDEC2, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPRUS.SetFieldPage(PFL_DATDERDAPRUS_SOMDIPREDEC2, -1, -1);
+    PAN_DATDERDAPRUS.SetFieldPanel(PFL_DATDERDAPRUS_SOMDIPREDEC2, -1, "", "SOMDIPREDEC2", 0, 0, 0, -13997);
+    PAN_DATDERDAPRUS.set_Alignment(PFL_DATDERDAPRUS_SOMDIPREDEC2, 4);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRIAREP1, MyGlb.PANEL_LIST, 648, 240, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRIAREP1, MyGlb.PANEL_LIST, 0);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRIAREP1, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPRUS.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRIAREP1, MyGlb.PANEL_FORM, 380, 272, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPRUS.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRIAREP1, MyGlb.PANEL_FORM, 0);
+    PAN_DATDERDAPRUS.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPRUS_SOMDIRIAREP1, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPRUS.SetFieldPage(PFL_DATDERDAPRUS_SOMDIRIAREP1, -1, -1);
+    PAN_DATDERDAPRUS.SetFieldPanel(PFL_DATDERDAPRUS_SOMDIRIAREP1, -1, "", "SOMDIRIAREP1", 0, 0, 0, -13997);
+    PAN_DATDERDAPRUS.set_Alignment(PFL_DATDERDAPRUS_SOMDIRIAREP1, 4);
+  }
+
+  private void PAN_DATDERDAPRUS_InitQueries()
+  {
+    StringBuffer SQL;
+
+    PAN_DATDERDAPRUS.SetSize(MyGlb.OBJ_QUERY, 2);
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  'A' as APRIMISPROG ");
+    SQL.append("from ");
+    SQL.append("  DUAL A ");
+    SQL.append("where ((NOT (~~ESERCIZIO~~) IS NULL)) ");
+    PAN_DATDERDAPRUS.SetQuery(PPQRY_APRI1, 0, SQL, -1, "");
+    PAN_DATDERDAPRUS.SetQueryDB(PPQRY_APRI1, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_DATDERDAPRUS.SetMasterTable(PPQRY_APRI1, "DUAL");
+    PAN_DATDERDAPRUS.SetIMDB(IMDB, "PQRY_BDAPDCARSPR1", true);
+    PAN_DATDERDAPRUS.set_SetString(MyGlb.MASTER_ROWNAME, "BDAP DCAREND S PREV");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.ESERCIZIO as ESERCIZIO, ");
+    SQL.append("  A.LIVELLO_4 as LIVELLO_4, ");
+    SQL.append("  A.MISSIONE as MISSIONE, ");
+    SQL.append("  A.PROGRAMMA as PROGRAMMA, ");
+    SQL.append("  A.RESIDUI_PASSIVI_INI as RESIDUI_PASSIVI_INI, ");
+    SQL.append("  A.PREV_DEF_COMPETENZA as PREV_DEF_COMPETENZA, ");
+    SQL.append("  A.PREV_DEF_CASSA as PREV_DEF_CASSA, ");
+    SQL.append("  A.RIACC_RESIDUI_PASSIVI as RIACC_RESIDUI_PASSIVI, ");
+    SQL.append("  A.UTENTE_INSERIMENTO as UTENTE_INSERIMENTO, ");
+    SQL.append("  A.DATA_INSERIMENTO as DATA_INSERIMENTO, ");
+    SQL.append("  A.UTENTE_ULTIMO_AGG as UTENTE_ULTIMO_AGG, ");
+    SQL.append("  A.DATA_ULTIMO_AGG as DATA_ULTIMO_AGG ");
+    PAN_DATDERDAPRUS.SetQuery(PPQRY_BDAPDCARSPR1, 0, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("from ");
+    SQL.append("  BDAP_DCAREND_S_PREV A ");
+    PAN_DATDERDAPRUS.SetQuery(PPQRY_BDAPDCARSPR1, 1, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("where (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    PAN_DATDERDAPRUS.SetQuery(PPQRY_BDAPDCARSPR1, 2, SQL, -1, "");
+    SQL = new StringBuffer();
+    PAN_DATDERDAPRUS.SetQuery(PPQRY_BDAPDCARSPR1, 3, SQL, -1, "");
+    SQL = new StringBuffer();
+    PAN_DATDERDAPRUS.SetQuery(PPQRY_BDAPDCARSPR1, 4, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("order by ");
+    SQL.append("  A.MISSIONE, ");
+    SQL.append("  A.PROGRAMMA, ");
+    SQL.append("  A.LIVELLO_4 ");
+    PAN_DATDERDAPRUS.SetQuery(PPQRY_BDAPDCARSPR1, 5, SQL, -1, "");
+    PAN_DATDERDAPRUS.SetQueryDB(PPQRY_BDAPDCARSPR1, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_DATDERDAPRUS.SetMasterTable(0, "BDAP_DCAREND_S_PREV");
+    PAN_DATDERDAPRUS.AddToSortList(PFL_DATDERDAPRUS_MISSIONE1, true);
+    PAN_DATDERDAPRUS.AddToSortList(PFL_DATDERDAPRUS_PROGRAMMA1, true);
+    PAN_DATDERDAPRUS.AddToSortList(PFL_DATDERDAPRUS_LIVELLO8, true);
+    //
+    // Rieseguo la query se il pannello era già in stato DATA
+    if (PAN_DATDERDAPRUS.Status() == 2)
+    {
+      int oldListQBE = PAN_DATDERDAPRUS.iUseListQBE;
+      PAN_DATDERDAPRUS.iUseListQBE = 0;
+      PAN_DATDERDAPRUS.PanelCommand(Glb.PCM_SEARCH);
+      PAN_DATDERDAPRUS.PanelCommand(Glb.PCM_FIND);
+      PAN_DATDERDAPRUS.iUseListQBE = oldListQBE;
+    }
+  }
+
+  private void PAN_DATDERDAPREN_Init()
+  {
+
+    PAN_DATDERDAPREN.SetSize(MyGlb.OBJ_PAGE, 0);
+    PAN_DATDERDAPREN.SetSize(MyGlb.OBJ_GROUP, 0);
+    PAN_DATDERDAPREN.SetSize(MyGlb.OBJ_FIELD, 14);
+    PAN_DATDERDAPREN.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_ESERCIZIO2, "A71BD94C-95CC-4042-9841-9BD057F74B96");
+    PAN_DATDERDAPREN.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_ESERCIZIO2, "Esercizio");
+    PAN_DATDERDAPREN.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_ESERCIZIO2, "");
+    PAN_DATDERDAPREN.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_ESERCIZIO2, MyGlb.VIS_NORMALFIELDS);
+    PAN_DATDERDAPREN.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_ESERCIZIO2, 0 | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATDERDAPREN.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_LIVELLO4, "3867A64E-DD1B-476E-A03E-F639D05549DE");
+    PAN_DATDERDAPREN.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_LIVELLO4, "Livello IV");
+    PAN_DATDERDAPREN.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_LIVELLO4, "");
+    PAN_DATDERDAPREN.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_LIVELLO4, MyGlb.VIS_NORMALFIELDS);
+    PAN_DATDERDAPREN.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_LIVELLO4, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_CANACTIVATE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATDERDAPREN.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RESIDUINIZIA, "E8B8C570-31E0-4D38-A8F7-F33A1F2FBF05");
+    PAN_DATDERDAPREN.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RESIDUINIZIA, "Residui Attivi Iniziali al 1 gennaio");
+    PAN_DATDERDAPREN.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RESIDUINIZIA, "");
+    PAN_DATDERDAPREN.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RESIDUINIZIA, MyGlb.VIS_NORFIECF4IMP);
+    PAN_DATDERDAPREN.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RESIDUINIZIA, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_DATDERDAPREN.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCOMPE, "9F439135-2B30-4ECD-8202-2B6B27EABCF5");
+    PAN_DATDERDAPREN.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCOMPE, "Previsioni Definitive di Competenza");
+    PAN_DATDERDAPREN.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCOMPE, "");
+    PAN_DATDERDAPREN.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCOMPE, MyGlb.VIS_NORFIECF4IMP);
+    PAN_DATDERDAPREN.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCOMPE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_DATDERDAPREN.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCASSA, "C3663A07-7AB5-4781-8650-D52318378D8E");
+    PAN_DATDERDAPREN.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCASSA, "Previsioni Definitive di Cassa");
+    PAN_DATDERDAPREN.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCASSA, "");
+    PAN_DATDERDAPREN.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCASSA, MyGlb.VIS_NORFIECF4IMP);
+    PAN_DATDERDAPREN.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCASSA, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_DATDERDAPREN.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RIACRESIPASS, "387B2494-880F-457F-9422-4C53F919E3EB");
+    PAN_DATDERDAPREN.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RIACRESIPASS, "Riaccertamento Residui Attivi");
+    PAN_DATDERDAPREN.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RIACRESIPASS, "");
+    PAN_DATDERDAPREN.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RIACRESIPASS, MyGlb.VIS_NORFIECF4IMP);
+    PAN_DATDERDAPREN.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RIACRESIPASS, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_DATDERDAPREN.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTEINSER2, "8978B6F2-20D0-4675-B371-F70468943802");
+    PAN_DATDERDAPREN.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTEINSER2, "UTENTE INSERIMENTO");
+    PAN_DATDERDAPREN.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTEINSER2, "");
+    PAN_DATDERDAPREN.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTEINSER2, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATDERDAPREN.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTEINSER2, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_DATDERDAPREN.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAINSERIM2, "003C234C-3805-445D-A73C-5DEFFD9D58B1");
+    PAN_DATDERDAPREN.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAINSERIM2, "DATA INSERIMENTO");
+    PAN_DATDERDAPREN.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAINSERIM2, "");
+    PAN_DATDERDAPREN.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAINSERIM2, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATDERDAPREN.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAINSERIM2, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_DATDERDAPREN.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTULTIAG2, "CBF296D0-5EC4-4B45-B1E1-2CD30BE1C35F");
+    PAN_DATDERDAPREN.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTULTIAG2, "UTENTE ULTIMO AGG");
+    PAN_DATDERDAPREN.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTULTIAG2, "");
+    PAN_DATDERDAPREN.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTULTIAG2, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATDERDAPREN.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTULTIAG2, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_DATDERDAPREN.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAULTIMAG2, "CAE2FA1F-8D19-40D4-A29E-B90B91D7BCD0");
+    PAN_DATDERDAPREN.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAULTIMAG2, "DATA ULTIMO AGG");
+    PAN_DATDERDAPREN.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAULTIMAG2, "");
+    PAN_DATDERDAPREN.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAULTIMAG2, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATDERDAPREN.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAULTIMAG2, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_DATDERDAPREN.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMMDIRESINI, "867FBFC5-3F51-4E75-AC02-71F318CC45AE");
+    PAN_DATDERDAPREN.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMMDIRESINI, "");
+    PAN_DATDERDAPREN.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMMDIRESINI, MyGlb.VIS_DISABIIMPORT);
+    PAN_DATDERDAPREN.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMMDIRESINI, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_DATDERDAPREN.SetSumField(PFL_DATDERDAPREN_SOMMDIRESINI, PFL_DATDERDAPREN_RESIDUINIZIA);
+    PAN_DATDERDAPREN.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECO, "5890F4B6-07B9-4831-82C0-18CCA20202F9");
+    PAN_DATDERDAPREN.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECO, "");
+    PAN_DATDERDAPREN.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECO, MyGlb.VIS_DISABIIMPORT);
+    PAN_DATDERDAPREN.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECO, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_DATDERDAPREN.SetSumField(PFL_DATDERDAPREN_SOMDIPREDECO, PFL_DATDERDAPREN_PREVDEFCOMPE);
+    PAN_DATDERDAPREN.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECA, "710A177F-9D17-4790-A635-682DA2266D32");
+    PAN_DATDERDAPREN.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECA, "");
+    PAN_DATDERDAPREN.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECA, MyGlb.VIS_DISABIIMPORT);
+    PAN_DATDERDAPREN.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECA, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_DATDERDAPREN.SetSumField(PFL_DATDERDAPREN_SOMDIPREDECA, PFL_DATDERDAPREN_PREVDEFCASSA);
+    PAN_DATDERDAPREN.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIRIAREPA, "A3721790-BC70-45AE-A9C0-485BDF5FB034");
+    PAN_DATDERDAPREN.set_Header(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIRIAREPA, "");
+    PAN_DATDERDAPREN.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIRIAREPA, MyGlb.VIS_DISABIIMPORT);
+    PAN_DATDERDAPREN.SetFlags(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIRIAREPA, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_DATDERDAPREN.SetSumField(PFL_DATDERDAPREN_SOMDIRIAREPA, PFL_DATDERDAPREN_RIACRESIPASS);
+  }
+
+  private void PAN_DATDERDAPREN_InitFields()
+  {
+
+    StringBuffer SQL = new StringBuffer();
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_ESERCIZIO2, MyGlb.PANEL_LIST, 0, 36, 60, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_ESERCIZIO2, MyGlb.PANEL_LIST, 68);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_ESERCIZIO2, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_ESERCIZIO2, MyGlb.PANEL_LIST, "Esercizio");
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_ESERCIZIO2, MyGlb.PANEL_FORM, 4, 4, 208, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_ESERCIZIO2, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_ESERCIZIO2, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_ESERCIZIO2, MyGlb.PANEL_FORM, "Esercizio");
+    PAN_DATDERDAPREN.SetFieldPage(PFL_DATDERDAPREN_ESERCIZIO2, -1, -1);
+    PAN_DATDERDAPREN.SetFieldPanel(PFL_DATDERDAPREN_ESERCIZIO2, PPQRY_BDAPDCAREPRE, "A.ESERCIZIO", "ESERCIZIO", 1, 4, 0, -13997);
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_LIVELLO4, MyGlb.PANEL_LIST, 0, 36, 80, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_LIVELLO4, MyGlb.PANEL_LIST, 64);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_LIVELLO4, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_LIVELLO4, MyGlb.PANEL_LIST, "Livello IV");
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_LIVELLO4, MyGlb.PANEL_FORM, 4, 28, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_LIVELLO4, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_LIVELLO4, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_LIVELLO4, MyGlb.PANEL_FORM, "Livello IV");
+    PAN_DATDERDAPREN.SetFieldPage(PFL_DATDERDAPREN_LIVELLO4, -1, -1);
+    PAN_DATDERDAPREN.SetFieldPanel(PFL_DATDERDAPREN_LIVELLO4, PPQRY_BDAPDCAREPRE, "A.LIVELLO_4", "LIVELLO_4", 1, 7, 0, -13997);
+    PAN_DATDERDAPREN.set_Alignment(PFL_DATDERDAPREN_LIVELLO4, 2);
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RESIDUINIZIA, MyGlb.PANEL_LIST, 80, 36, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RESIDUINIZIA, MyGlb.PANEL_LIST, 108);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RESIDUINIZIA, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RESIDUINIZIA, MyGlb.PANEL_LIST, "Residui Attivi Iniziali al 1 gennaio");
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RESIDUINIZIA, MyGlb.PANEL_FORM, 4, 196, 192, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RESIDUINIZIA, MyGlb.PANEL_FORM, 108);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RESIDUINIZIA, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RESIDUINIZIA, MyGlb.PANEL_FORM, "Rs. At. In. a. 1 gn.");
+    PAN_DATDERDAPREN.SetFieldPage(PFL_DATDERDAPREN_RESIDUINIZIA, -1, -1);
+    PAN_DATDERDAPREN.SetFieldPanel(PFL_DATDERDAPREN_RESIDUINIZIA, PPQRY_BDAPDCAREPRE, "A.RESIDUI_INIZIALI", "RESIDUI_INIZIALI", 3, 14, 2, -13997);
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCOMPE, MyGlb.PANEL_LIST, 216, 36, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCOMPE, MyGlb.PANEL_LIST, 136);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCOMPE, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCOMPE, MyGlb.PANEL_LIST, "Previsioni Definitive di Competenza");
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCOMPE, MyGlb.PANEL_FORM, 4, 124, 248, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCOMPE, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCOMPE, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCOMPE, MyGlb.PANEL_FORM, "Previs. Defin. di Compet.");
+    PAN_DATDERDAPREN.SetFieldPage(PFL_DATDERDAPREN_PREVDEFCOMPE, -1, -1);
+    PAN_DATDERDAPREN.SetFieldPanel(PFL_DATDERDAPREN_PREVDEFCOMPE, PPQRY_BDAPDCAREPRE, "A.PREV_DEF_COMPETENZA", "PREV_DEF_COMPETENZA", 3, 14, 2, -13997);
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCASSA, MyGlb.PANEL_LIST, 352, 36, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCASSA, MyGlb.PANEL_LIST, 100);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCASSA, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCASSA, MyGlb.PANEL_LIST, "Previsioni Definitive di Cassa");
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCASSA, MyGlb.PANEL_FORM, 4, 148, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCASSA, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCASSA, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_PREVDEFCASSA, MyGlb.PANEL_FORM, "Previs. Definitive di Cassa");
+    PAN_DATDERDAPREN.SetFieldPage(PFL_DATDERDAPREN_PREVDEFCASSA, -1, -1);
+    PAN_DATDERDAPREN.SetFieldPanel(PFL_DATDERDAPREN_PREVDEFCASSA, PPQRY_BDAPDCAREPRE, "A.PREV_DEF_CASSA", "PREV_DEF_CASSA", 3, 14, 2, -13997);
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RIACRESIPASS, MyGlb.PANEL_LIST, 488, 36, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RIACRESIPASS, MyGlb.PANEL_LIST, 144);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RIACRESIPASS, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RIACRESIPASS, MyGlb.PANEL_LIST, "Riaccertamento Residui Attivi");
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RIACRESIPASS, MyGlb.PANEL_FORM, 4, 172, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RIACRESIPASS, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RIACRESIPASS, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_RIACRESIPASS, MyGlb.PANEL_FORM, "Riaccert. Residui Attivi");
+    PAN_DATDERDAPREN.SetFieldPage(PFL_DATDERDAPREN_RIACRESIPASS, -1, -1);
+    PAN_DATDERDAPREN.SetFieldPanel(PFL_DATDERDAPREN_RIACRESIPASS, PPQRY_BDAPDCAREPRE, "A.RIACC_RESIDUI_ATTIVI", "RIACC_RESIDUI_ATTIVI", 3, 14, 2, -13997);
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTEINSER2, MyGlb.PANEL_LIST, 628, 36, 64, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTEINSER2, MyGlb.PANEL_LIST, 128);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTEINSER2, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTEINSER2, MyGlb.PANEL_LIST, "UTEN. INSER.");
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTEINSER2, MyGlb.PANEL_FORM, 4, 196, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTEINSER2, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTEINSER2, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTEINSER2, MyGlb.PANEL_FORM, "UTENTE INSERIMENTO");
+    PAN_DATDERDAPREN.SetFieldPage(PFL_DATDERDAPREN_UTENTEINSER2, -1, -1);
+    PAN_DATDERDAPREN.SetFieldPanel(PFL_DATDERDAPREN_UTENTEINSER2, PPQRY_BDAPDCAREPRE, "A.UTENTE_INSERIMENTO", "UTENTE_INSERIMENTO", 5, 8, 0, -13997);
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAINSERIM2, MyGlb.PANEL_LIST, 692, 36, 88, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAINSERIM2, MyGlb.PANEL_LIST, 120);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAINSERIM2, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAINSERIM2, MyGlb.PANEL_LIST, "DATA INSERIMENTO");
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAINSERIM2, MyGlb.PANEL_FORM, 4, 220, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAINSERIM2, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAINSERIM2, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAINSERIM2, MyGlb.PANEL_FORM, "DATA INSERIMENTO");
+    PAN_DATDERDAPREN.SetFieldPage(PFL_DATDERDAPREN_DATAINSERIM2, -1, -1);
+    PAN_DATDERDAPREN.SetFieldPanel(PFL_DATDERDAPREN_DATAINSERIM2, PPQRY_BDAPDCAREPRE, "A.DATA_INSERIMENTO", "DATA_INSERIMENTO", 6, 10, 0, -13997);
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTULTIAG2, MyGlb.PANEL_LIST, 780, 36, 72, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTULTIAG2, MyGlb.PANEL_LIST, 124);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTULTIAG2, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTULTIAG2, MyGlb.PANEL_LIST, "UTEN. ULT. AGG");
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTULTIAG2, MyGlb.PANEL_FORM, 4, 244, 240, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTULTIAG2, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTULTIAG2, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_UTENTULTIAG2, MyGlb.PANEL_FORM, "UTENTE ULTIMO AGG");
+    PAN_DATDERDAPREN.SetFieldPage(PFL_DATDERDAPREN_UTENTULTIAG2, -1, -1);
+    PAN_DATDERDAPREN.SetFieldPanel(PFL_DATDERDAPREN_UTENTULTIAG2, PPQRY_BDAPDCAREPRE, "A.UTENTE_ULTIMO_AGG", "UTENTE_ULTIMO_AGG", 5, 8, 0, -13997);
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAULTIMAG2, MyGlb.PANEL_LIST, 852, 36, 88, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAULTIMAG2, MyGlb.PANEL_LIST, 116);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAULTIMAG2, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAULTIMAG2, MyGlb.PANEL_LIST, "DATA ULTIMO AGG");
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAULTIMAG2, MyGlb.PANEL_FORM, 4, 268, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAULTIMAG2, MyGlb.PANEL_FORM, 160);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAULTIMAG2, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPREN.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_DATAULTIMAG2, MyGlb.PANEL_FORM, "DATA ULTIMO AGG");
+    PAN_DATDERDAPREN.SetFieldPage(PFL_DATDERDAPREN_DATAULTIMAG2, -1, -1);
+    PAN_DATDERDAPREN.SetFieldPanel(PFL_DATDERDAPREN_DATAULTIMAG2, PPQRY_BDAPDCAREPRE, "A.DATA_ULTIMO_AGG", "DATA_ULTIMO_AGG", 6, 10, 0, -13997);
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMMDIRESINI, MyGlb.PANEL_LIST, 80, 240, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMMDIRESINI, MyGlb.PANEL_LIST, 0);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMMDIRESINI, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMMDIRESINI, MyGlb.PANEL_FORM, 372, 264, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMMDIRESINI, MyGlb.PANEL_FORM, 0);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMMDIRESINI, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPREN.SetFieldPage(PFL_DATDERDAPREN_SOMMDIRESINI, -1, -1);
+    PAN_DATDERDAPREN.SetFieldPanel(PFL_DATDERDAPREN_SOMMDIRESINI, -1, "", "SOMMDIRESINI", 0, 0, 0, -13997);
+    PAN_DATDERDAPREN.set_Alignment(PFL_DATDERDAPREN_SOMMDIRESINI, 4);
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECO, MyGlb.PANEL_LIST, 216, 240, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECO, MyGlb.PANEL_LIST, 0);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECO, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECO, MyGlb.PANEL_FORM, 364, 256, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECO, MyGlb.PANEL_FORM, 0);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECO, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPREN.SetFieldPage(PFL_DATDERDAPREN_SOMDIPREDECO, -1, -1);
+    PAN_DATDERDAPREN.SetFieldPanel(PFL_DATDERDAPREN_SOMDIPREDECO, -1, "", "SOMDIPREDECO", 0, 0, 0, -13997);
+    PAN_DATDERDAPREN.set_Alignment(PFL_DATDERDAPREN_SOMDIPREDECO, 4);
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECA, MyGlb.PANEL_LIST, 352, 240, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECA, MyGlb.PANEL_LIST, 0);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECA, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECA, MyGlb.PANEL_FORM, 372, 264, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECA, MyGlb.PANEL_FORM, 0);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIPREDECA, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPREN.SetFieldPage(PFL_DATDERDAPREN_SOMDIPREDECA, -1, -1);
+    PAN_DATDERDAPREN.SetFieldPanel(PFL_DATDERDAPREN_SOMDIPREDECA, -1, "", "SOMDIPREDECA", 0, 0, 0, -13997);
+    PAN_DATDERDAPREN.set_Alignment(PFL_DATDERDAPREN_SOMDIPREDECA, 4);
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIRIAREPA, MyGlb.PANEL_LIST, 488, 240, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIRIAREPA, MyGlb.PANEL_LIST, 0);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIRIAREPA, MyGlb.PANEL_LIST, 1);
+    PAN_DATDERDAPREN.SetRect(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIRIAREPA, MyGlb.PANEL_FORM, 380, 272, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATDERDAPREN.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIRIAREPA, MyGlb.PANEL_FORM, 0);
+    PAN_DATDERDAPREN.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATDERDAPREN_SOMDIRIAREPA, MyGlb.PANEL_FORM, 1);
+    PAN_DATDERDAPREN.SetFieldPage(PFL_DATDERDAPREN_SOMDIRIAREPA, -1, -1);
+    PAN_DATDERDAPREN.SetFieldPanel(PFL_DATDERDAPREN_SOMDIRIAREPA, -1, "", "SOMDIRIAREPA", 0, 0, 0, -13997);
+    PAN_DATDERDAPREN.set_Alignment(PFL_DATDERDAPREN_SOMDIRIAREPA, 4);
+  }
+
+  private void PAN_DATDERDAPREN_InitQueries()
+  {
+    StringBuffer SQL;
+
+    PAN_DATDERDAPREN.SetSize(MyGlb.OBJ_QUERY, 1);
+    PAN_DATDERDAPREN.SetIMDB(IMDB, "PQRY_BDAPDCAREPRE", true);
+    PAN_DATDERDAPREN.set_SetString(MyGlb.MASTER_ROWNAME, "BDAP DCAREND E PREV");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.ESERCIZIO as ESERCIZIO, ");
+    SQL.append("  A.LIVELLO_4 as LIVELLO_4, ");
+    SQL.append("  A.RESIDUI_INIZIALI as RESIDUI_INIZIALI, ");
+    SQL.append("  A.PREV_DEF_COMPETENZA as PREV_DEF_COMPETENZA, ");
+    SQL.append("  A.PREV_DEF_CASSA as PREV_DEF_CASSA, ");
+    SQL.append("  A.RIACC_RESIDUI_ATTIVI as RIACC_RESIDUI_ATTIVI, ");
+    SQL.append("  A.UTENTE_INSERIMENTO as UTENTE_INSERIMENTO, ");
+    SQL.append("  A.DATA_INSERIMENTO as DATA_INSERIMENTO, ");
+    SQL.append("  A.UTENTE_ULTIMO_AGG as UTENTE_ULTIMO_AGG, ");
+    SQL.append("  A.DATA_ULTIMO_AGG as DATA_ULTIMO_AGG ");
+    PAN_DATDERDAPREN.SetQuery(PPQRY_BDAPDCAREPRE, 0, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("from ");
+    SQL.append("  BDAP_DCAREND_E_PREV A ");
+    PAN_DATDERDAPREN.SetQuery(PPQRY_BDAPDCAREPRE, 1, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("where (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    PAN_DATDERDAPREN.SetQuery(PPQRY_BDAPDCAREPRE, 2, SQL, -1, "");
+    SQL = new StringBuffer();
+    PAN_DATDERDAPREN.SetQuery(PPQRY_BDAPDCAREPRE, 3, SQL, -1, "");
+    SQL = new StringBuffer();
+    PAN_DATDERDAPREN.SetQuery(PPQRY_BDAPDCAREPRE, 4, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("order by ");
+    SQL.append("  A.LIVELLO_4 ");
+    PAN_DATDERDAPREN.SetQuery(PPQRY_BDAPDCAREPRE, 5, SQL, -1, "");
+    PAN_DATDERDAPREN.SetQueryDB(PPQRY_BDAPDCAREPRE, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_DATDERDAPREN.SetMasterTable(0, "BDAP_DCAREND_E_PREV");
+    PAN_DATDERDAPREN.AddToSortList(PFL_DATDERDAPREN_LIVELLO4, true);
+    //
+    // Rieseguo la query se il pannello era già in stato DATA
+    if (PAN_DATDERDAPREN.Status() == 2)
+    {
+      int oldListQBE = PAN_DATDERDAPREN.iUseListQBE;
+      PAN_DATDERDAPREN.iUseListQBE = 0;
+      PAN_DATDERDAPREN.PanelCommand(Glb.PCM_SEARCH);
+      PAN_DATDERDAPREN.PanelCommand(Glb.PCM_FIND);
+      PAN_DATDERDAPREN.iUseListQBE = oldListQBE;
+    }
+  }
+
+  private void PAN_DATIGESTUSCI_Init()
+  {
+
+    PAN_DATIGESTUSCI.SetSize(MyGlb.OBJ_PAGE, 0);
+    PAN_DATIGESTUSCI.SetSize(MyGlb.OBJ_GROUP, 0);
+    PAN_DATIGESTUSCI.SetSize(MyGlb.OBJ_FIELD, 22);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ESERCIZIO3, "6067B3A8-AF3F-445B-ABBD-07C5A547A5E9");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ESERCIZIO3, "Esercizio");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ESERCIZIO3, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ESERCIZIO3, MyGlb.VIS_NORMALFIELDS);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ESERCIZIO3, 0 | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_MISSIONE2, "493B0901-2F97-4063-A468-B9F4C3242802");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_MISSIONE2, "Missione");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_MISSIONE2, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_MISSIONE2, MyGlb.VIS_NORMALFIELDS);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_MISSIONE2, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PROGRAMMA2, "E8DDC392-BE69-4855-817E-CDE612CE7D53");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PROGRAMMA2, "Programma");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PROGRAMMA2, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PROGRAMMA2, MyGlb.VIS_NORMALFIELDS);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PROGRAMMA2, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_APRIMISPROG2, "86C98E04-4CE6-4F2A-B92F-79316C514B53");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_APRIMISPROG2, " ");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_APRIMISPROG2, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_APRIMISPROG2, MyGlb.VIS_HYPELINKIMMA);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_APRIMISPROG2, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_CANACTIVATE | MyGlb.FLD_ISOPT, -1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_COFOG, "62C9A247-30C9-4993-AA69-2208EA5172DB");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_COFOG, "Cofog");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_COFOG, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_COFOG, MyGlb.VIS_NORMALFIELDS);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_COFOG, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_CANACTIVATE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_LIVELLO9, "007AC7EB-1526-4773-A754-841D945B45E8");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_LIVELLO9, "Livello V");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_LIVELLO9, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_LIVELLO9, MyGlb.VIS_INTE10NORFIE);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_LIVELLO9, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_CANACTIVATE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CODICEEUROP1, "86000D9A-CAE1-4189-BDF3-70F349FC0047");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CODICEEUROP1, "Codice Europeo");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CODICEEUROP1, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CODICEEUROP1, MyGlb.VIS_NORMALFIELDS);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CODICEEUROP1, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_AUTOLOOKUP | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SPESARICORR1, "F5F412BF-263A-4E2D-84FF-540E6E1CAECD");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SPESARICORR1, "Spesa non Ric.");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SPESARICORR1, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SPESARICORR1, MyGlb.VIS_CHECKSTYLE);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SPESARICORR1, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CUP, "995088FA-7405-4690-9BAD-3FF524E6BBF1");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CUP, "Codice Unico Progetto");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CUP, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CUP, MyGlb.VIS_NORMALFIELDS);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CUP, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_IMPEGNATCOMP, "07C78812-8DD5-42FC-93B7-5A094E95B036");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_IMPEGNATCOMP, "Impegnato C/Competenza");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_IMPEGNATCOMP, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_IMPEGNATCOMP, MyGlb.VIS_NORFIECF4IMP);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_IMPEGNATCOMP, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_FPV, "55E46888-7FF4-4B96-9659-58BC64474E23");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_FPV, "Fondo Pluriennale Vincolato");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_FPV, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_FPV, MyGlb.VIS_NORFIECF4IMP);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_FPV, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATORES1, "8498B799-91EC-4060-A16A-22D64C544228");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATORES1, "Pagato C/Residui");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATORES1, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATORES1, MyGlb.VIS_NORFIECF4IMP);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATORES1, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATOCOMP1, "51EC6E5C-73D3-45A3-92E4-16A5BA778E3E");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATOCOMP1, "Pagato C/Competenza");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATOCOMP1, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATOCOMP1, MyGlb.VIS_NORFIECF4IMP);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATOCOMP1, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTEINSER3, "B6CFE0F5-7D06-473E-81D3-5CF56DF8302E");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTEINSER3, "UTENTE INSERIMENTO");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTEINSER3, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTEINSER3, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTEINSER3, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAINSERIM3, "7804F9FE-BBB5-4DF3-819C-3D620A026F41");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAINSERIM3, "DATA INSERIMENTO");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAINSERIM3, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAINSERIM3, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAINSERIM3, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTULTIAG3, "F50845C6-7725-4997-B7E0-7C778B93EDCE");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTULTIAG3, "UTENTE ULTIMO AGG");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTULTIAG3, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTULTIAG3, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTULTIAG3, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAULTIMAG3, "E6100F75-D445-433D-A2FA-B1279A18DC95");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAULTIMAG3, "DATA ULTIMO AGG");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAULTIMAG3, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAULTIMAG3, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAULTIMAG3, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIIMPCOM, "569D2967-45EC-4027-A6FA-41CD85E64687");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIIMPCOM, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIIMPCOM, MyGlb.VIS_DISABIIMPORT);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIIMPCOM, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_DATIGESTUSCI.SetSumField(PFL_DATIGESTUSCI_SOMMDIIMPCOM, PFL_DATIGESTUSCI_IMPEGNATCOMP);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMADIFPV, "FD295376-5285-4222-83DD-6AACC641C68A");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMADIFPV, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMADIFPV, MyGlb.VIS_DISABIIMPORT);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMADIFPV, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_DATIGESTUSCI.SetSumField(PFL_DATIGESTUSCI_SOMMADIFPV, PFL_DATIGESTUSCI_FPV);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGRES, "204F4751-131E-4A3C-8CF4-2CD0A7524ED1");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGRES, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGRES, MyGlb.VIS_DISABIIMPORT);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGRES, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_DATIGESTUSCI.SetSumField(PFL_DATIGESTUSCI_SOMMDIPAGRES, PFL_DATIGESTUSCI_PAGATORES1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGCOM, "0A97F000-72B1-436C-950E-F5AA64F81198");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGCOM, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGCOM, MyGlb.VIS_DISABIIMPORT);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGCOM, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_DATIGESTUSCI.SetSumField(PFL_DATIGESTUSCI_SOMMDIPAGCOM, PFL_DATIGESTUSCI_PAGATOCOMP1);
+    PAN_DATIGESTUSCI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ORDLIVELLO6, "2A64C434-7E6B-48C6-B35A-B5AA857814DB");
+    PAN_DATIGESTUSCI.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ORDLIVELLO6, "Ord Livello5");
+    PAN_DATIGESTUSCI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ORDLIVELLO6, "");
+    PAN_DATIGESTUSCI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ORDLIVELLO6, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATIGESTUSCI.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ORDLIVELLO6, 0 | MyGlb.FLD_ISOPT, -1);
+  }
+
+  private void PAN_DATIGESTUSCI_InitFields()
+  {
+
+    StringBuffer SQL = new StringBuffer();
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ESERCIZIO3, MyGlb.PANEL_LIST, 0, 36, 60, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ESERCIZIO3, MyGlb.PANEL_LIST, 68);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ESERCIZIO3, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ESERCIZIO3, MyGlb.PANEL_LIST, "Esercizio");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ESERCIZIO3, MyGlb.PANEL_FORM, 4, 4, 208, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ESERCIZIO3, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ESERCIZIO3, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ESERCIZIO3, MyGlb.PANEL_FORM, "Esercizio");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_ESERCIZIO3, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_ESERCIZIO3, PPQRY_BDAPDCARSGES, "A.ESERCIZIO", "ESERCIZIO", 1, 4, 0, -13997);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_MISSIONE2, MyGlb.PANEL_LIST, 0, 36, 60, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_MISSIONE2, MyGlb.PANEL_LIST, 64);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_MISSIONE2, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_MISSIONE2, MyGlb.PANEL_LIST, "Missione");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_MISSIONE2, MyGlb.PANEL_FORM, 4, 52, 208, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_MISSIONE2, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_MISSIONE2, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_MISSIONE2, MyGlb.PANEL_FORM, "Missione");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_MISSIONE2, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_MISSIONE2, PPQRY_BDAPDCARSGES, "A.MISSIONE", "MISSIONE", 1, 3, 0, -13997);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PROGRAMMA2, MyGlb.PANEL_LIST, 60, 36, 76, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PROGRAMMA2, MyGlb.PANEL_LIST, 84);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PROGRAMMA2, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PROGRAMMA2, MyGlb.PANEL_LIST, "Programma");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PROGRAMMA2, MyGlb.PANEL_FORM, 4, 76, 208, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PROGRAMMA2, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PROGRAMMA2, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PROGRAMMA2, MyGlb.PANEL_FORM, "Programma");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_PROGRAMMA2, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_PROGRAMMA2, PPQRY_BDAPDCARSGES, "A.PROGRAMMA", "PROGRAMMA", 1, 3, 0, -13997);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_APRIMISPROG2, MyGlb.PANEL_LIST, 136, 36, 24, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_APRIMISPROG2, MyGlb.PANEL_LIST, 84);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_APRIMISPROG2, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_APRIMISPROG2, MyGlb.PANEL_LIST, " ");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_APRIMISPROG2, MyGlb.PANEL_FORM, 4, 196, 128, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_APRIMISPROG2, MyGlb.PANEL_FORM, 84);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_APRIMISPROG2, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_APRIMISPROG2, MyGlb.PANEL_FORM, " ");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_APRIMISPROG2, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_APRIMISPROG2, PPQRY_APRI2, "'A'", "APRIMISPROG", 5, 1, 0, -13997);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant("A")), "Apri", "", "wsearch1.gif", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant("I")), "Info", "", "info.gif", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant("E")), "Delete", "", "wdelete.gif", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant("N")), "Nota Vuota", "", "nota bianca.gif", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant("P")), "Nota Piena", "", "nota scritta.gif", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant("S")), "Note Standard", "", "testo.gif", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant("D")), "Dettagli", "", "dettaglio.gif", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant()), "Vuoto", "", "", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant("G")), "Incolla", "", "Paste.gif", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant("F")), "RiepilogoIVA", "", "info_g.gif", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant("T")), "Download", "", "clip_sm.gif", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant("ZIP")), "ZIP", "", "zip_file.png", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant("CSV")), "CSV", "", "csv.gif", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant("PAGOPA")), "PagoPA", "PagoPA", "pagopa.png", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant("IMPPARZ")), "ImportoParziale", "", "varimp.gif", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant("IMPTOT")), "ImportoTotale", "", "varacc.gif", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant("K")), "Note Accr", "", "signed.png", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_APRIMISPROG2, (new IDVariant("FCE")), "Fascicolo Contabile", "Fascicolo Contabile", "search_db_16.png", -1);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_COFOG, MyGlb.PANEL_LIST, 160, 36, 48, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_COFOG, MyGlb.PANEL_LIST, 48);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_COFOG, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_COFOG, MyGlb.PANEL_LIST, "Cofog");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_COFOG, MyGlb.PANEL_FORM, 4, 220, 92, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_COFOG, MyGlb.PANEL_FORM, 48);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_COFOG, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_COFOG, MyGlb.PANEL_FORM, "Cofog");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_COFOG, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_COFOG, PPQRY_BDAPDCARSGES, "A.COFOG", "COFOG", 1, 3, 0, -13997);
+    PAN_DATIGESTUSCI.set_Alignment(PFL_DATIGESTUSCI_COFOG, 2);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_LIVELLO9, MyGlb.PANEL_LIST, 208, 36, 96, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_LIVELLO9, MyGlb.PANEL_LIST, 64);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_LIVELLO9, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_LIVELLO9, MyGlb.PANEL_LIST, "Livello V");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_LIVELLO9, MyGlb.PANEL_FORM, 4, 28, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_LIVELLO9, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_LIVELLO9, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_LIVELLO9, MyGlb.PANEL_FORM, "Livello V");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_LIVELLO9, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_LIVELLO9, PPQRY_BDAPDCARSGES, "A.LIVELLO_5", "LIVELLO_5", 3, 10, 0, -13997);
+    PAN_DATIGESTUSCI.set_Alignment(PFL_DATIGESTUSCI_LIVELLO9, 2);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CODICEEUROP1, MyGlb.PANEL_LIST, 304, 36, 100, 20, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CODICEEUROP1, MyGlb.PANEL_LIST, 104);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CODICEEUROP1, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CODICEEUROP1, MyGlb.PANEL_LIST, "Codice Europeo");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CODICEEUROP1, MyGlb.PANEL_FORM, 4, 244, 148, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CODICEEUROP1, MyGlb.PANEL_FORM, 104);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CODICEEUROP1, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CODICEEUROP1, MyGlb.PANEL_FORM, "Codice Europeo");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_CODICEEUROP1, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_CODICEEUROP1, PPQRY_BDAPDCARSGES, "A.CODICE_EUROPEO", "CODICE_EUROPEO", 1, 2, 0, -13997);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SPESARICORR1, MyGlb.PANEL_LIST, 404, 36, 52, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SPESARICORR1, MyGlb.PANEL_LIST, 116);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SPESARICORR1, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SPESARICORR1, MyGlb.PANEL_LIST, "Spesa non Ric.");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SPESARICORR1, MyGlb.PANEL_FORM, 4, 268, 160, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SPESARICORR1, MyGlb.PANEL_FORM, 116);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SPESARICORR1, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SPESARICORR1, MyGlb.PANEL_FORM, "Spesa non Ric.");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_SPESARICORR1, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_SPESARICORR1, PPQRY_BDAPDCARSGES, "A.SPESA_RICORRENTE", "SPESA_RICORRENTE", 1, 1, 0, -13997);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_SPESARICORR1, (new IDVariant(4)), "4", "", "", -1);
+    PAN_DATIGESTUSCI.SetValueListItem(PFL_DATIGESTUSCI_SPESARICORR1, (new IDVariant(3)), "3", "", "", -1);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CUP, MyGlb.PANEL_LIST, 456, 36, 112, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CUP, MyGlb.PANEL_LIST, 32);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CUP, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CUP, MyGlb.PANEL_LIST, "Codice Unico Progetto");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CUP, MyGlb.PANEL_FORM, 4, 292, 120, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CUP, MyGlb.PANEL_FORM, 32);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CUP, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_CUP, MyGlb.PANEL_FORM, "C. U. P.");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_CUP, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_CUP, PPQRY_BDAPDCARSGES, "A.CUP", "CUP", 5, 15, 0, -13997);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_IMPEGNATCOMP, MyGlb.PANEL_LIST, 568, 36, 112, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_IMPEGNATCOMP, MyGlb.PANEL_LIST, 124);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_IMPEGNATCOMP, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_IMPEGNATCOMP, MyGlb.PANEL_LIST, "Impegnato C/Competenza");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_IMPEGNATCOMP, MyGlb.PANEL_FORM, 4, 100, 280, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_IMPEGNATCOMP, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_IMPEGNATCOMP, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_IMPEGNATCOMP, MyGlb.PANEL_FORM, "Impegnato C/Competenza");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_IMPEGNATCOMP, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_IMPEGNATCOMP, PPQRY_BDAPDCARSGES, "A.IMPEGNATO_COMP", "IMPEGNATO_COMP", 3, 14, 2, -13997);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_FPV, MyGlb.PANEL_LIST, 680, 36, 112, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_FPV, MyGlb.PANEL_LIST, 136);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_FPV, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_FPV, MyGlb.PANEL_LIST, "Fondo Pluriennale Vincolato");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_FPV, MyGlb.PANEL_FORM, 4, 124, 248, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_FPV, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_FPV, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_FPV, MyGlb.PANEL_FORM, "Fon. Pluriennale Vincolato");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_FPV, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_FPV, PPQRY_BDAPDCARSGES, "A.FPV", "FPV", 3, 14, 2, -13997);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATORES1, MyGlb.PANEL_LIST, 792, 36, 112, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATORES1, MyGlb.PANEL_LIST, 100);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATORES1, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATORES1, MyGlb.PANEL_LIST, "Pagato C/Residui");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATORES1, MyGlb.PANEL_FORM, 4, 148, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATORES1, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATORES1, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATORES1, MyGlb.PANEL_FORM, "Pagato C/Residui");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_PAGATORES1, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_PAGATORES1, PPQRY_BDAPDCARSGES, "A.PAGATO_RES", "PAGATO_RES", 3, 14, 2, -13997);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATOCOMP1, MyGlb.PANEL_LIST, 904, 36, 112, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATOCOMP1, MyGlb.PANEL_LIST, 144);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATOCOMP1, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATOCOMP1, MyGlb.PANEL_LIST, "Pagato C/Competenza");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATOCOMP1, MyGlb.PANEL_FORM, 4, 172, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATOCOMP1, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATOCOMP1, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_PAGATOCOMP1, MyGlb.PANEL_FORM, "Pagato C/Competenza");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_PAGATOCOMP1, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_PAGATOCOMP1, PPQRY_BDAPDCARSGES, "A.PAGATO_COMP", "PAGATO_COMP", 3, 14, 2, -13997);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTEINSER3, MyGlb.PANEL_LIST, 628, 36, 64, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTEINSER3, MyGlb.PANEL_LIST, 128);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTEINSER3, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTEINSER3, MyGlb.PANEL_LIST, "UTEN. INSER.");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTEINSER3, MyGlb.PANEL_FORM, 4, 196, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTEINSER3, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTEINSER3, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTEINSER3, MyGlb.PANEL_FORM, "UTENTE INSERIMENTO");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_UTENTEINSER3, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_UTENTEINSER3, PPQRY_BDAPDCARSGES, "A.UTENTE_INSERIMENTO", "UTENTE_INSERIMENTO", 5, 8, 0, -13997);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAINSERIM3, MyGlb.PANEL_LIST, 692, 36, 88, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAINSERIM3, MyGlb.PANEL_LIST, 120);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAINSERIM3, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAINSERIM3, MyGlb.PANEL_LIST, "DATA INSERIMENTO");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAINSERIM3, MyGlb.PANEL_FORM, 4, 220, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAINSERIM3, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAINSERIM3, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAINSERIM3, MyGlb.PANEL_FORM, "DATA INSERIMENTO");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_DATAINSERIM3, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_DATAINSERIM3, PPQRY_BDAPDCARSGES, "A.DATA_INSERIMENTO", "DATA_INSERIMENTO", 6, 10, 0, -13997);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTULTIAG3, MyGlb.PANEL_LIST, 780, 36, 72, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTULTIAG3, MyGlb.PANEL_LIST, 124);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTULTIAG3, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTULTIAG3, MyGlb.PANEL_LIST, "UTEN. ULT. AGG");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTULTIAG3, MyGlb.PANEL_FORM, 4, 244, 240, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTULTIAG3, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTULTIAG3, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_UTENTULTIAG3, MyGlb.PANEL_FORM, "UTENTE ULTIMO AGG");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_UTENTULTIAG3, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_UTENTULTIAG3, PPQRY_BDAPDCARSGES, "A.UTENTE_ULTIMO_AGG", "UTENTE_ULTIMO_AGG", 5, 8, 0, -13997);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAULTIMAG3, MyGlb.PANEL_LIST, 852, 36, 88, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAULTIMAG3, MyGlb.PANEL_LIST, 116);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAULTIMAG3, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAULTIMAG3, MyGlb.PANEL_LIST, "DATA ULTIMO AGG");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAULTIMAG3, MyGlb.PANEL_FORM, 4, 268, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAULTIMAG3, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAULTIMAG3, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_DATAULTIMAG3, MyGlb.PANEL_FORM, "DATA ULTIMO AGG");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_DATAULTIMAG3, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_DATAULTIMAG3, PPQRY_BDAPDCARSGES, "A.DATA_ULTIMO_AGG", "DATA_ULTIMO_AGG", 6, 10, 0, -13997);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIIMPCOM, MyGlb.PANEL_LIST, 568, 240, 112, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIIMPCOM, MyGlb.PANEL_LIST, 0);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIIMPCOM, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIIMPCOM, MyGlb.PANEL_FORM, 356, 248, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIIMPCOM, MyGlb.PANEL_FORM, 0);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIIMPCOM, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_SOMMDIIMPCOM, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_SOMMDIIMPCOM, -1, "", "SOMMDIIMPCOM", 0, 0, 0, -13997);
+    PAN_DATIGESTUSCI.set_Alignment(PFL_DATIGESTUSCI_SOMMDIIMPCOM, 4);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMADIFPV, MyGlb.PANEL_LIST, 680, 240, 112, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMADIFPV, MyGlb.PANEL_LIST, 0);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMADIFPV, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMADIFPV, MyGlb.PANEL_FORM, 364, 256, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMADIFPV, MyGlb.PANEL_FORM, 0);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMADIFPV, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_SOMMADIFPV, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_SOMMADIFPV, -1, "", "SOMMADIFPV", 0, 0, 0, -13997);
+    PAN_DATIGESTUSCI.set_Alignment(PFL_DATIGESTUSCI_SOMMADIFPV, 4);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGRES, MyGlb.PANEL_LIST, 792, 240, 112, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGRES, MyGlb.PANEL_LIST, 0);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGRES, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGRES, MyGlb.PANEL_FORM, 372, 264, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGRES, MyGlb.PANEL_FORM, 0);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGRES, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_SOMMDIPAGRES, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_SOMMDIPAGRES, -1, "", "SOMMDIPAGRES", 0, 0, 0, -13997);
+    PAN_DATIGESTUSCI.set_Alignment(PFL_DATIGESTUSCI_SOMMDIPAGRES, 4);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGCOM, MyGlb.PANEL_LIST, 904, 240, 112, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGCOM, MyGlb.PANEL_LIST, 0);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGCOM, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGCOM, MyGlb.PANEL_FORM, 380, 272, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGCOM, MyGlb.PANEL_FORM, 0);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_SOMMDIPAGCOM, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_SOMMDIPAGCOM, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_SOMMDIPAGCOM, -1, "", "SOMMDIPAGCOM", 0, 0, 0, -13997);
+    PAN_DATIGESTUSCI.set_Alignment(PFL_DATIGESTUSCI_SOMMDIPAGCOM, 4);
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ORDLIVELLO6, MyGlb.PANEL_LIST, 0, 36, 504, 20, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ORDLIVELLO6, MyGlb.PANEL_LIST, 76);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ORDLIVELLO6, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ORDLIVELLO6, MyGlb.PANEL_LIST, "Ord Livello5");
+    PAN_DATIGESTUSCI.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ORDLIVELLO6, MyGlb.PANEL_FORM, 4, 316, 584, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTUSCI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ORDLIVELLO6, MyGlb.PANEL_FORM, 76);
+    PAN_DATIGESTUSCI.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ORDLIVELLO6, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTUSCI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTUSCI_ORDLIVELLO6, MyGlb.PANEL_FORM, "Ord Livello5");
+    PAN_DATIGESTUSCI.SetFieldPage(PFL_DATIGESTUSCI_ORDLIVELLO6, -1, -1);
+    PAN_DATIGESTUSCI.SetFieldUnbound(PFL_DATIGESTUSCI_ORDLIVELLO6, true);
+    PAN_DATIGESTUSCI.SetFieldPanel(PFL_DATIGESTUSCI_ORDLIVELLO6, PPQRY_BDAPDCARSGES, "RPAD(TO_CHAR ( A.LIVELLO_5), 10, SUBSTR('0', 1, 1))", "ORDLIVELLO5", 5, 99, 0, -13997);
+  }
+
+  private void PAN_DATIGESTUSCI_InitQueries()
+  {
+    StringBuffer SQL;
+
+    PAN_DATIGESTUSCI.SetSize(MyGlb.OBJ_QUERY, 3);
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  'A' as APRIMISPROG ");
+    SQL.append("from ");
+    SQL.append("  DUAL A ");
+    SQL.append("where ((NOT (~~ESERCIZIO~~) IS NULL)) ");
+    PAN_DATIGESTUSCI.SetQuery(PPQRY_APRI2, 0, SQL, -1, "");
+    PAN_DATIGESTUSCI.SetQueryDB(PPQRY_APRI2, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_DATIGESTUSCI.SetMasterTable(PPQRY_APRI2, "DUAL");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as CODTRAEURCOD, ");
+    SQL.append("  TO_CHAR ( A.CODICE ) || ' - ' || A.DESCRIZIONE as DESCRCODEURO ");
+    SQL.append("from ");
+    SQL.append("  COD_TRANSAZIONI_EUROPEE A ");
+    SQL.append("where (A.CODICE = ~~CODICE_EUROPEO~~) ");
+    SQL.append("and   (A.E_S = 'S') ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_DATIGESTUSCI.SetQuery(PPQRY_CODTRANSEUR1, 0, SQL, PFL_DATIGESTUSCI_CODICEEUROP1, "");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as CODTRAEURCOD, ");
+    SQL.append("  TO_CHAR ( A.CODICE ) || ' - ' || A.DESCRIZIONE as DESCRCODEURO ");
+    SQL.append("from ");
+    SQL.append("  COD_TRANSAZIONI_EUROPEE A ");
+    SQL.append("where (A.E_S = 'S') ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_DATIGESTUSCI.SetQuery(PPQRY_CODTRANSEUR1, 1, SQL, PFL_DATIGESTUSCI_CODICEEUROP1, "");
+    PAN_DATIGESTUSCI.SetQueryDB(PPQRY_CODTRANSEUR1, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_DATIGESTUSCI.SetIMDB(IMDB, "PQRY_BDAPDCARSGES", true);
+    PAN_DATIGESTUSCI.set_SetString(MyGlb.MASTER_ROWNAME, "BDAP DCAREND S PREV");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.ESERCIZIO as ESERCIZIO, ");
+    SQL.append("  A.MISSIONE as MISSIONE, ");
+    SQL.append("  A.PROGRAMMA as PROGRAMMA, ");
+    SQL.append("  A.COFOG as COFOG, ");
+    SQL.append("  A.LIVELLO_5 as LIVELLO_5, ");
+    SQL.append("  A.CODICE_EUROPEO as CODICE_EUROPEO, ");
+    SQL.append("  A.SPESA_RICORRENTE as SPESA_RICORRENTE, ");
+    SQL.append("  A.CUP as CUP, ");
+    SQL.append("  A.IMPEGNATO_COMP as IMPEGNATO_COMP, ");
+    SQL.append("  A.FPV as FPV, ");
+    SQL.append("  A.PAGATO_RES as PAGATO_RES, ");
+    SQL.append("  A.PAGATO_COMP as PAGATO_COMP, ");
+    SQL.append("  A.UTENTE_INSERIMENTO as UTENTE_INSERIMENTO, ");
+    SQL.append("  A.DATA_INSERIMENTO as DATA_INSERIMENTO, ");
+    SQL.append("  A.UTENTE_ULTIMO_AGG as UTENTE_ULTIMO_AGG, ");
+    SQL.append("  A.DATA_ULTIMO_AGG as DATA_ULTIMO_AGG, ");
+    SQL.append("  RPAD(TO_CHAR ( A.LIVELLO_5), 10, SUBSTR('0', 1, 1)) as ORDLIVELLO5 ");
+    PAN_DATIGESTUSCI.SetQuery(PPQRY_BDAPDCARSGES, 0, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("from ");
+    SQL.append("  BDAP_DCAREND_S_GEST A ");
+    PAN_DATIGESTUSCI.SetQuery(PPQRY_BDAPDCARSGES, 1, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("where (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    PAN_DATIGESTUSCI.SetQuery(PPQRY_BDAPDCARSGES, 2, SQL, -1, "");
+    SQL = new StringBuffer();
+    PAN_DATIGESTUSCI.SetQuery(PPQRY_BDAPDCARSGES, 3, SQL, -1, "");
+    SQL = new StringBuffer();
+    PAN_DATIGESTUSCI.SetQuery(PPQRY_BDAPDCARSGES, 4, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("order by 2, 3, 4, 17, 6, 7, 8 ");
+    PAN_DATIGESTUSCI.SetQuery(PPQRY_BDAPDCARSGES, 5, SQL, -1, "");
+    PAN_DATIGESTUSCI.SetQueryDB(PPQRY_BDAPDCARSGES, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_DATIGESTUSCI.SetMasterTable(0, "BDAP_DCAREND_S_GEST");
+    PAN_DATIGESTUSCI.AddToSortList(PFL_DATIGESTUSCI_MISSIONE2, true);
+    PAN_DATIGESTUSCI.AddToSortList(PFL_DATIGESTUSCI_PROGRAMMA2, true);
+    PAN_DATIGESTUSCI.AddToSortList(PFL_DATIGESTUSCI_COFOG, true);
+    PAN_DATIGESTUSCI.AddToSortList(PFL_DATIGESTUSCI_ORDLIVELLO6, true);
+    PAN_DATIGESTUSCI.AddToSortList(PFL_DATIGESTUSCI_CODICEEUROP1, true);
+    PAN_DATIGESTUSCI.AddToSortList(PFL_DATIGESTUSCI_SPESARICORR1, true);
+    PAN_DATIGESTUSCI.AddToSortList(PFL_DATIGESTUSCI_CUP, true);
+    //
+    // Rieseguo la query se il pannello era già in stato DATA
+    if (PAN_DATIGESTUSCI.Status() == 2)
+    {
+      int oldListQBE = PAN_DATIGESTUSCI.iUseListQBE;
+      PAN_DATIGESTUSCI.iUseListQBE = 0;
+      PAN_DATIGESTUSCI.PanelCommand(Glb.PCM_SEARCH);
+      PAN_DATIGESTUSCI.PanelCommand(Glb.PCM_FIND);
+      PAN_DATIGESTUSCI.iUseListQBE = oldListQBE;
+    }
+  }
+
+  private void PAN_DATIGESTENTR_Init()
+  {
+
+    PAN_DATIGESTENTR.SetSize(MyGlb.OBJ_PAGE, 0);
+    PAN_DATIGESTENTR.SetSize(MyGlb.OBJ_GROUP, 0);
+    PAN_DATIGESTENTR.SetSize(MyGlb.OBJ_FIELD, 15);
+    PAN_DATIGESTENTR.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ESERCIZIO4, "02E70A6A-1256-464B-BDCF-6D52376A59A2");
+    PAN_DATIGESTENTR.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ESERCIZIO4, "Esercizio");
+    PAN_DATIGESTENTR.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ESERCIZIO4, "");
+    PAN_DATIGESTENTR.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ESERCIZIO4, MyGlb.VIS_NORMALFIELDS);
+    PAN_DATIGESTENTR.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ESERCIZIO4, 0 | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATIGESTENTR.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_LIVELLO5, "F988EEDF-F044-4863-9A3F-9B389C0057B0");
+    PAN_DATIGESTENTR.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_LIVELLO5, "Livello V");
+    PAN_DATIGESTENTR.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_LIVELLO5, "");
+    PAN_DATIGESTENTR.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_LIVELLO5, MyGlb.VIS_INTE10NORFIE);
+    PAN_DATIGESTENTR.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_LIVELLO5, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_CANACTIVATE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATIGESTENTR.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_CODICEEUROPE, "23BAB321-24E8-4247-9EFE-11334F670163");
+    PAN_DATIGESTENTR.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_CODICEEUROPE, "Codice Europeo");
+    PAN_DATIGESTENTR.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_CODICEEUROPE, "");
+    PAN_DATIGESTENTR.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_CODICEEUROPE, MyGlb.VIS_NORMALFIELDS);
+    PAN_DATIGESTENTR.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_CODICEEUROPE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_AUTOLOOKUP | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATIGESTENTR.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SPESARICORRE, "97F2AFDE-EB6D-4A26-82A0-E46E526016DE");
+    PAN_DATIGESTENTR.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SPESARICORRE, "Entrata non Ric.");
+    PAN_DATIGESTENTR.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SPESARICORRE, "");
+    PAN_DATIGESTENTR.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SPESARICORRE, MyGlb.VIS_CHECKSTYLE);
+    PAN_DATIGESTENTR.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SPESARICORRE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISKEY, -1);
+    PAN_DATIGESTENTR.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ACCERTAMENTI, "08F224AE-1B5E-47AB-99A6-164EEF298135");
+    PAN_DATIGESTENTR.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ACCERTAMENTI, "Accertamenti");
+    PAN_DATIGESTENTR.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ACCERTAMENTI, "");
+    PAN_DATIGESTENTR.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ACCERTAMENTI, MyGlb.VIS_NORFIECF4IMP);
+    PAN_DATIGESTENTR.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ACCERTAMENTI, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_DATIGESTENTR.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSICOM1, "19566B8E-FB17-4BA2-A887-D292F056DC56");
+    PAN_DATIGESTENTR.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSICOM1, "Riscossioni C/Competenza");
+    PAN_DATIGESTENTR.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSICOM1, "");
+    PAN_DATIGESTENTR.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSICOM1, MyGlb.VIS_NORFIECF4IMP);
+    PAN_DATIGESTENTR.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSICOM1, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_DATIGESTENTR.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSIORE1, "B03B1CFA-133C-48F3-A83B-28DC73E46F3F");
+    PAN_DATIGESTENTR.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSIORE1, "Riscossioni C/Residui");
+    PAN_DATIGESTENTR.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSIORE1, "");
+    PAN_DATIGESTENTR.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSIORE1, MyGlb.VIS_NORFIECF4IMP);
+    PAN_DATIGESTENTR.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSIORE1, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_DATIGESTENTR.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTEINSER4, "A2034F87-7CEA-4322-A907-56078A27DC18");
+    PAN_DATIGESTENTR.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTEINSER4, "UTENTE INSERIMENTO");
+    PAN_DATIGESTENTR.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTEINSER4, "");
+    PAN_DATIGESTENTR.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTEINSER4, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATIGESTENTR.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTEINSER4, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_DATIGESTENTR.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAINSERIM4, "B9ECD394-7768-424D-9461-0674A6B40105");
+    PAN_DATIGESTENTR.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAINSERIM4, "DATA INSERIMENTO");
+    PAN_DATIGESTENTR.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAINSERIM4, "");
+    PAN_DATIGESTENTR.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAINSERIM4, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATIGESTENTR.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAINSERIM4, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_DATIGESTENTR.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTULTIAG4, "F069B65F-6AE6-4D29-ADAC-4F746C4F374A");
+    PAN_DATIGESTENTR.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTULTIAG4, "UTENTE ULTIMO AGG");
+    PAN_DATIGESTENTR.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTULTIAG4, "");
+    PAN_DATIGESTENTR.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTULTIAG4, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATIGESTENTR.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTULTIAG4, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_DATIGESTENTR.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAULTIMAG4, "FD14277E-3260-4DDA-99CA-CD9D172075CB");
+    PAN_DATIGESTENTR.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAULTIMAG4, "DATA ULTIMO AGG");
+    PAN_DATIGESTENTR.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAULTIMAG4, "");
+    PAN_DATIGESTENTR.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAULTIMAG4, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATIGESTENTR.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAULTIMAG4, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_DATIGESTENTR.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMADIACCER, "3E40C3C8-6EE9-4590-9027-88E2215CE7C4");
+    PAN_DATIGESTENTR.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMADIACCER, "");
+    PAN_DATIGESTENTR.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMADIACCER, MyGlb.VIS_DISABIIMPORT);
+    PAN_DATIGESTENTR.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMADIACCER, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_DATIGESTENTR.SetSumField(PFL_DATIGESTENTR_SOMMADIACCER, PFL_DATIGESTENTR_ACCERTAMENTI);
+    PAN_DATIGESTENTR.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISCOM, "86949998-C177-42AF-9E30-825B9B88157A");
+    PAN_DATIGESTENTR.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISCOM, "");
+    PAN_DATIGESTENTR.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISCOM, MyGlb.VIS_DISABIIMPORT);
+    PAN_DATIGESTENTR.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISCOM, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_DATIGESTENTR.SetSumField(PFL_DATIGESTENTR_SOMMDIRISCOM, PFL_DATIGESTENTR_RISCOSSICOM1);
+    PAN_DATIGESTENTR.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISRES, "25258C12-598F-40B9-87FD-9C2AFF74BE21");
+    PAN_DATIGESTENTR.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISRES, "");
+    PAN_DATIGESTENTR.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISRES, MyGlb.VIS_DISABIIMPORT);
+    PAN_DATIGESTENTR.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISRES, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_DATIGESTENTR.SetSumField(PFL_DATIGESTENTR_SOMMDIRISRES, PFL_DATIGESTENTR_RISCOSSIORE1);
+    PAN_DATIGESTENTR.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ORDLIVELLO5, "54160C14-111D-4343-950C-34E066DB9C0D");
+    PAN_DATIGESTENTR.set_Header(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ORDLIVELLO5, "Ord Livello 5");
+    PAN_DATIGESTENTR.set_ToolTip(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ORDLIVELLO5, "");
+    PAN_DATIGESTENTR.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ORDLIVELLO5, MyGlb.VIS_NORMFIELPADR);
+    PAN_DATIGESTENTR.SetFlags(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ORDLIVELLO5, 0 | MyGlb.FLD_ISOPT, -1);
+  }
+
+  private void PAN_DATIGESTENTR_InitFields()
+  {
+
+    StringBuffer SQL = new StringBuffer();
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ESERCIZIO4, MyGlb.PANEL_LIST, 0, 36, 60, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ESERCIZIO4, MyGlb.PANEL_LIST, 68);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ESERCIZIO4, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ESERCIZIO4, MyGlb.PANEL_LIST, "Esercizio");
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ESERCIZIO4, MyGlb.PANEL_FORM, 4, 4, 208, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ESERCIZIO4, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ESERCIZIO4, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ESERCIZIO4, MyGlb.PANEL_FORM, "Esercizio");
+    PAN_DATIGESTENTR.SetFieldPage(PFL_DATIGESTENTR_ESERCIZIO4, -1, -1);
+    PAN_DATIGESTENTR.SetFieldPanel(PFL_DATIGESTENTR_ESERCIZIO4, PPQRY_BDAPDCAREGES, "A.ESERCIZIO", "ESERCIZIO", 1, 4, 0, -13997);
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_LIVELLO5, MyGlb.PANEL_LIST, 0, 36, 96, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_LIVELLO5, MyGlb.PANEL_LIST, 64);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_LIVELLO5, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_LIVELLO5, MyGlb.PANEL_LIST, "Livello V");
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_LIVELLO5, MyGlb.PANEL_FORM, 4, 28, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_LIVELLO5, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_LIVELLO5, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_LIVELLO5, MyGlb.PANEL_FORM, "Livello V");
+    PAN_DATIGESTENTR.SetFieldPage(PFL_DATIGESTENTR_LIVELLO5, -1, -1);
+    PAN_DATIGESTENTR.SetFieldPanel(PFL_DATIGESTENTR_LIVELLO5, PPQRY_BDAPDCAREGES, "A.LIVELLO_5", "LIVELLO_5", 3, 10, 0, -13997);
+    PAN_DATIGESTENTR.set_Alignment(PFL_DATIGESTENTR_LIVELLO5, 2);
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_CODICEEUROPE, MyGlb.PANEL_LIST, 96, 36, 336, 20, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_CODICEEUROPE, MyGlb.PANEL_LIST, 104);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_CODICEEUROPE, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_CODICEEUROPE, MyGlb.PANEL_LIST, "Codice Europeo");
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_CODICEEUROPE, MyGlb.PANEL_FORM, 4, 244, 148, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_CODICEEUROPE, MyGlb.PANEL_FORM, 104);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_CODICEEUROPE, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_CODICEEUROPE, MyGlb.PANEL_FORM, "Codice Europeo");
+    PAN_DATIGESTENTR.SetFieldPage(PFL_DATIGESTENTR_CODICEEUROPE, -1, -1);
+    PAN_DATIGESTENTR.SetFieldPanel(PFL_DATIGESTENTR_CODICEEUROPE, PPQRY_BDAPDCAREGES, "A.CODICE_EUROPEO", "CODICE_EUROPEO", 1, 2, 0, -13997);
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SPESARICORRE, MyGlb.PANEL_LIST, 432, 36, 56, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SPESARICORRE, MyGlb.PANEL_LIST, 116);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SPESARICORRE, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SPESARICORRE, MyGlb.PANEL_LIST, "Entrata non Ric.");
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SPESARICORRE, MyGlb.PANEL_FORM, 4, 268, 160, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SPESARICORRE, MyGlb.PANEL_FORM, 116);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SPESARICORRE, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SPESARICORRE, MyGlb.PANEL_FORM, "Entrata non Ric.");
+    PAN_DATIGESTENTR.SetFieldPage(PFL_DATIGESTENTR_SPESARICORRE, -1, -1);
+    PAN_DATIGESTENTR.SetFieldPanel(PFL_DATIGESTENTR_SPESARICORRE, PPQRY_BDAPDCAREGES, "A.ENTRATA_RICORRENTE", "ENTRATA_RICORRENTE", 1, 1, 0, -13997);
+    PAN_DATIGESTENTR.SetValueListItem(PFL_DATIGESTENTR_SPESARICORRE, (new IDVariant(2)), "2", "", "", -1);
+    PAN_DATIGESTENTR.SetValueListItem(PFL_DATIGESTENTR_SPESARICORRE, (new IDVariant(1)), "1", "", "", -1);
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ACCERTAMENTI, MyGlb.PANEL_LIST, 488, 36, 144, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ACCERTAMENTI, MyGlb.PANEL_LIST, 124);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ACCERTAMENTI, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ACCERTAMENTI, MyGlb.PANEL_LIST, "Accertamenti");
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ACCERTAMENTI, MyGlb.PANEL_FORM, 4, 100, 280, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ACCERTAMENTI, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ACCERTAMENTI, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ACCERTAMENTI, MyGlb.PANEL_FORM, "Accertamenti");
+    PAN_DATIGESTENTR.SetFieldPage(PFL_DATIGESTENTR_ACCERTAMENTI, -1, -1);
+    PAN_DATIGESTENTR.SetFieldPanel(PFL_DATIGESTENTR_ACCERTAMENTI, PPQRY_BDAPDCAREGES, "A.ACCERTAMENTI", "ACCERTAMENTI", 3, 14, 2, -13997);
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSICOM1, MyGlb.PANEL_LIST, 632, 36, 144, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSICOM1, MyGlb.PANEL_LIST, 100);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSICOM1, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSICOM1, MyGlb.PANEL_LIST, "Riscossioni C/Competenza");
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSICOM1, MyGlb.PANEL_FORM, 4, 148, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSICOM1, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSICOM1, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSICOM1, MyGlb.PANEL_FORM, "Riscossioni C/Competenza");
+    PAN_DATIGESTENTR.SetFieldPage(PFL_DATIGESTENTR_RISCOSSICOM1, -1, -1);
+    PAN_DATIGESTENTR.SetFieldPanel(PFL_DATIGESTENTR_RISCOSSICOM1, PPQRY_BDAPDCAREGES, "A.RISCOSSIONI_COMP", "RISCOSSIONI_COMP", 3, 14, 2, -13997);
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSIORE1, MyGlb.PANEL_LIST, 776, 36, 144, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSIORE1, MyGlb.PANEL_LIST, 144);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSIORE1, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSIORE1, MyGlb.PANEL_LIST, "Riscossioni C/Residui");
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSIORE1, MyGlb.PANEL_FORM, 4, 172, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSIORE1, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSIORE1, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_RISCOSSIORE1, MyGlb.PANEL_FORM, "Riscossioni C/Residui");
+    PAN_DATIGESTENTR.SetFieldPage(PFL_DATIGESTENTR_RISCOSSIORE1, -1, -1);
+    PAN_DATIGESTENTR.SetFieldPanel(PFL_DATIGESTENTR_RISCOSSIORE1, PPQRY_BDAPDCAREGES, "A.RISCOSSIONI_RES", "RISCOSSIONI_RES", 3, 14, 2, -13997);
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTEINSER4, MyGlb.PANEL_LIST, 628, 36, 64, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTEINSER4, MyGlb.PANEL_LIST, 128);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTEINSER4, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTEINSER4, MyGlb.PANEL_LIST, "UTEN. INSER.");
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTEINSER4, MyGlb.PANEL_FORM, 4, 196, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTEINSER4, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTEINSER4, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTEINSER4, MyGlb.PANEL_FORM, "UTENTE INSERIMENTO");
+    PAN_DATIGESTENTR.SetFieldPage(PFL_DATIGESTENTR_UTENTEINSER4, -1, -1);
+    PAN_DATIGESTENTR.SetFieldPanel(PFL_DATIGESTENTR_UTENTEINSER4, PPQRY_BDAPDCAREGES, "A.UTENTE_INSERIMENTO", "UTENTE_INSERIMENTO", 5, 8, 0, -13997);
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAINSERIM4, MyGlb.PANEL_LIST, 692, 36, 88, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAINSERIM4, MyGlb.PANEL_LIST, 120);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAINSERIM4, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAINSERIM4, MyGlb.PANEL_LIST, "DATA INSERIMENTO");
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAINSERIM4, MyGlb.PANEL_FORM, 4, 220, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAINSERIM4, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAINSERIM4, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAINSERIM4, MyGlb.PANEL_FORM, "DATA INSERIMENTO");
+    PAN_DATIGESTENTR.SetFieldPage(PFL_DATIGESTENTR_DATAINSERIM4, -1, -1);
+    PAN_DATIGESTENTR.SetFieldPanel(PFL_DATIGESTENTR_DATAINSERIM4, PPQRY_BDAPDCAREGES, "A.DATA_INSERIMENTO", "DATA_INSERIMENTO", 6, 10, 0, -13997);
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTULTIAG4, MyGlb.PANEL_LIST, 780, 36, 72, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTULTIAG4, MyGlb.PANEL_LIST, 124);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTULTIAG4, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTULTIAG4, MyGlb.PANEL_LIST, "UTEN. ULT. AGG");
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTULTIAG4, MyGlb.PANEL_FORM, 4, 244, 240, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTULTIAG4, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTULTIAG4, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_UTENTULTIAG4, MyGlb.PANEL_FORM, "UTENTE ULTIMO AGG");
+    PAN_DATIGESTENTR.SetFieldPage(PFL_DATIGESTENTR_UTENTULTIAG4, -1, -1);
+    PAN_DATIGESTENTR.SetFieldPanel(PFL_DATIGESTENTR_UTENTULTIAG4, PPQRY_BDAPDCAREGES, "A.UTENTE_ULTIMO_AGG", "UTENTE_ULTIMO_AGG", 5, 8, 0, -13997);
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAULTIMAG4, MyGlb.PANEL_LIST, 852, 36, 88, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAULTIMAG4, MyGlb.PANEL_LIST, 116);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAULTIMAG4, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAULTIMAG4, MyGlb.PANEL_LIST, "DATA ULTIMO AGG");
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAULTIMAG4, MyGlb.PANEL_FORM, 4, 268, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAULTIMAG4, MyGlb.PANEL_FORM, 160);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAULTIMAG4, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_DATAULTIMAG4, MyGlb.PANEL_FORM, "DATA ULTIMO AGG");
+    PAN_DATIGESTENTR.SetFieldPage(PFL_DATIGESTENTR_DATAULTIMAG4, -1, -1);
+    PAN_DATIGESTENTR.SetFieldPanel(PFL_DATIGESTENTR_DATAULTIMAG4, PPQRY_BDAPDCAREGES, "A.DATA_ULTIMO_AGG", "DATA_ULTIMO_AGG", 6, 10, 0, -13997);
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMADIACCER, MyGlb.PANEL_LIST, 488, 240, 144, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMADIACCER, MyGlb.PANEL_LIST, 0);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMADIACCER, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMADIACCER, MyGlb.PANEL_FORM, 364, 256, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMADIACCER, MyGlb.PANEL_FORM, 0);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMADIACCER, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTENTR.SetFieldPage(PFL_DATIGESTENTR_SOMMADIACCER, -1, -1);
+    PAN_DATIGESTENTR.SetFieldPanel(PFL_DATIGESTENTR_SOMMADIACCER, -1, "", "SOMMADIACCER", 0, 0, 0, -13997);
+    PAN_DATIGESTENTR.set_Alignment(PFL_DATIGESTENTR_SOMMADIACCER, 4);
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISCOM, MyGlb.PANEL_LIST, 632, 240, 144, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISCOM, MyGlb.PANEL_LIST, 0);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISCOM, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISCOM, MyGlb.PANEL_FORM, 372, 264, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISCOM, MyGlb.PANEL_FORM, 0);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISCOM, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTENTR.SetFieldPage(PFL_DATIGESTENTR_SOMMDIRISCOM, -1, -1);
+    PAN_DATIGESTENTR.SetFieldPanel(PFL_DATIGESTENTR_SOMMDIRISCOM, -1, "", "SOMMDIRISCOM", 0, 0, 0, -13997);
+    PAN_DATIGESTENTR.set_Alignment(PFL_DATIGESTENTR_SOMMDIRISCOM, 4);
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISRES, MyGlb.PANEL_LIST, 776, 240, 144, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISRES, MyGlb.PANEL_LIST, 0);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISRES, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISRES, MyGlb.PANEL_FORM, 380, 272, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISRES, MyGlb.PANEL_FORM, 0);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_SOMMDIRISRES, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTENTR.SetFieldPage(PFL_DATIGESTENTR_SOMMDIRISRES, -1, -1);
+    PAN_DATIGESTENTR.SetFieldPanel(PFL_DATIGESTENTR_SOMMDIRISRES, -1, "", "SOMMDIRISRES", 0, 0, 0, -13997);
+    PAN_DATIGESTENTR.set_Alignment(PFL_DATIGESTENTR_SOMMDIRISRES, 4);
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ORDLIVELLO5, MyGlb.PANEL_LIST, 0, 36, 504, 20, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ORDLIVELLO5, MyGlb.PANEL_LIST, 80);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ORDLIVELLO5, MyGlb.PANEL_LIST, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ORDLIVELLO5, MyGlb.PANEL_LIST, "Ord Livello 5");
+    PAN_DATIGESTENTR.SetRect(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ORDLIVELLO5, MyGlb.PANEL_FORM, 4, 292, 588, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_DATIGESTENTR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ORDLIVELLO5, MyGlb.PANEL_FORM, 80);
+    PAN_DATIGESTENTR.SetNumRow(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ORDLIVELLO5, MyGlb.PANEL_FORM, 1);
+    PAN_DATIGESTENTR.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_DATIGESTENTR_ORDLIVELLO5, MyGlb.PANEL_FORM, "Ord Livello 5");
+    PAN_DATIGESTENTR.SetFieldPage(PFL_DATIGESTENTR_ORDLIVELLO5, -1, -1);
+    PAN_DATIGESTENTR.SetFieldUnbound(PFL_DATIGESTENTR_ORDLIVELLO5, true);
+    PAN_DATIGESTENTR.SetFieldPanel(PFL_DATIGESTENTR_ORDLIVELLO5, PPQRY_BDAPDCAREGES, "RPAD(TO_CHAR ( A.LIVELLO_5), 10, SUBSTR('0', 1, 1))", "ORDLIVELLO5", 5, 99, 0, -13997);
+  }
+
+  private void PAN_DATIGESTENTR_InitQueries()
+  {
+    StringBuffer SQL;
+
+    PAN_DATIGESTENTR.SetSize(MyGlb.OBJ_QUERY, 3);
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  'A' as APRIMISPROG ");
+    SQL.append("from ");
+    SQL.append("  DUAL A ");
+    SQL.append("where ((NOT (~~ESERCIZIO~~) IS NULL)) ");
+    PAN_DATIGESTENTR.SetQuery(PPQRY_APRI3, 0, SQL, -1, "");
+    PAN_DATIGESTENTR.SetQueryDB(PPQRY_APRI3, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_DATIGESTENTR.SetMasterTable(PPQRY_APRI3, "DUAL");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as CODTRAEURCOD, ");
+    SQL.append("  TO_CHAR ( A.CODICE ) || ' - ' || A.DESCRIZIONE as DESCRCODEURO ");
+    SQL.append("from ");
+    SQL.append("  COD_TRANSAZIONI_EUROPEE A ");
+    SQL.append("where (A.CODICE = ~~CODICE_EUROPEO~~) ");
+    SQL.append("and   (A.E_S = 'E') ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_DATIGESTENTR.SetQuery(PPQRY_CODTRANSEURO, 0, SQL, PFL_DATIGESTENTR_CODICEEUROPE, "");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as CODTRAEURCOD, ");
+    SQL.append("  TO_CHAR ( A.CODICE ) || ' - ' || A.DESCRIZIONE as DESCRCODEURO ");
+    SQL.append("from ");
+    SQL.append("  COD_TRANSAZIONI_EUROPEE A ");
+    SQL.append("where (A.E_S = 'E') ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_DATIGESTENTR.SetQuery(PPQRY_CODTRANSEURO, 1, SQL, PFL_DATIGESTENTR_CODICEEUROPE, "");
+    PAN_DATIGESTENTR.SetQueryDB(PPQRY_CODTRANSEURO, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_DATIGESTENTR.SetIMDB(IMDB, "PQRY_BDAPDCAREGES", true);
+    PAN_DATIGESTENTR.set_SetString(MyGlb.MASTER_ROWNAME, "BDAP DCAREND S PREV");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.ESERCIZIO as ESERCIZIO, ");
+    SQL.append("  A.LIVELLO_5 as LIVELLO_5, ");
+    SQL.append("  A.CODICE_EUROPEO as CODICE_EUROPEO, ");
+    SQL.append("  A.ENTRATA_RICORRENTE as ENTRATA_RICORRENTE, ");
+    SQL.append("  A.ACCERTAMENTI as ACCERTAMENTI, ");
+    SQL.append("  A.RISCOSSIONI_COMP as RISCOSSIONI_COMP, ");
+    SQL.append("  A.RISCOSSIONI_RES as RISCOSSIONI_RES, ");
+    SQL.append("  A.UTENTE_INSERIMENTO as UTENTE_INSERIMENTO, ");
+    SQL.append("  A.DATA_INSERIMENTO as DATA_INSERIMENTO, ");
+    SQL.append("  A.UTENTE_ULTIMO_AGG as UTENTE_ULTIMO_AGG, ");
+    SQL.append("  A.DATA_ULTIMO_AGG as DATA_ULTIMO_AGG, ");
+    SQL.append("  RPAD(TO_CHAR ( A.LIVELLO_5), 10, SUBSTR('0', 1, 1)) as ORDLIVELLO5 ");
+    PAN_DATIGESTENTR.SetQuery(PPQRY_BDAPDCAREGES, 0, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("from ");
+    SQL.append("  BDAP_DCAREND_E_GEST A ");
+    PAN_DATIGESTENTR.SetQuery(PPQRY_BDAPDCAREGES, 1, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("where (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    PAN_DATIGESTENTR.SetQuery(PPQRY_BDAPDCAREGES, 2, SQL, -1, "");
+    SQL = new StringBuffer();
+    PAN_DATIGESTENTR.SetQuery(PPQRY_BDAPDCAREGES, 3, SQL, -1, "");
+    SQL = new StringBuffer();
+    PAN_DATIGESTENTR.SetQuery(PPQRY_BDAPDCAREGES, 4, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("order by 12, 3, 4 ");
+    PAN_DATIGESTENTR.SetQuery(PPQRY_BDAPDCAREGES, 5, SQL, -1, "");
+    PAN_DATIGESTENTR.SetQueryDB(PPQRY_BDAPDCAREGES, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_DATIGESTENTR.SetMasterTable(0, "BDAP_DCAREND_E_GEST");
+    PAN_DATIGESTENTR.AddToSortList(PFL_DATIGESTENTR_ORDLIVELLO5, true);
+    PAN_DATIGESTENTR.AddToSortList(PFL_DATIGESTENTR_CODICEEUROPE, true);
+    PAN_DATIGESTENTR.AddToSortList(PFL_DATIGESTENTR_SPESARICORRE, true);
+    //
+    // Rieseguo la query se il pannello era già in stato DATA
+    if (PAN_DATIGESTENTR.Status() == 2)
+    {
+      int oldListQBE = PAN_DATIGESTENTR.iUseListQBE;
+      PAN_DATIGESTENTR.iUseListQBE = 0;
+      PAN_DATIGESTENTR.PanelCommand(Glb.PCM_SEARCH);
+      PAN_DATIGESTENTR.PanelCommand(Glb.PCM_FIND);
+      PAN_DATIGESTENTR.iUseListQBE = oldListQBE;
+    }
+  }
+
+  private void PAN_STATOPATRIMO_Init()
+  {
+
+    PAN_STATOPATRIMO.SetSize(MyGlb.OBJ_PAGE, 0);
+    PAN_STATOPATRIMO.SetSize(MyGlb.OBJ_GROUP, 1);
+    PAN_STATOPATRIMO.SetRTCGuid(MyGlb.OBJ_GROUP, GRP_STATOPATRIMO_LIVELLOVII, "B0ECFF04-70AA-4C6D-92E0-805135562ECB");
+    PAN_STATOPATRIMO.set_Header(MyGlb.OBJ_GROUP, GRP_STATOPATRIMO_LIVELLOVII, "Livello VII");
+    PAN_STATOPATRIMO.set_ToolTip(MyGlb.OBJ_GROUP, GRP_STATOPATRIMO_LIVELLOVII, "");
+    PAN_STATOPATRIMO.set_VisualStyle(MyGlb.OBJ_GROUP, GRP_STATOPATRIMO_LIVELLOVII, MyGlb.VIS_GROUPSTYLE);
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_GROUP, GRP_STATOPATRIMO_LIVELLOVII, MyGlb.PANEL_LIST, 0, -9999, 560, 16, 0, 0);
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_GROUP, GRP_STATOPATRIMO_LIVELLOVII, MyGlb.PANEL_FORM, 0, 3, 672, 241, 0, 0);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_STATOPATRIMO_LIVELLOVII, 0, 56);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_STATOPATRIMO_LIVELLOVII, 1, 13);
+    PAN_STATOPATRIMO.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_STATOPATRIMO_LIVELLOVII, 0, 4);
+    PAN_STATOPATRIMO.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_STATOPATRIMO_LIVELLOVII, 1, 4);
+    PAN_STATOPATRIMO.SetFlags(MyGlb.OBJ_GROUP, GRP_STATOPATRIMO_LIVELLOVII, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE, -1);
+    PAN_STATOPATRIMO.SetSize(MyGlb.OBJ_FIELD, 13);
+    PAN_STATOPATRIMO.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_ESERCIZIO5, "6E575AF6-3961-4CB4-BA1B-0B66FBF55256");
+    PAN_STATOPATRIMO.set_Header(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_ESERCIZIO5, "Esercizio");
+    PAN_STATOPATRIMO.set_ToolTip(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_ESERCIZIO5, "");
+    PAN_STATOPATRIMO.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_ESERCIZIO5, MyGlb.VIS_NORMALFIELDS);
+    PAN_STATOPATRIMO.SetFlags(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_ESERCIZIO5, 0 | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISKEY, -1);
+    PAN_STATOPATRIMO.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_LIVELLO7, "782E0FC9-6B5D-4E33-BA27-2C887792BA99");
+    PAN_STATOPATRIMO.set_Header(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_LIVELLO7, "Codice");
+    PAN_STATOPATRIMO.set_ToolTip(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_LIVELLO7, "");
+    PAN_STATOPATRIMO.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_LIVELLO7, MyGlb.VIS_NORMALFIELDS);
+    PAN_STATOPATRIMO.SetFlags(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_LIVELLO7, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_CANACTIVATE | MyGlb.FLD_ISKEY, -1);
+    PAN_STATOPATRIMO.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DESCRILIVEL7, "B880B9E8-A504-4884-B56C-D095A8AD0B67");
+    PAN_STATOPATRIMO.set_Header(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DESCRILIVEL7, "Descrizione");
+    PAN_STATOPATRIMO.set_ToolTip(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DESCRILIVEL7, "");
+    PAN_STATOPATRIMO.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DESCRILIVEL7, MyGlb.VIS_NORMALFIELDS);
+    PAN_STATOPATRIMO.SetFlags(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DESCRILIVEL7, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM, -1);
+    PAN_STATOPATRIMO.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DARE1, "86C25616-EADA-46DE-8DEC-E9B0507BBA8C");
+    PAN_STATOPATRIMO.set_Header(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DARE1, "Totale Dare");
+    PAN_STATOPATRIMO.set_ToolTip(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DARE1, "");
+    PAN_STATOPATRIMO.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DARE1, MyGlb.VIS_NORFIECF4IMP);
+    PAN_STATOPATRIMO.SetFlags(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DARE1, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_STATOPATRIMO.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_AVERE1, "546FF8CC-5E68-4AD6-AB03-071EB18EC0A3");
+    PAN_STATOPATRIMO.set_Header(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_AVERE1, "Totale Avere");
+    PAN_STATOPATRIMO.set_ToolTip(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_AVERE1, "");
+    PAN_STATOPATRIMO.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_AVERE1, MyGlb.VIS_NORFIECF4IMP);
+    PAN_STATOPATRIMO.SetFlags(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_AVERE1, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_STATOPATRIMO.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SALDOEXPRESS, "ECB8F2D8-76DC-4D82-9CF6-BFFE4012ADE6");
+    PAN_STATOPATRIMO.set_Header(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SALDOEXPRESS, "Saldo");
+    PAN_STATOPATRIMO.set_ToolTip(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SALDOEXPRESS, "");
+    PAN_STATOPATRIMO.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SALDOEXPRESS, MyGlb.VIS_NORFIECF4IMP);
+    PAN_STATOPATRIMO.SetFlags(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SALDOEXPRESS, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ISOPT, -1);
+    PAN_STATOPATRIMO.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTEINSER5, "F61A5167-847B-44E5-8EC7-A51DB4257935");
+    PAN_STATOPATRIMO.set_Header(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTEINSER5, "UTENTE INSERIMENTO");
+    PAN_STATOPATRIMO.set_ToolTip(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTEINSER5, "");
+    PAN_STATOPATRIMO.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTEINSER5, MyGlb.VIS_NORMFIELPADR);
+    PAN_STATOPATRIMO.SetFlags(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTEINSER5, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_STATOPATRIMO.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAINSERIM5, "01D63B7E-26D6-44DB-868A-B584F2DE7FE0");
+    PAN_STATOPATRIMO.set_Header(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAINSERIM5, "DATA INSERIMENTO");
+    PAN_STATOPATRIMO.set_ToolTip(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAINSERIM5, "");
+    PAN_STATOPATRIMO.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAINSERIM5, MyGlb.VIS_NORMFIELPADR);
+    PAN_STATOPATRIMO.SetFlags(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAINSERIM5, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_STATOPATRIMO.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTULTIAG5, "BC3A39B0-4FAF-4E7F-B415-9AA64D0E0DAB");
+    PAN_STATOPATRIMO.set_Header(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTULTIAG5, "UTENTE ULTIMO AGG");
+    PAN_STATOPATRIMO.set_ToolTip(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTULTIAG5, "");
+    PAN_STATOPATRIMO.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTULTIAG5, MyGlb.VIS_NORMFIELPADR);
+    PAN_STATOPATRIMO.SetFlags(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTULTIAG5, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_STATOPATRIMO.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAULTIMAG5, "954BBA95-07CD-4D40-9A3B-945C5E644B9C");
+    PAN_STATOPATRIMO.set_Header(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAULTIMAG5, "DATA ULTIMO AGG");
+    PAN_STATOPATRIMO.set_ToolTip(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAULTIMAG5, "");
+    PAN_STATOPATRIMO.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAULTIMAG5, MyGlb.VIS_NORMFIELPADR);
+    PAN_STATOPATRIMO.SetFlags(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAULTIMAG5, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_STATOPATRIMO.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIDARE1, "1042616A-BA50-400D-A329-630819AD6478");
+    PAN_STATOPATRIMO.set_Header(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIDARE1, "");
+    PAN_STATOPATRIMO.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIDARE1, MyGlb.VIS_DISABIIMPORT);
+    PAN_STATOPATRIMO.SetFlags(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIDARE1, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_STATOPATRIMO.SetSumField(PFL_STATOPATRIMO_SOMMADIDARE1, PFL_STATOPATRIMO_DARE1);
+    PAN_STATOPATRIMO.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIAVER1, "BF600FF6-9CFA-4A65-80F9-F3F8DAE588CB");
+    PAN_STATOPATRIMO.set_Header(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIAVER1, "");
+    PAN_STATOPATRIMO.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIAVER1, MyGlb.VIS_DISABIIMPORT);
+    PAN_STATOPATRIMO.SetFlags(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIAVER1, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_STATOPATRIMO.SetSumField(PFL_STATOPATRIMO_SOMMADIAVER1, PFL_STATOPATRIMO_AVERE1);
+    PAN_STATOPATRIMO.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMDISALEXP, "A7443A42-A5BE-4032-AAC9-F295F9E1321E");
+    PAN_STATOPATRIMO.set_Header(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMDISALEXP, "");
+    PAN_STATOPATRIMO.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMDISALEXP, MyGlb.VIS_DISABIIMPORT);
+    PAN_STATOPATRIMO.SetFlags(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMDISALEXP, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_STATOPATRIMO.SetSumField(PFL_STATOPATRIMO_SOMMDISALEXP, PFL_STATOPATRIMO_SALDOEXPRESS);
+  }
+
+  private void PAN_STATOPATRIMO_InitFields()
+  {
+
+    StringBuffer SQL = new StringBuffer();
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_ESERCIZIO5, MyGlb.PANEL_LIST, 0, 36, 60, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_ESERCIZIO5, MyGlb.PANEL_LIST, 68);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_ESERCIZIO5, MyGlb.PANEL_LIST, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_ESERCIZIO5, MyGlb.PANEL_LIST, "Esercizio");
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_ESERCIZIO5, MyGlb.PANEL_FORM, 4, 4, 208, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_ESERCIZIO5, MyGlb.PANEL_FORM, 160);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_ESERCIZIO5, MyGlb.PANEL_FORM, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_ESERCIZIO5, MyGlb.PANEL_FORM, "Esercizio");
+    PAN_STATOPATRIMO.SetFieldPage(PFL_STATOPATRIMO_ESERCIZIO5, -1, -1);
+    PAN_STATOPATRIMO.SetFieldPanel(PFL_STATOPATRIMO_ESERCIZIO5, PPQRY_BDAPDCARENSP, "A.ESERCIZIO", "ESERCIZIO", 1, 4, 0, -13997);
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_LIVELLO7, MyGlb.PANEL_LIST, 0, 36, 128, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_LIVELLO7, MyGlb.PANEL_LIST, 64);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_LIVELLO7, MyGlb.PANEL_LIST, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_LIVELLO7, MyGlb.PANEL_LIST, "Codice");
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_LIVELLO7, MyGlb.PANEL_FORM, 4, 28, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_LIVELLO7, MyGlb.PANEL_FORM, 160);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_LIVELLO7, MyGlb.PANEL_FORM, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_LIVELLO7, MyGlb.PANEL_FORM, "Codice");
+    PAN_STATOPATRIMO.SetFieldPage(PFL_STATOPATRIMO_LIVELLO7, -1, GRP_STATOPATRIMO_LIVELLOVII);
+    PAN_STATOPATRIMO.SetFieldPanel(PFL_STATOPATRIMO_LIVELLO7, PPQRY_BDAPDCARENSP, "A.LIVELLO_7", "LIVELLO_7", 5, 40, 0, -13997);
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DESCRILIVEL7, MyGlb.PANEL_LIST, 128, 36, 432, 20, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DESCRILIVEL7, MyGlb.PANEL_LIST, 228);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DESCRILIVEL7, MyGlb.PANEL_LIST, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DESCRILIVEL7, MyGlb.PANEL_LIST, "Descrizione");
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DESCRILIVEL7, MyGlb.PANEL_FORM, 4, 196, 664, 44, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DESCRILIVEL7, MyGlb.PANEL_FORM, 228);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DESCRILIVEL7, MyGlb.PANEL_FORM, 2);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DESCRILIVEL7, MyGlb.PANEL_FORM, "Descrizione");
+    PAN_STATOPATRIMO.SetFieldPage(PFL_STATOPATRIMO_DESCRILIVEL7, -1, GRP_STATOPATRIMO_LIVELLOVII);
+    PAN_STATOPATRIMO.SetFieldPanel(PFL_STATOPATRIMO_DESCRILIVEL7, PPQRY_STRUPIANCON1, "A.DESCRIZIONE", "STRPIACONDES", 5, 300, 0, -13997);
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DARE1, MyGlb.PANEL_LIST, 560, 36, 144, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DARE1, MyGlb.PANEL_LIST, 100);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DARE1, MyGlb.PANEL_LIST, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DARE1, MyGlb.PANEL_LIST, "Totale Dare");
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DARE1, MyGlb.PANEL_FORM, 4, 148, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DARE1, MyGlb.PANEL_FORM, 160);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DARE1, MyGlb.PANEL_FORM, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DARE1, MyGlb.PANEL_FORM, "Totale Dare");
+    PAN_STATOPATRIMO.SetFieldPage(PFL_STATOPATRIMO_DARE1, -1, -1);
+    PAN_STATOPATRIMO.SetFieldPanel(PFL_STATOPATRIMO_DARE1, PPQRY_BDAPDCARENSP, "A.DARE", "DARE", 3, 14, 2, -13997);
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_AVERE1, MyGlb.PANEL_LIST, 704, 36, 144, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_AVERE1, MyGlb.PANEL_LIST, 144);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_AVERE1, MyGlb.PANEL_LIST, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_AVERE1, MyGlb.PANEL_LIST, "Totale Avere");
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_AVERE1, MyGlb.PANEL_FORM, 4, 172, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_AVERE1, MyGlb.PANEL_FORM, 160);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_AVERE1, MyGlb.PANEL_FORM, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_AVERE1, MyGlb.PANEL_FORM, "Totale Avere");
+    PAN_STATOPATRIMO.SetFieldPage(PFL_STATOPATRIMO_AVERE1, -1, -1);
+    PAN_STATOPATRIMO.SetFieldPanel(PFL_STATOPATRIMO_AVERE1, PPQRY_BDAPDCARENSP, "A.AVERE", "AVERE", 3, 14, 2, -13997);
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SALDOEXPRESS, MyGlb.PANEL_LIST, 848, 36, 144, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SALDOEXPRESS, MyGlb.PANEL_LIST, 40);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SALDOEXPRESS, MyGlb.PANEL_LIST, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SALDOEXPRESS, MyGlb.PANEL_LIST, "Saldo");
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SALDOEXPRESS, MyGlb.PANEL_FORM, 4, 268, 192, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SALDOEXPRESS, MyGlb.PANEL_FORM, 40);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SALDOEXPRESS, MyGlb.PANEL_FORM, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SALDOEXPRESS, MyGlb.PANEL_FORM, "Saldo");
+    PAN_STATOPATRIMO.SetFieldPage(PFL_STATOPATRIMO_SALDOEXPRESS, -1, -1);
+    PAN_STATOPATRIMO.SetFieldUnbound(PFL_STATOPATRIMO_SALDOEXPRESS, true);
+    PAN_STATOPATRIMO.SetFieldPanel(PFL_STATOPATRIMO_SALDOEXPRESS, PPQRY_BDAPDCARENSP, "CASE WHEN NVL(GET_TIPO_CALCOLO_SALDO_ECO(A.LIVELLO_7,~~TBL_DATISESSIONE.SESSIOESERCI~~,'P'), 'D-A') = 'D-A' THEN A.DARE - NVL(A.AVERE, 0) ELSE NVL(A.AVERE, 0) - NVL(A.DARE, 0) END", "SALDOEXPRESS", 3, 28, 6, -13997);
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTEINSER5, MyGlb.PANEL_LIST, 628, 36, 64, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTEINSER5, MyGlb.PANEL_LIST, 128);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTEINSER5, MyGlb.PANEL_LIST, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTEINSER5, MyGlb.PANEL_LIST, "UTEN. INSER.");
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTEINSER5, MyGlb.PANEL_FORM, 4, 196, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTEINSER5, MyGlb.PANEL_FORM, 160);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTEINSER5, MyGlb.PANEL_FORM, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTEINSER5, MyGlb.PANEL_FORM, "UTENTE INSERIMENTO");
+    PAN_STATOPATRIMO.SetFieldPage(PFL_STATOPATRIMO_UTENTEINSER5, -1, -1);
+    PAN_STATOPATRIMO.SetFieldPanel(PFL_STATOPATRIMO_UTENTEINSER5, PPQRY_BDAPDCARENSP, "A.UTENTE_INSERIMENTO", "UTENTE_INSERIMENTO", 5, 8, 0, -13997);
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAINSERIM5, MyGlb.PANEL_LIST, 692, 36, 88, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAINSERIM5, MyGlb.PANEL_LIST, 120);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAINSERIM5, MyGlb.PANEL_LIST, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAINSERIM5, MyGlb.PANEL_LIST, "DATA INSERIMENTO");
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAINSERIM5, MyGlb.PANEL_FORM, 4, 220, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAINSERIM5, MyGlb.PANEL_FORM, 160);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAINSERIM5, MyGlb.PANEL_FORM, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAINSERIM5, MyGlb.PANEL_FORM, "DATA INSERIMENTO");
+    PAN_STATOPATRIMO.SetFieldPage(PFL_STATOPATRIMO_DATAINSERIM5, -1, -1);
+    PAN_STATOPATRIMO.SetFieldPanel(PFL_STATOPATRIMO_DATAINSERIM5, PPQRY_BDAPDCARENSP, "A.DATA_INSERIMENTO", "DATA_INSERIMENTO", 6, 10, 0, -13997);
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTULTIAG5, MyGlb.PANEL_LIST, 780, 36, 72, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTULTIAG5, MyGlb.PANEL_LIST, 124);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTULTIAG5, MyGlb.PANEL_LIST, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTULTIAG5, MyGlb.PANEL_LIST, "UTEN. ULT. AGG");
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTULTIAG5, MyGlb.PANEL_FORM, 4, 244, 240, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTULTIAG5, MyGlb.PANEL_FORM, 160);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTULTIAG5, MyGlb.PANEL_FORM, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_UTENTULTIAG5, MyGlb.PANEL_FORM, "UTENTE ULTIMO AGG");
+    PAN_STATOPATRIMO.SetFieldPage(PFL_STATOPATRIMO_UTENTULTIAG5, -1, -1);
+    PAN_STATOPATRIMO.SetFieldPanel(PFL_STATOPATRIMO_UTENTULTIAG5, PPQRY_BDAPDCARENSP, "A.UTENTE_ULTIMO_AGG", "UTENTE_ULTIMO_AGG", 5, 8, 0, -13997);
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAULTIMAG5, MyGlb.PANEL_LIST, 852, 36, 88, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAULTIMAG5, MyGlb.PANEL_LIST, 116);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAULTIMAG5, MyGlb.PANEL_LIST, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAULTIMAG5, MyGlb.PANEL_LIST, "DATA ULTIMO AGG");
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAULTIMAG5, MyGlb.PANEL_FORM, 4, 268, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAULTIMAG5, MyGlb.PANEL_FORM, 160);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAULTIMAG5, MyGlb.PANEL_FORM, 1);
+    PAN_STATOPATRIMO.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_DATAULTIMAG5, MyGlb.PANEL_FORM, "DATA ULTIMO AGG");
+    PAN_STATOPATRIMO.SetFieldPage(PFL_STATOPATRIMO_DATAULTIMAG5, -1, -1);
+    PAN_STATOPATRIMO.SetFieldPanel(PFL_STATOPATRIMO_DATAULTIMAG5, PPQRY_BDAPDCARENSP, "A.DATA_ULTIMO_AGG", "DATA_ULTIMO_AGG", 6, 10, 0, -13997);
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIDARE1, MyGlb.PANEL_LIST, 560, 240, 144, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIDARE1, MyGlb.PANEL_LIST, 0);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIDARE1, MyGlb.PANEL_LIST, 1);
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIDARE1, MyGlb.PANEL_FORM, 372, 264, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIDARE1, MyGlb.PANEL_FORM, 0);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIDARE1, MyGlb.PANEL_FORM, 1);
+    PAN_STATOPATRIMO.SetFieldPage(PFL_STATOPATRIMO_SOMMADIDARE1, -1, -1);
+    PAN_STATOPATRIMO.SetFieldPanel(PFL_STATOPATRIMO_SOMMADIDARE1, -1, "", "SOMMADIDARE1", 0, 0, 0, -13997);
+    PAN_STATOPATRIMO.set_Alignment(PFL_STATOPATRIMO_SOMMADIDARE1, 4);
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIAVER1, MyGlb.PANEL_LIST, 704, 240, 144, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIAVER1, MyGlb.PANEL_LIST, 0);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIAVER1, MyGlb.PANEL_LIST, 1);
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIAVER1, MyGlb.PANEL_FORM, 380, 272, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIAVER1, MyGlb.PANEL_FORM, 0);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMADIAVER1, MyGlb.PANEL_FORM, 1);
+    PAN_STATOPATRIMO.SetFieldPage(PFL_STATOPATRIMO_SOMMADIAVER1, -1, -1);
+    PAN_STATOPATRIMO.SetFieldPanel(PFL_STATOPATRIMO_SOMMADIAVER1, -1, "", "SOMMADIAVER1", 0, 0, 0, -13997);
+    PAN_STATOPATRIMO.set_Alignment(PFL_STATOPATRIMO_SOMMADIAVER1, 4);
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMDISALEXP, MyGlb.PANEL_LIST, 848, 240, 144, 20, MyGlb.RESMODE_MOVE, MyGlb.RESMODE_MOVE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMDISALEXP, MyGlb.PANEL_LIST, 0);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMDISALEXP, MyGlb.PANEL_LIST, 1);
+    PAN_STATOPATRIMO.SetRect(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMDISALEXP, MyGlb.PANEL_FORM, 1000, 244, 136, 24, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_STATOPATRIMO.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMDISALEXP, MyGlb.PANEL_FORM, 0);
+    PAN_STATOPATRIMO.SetNumRow(MyGlb.OBJ_FIELD, PFL_STATOPATRIMO_SOMMDISALEXP, MyGlb.PANEL_FORM, 1);
+    PAN_STATOPATRIMO.SetFieldPage(PFL_STATOPATRIMO_SOMMDISALEXP, -1, -1);
+    PAN_STATOPATRIMO.SetFieldPanel(PFL_STATOPATRIMO_SOMMDISALEXP, -1, "", "SOMMDISALEXP", 0, 0, 0, -13997);
+    PAN_STATOPATRIMO.set_Alignment(PFL_STATOPATRIMO_SOMMDISALEXP, 4);
+  }
+
+  private void PAN_STATOPATRIMO_InitQueries()
+  {
+    StringBuffer SQL;
+
+    PAN_STATOPATRIMO.SetSize(MyGlb.OBJ_QUERY, 3);
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  'A' as APRIMISPROG ");
+    SQL.append("from ");
+    SQL.append("  DUAL A ");
+    SQL.append("where ((NOT (~~ESERCIZIO~~) IS NULL)) ");
+    PAN_STATOPATRIMO.SetQuery(PPQRY_APRI4, 0, SQL, -1, "");
+    PAN_STATOPATRIMO.SetQueryDB(PPQRY_APRI4, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_STATOPATRIMO.SetMasterTable(PPQRY_APRI4, "DUAL");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCRIZIONE as STRPIACONDES ");
+    SQL.append("from ");
+    SQL.append("  STRUTTURA_PIANO_CONTI A, ");
+    SQL.append("  TIPI_STRUTTURA_ECO B ");
+    SQL.append("where (B.PROGRESSIVO = A.PROGR_STRUTTURA) ");
+    SQL.append("and   ((~~TBL_DATISESSIONE.SESSIOESERCI~~ BETWEEN B.ESERCIZIO_INIZIO AND NVL(B.ESERCIZIO_FINE, 9999))) ");
+    SQL.append("and   (A.TIPO_PIANO <> 'E') ");
+    SQL.append("and   (A.LIVELLO = 7) ");
+    SQL.append("and   (A.CODICE = ~~LIVELLO_7~~) ");
+    PAN_STATOPATRIMO.SetQuery(PPQRY_STRUPIANCON1, 0, SQL, -1, "");
+    PAN_STATOPATRIMO.SetQueryDB(PPQRY_STRUPIANCON1, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_STATOPATRIMO.SetMasterTable(PPQRY_STRUPIANCON1, "STRUTTURA_PIANO_CONTI");
+    PAN_STATOPATRIMO.SetIMDB(IMDB, "PQRY_BDAPDCARENSP", true);
+    PAN_STATOPATRIMO.set_SetString(MyGlb.MASTER_ROWNAME, "BDAP DCAREND SP");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.ESERCIZIO as ESERCIZIO, ");
+    SQL.append("  A.LIVELLO_7 as LIVELLO_7, ");
+    SQL.append("  A.DARE as DARE, ");
+    SQL.append("  A.AVERE as AVERE, ");
+    SQL.append("  A.UTENTE_INSERIMENTO as UTENTE_INSERIMENTO, ");
+    SQL.append("  A.DATA_INSERIMENTO as DATA_INSERIMENTO, ");
+    SQL.append("  A.UTENTE_ULTIMO_AGG as UTENTE_ULTIMO_AGG, ");
+    SQL.append("  A.DATA_ULTIMO_AGG as DATA_ULTIMO_AGG, ");
+    SQL.append("  CASE WHEN NVL(GET_TIPO_CALCOLO_SALDO_ECO(A.LIVELLO_7,~~TBL_DATISESSIONE.SESSIOESERCI~~,'P'), 'D-A') = 'D-A' THEN A.DARE - NVL(A.AVERE, 0) ELSE NVL(A.AVERE, 0) - NVL(A.DARE, 0) END as SALDOEXPRESS ");
+    PAN_STATOPATRIMO.SetQuery(PPQRY_BDAPDCARENSP, 0, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("from ");
+    SQL.append("  BDAP_DCAREND_SP A ");
+    PAN_STATOPATRIMO.SetQuery(PPQRY_BDAPDCARENSP, 1, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("where (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    PAN_STATOPATRIMO.SetQuery(PPQRY_BDAPDCARENSP, 2, SQL, -1, "");
+    SQL = new StringBuffer();
+    PAN_STATOPATRIMO.SetQuery(PPQRY_BDAPDCARENSP, 3, SQL, -1, "");
+    SQL = new StringBuffer();
+    PAN_STATOPATRIMO.SetQuery(PPQRY_BDAPDCARENSP, 4, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("order by ");
+    SQL.append("  A.LIVELLO_7 ");
+    PAN_STATOPATRIMO.SetQuery(PPQRY_BDAPDCARENSP, 5, SQL, -1, "");
+    PAN_STATOPATRIMO.SetQueryDB(PPQRY_BDAPDCARENSP, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_STATOPATRIMO.SetMasterTable(0, "BDAP_DCAREND_SP");
+    PAN_STATOPATRIMO.AddToSortList(PFL_STATOPATRIMO_LIVELLO7, true);
+    //
+    // Rieseguo la query se il pannello era già in stato DATA
+    if (PAN_STATOPATRIMO.Status() == 2)
+    {
+      int oldListQBE = PAN_STATOPATRIMO.iUseListQBE;
+      PAN_STATOPATRIMO.iUseListQBE = 0;
+      PAN_STATOPATRIMO.PanelCommand(Glb.PCM_SEARCH);
+      PAN_STATOPATRIMO.PanelCommand(Glb.PCM_FIND);
+      PAN_STATOPATRIMO.iUseListQBE = oldListQBE;
+    }
+  }
+
+  private void PAN_CONTOECONOMI_Init()
+  {
+
+    PAN_CONTOECONOMI.SetSize(MyGlb.OBJ_PAGE, 0);
+    PAN_CONTOECONOMI.SetSize(MyGlb.OBJ_GROUP, 1);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_GROUP, GRP_CONTOECONOMI_LIVELLOVI, "98CEF483-B77A-47C1-AAFB-7256385BB8DF");
+    PAN_CONTOECONOMI.set_Header(MyGlb.OBJ_GROUP, GRP_CONTOECONOMI_LIVELLOVI, "Livello VI");
+    PAN_CONTOECONOMI.set_ToolTip(MyGlb.OBJ_GROUP, GRP_CONTOECONOMI_LIVELLOVI, "");
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_GROUP, GRP_CONTOECONOMI_LIVELLOVI, MyGlb.VIS_GROUPSTYLE);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_GROUP, GRP_CONTOECONOMI_LIVELLOVI, MyGlb.PANEL_LIST, 160, -9999, 468, 16, 0, 0);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_GROUP, GRP_CONTOECONOMI_LIVELLOVI, MyGlb.PANEL_FORM, 0, 3, 672, 265, 0, 0);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_CONTOECONOMI_LIVELLOVI, 0, 51);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_CONTOECONOMI_LIVELLOVI, 1, 13);
+    PAN_CONTOECONOMI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_CONTOECONOMI_LIVELLOVI, 0, 4);
+    PAN_CONTOECONOMI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_CONTOECONOMI_LIVELLOVI, 1, 4);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_GROUP, GRP_CONTOECONOMI_LIVELLOVI, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE, -1);
+    PAN_CONTOECONOMI.SetSize(MyGlb.OBJ_FIELD, 16);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_ESERCIZIO, "DE51175B-916D-43D5-AA97-E5292A069DBD");
+    PAN_CONTOECONOMI.set_Header(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_ESERCIZIO, "Esercizio");
+    PAN_CONTOECONOMI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_ESERCIZIO, "");
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_ESERCIZIO, MyGlb.VIS_NORMALFIELDS);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_ESERCIZIO, 0 | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISKEY, -1);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_MISSIONE, "B1EC0E2F-070E-4CD0-BEFF-BE46FBC44B02");
+    PAN_CONTOECONOMI.set_Header(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_MISSIONE, "Missione");
+    PAN_CONTOECONOMI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_MISSIONE, "");
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_MISSIONE, MyGlb.VIS_NORMALFIELDS);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_MISSIONE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISKEY, -1);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_PROGRAMMA, "96B7C21D-C9E8-46A8-AA99-6CA79256DFAA");
+    PAN_CONTOECONOMI.set_Header(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_PROGRAMMA, "Programma");
+    PAN_CONTOECONOMI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_PROGRAMMA, "");
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_PROGRAMMA, MyGlb.VIS_NORMALFIELDS);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_PROGRAMMA, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISKEY, -1);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_APRIMISPROG, "A44C4A78-15BB-4884-BD48-DB309FA52C42");
+    PAN_CONTOECONOMI.set_Header(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_APRIMISPROG, " ");
+    PAN_CONTOECONOMI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_APRIMISPROG, "");
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_APRIMISPROG, MyGlb.VIS_HYPELINKIMMA);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_APRIMISPROG, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_CANACTIVATE | MyGlb.FLD_ISOPT, -1);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_LIVELLO6, "20ED0064-8501-43E2-967E-EC8A007A2691");
+    PAN_CONTOECONOMI.set_Header(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_LIVELLO6, "Codice");
+    PAN_CONTOECONOMI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_LIVELLO6, "");
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_LIVELLO6, MyGlb.VIS_NORMALFIELDS);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_LIVELLO6, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_CANACTIVATE | MyGlb.FLD_ISKEY, -1);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_STRPIACONDES, "39AE0157-E2CA-424D-8514-1530AC0BCBB8");
+    PAN_CONTOECONOMI.set_Header(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_STRPIACONDES, "Descrizione");
+    PAN_CONTOECONOMI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_STRPIACONDES, "");
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_STRPIACONDES, MyGlb.VIS_NORMALFIELDS);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_STRPIACONDES, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM, -1);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DARE, "E6633DBE-31E6-4AF4-BBDC-10D9A760FFB8");
+    PAN_CONTOECONOMI.set_Header(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DARE, "Totale Dare");
+    PAN_CONTOECONOMI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DARE, "");
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DARE, MyGlb.VIS_NORFIECF4IMP);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DARE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_AVERE, "4BB76487-4F02-4D7A-B6E8-8AAD6542BF56");
+    PAN_CONTOECONOMI.set_Header(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_AVERE, "Totale Avere");
+    PAN_CONTOECONOMI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_AVERE, "");
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_AVERE, MyGlb.VIS_NORFIECF4IMP);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_AVERE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SALDO, "4CF7AF27-72B7-4276-8EBE-89F404CF8030");
+    PAN_CONTOECONOMI.set_Header(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SALDO, "Saldo");
+    PAN_CONTOECONOMI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SALDO, "");
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SALDO, MyGlb.VIS_NORFIECF4IMP);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SALDO, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ISOPT, -1);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTEINSERI, "24D11F93-1F08-4D7D-AC64-82E7BE33EC89");
+    PAN_CONTOECONOMI.set_Header(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTEINSERI, "UTENTE INSERIMENTO");
+    PAN_CONTOECONOMI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTEINSERI, "");
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTEINSERI, MyGlb.VIS_NORMFIELPADR);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTEINSERI, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAINSERIME, "31F5468B-395F-48B3-99C0-F48A5AFB713E");
+    PAN_CONTOECONOMI.set_Header(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAINSERIME, "DATA INSERIMENTO");
+    PAN_CONTOECONOMI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAINSERIME, "");
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAINSERIME, MyGlb.VIS_NORMFIELPADR);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAINSERIME, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTULTIAGG, "6584DFC6-1EB3-4659-81E3-A22EB597DC9B");
+    PAN_CONTOECONOMI.set_Header(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTULTIAGG, "UTENTE ULTIMO AGG");
+    PAN_CONTOECONOMI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTULTIAGG, "");
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTULTIAGG, MyGlb.VIS_NORMFIELPADR);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTULTIAGG, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAULTIMAGG, "9F675D00-7A7C-4417-BA9D-C360FE80555E");
+    PAN_CONTOECONOMI.set_Header(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAULTIMAGG, "DATA ULTIMO AGG");
+    PAN_CONTOECONOMI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAULTIMAGG, "");
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAULTIMAGG, MyGlb.VIS_NORMFIELPADR);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAULTIMAGG, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIDARE, "7B462A56-17EB-407E-B9EC-95C6843A7EEA");
+    PAN_CONTOECONOMI.set_Header(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIDARE, "");
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIDARE, MyGlb.VIS_DISABIIMPORT);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIDARE, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_CONTOECONOMI.SetSumField(PFL_CONTOECONOMI_SOMMADIDARE, PFL_CONTOECONOMI_DARE);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIAVERE, "5D800BA9-714C-43B4-A91B-5BD9B73410FB");
+    PAN_CONTOECONOMI.set_Header(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIAVERE, "");
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIAVERE, MyGlb.VIS_DISABIIMPORT);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIAVERE, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_CONTOECONOMI.SetSumField(PFL_CONTOECONOMI_SOMMADIAVERE, PFL_CONTOECONOMI_AVERE);
+    PAN_CONTOECONOMI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADISALDO, "3CE13969-43E0-4969-A616-62691503A011");
+    PAN_CONTOECONOMI.set_Header(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADISALDO, "");
+    PAN_CONTOECONOMI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADISALDO, MyGlb.VIS_DISABIIMPORT);
+    PAN_CONTOECONOMI.SetFlags(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADISALDO, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST, -1);
+    PAN_CONTOECONOMI.SetSumField(PFL_CONTOECONOMI_SOMMADISALDO, PFL_CONTOECONOMI_SALDO);
+  }
+
+  private void PAN_CONTOECONOMI_InitFields()
+  {
+
+    StringBuffer SQL = new StringBuffer();
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_ESERCIZIO, MyGlb.PANEL_LIST, 0, 36, 60, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_ESERCIZIO, MyGlb.PANEL_LIST, 68);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_ESERCIZIO, MyGlb.PANEL_LIST, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_ESERCIZIO, MyGlb.PANEL_LIST, "Esercizio");
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_ESERCIZIO, MyGlb.PANEL_FORM, 4, 4, 208, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_ESERCIZIO, MyGlb.PANEL_FORM, 160);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_ESERCIZIO, MyGlb.PANEL_FORM, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_ESERCIZIO, MyGlb.PANEL_FORM, "Esercizio");
+    PAN_CONTOECONOMI.SetFieldPage(PFL_CONTOECONOMI_ESERCIZIO, -1, -1);
+    PAN_CONTOECONOMI.SetFieldPanel(PFL_CONTOECONOMI_ESERCIZIO, PPQRY_BDAPDCARENCE, "A.ESERCIZIO", "ESERCIZIO", 1, 4, 0, -13997);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_MISSIONE, MyGlb.PANEL_LIST, 0, 36, 60, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_MISSIONE, MyGlb.PANEL_LIST, 64);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_MISSIONE, MyGlb.PANEL_LIST, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_MISSIONE, MyGlb.PANEL_LIST, "Missione");
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_MISSIONE, MyGlb.PANEL_FORM, 4, 52, 208, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_MISSIONE, MyGlb.PANEL_FORM, 160);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_MISSIONE, MyGlb.PANEL_FORM, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_MISSIONE, MyGlb.PANEL_FORM, "Missione");
+    PAN_CONTOECONOMI.SetFieldPage(PFL_CONTOECONOMI_MISSIONE, -1, -1);
+    PAN_CONTOECONOMI.SetFieldPanel(PFL_CONTOECONOMI_MISSIONE, PPQRY_BDAPDCARENCE, "A.MISSIONE", "MISSIONE", 1, 3, 0, -13997);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_PROGRAMMA, MyGlb.PANEL_LIST, 60, 36, 76, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_PROGRAMMA, MyGlb.PANEL_LIST, 84);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_PROGRAMMA, MyGlb.PANEL_LIST, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_PROGRAMMA, MyGlb.PANEL_LIST, "Programma");
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_PROGRAMMA, MyGlb.PANEL_FORM, 4, 76, 208, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_PROGRAMMA, MyGlb.PANEL_FORM, 160);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_PROGRAMMA, MyGlb.PANEL_FORM, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_PROGRAMMA, MyGlb.PANEL_FORM, "Programma");
+    PAN_CONTOECONOMI.SetFieldPage(PFL_CONTOECONOMI_PROGRAMMA, -1, -1);
+    PAN_CONTOECONOMI.SetFieldPanel(PFL_CONTOECONOMI_PROGRAMMA, PPQRY_BDAPDCARENCE, "A.PROGRAMMA", "PROGRAMMA", 1, 3, 0, -13997);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_APRIMISPROG, MyGlb.PANEL_LIST, 136, 36, 24, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_APRIMISPROG, MyGlb.PANEL_LIST, 84);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_APRIMISPROG, MyGlb.PANEL_LIST, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_APRIMISPROG, MyGlb.PANEL_LIST, " ");
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_APRIMISPROG, MyGlb.PANEL_FORM, 4, 196, 128, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_APRIMISPROG, MyGlb.PANEL_FORM, 84);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_APRIMISPROG, MyGlb.PANEL_FORM, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_APRIMISPROG, MyGlb.PANEL_FORM, " ");
+    PAN_CONTOECONOMI.SetFieldPage(PFL_CONTOECONOMI_APRIMISPROG, -1, -1);
+    PAN_CONTOECONOMI.SetFieldPanel(PFL_CONTOECONOMI_APRIMISPROG, PPQRY_APRI, "'A'", "APRIMISPROG", 5, 1, 0, -13997);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant("A")), "Apri", "", "wsearch1.gif", -1);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant("I")), "Info", "", "info.gif", -1);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant("E")), "Delete", "", "wdelete.gif", -1);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant("N")), "Nota Vuota", "", "nota bianca.gif", -1);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant("P")), "Nota Piena", "", "nota scritta.gif", -1);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant("S")), "Note Standard", "", "testo.gif", -1);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant("D")), "Dettagli", "", "dettaglio.gif", -1);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant()), "Vuoto", "", "", -1);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant("G")), "Incolla", "", "Paste.gif", -1);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant("F")), "RiepilogoIVA", "", "info_g.gif", -1);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant("T")), "Download", "", "clip_sm.gif", -1);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant("ZIP")), "ZIP", "", "zip_file.png", -1);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant("CSV")), "CSV", "", "csv.gif", -1);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant("PAGOPA")), "PagoPA", "PagoPA", "pagopa.png", -1);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant("IMPPARZ")), "ImportoParziale", "", "varimp.gif", -1);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant("IMPTOT")), "ImportoTotale", "", "varacc.gif", -1);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant("K")), "Note Accr", "", "signed.png", -1);
+    PAN_CONTOECONOMI.SetValueListItem(PFL_CONTOECONOMI_APRIMISPROG, (new IDVariant("FCE")), "Fascicolo Contabile", "Fascicolo Contabile", "search_db_16.png", -1);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_LIVELLO6, MyGlb.PANEL_LIST, 160, 36, 128, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_LIVELLO6, MyGlb.PANEL_LIST, 64);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_LIVELLO6, MyGlb.PANEL_LIST, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_LIVELLO6, MyGlb.PANEL_LIST, "Codice");
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_LIVELLO6, MyGlb.PANEL_FORM, 4, 28, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_LIVELLO6, MyGlb.PANEL_FORM, 160);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_LIVELLO6, MyGlb.PANEL_FORM, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_LIVELLO6, MyGlb.PANEL_FORM, "Codice");
+    PAN_CONTOECONOMI.SetFieldPage(PFL_CONTOECONOMI_LIVELLO6, -1, GRP_CONTOECONOMI_LIVELLOVI);
+    PAN_CONTOECONOMI.SetFieldPanel(PFL_CONTOECONOMI_LIVELLO6, PPQRY_BDAPDCARENCE, "A.LIVELLO_6", "LIVELLO_6", 5, 40, 0, -13997);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_STRPIACONDES, MyGlb.PANEL_LIST, 288, 36, 340, 20, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_STRPIACONDES, MyGlb.PANEL_LIST, 228);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_STRPIACONDES, MyGlb.PANEL_LIST, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_STRPIACONDES, MyGlb.PANEL_LIST, "Descrizione");
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_STRPIACONDES, MyGlb.PANEL_FORM, 4, 220, 664, 44, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_STRPIACONDES, MyGlb.PANEL_FORM, 228);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_STRPIACONDES, MyGlb.PANEL_FORM, 2);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_STRPIACONDES, MyGlb.PANEL_FORM, "Descrizione");
+    PAN_CONTOECONOMI.SetFieldPage(PFL_CONTOECONOMI_STRPIACONDES, -1, GRP_CONTOECONOMI_LIVELLOVI);
+    PAN_CONTOECONOMI.SetFieldPanel(PFL_CONTOECONOMI_STRPIACONDES, PPQRY_STRUPIANCONT, "A.DESCRIZIONE", "STRPIACONDES", 5, 300, 0, -13997);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DARE, MyGlb.PANEL_LIST, 628, 36, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DARE, MyGlb.PANEL_LIST, 100);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DARE, MyGlb.PANEL_LIST, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DARE, MyGlb.PANEL_LIST, "Totale Dare");
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DARE, MyGlb.PANEL_FORM, 4, 148, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DARE, MyGlb.PANEL_FORM, 160);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DARE, MyGlb.PANEL_FORM, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DARE, MyGlb.PANEL_FORM, "Totale Dare");
+    PAN_CONTOECONOMI.SetFieldPage(PFL_CONTOECONOMI_DARE, -1, -1);
+    PAN_CONTOECONOMI.SetFieldPanel(PFL_CONTOECONOMI_DARE, PPQRY_BDAPDCARENCE, "A.DARE", "DARE", 3, 14, 2, -13997);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_AVERE, MyGlb.PANEL_LIST, 764, 36, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_AVERE, MyGlb.PANEL_LIST, 144);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_AVERE, MyGlb.PANEL_LIST, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_AVERE, MyGlb.PANEL_LIST, "Totale Avere");
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_AVERE, MyGlb.PANEL_FORM, 4, 172, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_AVERE, MyGlb.PANEL_FORM, 160);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_AVERE, MyGlb.PANEL_FORM, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_AVERE, MyGlb.PANEL_FORM, "Totale Avere");
+    PAN_CONTOECONOMI.SetFieldPage(PFL_CONTOECONOMI_AVERE, -1, -1);
+    PAN_CONTOECONOMI.SetFieldPanel(PFL_CONTOECONOMI_AVERE, PPQRY_BDAPDCARENCE, "A.AVERE", "AVERE", 3, 14, 2, -13997);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SALDO, MyGlb.PANEL_LIST, 900, 36, 148, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SALDO, MyGlb.PANEL_LIST, 104);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SALDO, MyGlb.PANEL_LIST, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SALDO, MyGlb.PANEL_LIST, "Saldo");
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SALDO, MyGlb.PANEL_FORM, 4, 268, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SALDO, MyGlb.PANEL_FORM, 104);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SALDO, MyGlb.PANEL_FORM, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SALDO, MyGlb.PANEL_FORM, "Saldo");
+    PAN_CONTOECONOMI.SetFieldPage(PFL_CONTOECONOMI_SALDO, -1, -1);
+    PAN_CONTOECONOMI.SetFieldUnbound(PFL_CONTOECONOMI_SALDO, true);
+    PAN_CONTOECONOMI.SetFieldPanel(PFL_CONTOECONOMI_SALDO, PPQRY_BDAPDCARENCE, "CASE WHEN NVL(GET_TIPO_CALCOLO_SALDO_ECO(A.LIVELLO_6,~~TBL_DATISESSIONE.SESSIOESERCI~~,'E'), 'D-A') = 'D-A' THEN A.DARE - NVL(A.AVERE, 0) ELSE NVL(A.AVERE, 0) - NVL(A.DARE, 0) END", "SALDO", 3, 28, 6, -13997);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTEINSERI, MyGlb.PANEL_LIST, 628, 36, 64, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTEINSERI, MyGlb.PANEL_LIST, 128);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTEINSERI, MyGlb.PANEL_LIST, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTEINSERI, MyGlb.PANEL_LIST, "UTEN. INSER.");
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTEINSERI, MyGlb.PANEL_FORM, 4, 196, 232, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTEINSERI, MyGlb.PANEL_FORM, 160);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTEINSERI, MyGlb.PANEL_FORM, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTEINSERI, MyGlb.PANEL_FORM, "UTENTE INSERIMENTO");
+    PAN_CONTOECONOMI.SetFieldPage(PFL_CONTOECONOMI_UTENTEINSERI, -1, -1);
+    PAN_CONTOECONOMI.SetFieldPanel(PFL_CONTOECONOMI_UTENTEINSERI, PPQRY_BDAPDCARENCE, "A.UTENTE_INSERIMENTO", "UTENTE_INSERIMENTO", 5, 8, 0, -13997);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAINSERIME, MyGlb.PANEL_LIST, 692, 36, 88, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAINSERIME, MyGlb.PANEL_LIST, 120);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAINSERIME, MyGlb.PANEL_LIST, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAINSERIME, MyGlb.PANEL_LIST, "DATA INSERIMENTO");
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAINSERIME, MyGlb.PANEL_FORM, 4, 220, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAINSERIME, MyGlb.PANEL_FORM, 160);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAINSERIME, MyGlb.PANEL_FORM, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAINSERIME, MyGlb.PANEL_FORM, "DATA INSERIMENTO");
+    PAN_CONTOECONOMI.SetFieldPage(PFL_CONTOECONOMI_DATAINSERIME, -1, -1);
+    PAN_CONTOECONOMI.SetFieldPanel(PFL_CONTOECONOMI_DATAINSERIME, PPQRY_BDAPDCARENCE, "A.DATA_INSERIMENTO", "DATA_INSERIMENTO", 6, 10, 0, -13997);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTULTIAGG, MyGlb.PANEL_LIST, 780, 36, 72, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTULTIAGG, MyGlb.PANEL_LIST, 124);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTULTIAGG, MyGlb.PANEL_LIST, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTULTIAGG, MyGlb.PANEL_LIST, "UTEN. ULT. AGG");
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTULTIAGG, MyGlb.PANEL_FORM, 4, 244, 240, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTULTIAGG, MyGlb.PANEL_FORM, 160);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTULTIAGG, MyGlb.PANEL_FORM, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_UTENTULTIAGG, MyGlb.PANEL_FORM, "UTENTE ULTIMO AGG");
+    PAN_CONTOECONOMI.SetFieldPage(PFL_CONTOECONOMI_UTENTULTIAGG, -1, -1);
+    PAN_CONTOECONOMI.SetFieldPanel(PFL_CONTOECONOMI_UTENTULTIAGG, PPQRY_BDAPDCARENCE, "A.UTENTE_ULTIMO_AGG", "UTENTE_ULTIMO_AGG", 5, 8, 0, -13997);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAULTIMAGG, MyGlb.PANEL_LIST, 852, 36, 88, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAULTIMAGG, MyGlb.PANEL_LIST, 116);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAULTIMAGG, MyGlb.PANEL_LIST, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAULTIMAGG, MyGlb.PANEL_LIST, "DATA ULTIMO AGG");
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAULTIMAGG, MyGlb.PANEL_FORM, 4, 268, 256, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAULTIMAGG, MyGlb.PANEL_FORM, 160);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAULTIMAGG, MyGlb.PANEL_FORM, 1);
+    PAN_CONTOECONOMI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_DATAULTIMAGG, MyGlb.PANEL_FORM, "DATA ULTIMO AGG");
+    PAN_CONTOECONOMI.SetFieldPage(PFL_CONTOECONOMI_DATAULTIMAGG, -1, -1);
+    PAN_CONTOECONOMI.SetFieldPanel(PFL_CONTOECONOMI_DATAULTIMAGG, PPQRY_BDAPDCARENCE, "A.DATA_ULTIMO_AGG", "DATA_ULTIMO_AGG", 6, 10, 0, -13997);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIDARE, MyGlb.PANEL_LIST, 628, 240, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIDARE, MyGlb.PANEL_LIST, 0);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIDARE, MyGlb.PANEL_LIST, 1);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIDARE, MyGlb.PANEL_FORM, 372, 264, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIDARE, MyGlb.PANEL_FORM, 0);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIDARE, MyGlb.PANEL_FORM, 1);
+    PAN_CONTOECONOMI.SetFieldPage(PFL_CONTOECONOMI_SOMMADIDARE, -1, -1);
+    PAN_CONTOECONOMI.SetFieldPanel(PFL_CONTOECONOMI_SOMMADIDARE, -1, "", "SOMMADIDARE", 0, 0, 0, -13997);
+    PAN_CONTOECONOMI.set_Alignment(PFL_CONTOECONOMI_SOMMADIDARE, 4);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIAVERE, MyGlb.PANEL_LIST, 764, 240, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIAVERE, MyGlb.PANEL_LIST, 0);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIAVERE, MyGlb.PANEL_LIST, 1);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIAVERE, MyGlb.PANEL_FORM, 380, 272, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIAVERE, MyGlb.PANEL_FORM, 0);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADIAVERE, MyGlb.PANEL_FORM, 1);
+    PAN_CONTOECONOMI.SetFieldPage(PFL_CONTOECONOMI_SOMMADIAVERE, -1, -1);
+    PAN_CONTOECONOMI.SetFieldPanel(PFL_CONTOECONOMI_SOMMADIAVERE, -1, "", "SOMMADIAVERE", 0, 0, 0, -13997);
+    PAN_CONTOECONOMI.set_Alignment(PFL_CONTOECONOMI_SOMMADIAVERE, 4);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADISALDO, MyGlb.PANEL_LIST, 900, 240, 148, 20, MyGlb.RESMODE_MOVE, MyGlb.RESMODE_MOVE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADISALDO, MyGlb.PANEL_LIST, 0);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADISALDO, MyGlb.PANEL_LIST, 1);
+    PAN_CONTOECONOMI.SetRect(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADISALDO, MyGlb.PANEL_FORM, 388, 280, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_CONTOECONOMI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADISALDO, MyGlb.PANEL_FORM, 0);
+    PAN_CONTOECONOMI.SetNumRow(MyGlb.OBJ_FIELD, PFL_CONTOECONOMI_SOMMADISALDO, MyGlb.PANEL_FORM, 1);
+    PAN_CONTOECONOMI.SetFieldPage(PFL_CONTOECONOMI_SOMMADISALDO, -1, -1);
+    PAN_CONTOECONOMI.SetFieldPanel(PFL_CONTOECONOMI_SOMMADISALDO, -1, "", "SOMMADISALDO", 0, 0, 0, -13997);
+    PAN_CONTOECONOMI.set_Alignment(PFL_CONTOECONOMI_SOMMADISALDO, 4);
+  }
+
+  private void PAN_CONTOECONOMI_InitQueries()
+  {
+    StringBuffer SQL;
+
+    PAN_CONTOECONOMI.SetSize(MyGlb.OBJ_QUERY, 3);
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  'A' as APRIMISPROG ");
+    SQL.append("from ");
+    SQL.append("  DUAL A ");
+    SQL.append("where ((NOT (~~ESERCIZIO~~) IS NULL)) ");
+    PAN_CONTOECONOMI.SetQuery(PPQRY_APRI, 0, SQL, -1, "");
+    PAN_CONTOECONOMI.SetQueryDB(PPQRY_APRI, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_CONTOECONOMI.SetMasterTable(PPQRY_APRI, "DUAL");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCRIZIONE as STRPIACONDES ");
+    SQL.append("from ");
+    SQL.append("  STRUTTURA_PIANO_CONTI A, ");
+    SQL.append("  TIPI_STRUTTURA_ECO B ");
+    SQL.append("where (B.PROGRESSIVO = A.PROGR_STRUTTURA) ");
+    SQL.append("and   ((~~TBL_DATISESSIONE.SESSIOESERCI~~ BETWEEN B.ESERCIZIO_INIZIO AND NVL(B.ESERCIZIO_FINE, 9999))) ");
+    SQL.append("and   (A.TIPO_PIANO = 'E') ");
+    SQL.append("and   (A.LIVELLO = 6) ");
+    SQL.append("and   (A.CODICE = ~~LIVELLO_6~~) ");
+    PAN_CONTOECONOMI.SetQuery(PPQRY_STRUPIANCONT, 0, SQL, -1, "");
+    PAN_CONTOECONOMI.SetQueryDB(PPQRY_STRUPIANCONT, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_CONTOECONOMI.SetMasterTable(PPQRY_STRUPIANCONT, "STRUTTURA_PIANO_CONTI");
+    PAN_CONTOECONOMI.SetIMDB(IMDB, "PQRY_BDAPDCARENCE", true);
+    PAN_CONTOECONOMI.set_SetString(MyGlb.MASTER_ROWNAME, "BDAP DCAREND CE");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.ESERCIZIO as ESERCIZIO, ");
+    SQL.append("  A.MISSIONE as MISSIONE, ");
+    SQL.append("  A.PROGRAMMA as PROGRAMMA, ");
+    SQL.append("  A.LIVELLO_6 as LIVELLO_6, ");
+    SQL.append("  A.DARE as DARE, ");
+    SQL.append("  A.AVERE as AVERE, ");
+    SQL.append("  A.UTENTE_INSERIMENTO as UTENTE_INSERIMENTO, ");
+    SQL.append("  A.DATA_INSERIMENTO as DATA_INSERIMENTO, ");
+    SQL.append("  A.UTENTE_ULTIMO_AGG as UTENTE_ULTIMO_AGG, ");
+    SQL.append("  A.DATA_ULTIMO_AGG as DATA_ULTIMO_AGG, ");
+    SQL.append("  CASE WHEN NVL(GET_TIPO_CALCOLO_SALDO_ECO(A.LIVELLO_6,~~TBL_DATISESSIONE.SESSIOESERCI~~,'E'), 'D-A') = 'D-A' THEN A.DARE - NVL(A.AVERE, 0) ELSE NVL(A.AVERE, 0) - NVL(A.DARE, 0) END as SALDO ");
+    PAN_CONTOECONOMI.SetQuery(PPQRY_BDAPDCARENCE, 0, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("from ");
+    SQL.append("  BDAP_DCAREND_CE A ");
+    PAN_CONTOECONOMI.SetQuery(PPQRY_BDAPDCARENCE, 1, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("where (A.ESERCIZIO = ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    PAN_CONTOECONOMI.SetQuery(PPQRY_BDAPDCARENCE, 2, SQL, -1, "");
+    SQL = new StringBuffer();
+    PAN_CONTOECONOMI.SetQuery(PPQRY_BDAPDCARENCE, 3, SQL, -1, "");
+    SQL = new StringBuffer();
+    PAN_CONTOECONOMI.SetQuery(PPQRY_BDAPDCARENCE, 4, SQL, -1, "");
+    SQL = new StringBuffer();
+    SQL.append("order by ");
+    SQL.append("  A.MISSIONE, ");
+    SQL.append("  A.PROGRAMMA, ");
+    SQL.append("  A.LIVELLO_6 ");
+    PAN_CONTOECONOMI.SetQuery(PPQRY_BDAPDCARENCE, 5, SQL, -1, "");
+    PAN_CONTOECONOMI.SetQueryDB(PPQRY_BDAPDCARENCE, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_CONTOECONOMI.SetMasterTable(0, "BDAP_DCAREND_CE");
+    PAN_CONTOECONOMI.AddToSortList(PFL_CONTOECONOMI_MISSIONE, true);
+    PAN_CONTOECONOMI.AddToSortList(PFL_CONTOECONOMI_PROGRAMMA, true);
+    PAN_CONTOECONOMI.AddToSortList(PFL_CONTOECONOMI_LIVELLO6, true);
+    //
+    // Rieseguo la query se il pannello era già in stato DATA
+    if (PAN_CONTOECONOMI.Status() == 2)
+    {
+      int oldListQBE = PAN_CONTOECONOMI.iUseListQBE;
+      PAN_CONTOECONOMI.iUseListQBE = 0;
+      PAN_CONTOECONOMI.PanelCommand(Glb.PCM_SEARCH);
+      PAN_CONTOECONOMI.PanelCommand(Glb.PCM_FIND);
+      PAN_CONTOECONOMI.iUseListQBE = oldListQBE;
+    }
+  }
+
+  private void PAN_PANNELELABOR_Init()
+  {
+
+    PAN_PANNELELABOR.SetSize(MyGlb.OBJ_PAGE, 0);
+    PAN_PANNELELABOR.SetSize(MyGlb.OBJ_GROUP, 0);
+    PAN_PANNELELABOR.SetSize(MyGlb.OBJ_FIELD, 1);
+    PAN_PANNELELABOR.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_PANNELELABOR_ETICGENEXBRL, "78C2A1A3-9DA9-4396-B68D-B6CB88143889");
+    PAN_PANNELELABOR.set_Header(MyGlb.OBJ_FIELD, PFL_PANNELELABOR_ETICGENEXBRL, "Genera XBRL");
+    PAN_PANNELELABOR.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_PANNELELABOR_ETICGENEXBRL, MyGlb.VIS_STATICBUTTON);
+    PAN_PANNELELABOR.SetImage(MyGlb.OBJ_FIELD, PFL_PANNELELABOR_ETICGENEXBRL, 0, "button1.gif", false);
+    PAN_PANNELELABOR.SetFlags(MyGlb.OBJ_FIELD, PFL_PANNELELABOR_ETICGENEXBRL, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_CANACTIVATE, -1);
+  }
+
+  private void PAN_PANNELELABOR_InitFields()
+  {
+
+    StringBuffer SQL = new StringBuffer();
+    PAN_PANNELELABOR.SetRect(MyGlb.OBJ_FIELD, PFL_PANNELELABOR_ETICGENEXBRL, MyGlb.PANEL_LIST, 688, 264, 80, 32, MyGlb.RESMODE_MOVE, MyGlb.RESMODE_MOVE);
+    PAN_PANNELELABOR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_PANNELELABOR_ETICGENEXBRL, MyGlb.PANEL_LIST, 0);
+    PAN_PANNELELABOR.SetNumRow(MyGlb.OBJ_FIELD, PFL_PANNELELABOR_ETICGENEXBRL, MyGlb.PANEL_LIST, 1);
+    PAN_PANNELELABOR.SetRect(MyGlb.OBJ_FIELD, PFL_PANNELELABOR_ETICGENEXBRL, MyGlb.PANEL_FORM, 724, 12, 80, 32, MyGlb.RESMODE_MOVE, MyGlb.RESMODE_MOVE);
+    PAN_PANNELELABOR.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_PANNELELABOR_ETICGENEXBRL, MyGlb.PANEL_FORM, 0);
+    PAN_PANNELELABOR.SetNumRow(MyGlb.OBJ_FIELD, PFL_PANNELELABOR_ETICGENEXBRL, MyGlb.PANEL_FORM, 1);
+    PAN_PANNELELABOR.SetFieldPage(PFL_PANNELELABOR_ETICGENEXBRL, -1, -1);
+    PAN_PANNELELABOR.SetFieldPanel(PFL_PANNELELABOR_ETICGENEXBRL, -1, "", "ETICGENEXBRL", 0, 0, 0, -13997);
+  }
+
+  private void PAN_PANNELELABOR_InitQueries()
+  {
+    StringBuffer SQL;
+
+    PAN_PANNELELABOR.SetSize(MyGlb.OBJ_QUERY, 1);
+    PAN_PANNELELABOR.set_ShowInfoMessages(false);
+    //
+    // Rieseguo la query se il pannello era già in stato DATA
+    if (PAN_PANNELELABOR.Status() == 2)
+    {
+      int oldListQBE = PAN_PANNELELABOR.iUseListQBE;
+      PAN_PANNELELABOR.iUseListQBE = 0;
+      PAN_PANNELELABOR.PanelCommand(Glb.PCM_SEARCH);
+      PAN_PANNELELABOR.PanelCommand(Glb.PCM_FIND);
+      PAN_PANNELELABOR.iUseListQBE = oldListQBE;
+    }
+  }
+
+  
+  
+  // **********************************************
+  // Panel events dispatching
+  // **********************************************
+  public void ValidateCell(IDPanel SrcObj, IDVariant ColIndex, IDVariant CellModified , IDVariant Cancel, IDVariant FldWasModified, IDVariant RowWasModified, IDVariant IsInsert)
+  {
+    if (SrcObj == PAN_DATDERDAPRUS) PAN_DATDERDAPRUS_ValidateCell(ColIndex, CellModified , Cancel, FldWasModified, RowWasModified, IsInsert);
+    if (SrcObj == PAN_DATDERDAPREN) PAN_DATDERDAPREN_ValidateCell(ColIndex, CellModified , Cancel, FldWasModified, RowWasModified, IsInsert);
+    if (SrcObj == PAN_DATIGESTUSCI) PAN_DATIGESTUSCI_ValidateCell(ColIndex, CellModified , Cancel, FldWasModified, RowWasModified, IsInsert);
+    if (SrcObj == PAN_DATIGESTENTR) PAN_DATIGESTENTR_ValidateCell(ColIndex, CellModified , Cancel, FldWasModified, RowWasModified, IsInsert);
+    if (SrcObj == PAN_STATOPATRIMO) PAN_STATOPATRIMO_ValidateCell(ColIndex, CellModified , Cancel, FldWasModified, RowWasModified, IsInsert);
+    if (SrcObj == PAN_CONTOECONOMI) PAN_CONTOECONOMI_ValidateCell(ColIndex, CellModified , Cancel, FldWasModified, RowWasModified, IsInsert);
+    if (SrcObj == PAN_PANNELELABOR) PAN_PANNELELABOR_ValidateCell(ColIndex, CellModified , Cancel, FldWasModified, RowWasModified, IsInsert);
+  }
+  
+  public void ValidateRow(IDPanel SrcObj, IDVariant Cancel)
+  {
+    if (SrcObj == PAN_DATDERDAPRUS) PAN_DATDERDAPRUS_ValidateRow(Cancel);
+    if (SrcObj == PAN_DATDERDAPREN) PAN_DATDERDAPREN_ValidateRow(Cancel);
+    if (SrcObj == PAN_DATIGESTUSCI) PAN_DATIGESTUSCI_ValidateRow(Cancel);
+    if (SrcObj == PAN_DATIGESTENTR) PAN_DATIGESTENTR_ValidateRow(Cancel);
+    if (SrcObj == PAN_STATOPATRIMO) PAN_STATOPATRIMO_ValidateRow(Cancel);
+    if (SrcObj == PAN_CONTOECONOMI) PAN_CONTOECONOMI_ValidateRow(Cancel);
+    if (SrcObj == PAN_PANNELELABOR) PAN_PANNELELABOR_ValidateRow(Cancel);
+  }
+  
+  public void DynamicProperties(IDPanel SrcObj)
+  {
+    if (SrcObj == PAN_DATDERDAPRUS) PAN_DATDERDAPRUS_DynamicProperties();
+    if (SrcObj == PAN_DATDERDAPREN) PAN_DATDERDAPREN_DynamicProperties();
+    if (SrcObj == PAN_DATIGESTUSCI) PAN_DATIGESTUSCI_DynamicProperties();
+    if (SrcObj == PAN_DATIGESTENTR) PAN_DATIGESTENTR_DynamicProperties();
+    if (SrcObj == PAN_STATOPATRIMO) PAN_STATOPATRIMO_DynamicProperties();
+    if (SrcObj == PAN_CONTOECONOMI) PAN_CONTOECONOMI_DynamicProperties();
+    if (SrcObj == PAN_PANNELELABOR) PAN_PANNELELABOR_DynamicProperties();
+  }
+  
+  public void CellActivated(IDPanel SrcObj, IDVariant ColIndex, IDVariant Cancel)
+  {
+    if (SrcObj == PAN_DATDERDAPRUS) PAN_DATDERDAPRUS_CellActivated(ColIndex, Cancel);
+    if (SrcObj == PAN_DATDERDAPREN) PAN_DATDERDAPREN_CellActivated(ColIndex, Cancel);
+    if (SrcObj == PAN_DATIGESTUSCI) PAN_DATIGESTUSCI_CellActivated(ColIndex, Cancel);
+    if (SrcObj == PAN_DATIGESTENTR) PAN_DATIGESTENTR_CellActivated(ColIndex, Cancel);
+    if (SrcObj == PAN_STATOPATRIMO) PAN_STATOPATRIMO_CellActivated(ColIndex, Cancel);
+    if (SrcObj == PAN_CONTOECONOMI) PAN_CONTOECONOMI_CellActivated(ColIndex, Cancel);
+    if (SrcObj == PAN_PANNELELABOR) PAN_PANNELELABOR_CellActivated(ColIndex, Cancel);
+  }
+  
+  public void OnChangePage(IDPanel SrcObj, IDVariant NewPage, IDVariant Cancel)
+  {
+  }
+  
+  public void OnChangeLayout(IDPanel SrcObj, IDVariant NewLayout, IDVariant Cancel)
+  {
+  }
+  
+  public void OnChangeRow(IDPanel SrcObj)
+  {
+  }
+
+  public void OnSelectingRow(IDPanel SrcObj)
+  {
+  }
+
+  public void OnSorting(IDPanel SrcObj, IDVariant FldIdx, IDVariant Cancel)
+  {
+  }
+
+  public void OnChangeSelection(IDPanel SrcObj, IDVariant NewVal, IDVariant Final, IDVariant Cancel)
+  {
+  }
+  
+  public void OnChangeLocking(IDPanel SrcObj, IDVariant NewLocking, IDVariant Cancel)
+  {
+  }
+  
+  public void OnChangeStatus(IDPanel SrcObj, IDVariant OldStatus)
+  {
+  }
+  
+  public void OnPanelCommand(IDPanel SrcObj, IDVariant Command, IDVariant Cancel, IDVariant UserOp)
+  {
+    if (SrcObj == PAN_DATDERDAPRUS) PAN_DATDERDAPRUS_OnPanelCommand(Command, Cancel, UserOp);
+    if (SrcObj == PAN_DATDERDAPREN) PAN_DATDERDAPREN_OnPanelCommand(Command, Cancel, UserOp);
+    if (SrcObj == PAN_DATIGESTUSCI) PAN_DATIGESTUSCI_OnPanelCommand(Command, Cancel, UserOp);
+    if (SrcObj == PAN_DATIGESTENTR) PAN_DATIGESTENTR_OnPanelCommand(Command, Cancel, UserOp);
+    if (SrcObj == PAN_STATOPATRIMO) PAN_STATOPATRIMO_OnPanelCommand(Command, Cancel, UserOp);
+    if (SrcObj == PAN_CONTOECONOMI) PAN_CONTOECONOMI_OnPanelCommand(Command, Cancel, UserOp);
+  }
+  
+  public void BeforeFind(IDPanel SrcObj, IDVariant Cancel)
+  {
+  }
+  
+  public void BeforeInsert(IDPanel SrcObj, IDVariant Cancel)
+  {
+  }
+  
+  public void BeforeUpdate(IDPanel SrcObj, IDVariant Cancel)
+  {
+  }
+
+  public void BeforeBlobUpdate(IDPanel SrcObj, IDVariant Cancel, IDVariant Column, IDVariant Size, IDVariant Extension, IDVariant FilePath)
+  {
+  }
+  
+  public void BeforeDelete(IDPanel SrcObj, IDVariant Cancel)
+  {
+  }
+  
+  public void AfterInsert(IDPanel SrcObj)
+  {
+  }
+  
+  public void AfterUpdate(IDPanel SrcObj)
+  {
+  }
+
+  public void AfterBlobUpdate(IDPanel SrcObj, IDVariant Column, IDVariant Size, IDVariant Extension)
+  {
+  }
+  
+  public void AfterDelete(IDPanel SrcObj)
+  {
+  }    
+
+  public void AfterFind(IDPanel SrcObj, IDVariant CmdFind)
+  {
+  }    
+
+  public void BeforeCommit(IDPanel SrcObj, IDVariant Cancel)
+  {
+  }
+  
+  public void AfterCommit(IDPanel SrcObj, IDVariant RowUpdated, IDVariant RowError)
+  {
+  }  
+
+  public void OnDBError(IDPanel SrcObj, IDVariant Cancel, IDVariant Skip, IDVariant ErrNum, IDVariant ErrMsg, IDVariant NativeErrNum, IDVariant PanOp, IDDocument Doc)
+  {
+    if (SrcObj == PAN_DATDERDAPRUS) PAN_DATDERDAPRUS_OnDBError(Cancel, Skip, ErrNum, ErrMsg, NativeErrNum, PanOp, Doc);
+    if (SrcObj == PAN_DATDERDAPREN) PAN_DATDERDAPREN_OnDBError(Cancel, Skip, ErrNum, ErrMsg, NativeErrNum, PanOp, Doc);
+    if (SrcObj == PAN_DATIGESTUSCI) PAN_DATIGESTUSCI_OnDBError(Cancel, Skip, ErrNum, ErrMsg, NativeErrNum, PanOp, Doc);
+    if (SrcObj == PAN_DATIGESTENTR) PAN_DATIGESTENTR_OnDBError(Cancel, Skip, ErrNum, ErrMsg, NativeErrNum, PanOp, Doc);
+    if (SrcObj == PAN_STATOPATRIMO) PAN_STATOPATRIMO_OnDBError(Cancel, Skip, ErrNum, ErrMsg, NativeErrNum, PanOp, Doc);
+    if (SrcObj == PAN_CONTOECONOMI) PAN_CONTOECONOMI_OnDBError(Cancel, Skip, ErrNum, ErrMsg, NativeErrNum, PanOp, Doc);
+    if (SrcObj == PAN_PANNELELABOR) PAN_PANNELELABOR_OnDBError(Cancel, Skip, ErrNum, ErrMsg, NativeErrNum, PanOp, Doc);
+  }  
+  
+  public void OnDownloadBlob(IDPanel SrcObj, IDVariant Cancel, IDVariant Column, IDVariant Size, IDVariant Extension, IDVariant Inline, IDVariant Filename, IDVariant MimeType)
+  {
+  }
+
+  public void OnPrint(IDPanel SrcObj, IDVariant Cancel, IDVariant Dest, IDVariant SetWC)
+  {
+  }  
+    
+  public void TabClick(OTabView SrcObj, IDVariant PreviousPage, IDVariant Cancel)
+  {
+    if (SrcObj == TAB_DCATABBEVIEW) TAB_DCATABBEVIEW_Click(PreviousPage, Cancel);
+  }    
+
+  public void NodeClick(ATree SrcObj, ATreeNode Node)
+  {
+  }    
+
+  public void OnTreeDropNode(ATree SrcObj, IDVariant SourceHash, IDVariant SourceTreeIndex, IDVariant DestinationHash, IDVariant ShiftKey, IDVariant AltKey, IDVariant ControlKey)
+  {
+  }    
+
+  public void OnTreeExpandNode(ATree SrcObj, IDVariant HashKey, IDVariant Cancel)
+  {
+  }
+  
+  public void OnTreeActivateNode(ATree SrcObj, IDVariant HashKey, IDVariant Cancel)
+  {
+  }
+
+  public void OnTreeChangeSelNode(ATree SrcObj, IDVariant HashKey, IDVariant Selected, IDVariant Cancel, IDVariant Final)
+  {
+  }
+  
+  public void OnTreeDropDoc(ATree SrcObj, IDDocument SourceDoc, IDDocument DestDoc, IDVariant ShiftKey, IDVariant AltKey, IDVariant ControlKey, IDVariant Cancel)
+  {
+  }    
+
+  public void OnTreeExpandDoc(ATree SrcObj, IDDocument Doc, IDVariant Cancel)
+  {
+  }
+  
+  public void OnTreeActivateDoc(ATree SrcObj, IDDocument Doc, IDVariant Cancel)
+  {
+  }
+  
+  public void OnTreeChangeSelDoc(ATree SrcObj, IDDocument Doc, IDVariant Selected, IDVariant Cancel, IDVariant Final)
+  {
+  }
+  
+  public void OnFormattingSection(OBook SrcObj, int SectionID)
+  {
+  }
+
+  public void OnAfterFormattingSection(OBook SrcObj, int SectionID)
+  {
+  }
+
+  public void OnFormattingPage(OBook SrcObj, int PageID)
+  {
+  }
+
+  public void OnChangingSpan(OBook SrcObj, int SpanIdx, IDVariant OldVal, IDVariant NewVal, IDVariant Cancel)
+  {
+  }
+
+  public void OnBoxDrop(OBook SrcObj, IDVariant SrcBoxIdx, IDVariant DstBoxIdx)
+  {
+  }
+
+  public void OnBoxTransform(OBook SrcObj, IDVariant BoxIdx, IDVariant NewX, IDVariant NewY, IDVariant NewW, IDVariant NewH, IDVariant Cancel)
+  {
+  }
+
+  public void OnConnecting(OBook SrcObj, IDConnection DBConn)
+  {
+  }
+
+  public void Activated(OBook SrcObj, int ObjID, String BoxName)
+  {
+  }
+
+  public void OnIMDBUpdate(OBook SrcObj, int ReportIdx)
+  {
+  }
+
+  public void OnPreview(OBook SrcObj)
+  {
+  }
+  
+  public void OnOpenPopup(ACommand SrcObj, IDVariant Direction, IDVariant Cancel) 
+  {
+  }
+  
+  public void OnCmdSetCommand(ACommand SrcObj, IDVariant CmdIdx, IDVariant ChildIdx, IDVariant Cancel) 
+  {
+  }
+  
+  public void OnCmdSetGeneralDrag(ACommand SrcObj, IDVariant DragInfo, IDVariant CmdIdx, IDVariant ChildIdx)
+  {
+  }
+  
+  public void OnCmdSetGeneralDrop(ACommand SrcObj, IDVariant DragInfo, IDVariant CmdIdx, IDVariant ChildIdx)
+  {
+  }
+
+  public void OnChangeCollapse(WebFrame SrcObj, IDVariant Collapse, IDVariant Cancel)
+  {
+  }
+
+  public void OnGraphClick(WebFrame SrcObj, IDVariant NumSerie, IDVariant NumPoint)
+  {
+  }
+
+  public void OnGraphOptions(WebFrame SrcObj, IDVariant Options)
+  {
+  }
+  
+  public void OnRenderToolbar(WebFrame SrcObj, IDVariant CmdIdx, IDVariant Visible)
+  {
+  }
+
+  public void OnBookCommand(OBook SrcObj, IDVariant Command, IDVariant Cancel, IDVariant UserOp)
+  {
+  }
+
+  public void OnCmdSetChangeExpand(ACommand SrcObj, IDVariant Expand, IDVariant Cancel)
+  {
+  }
+
+  public void OnTreeChangeExpandNode(ATree SrcObj, IDVariant HashKey, IDVariant Expanded, IDVariant Cancel)
+  {
+  }
+
+  public void OnTreeChangeExpandDoc(ATree SrcObj, IDDocument Doc, IDVariant Expanded, IDVariant Cancel)
+  {
+  }
+  
+
+  public void OnMouseClick(IDPanel SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant c, IDVariant r, IDVariant cancel)
+  {
+  }
+
+  public void OnMouseDoubleClick(IDPanel SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant c, IDVariant r, IDVariant cancel)
+  {
+  }
+  
+  public void OnMouseClick(OBook SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant boxid, IDVariant cancel)
+  {
+  }
+
+  public void OnMouseDoubleClick(OBook SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant boxid, IDVariant cancel)
+  {
+  }
+  
+  public void OnMouseClick(ATree SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant nodehash, IDDocument doc, IDVariant cancel)
+  {
+  }
+
+  public void OnMouseDoubleClick(ATree SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant nodehash, IDDocument doc, IDVariant cancel)
+  {
+  }
+  
+  public void OnMouseClick(AGraph SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant numserie, IDVariant recordselected, IDVariant cancel)
+  {
+  }
+
+  public void OnMouseDoubleClick(AGraph SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant numserie, IDVariant recordselected, IDVariant cancel)
+  {
+  }
+  
+  public void OnMouseClick(OTabView SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant tabid, IDVariant cancel)
+  {
+  }
+
+  public void OnMouseDoubleClick(OTabView SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant tabid, IDVariant cancel)
+  {
+  }  
+  
+  public void OnReorderColum(IDPanel SrcObj, IDVariant sourcefield, IDVariant targetfield)
+  {
+  }
+  
+  public void OnResizeColum(IDPanel SrcObj, IDVariant sourcefield, IDVariant oldwidth)
+  {
+  }
+  
+
+  public void OnGenericDrag(IDPanel SrcObj, IDVariant draginfo,  IDVariant button, IDVariant colidx)
+  {
+  }
+
+  public void OnGenericDrop(IDPanel SrcObj, IDVariant draginfo, IDVariant cancel, IDVariant button, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant colidx, IDVariant rownum, IDDocument doc)
+  {
+  }
+  
+  public void OnGenericDrag(ATree SrcObj, IDVariant draginfo,  IDVariant button, IDVariant hashkey)
+  {
+  }
+
+  public void OnGenericDrop(ATree SrcObj, IDVariant draginfo, IDVariant cancel, IDVariant button, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant hashkey, IDDocument doc)
+  {
+  }  
+  
+  public void OnGenericDrag(OBook SrcObj, IDVariant draginfo,  IDVariant button, IDVariant boxid)
+  {
+  }
+
+  public void OnGenericDrop(OBook SrcObj, IDVariant draginfo, IDVariant cancel, IDVariant button, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant boxid)
+  {
+  }    
+  
+  public void OnGenericDrag(OTabView SrcObj, IDVariant draginfo, IDVariant button, IDVariant pageindex)
+  {
+  }
+
+  public void OnGenericDrop(OTabView SrcObj, IDVariant draginfo, IDVariant cancel, IDVariant button, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant pageindex)
+  {
+  }
+
+  public void OnExpandingGroup(IDPanel SrcObj, IDVariant expanded, IDVariant userOperation)
+  {
+  }  
+
+  public void OnChangeGroupCollapse(IDPanel SrcObj, IDVariant GrpIndex)
+  {
+  }
+  
+  public void OnShowMultipleSelection(IDPanel SrcObj, IDVariant NewValue, IDVariant Cancel, IDVariant UserOperation)
+  {
+  }
+  
+  public void OnChangeTextSelection(IDPanel SrcObj, IDVariant Field, IDVariant OldSelectionStart, IDVariant OldSelectionEnd)
+  {
+  }
+  
+  public void OnFocus(IDPanel SrcObj, IDVariant Field, IDVariant GotFocus)
+  {
+  }
+  
+  public void OnFrameKeyPress(WebFrame SrcObj, IDVariant KeySet, IDVariant KeyCode, IDVariant Skip)
+  {
+  }
+  
+  public void OnGetLKE(IDPanel SrcObj, IDCachedRowSet RS, IDVariant ntry, IDVariant nullv, IDVariant bskip, IDVariant bcancel, IDVariant fldindex)
+  {
+  }
+  
+  public void OnMouseOver(IDPanel SrcObj, IDVariant Field, IDVariant Row)
+  {
+  }
+  
+  public void OnFieldListVisibilityChanged(IDPanel SrcObj, IDVariant FieldIndex, IDVariant NewValue, IDVariant Final)
+  {
+  }
+}

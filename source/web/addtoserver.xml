@@ -1,0 +1,27 @@
+	<!-- Cfaid Context -->
+	<Context path="/Cfaid" docBase="Cfaid" debug="0" reloadable="true">
+		<!--                                                                             -->
+		<!-- For each DATABASE object defined, please copy the following text structure, -->
+		<!-- configuring each parameter                                                  -->
+		<!-- DBOBJNAME= name of the database object without spaces                       -->
+		<!--                                                                             -->
+		<Resource name="jdbc/DBOBJNAME" auth="SERVLET" type="javax.sql.DataSource"/>
+ 		<ResourceParams name="jdbc/DBOBJNAME">
+ 		<parameter>
+			<name>user</name>
+			<value></value>
+		</parameter>
+	        <parameter>
+			<name>password</name>
+			<value></value>
+		</parameter>
+		<parameter>
+			<name>driverClassName</name>
+			<value>sun.jdbc.odbc.JdbcOdbcDriver</value>
+		</parameter>
+		<parameter>
+			<name>driverName</name>
+			<value>jdbc:odbc:DBOBJNAME</value>
+		</parameter>
+		</ResourceParams>
+	</Context>

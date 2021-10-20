@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperTemplate PUBLIC "-//JasperReports//DTD Template//EN" "http://jasperreports.sourceforge.net/dtds/jaspertemplate.dtd">
+
+<jasperTemplate>
+	<style name="Body" isDefault="false" forecolor="#354358" fontName="SansSerif" fontSize="10"/>
+	<style name="H1" isDefault="false" style="Body" forecolor="#6B8796" hAlign="Left" vAlign="Middle" fontSize="16" isBold="true"/>
+	<style name="H1 Evidenziato" isDefault="false" style="Body" mode="Opaque" forecolor="#5B6679" backcolor="#BBCCD3" hAlign="Left" vAlign="Middle" fontSize="16" isBold="true"/>
+	<style name="H2" isDefault="false" style="Body" forecolor="#7F8C93" vAlign="Middle" fontSize="13"/>
+	<style name="H2 Evidenziato" isDefault="false" style="H2" mode="Opaque" forecolor="#5B6679" backcolor="#BBCCD3">
+		<box topPadding="1" leftPadding="2" bottomPadding="1" rightPadding="2">
+			<pen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="H3" isDefault="false" style="Body" forecolor="#6B8796" vAlign="Middle" fontSize="9"/>
+	<style name="H4" isDefault="false" style="Body" forecolor="#6B8796" vAlign="Middle" fontSize="8"/>
+	<style name="Ente" isDefault="false" style="H1" hAlign="Left" vAlign="Middle"/>
+	<style name="Titolo" isDefault="false" style="H2" hAlign="Left" vAlign="Middle"/>
+	<style name="IntPage" isDefault="false" style="H3" fontSize="9" isBold="true"/>
+	<style name="PiePage" isDefault="false" style="H4" vAlign="Middle" fontSize="10" isBold="true"/>
+	<style name="CopyRight" isDefault="false" forecolor="#B2BABE" vAlign="Middle"/>
+	<style name="ParameterLabel" isDefault="false" forecolor="#7F8C93" vAlign="Middle" fontSize="11" isBold="true"/>
+	<style name="Parameter" isDefault="false" forecolor="#90ADBA" vAlign="Middle" fontSize="11"/>
+	<style name="ParameterBackground" isDefault="false" mode="Opaque" forecolor="#FFFFFF" backcolor="#F1F5F6"/>
+	<style name="Label" isDefault="false" mode="Opaque" forecolor="#5B6679" backcolor="#DCE4E9" vAlign="Middle" fontSize="10" isBold="true">
+		<pen lineColor="#FFFFFF"/>
+		<box topPadding="1" leftPadding="2" bottomPadding="1" rightPadding="2">
+			<pen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+			<topPen lineColor="#FFFFFF"/>
+			<leftPen lineColor="#FFFFFF"/>
+			<bottomPen lineColor="#FFFFFF"/>
+			<rightPen lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="Field" isDefault="false" vAlign="Middle" fontSize="12"/>
+	<style name="FieldImporto" isDefault="false" hAlign="Right" vAlign="Middle" fontSize="12"/>
+	<style name="LabelImporto" isDefault="false" mode="Opaque" forecolor="#5B6679" backcolor="#DCE4E9" hAlign="Right" vAlign="Middle" fontSize="10" isBold="true">
+		<pen lineColor="#FFFFFF"/>
+		<box topPadding="1" leftPadding="2" bottomPadding="1" rightPadding="2">
+			<pen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+			<topPen lineColor="#FFFFFF"/>
+			<leftPen lineColor="#FFFFFF"/>
+			<bottomPen lineColor="#FFFFFF"/>
+			<rightPen lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="LabelTotale" isDefault="false" mode="Opaque" forecolor="#5B6679" backcolor="#DCE4E9" vAlign="Middle" fontSize="12" isBold="true">
+		<pen lineColor="#FFFFFF"/>
+		<box topPadding="1" leftPadding="2" bottomPadding="1" rightPadding="2">
+			<pen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+			<topPen lineColor="#FFFFFF"/>
+			<leftPen lineColor="#FFFFFF"/>
+			<bottomPen lineColor="#FFFFFF"/>
+			<rightPen lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="FieldTotale" isDefault="false" mode="Opaque" forecolor="#5B6679" backcolor="#DCE4E9" vAlign="Middle" fontSize="12" isBold="true">
+		<pen lineColor="#FFFFFF"/>
+		<box topPadding="1" leftPadding="2" bottomPadding="1" rightPadding="2">
+			<pen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+			<topPen lineColor="#FFFFFF"/>
+			<leftPen lineColor="#FFFFFF"/>
+			<bottomPen lineColor="#FFFFFF"/>
+			<rightPen lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="FieldTotaleImporto" isDefault="false" style="FieldTotale" mode="Opaque" forecolor="#5B6679" backcolor="#DCE4E9" hAlign="Right" vAlign="Middle" fontSize="12">
+		<pen lineColor="#FFFFFF"/>
+		<box topPadding="1" leftPadding="2" bottomPadding="1" rightPadding="2">
+			<pen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+			<topPen lineColor="#FFFFFF"/>
+			<leftPen lineColor="#FFFFFF"/>
+			<bottomPen lineColor="#FFFFFF"/>
+			<rightPen lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="LabelTotaleImporto" isDefault="false" style="LabelTotale" hAlign="Right"/>
+	<style name="PageHeaderBackground" isDefault="false" mode="Opaque" forecolor="#F1F5F6" backcolor="#F1F5F6"/>
+	<style name="Warning" isDefault="false" mode="Opaque" forecolor="#FFFFFF" backcolor="#F89507" hAlign="Center" vAlign="Middle" fontSize="12" isBold="true"/>
+	<style name="Error" isDefault="false" mode="Opaque" forecolor="#FFFFFF" backcolor="#BE3730" hAlign="Center" fontSize="12" isBold="true"/>
+	<style name="Success" isDefault="false" mode="Opaque" forecolor="#FFFFFF" backcolor="#52A452" hAlign="Center" fontSize="12" isBold="true"/>
+	<style name="Bordo Evidenziato" isDefault="false" style="LabelTotaleImporto">
+		<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+			<pen lineWidth="1.0" lineColor="#5B6679"/>
+			<topPen lineWidth="1.0" lineColor="#5B6679"/>
+			<leftPen lineWidth="1.0" lineColor="#5B6679"/>
+			<bottomPen lineWidth="1.0" lineColor="#5B6679"/>
+			<rightPen lineWidth="1.0" lineColor="#5B6679"/>
+		</box>
+	</style>
+	<style name="Linea Evidenziato" isDefault="false" mode="Opaque" forecolor="#5B6679" backcolor="#DCE4E9" hAlign="Right" vAlign="Middle" fontSize="12" isBold="true">
+		<box>
+			<topPen lineWidth="1.0"/>
+		</box>
+	</style>
+</jasperTemplate>

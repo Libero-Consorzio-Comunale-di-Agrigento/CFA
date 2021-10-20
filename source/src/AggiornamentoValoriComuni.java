@@ -1,0 +1,2987 @@
+// **********************************************
+// Aggiornamento Valori Comuni
+// Project : Cfa
+// **********************************************
+
+import com.progamma.is.*;
+import com.progamma.*;
+import com.progamma.idre.*;
+import com.progamma.doc.*;
+
+import java.io.*;
+import java.util.*;
+import java.sql.*;
+
+
+public final class AggiornamentoValoriComuni extends MyWebForm implements Serializable
+{  
+  MyWebEntryPoint MainFrm;
+  
+  // Frame constant definitions
+  private static int GRP_VALORICOMUNI_DELIBERA = 0;
+  private static int GRP_VALORICOMUNI_DESCRIZIONE = 1;
+  private static int GRP_VALORICOMUNI_CONTABILE = 2;
+  private static int GRP_VALORICOMUNI_MANDATINFORM = 3;
+  private static int GRP_VALORICOMUNI_DATAREGISTRA = 4;
+  private static int GRP_VALORICOMUNI_CAUSALE = 5;
+  private static int GRP_VALORICOMUNI_BOLLO = 6;
+  private static int GRP_VALORICOMUNI_UFFICIO = 7;
+  private static int GRP_VALORICOMUNI_TIPOVINCOLO = 8;
+  private static int GRP_VALORICOMUNI_MOTIVESCLCIG = 9;
+  private static int GRP_VALORICOMUNI_DIVERSBENEFI = 10;
+  private static int GRP_VALORICOMUNI_CODVLIVELLO = 11;
+
+  private static int PFL_VALORICOMUNI_INTESTALABEL = 0;
+  private static int PFL_VALORICOMUNI_ANNODISTINTA = 1;
+  private static int PFL_VALORICOMUNI_NUMERODISTIN = 2;
+  private static int PFL_VALORICOMUNI_CKDELIBERA = 3;
+  private static int PFL_VALORICOMUNI_SEDEDEL = 4;
+  private static int PFL_VALORICOMUNI_TRATDELILABE = 5;
+  private static int PFL_VALORICOMUNI_NUMERODEL = 6;
+  private static int PFL_VALORICOMUNI_ANNODEL = 7;
+  private static int PFL_VALORICOMUNI_BARRDELILABE = 8;
+  private static int PFL_VALORICOMUNI_SCELDELIFORM = 9;
+  private static int PFL_VALORICOMUNI_INEMISSIONE = 10;
+  private static int PFL_VALORICOMUNI_CKDESCRIZION = 11;
+  private static int PFL_VALORICOMUNI_DESCRIZIONE = 12;
+  private static int PFL_VALORICOMUNI_DESCRDADELIB = 13;
+  private static int PFL_VALORICOMUNI_CKCONTABILE = 14;
+  private static int PFL_VALORICOMUNI_NUMEROCONTAB = 15;
+  private static int PFL_VALORICOMUNI_DATACONTABIL = 16;
+  private static int PFL_VALORICOMUNI_NUMECONTLABE = 17;
+  private static int PFL_VALORICOMUNI_DATACONTLABE = 18;
+  private static int PFL_VALORICOMUNI_LABELDX = 19;
+  private static int PFL_VALORICOMUNI_CKMANDAINFOR = 20;
+  private static int PFL_VALORICOMUNI_SPESE = 21;
+  private static int PFL_VALORICOMUNI_SCADENZA = 22;
+  private static int PFL_VALORICOMUNI_COMMISSIONI = 23;
+  private static int PFL_VALORICOMUNI_ALLEGATI = 24;
+  private static int PFL_VALORICOMUNI_INFOTESORIER = 25;
+  private static int PFL_VALORICOMUNI_CKDATAREG = 26;
+  private static int PFL_VALORICOMUNI_DATAREG = 27;
+  private static int PFL_VALORICOMUNI_ETICHETLABE1 = 28;
+  private static int PFL_VALORICOMUNI_CKCAUSALE = 29;
+  private static int PFL_VALORICOMUNI_CAUSALE = 30;
+  private static int PFL_VALORICOMUNI_CKBOLLO = 31;
+  private static int PFL_VALORICOMUNI_BOLLO = 32;
+  private static int PFL_VALORICOMUNI_ETICHETLABE2 = 33;
+  private static int PFL_VALORICOMUNI_CKUFFICIO = 34;
+  private static int PFL_VALORICOMUNI_UFFICIO = 35;
+  private static int PFL_VALORICOMUNI_CKTIPOVINCOL = 36;
+  private static int PFL_VALORICOMUNI_TIPOVINCOLO = 37;
+  private static int PFL_VALORICOMUNI_ETICHETLABEL = 38;
+  private static int PFL_VALORICOMUNI_CKESCLUSICIG = 39;
+  private static int PFL_VALORICOMUNI_ESCLUSIONCIG = 40;
+  private static int PFL_VALORICOMUNI_CKDIVERSOBEN = 41;
+  private static int PFL_VALORICOMUNI_CODICDIVEBEN = 42;
+  private static int PFL_VALORICOMUNI_BENBENEFICIA = 43;
+  private static int PFL_VALORICOMUNI_SELEZISOGGET = 44;
+  private static int PFL_VALORICOMUNI_NUMQTNDIVBEN = 45;
+  private static int PFL_VALORICOMUNI_T02DESCRIZIO = 46;
+  private static int PFL_VALORICOMUNI_CKLIVELLO5 = 47;
+  private static int PFL_VALORICOMUNI_CODLIVELLO5 = 48;
+  private static int PFL_VALORICOMUNI_DESCIZLIVEL5 = 49;
+  private static int PFL_VALORICOMUNI_CONFERMLABEL = 50;
+
+  private static int PPQRY_PARAMETRI407 = 0;
+
+  private static int PPQRY_BEN = 1;
+  private static int PPQRY_QTN = 2;
+  private static int PPQRY_LIVELLO5 = 3;
+
+  private static int PPQRY_TIPISPESMINF = 4;
+  private static int PPQRY_T58 = 5;
+  private static int PPQRY_T60 = 6;
+  private static int PPQRY_T53 = 7;
+  private static int PPQRY_VINCOLI = 8;
+  private static int PPQRY_ATTRIBUTIOPI = 9;
+
+
+  IDPanel PAN_VALORICOMUNI;
+
+  // Definition of Global Variables
+
+ 
+  // **********************************************
+  // Inizializzatore tabelle IMDB di form
+  // **********************************************
+  public static void ImdbInit(IMDBObj IMDB)
+  {
+    Init_TBL_VALORICOMUNI(IMDB);
+    //
+    //
+    Init_PQRY_PARAMETRI407(IMDB);
+    Init_PQRY_PARAMETRI407_RS(IMDB);
+  }
+
+  // IMDB DDL Procedures
+  private static void Init_TBL_VALORICOMUNI(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef5.TBL_VALORICOMUNI, 36);
+    IMDB.set_TblCode(IMDBDef5.TBL_VALORICOMUNI, "TBL_VALORICOMUNI");
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_ANNO_DISTINTA, "ANNO_DISTINTA");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_ANNO_DISTINTA,1,4,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_NUMERO_DISTINTA, "NUMERO_DISTINTA");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_NUMERO_DISTINTA,1,6,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKDEL, "VALOCOMCKDEL");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKDEL,5,2,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_ANNO_DEL, "ANNO_DEL");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_ANNO_DEL,1,4,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_NUMERO_DEL, "NUMERO_DEL");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_NUMERO_DEL,1,6,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_SEDE_DEL, "SEDE_DEL");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_SEDE_DEL,5,4,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKDES, "VALOCOMCKDES");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKDES,5,2,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_DESCRIZIONE, "DESCRIZIONE");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_DESCRIZIONE,5,140,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMCKINEM, "VALCOMCKINEM");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMCKINEM,5,2,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALOCOMINEMI, "VALOCOMINEMI");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALOCOMINEMI,5,2,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKCAU, "VALOCOMCKCAU");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKCAU,5,2,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_CAUSALE, "CAUSALE");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_CAUSALE,1,4,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKBOL, "VALOCOMCKBOL");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKBOL,5,2,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_BOLLO, "BOLLO");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_BOLLO,1,2,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMCKTIVI, "VALCOMCKTIVI");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMCKTIVI,5,2,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_TIPO_VINCOLO, "TIPO_VINCOLO");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_TIPO_VINCOLO,1,6,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKUFF, "VALOCOMCKUFF");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKUFF,5,2,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_UFFICIO, "UFFICIO");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_UFFICIO,1,5,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKCON, "VALOCOMCKCON");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKCON,5,2,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_NUMERO_CONTABILE, "NUMERO_CONTABILE");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_NUMERO_CONTABILE,5,10,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_DATA_CONTABILE, "DATA_CONTABILE");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_DATA_CONTABILE,8,19,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMCKMAIN, "VALCOMCKMAIN");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMCKMAIN,5,2,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_SPESE, "SPESE");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_SPESE,1,1,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_SCADENZA, "SCADENZA");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_SCADENZA,8,19,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_ALLEGATI, "ALLEGATI");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_ALLEGATI,5,150,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_COMMISSIONI, "COMMISSIONI");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_COMMISSIONI,1,1,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_INFO_TESORIERE, "INFO_TESORIERE");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_INFO_TESORIERE,5,200,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMCKDARE, "VALCOMCKDARE");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMCKDARE,5,2,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMDATREG, "VALCOMDATREG");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMDATREG,6,10,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMCKESCI, "VALCOMCKESCI");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMCKESCI,5,2,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_ESCLUSIONE_CIG, "ESCLUSIONE_CIG");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_ESCLUSIONE_CIG,5,50,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMCKDIBE, "VALCOMCKDIBE");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMCKDIBE,5,2,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMCODIBE, "VALCOMCODIBE");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMCODIBE,1,6,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VACONUQTDIBE, "VACONUQTDIBE");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VACONUQTDIBE,1,2,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMCKLIV5, "VALCOMCKLIV5");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_VALCOMCKLIV5,5,2,0);
+    IMDB.set_FldCode(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_COD_LIVELLO_5, "COD_LIVELLO_5");
+    IMDB.SetFldParams(IMDBDef5.TBL_VALORICOMUNI,IMDBDef5.FLD_VALORICOMUNI_COD_LIVELLO_5,3,10,0);
+    IMDB.TblAddNew(IMDBDef5.TBL_VALORICOMUNI, 0);
+  }
+
+  private static void Init_PQRY_PARAMETRI407(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef14.PQRY_PARAMETRI407, 36);
+    IMDB.set_TblCode(IMDBDef14.PQRY_PARAMETRI407, "PQRY_PARAMETRI407");
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_ANNO_DISTINTA, "ANNO_DISTINTA");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_ANNO_DISTINTA,1,4,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_NUMERO_DISTINTA, "NUMERO_DISTINTA");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_NUMERO_DISTINTA,1,6,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKDEL, "VALOCOMCKDEL");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKDEL,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_ANNO_DEL, "ANNO_DEL");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_ANNO_DEL,1,4,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_NUMERO_DEL, "NUMERO_DEL");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_NUMERO_DEL,1,6,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_SEDE_DEL, "SEDE_DEL");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_SEDE_DEL,5,4,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKDES, "VALOCOMCKDES");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKDES,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_DESCRIZIONE, "DESCRIZIONE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_DESCRIZIONE,5,140,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALOCOMINEMI, "VALOCOMINEMI");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALOCOMINEMI,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKINEM, "VALCOMCKINEM");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKINEM,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKCAU, "VALOCOMCKCAU");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKCAU,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_CAUSALE, "CAUSALE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_CAUSALE,1,4,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKBOL, "VALOCOMCKBOL");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKBOL,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_BOLLO, "BOLLO");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_BOLLO,1,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKTIVI, "VALCOMCKTIVI");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKTIVI,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_TIPO_VINCOLO, "TIPO_VINCOLO");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_TIPO_VINCOLO,1,6,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKUFF, "VALOCOMCKUFF");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKUFF,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_UFFICIO, "UFFICIO");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_UFFICIO,1,5,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKCON, "VALOCOMCKCON");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKCON,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_NUMERO_CONTABILE, "NUMERO_CONTABILE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_NUMERO_CONTABILE,5,10,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_DATA_CONTABILE, "DATA_CONTABILE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_DATA_CONTABILE,8,19,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKMAIN, "VALCOMCKMAIN");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKMAIN,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_SPESE, "SPESE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_SPESE,1,1,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_SCADENZA, "SCADENZA");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_SCADENZA,8,19,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_ALLEGATI, "ALLEGATI");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_ALLEGATI,5,150,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_COMMISSIONI, "COMMISSIONI");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_COMMISSIONI,1,1,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_INFO_TESORIERE, "INFO_TESORIERE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_INFO_TESORIERE,5,200,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKDARE, "VALCOMCKDARE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKDARE,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMDATREG, "VALCOMDATREG");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMDATREG,6,10,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKESCI, "VALCOMCKESCI");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKESCI,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_ESCLUSIONE_CIG, "ESCLUSIONE_CIG");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_ESCLUSIONE_CIG,5,50,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKDIBE, "VALCOMCKDIBE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKDIBE,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMCODIBE, "VALCOMCODIBE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMCODIBE,1,6,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VACONUQTDIBE, "VACONUQTDIBE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VACONUQTDIBE,1,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKLIV5, "VALCOMCKLIV5");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKLIV5,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_COD_LIVELLO_5, "COD_LIVELLO_5");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407,IMDBDef14.PQSL_PARAMETRI407_COD_LIVELLO_5,3,10,0);
+    IMDB.TblAddNew(IMDBDef14.PQRY_PARAMETRI407, 0);
+  }
+
+  private static void Init_PQRY_PARAMETRI407_RS(IMDBObj IMDB)
+  {
+    IMDB.set_TblNumField(IMDBDef14.PQRY_PARAMETRI407_RS, 36);
+    IMDB.set_TblCode(IMDBDef14.PQRY_PARAMETRI407_RS, "PQRY_PARAMETRI407_RS");
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_ANNO_DISTINTA, "ANNO_DISTINTA");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_ANNO_DISTINTA,1,4,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_NUMERO_DISTINTA, "NUMERO_DISTINTA");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_NUMERO_DISTINTA,1,6,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKDEL, "VALOCOMCKDEL");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKDEL,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_ANNO_DEL, "ANNO_DEL");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_ANNO_DEL,1,4,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_NUMERO_DEL, "NUMERO_DEL");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_NUMERO_DEL,1,6,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_SEDE_DEL, "SEDE_DEL");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_SEDE_DEL,5,4,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKDES, "VALOCOMCKDES");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKDES,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_DESCRIZIONE, "DESCRIZIONE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_DESCRIZIONE,5,140,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALOCOMINEMI, "VALOCOMINEMI");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALOCOMINEMI,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKINEM, "VALCOMCKINEM");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKINEM,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKCAU, "VALOCOMCKCAU");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKCAU,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_CAUSALE, "CAUSALE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_CAUSALE,1,4,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKBOL, "VALOCOMCKBOL");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKBOL,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_BOLLO, "BOLLO");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_BOLLO,1,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKTIVI, "VALCOMCKTIVI");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKTIVI,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_TIPO_VINCOLO, "TIPO_VINCOLO");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_TIPO_VINCOLO,1,6,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKUFF, "VALOCOMCKUFF");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKUFF,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_UFFICIO, "UFFICIO");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_UFFICIO,1,5,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKCON, "VALOCOMCKCON");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKCON,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_NUMERO_CONTABILE, "NUMERO_CONTABILE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_NUMERO_CONTABILE,5,10,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_DATA_CONTABILE, "DATA_CONTABILE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_DATA_CONTABILE,8,19,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKMAIN, "VALCOMCKMAIN");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKMAIN,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_SPESE, "SPESE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_SPESE,1,1,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_SCADENZA, "SCADENZA");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_SCADENZA,8,19,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_ALLEGATI, "ALLEGATI");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_ALLEGATI,5,150,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_COMMISSIONI, "COMMISSIONI");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_COMMISSIONI,1,1,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_INFO_TESORIERE, "INFO_TESORIERE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_INFO_TESORIERE,5,200,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKDARE, "VALCOMCKDARE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKDARE,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMDATREG, "VALCOMDATREG");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMDATREG,6,10,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKESCI, "VALCOMCKESCI");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKESCI,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_ESCLUSIONE_CIG, "ESCLUSIONE_CIG");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_ESCLUSIONE_CIG,5,50,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKDIBE, "VALCOMCKDIBE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKDIBE,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMCODIBE, "VALCOMCODIBE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMCODIBE,1,6,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VACONUQTDIBE, "VACONUQTDIBE");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VACONUQTDIBE,1,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKLIV5, "VALCOMCKLIV5");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_VALCOMCKLIV5,5,2,0);
+    IMDB.set_FldCode(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_COD_LIVELLO_5, "COD_LIVELLO_5");
+    IMDB.SetFldParams(IMDBDef14.PQRY_PARAMETRI407_RS,IMDBDef14.PQSL_PARAMETRI407_COD_LIVELLO_5,3,10,0);
+  }
+
+
+
+  // **********************************************
+  // Costruttore per form multiple
+  // **********************************************
+  public AggiornamentoValoriComuni(MyWebEntryPoint w, IMDBObj imdb)
+  {
+    //
+    SetMainFrm(w,imdb);
+  }
+
+  // **********************************************
+  // Funzione chiamata su form multipla
+  // durante l'inizializzazione
+  // **********************************************
+  public void SetMainFrm(WebEntryPoint w, IMDBObj i)
+  {
+    // Sono una form multipla, duplico IMDB
+    IMDB = new IMDBObj();
+    IMDB.set_DBSize(w.IwImdb.IMDB.DBSize());
+    ImdbInit(IMDB);
+    IMDB.SetMaster(w.IwImdb.IMDB);
+    super.SetMainFrm(w,i);
+  }
+  public void SetSubMainFrm(WebEntryPoint w, IMDBObj i)
+  {
+    // Sono una form multipla, duplico IMDB
+    IMDB = new IMDBObj();
+    IMDB.set_DBSize(w.IwImdb.IMDB.DBSize());
+    ImdbInit(IMDB);
+    IMDB.SetMaster(w.IwImdb.IMDB);
+    super.SetSubMainFrm(w, i);
+  }
+
+
+  // **********************************************
+  // Costruttore per form multiple
+  // **********************************************
+  public AggiornamentoValoriComuni()
+  {
+    super();
+    //
+  }
+
+  // **********************************************
+  // Form Loaded
+  // **********************************************
+  public void Init(WebEntryPoint w, boolean flMulti, boolean flSubForm)
+  {
+    StringBuffer SQL;
+    int i;
+    ATreeItem Item;
+
+    MainFrm=(MyWebEntryPoint)w;
+    super.Init(w, flMulti, flSubForm);
+    //
+    FormIdx = MyGlb.FRM_AGGIVALOCOMU;
+    //
+    if (flMulti)
+      MainFrm.AddMultipleForm(this, flSubForm);
+    //
+    boolean oldIQ = MainFrm.InitializingQueries;
+    MainFrm.InitializingQueries = true;
+    //
+    RTCGuid = "5718D593-8DF2-4AE3-9BF9-0B36903E92D0";
+    ResModeW = 1;
+    ResModeH = 1;
+    iVisualFlags = -2049;
+    DesignWidth = 844;
+    DesignHeight = 534;
+    set_Caption(new IDVariant("Aggiornamento Valori Comuni"));
+    //
+    Frames = new AFrame[2];
+    Frames[1] = new AFrame(1);
+    Frames[1].Parent = this;
+    Frames[1].Width = 844;
+    Frames[1].Height = 508;
+    Frames[1].FrHidden = true;
+    Frames[1].Caption = "Valori Comuni";
+    Frames[1].Parent = this;
+    Frames[1].FixedHeight = 508;
+    PAN_VALORICOMUNI = new IDPanel(w, this, 1, "PAN_VALORICOMUNI");
+    Frames[1].Content = PAN_VALORICOMUNI;
+    PAN_VALORICOMUNI.set_VisualFlag(Glb.PANVISPROP_HILITEROW,true);
+    PAN_VALORICOMUNI.VS = MainFrm.VisualStyleList;
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_RECT, 0, 0, 0, 0, 844-MyGlb.PAN_OFFS_X, 508-MyGlb.PAN_OFFS_Y, 0, 0);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_PANEL, 0, "940B9A0B-F507-4291-B1B4-B731FEAEE1D7");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_PANEL, 0, 0, 0, 0, 3212, 568, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_STRETCH);
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_PANEL, 0, MyGlb.VIS_DEFAPANESTYL);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_PANEL, 0, 0, 32);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_PANEL, 0, MainFrm.GlbPanelFlags | MyGlb.PAN_HASFORM | MyGlb.PAN_STARTFORM | MyGlb.PAN_CANUPDATE | MyGlb.OBJ_VISIBLE | MyGlb.OBJ_ENABLED, -1);
+    PAN_VALORICOMUNI.InitStatus = 2;
+    PAN_VALORICOMUNI_Init();
+    PAN_VALORICOMUNI_InitFields();
+    PAN_VALORICOMUNI_InitQueries();
+    HelpFile = "";
+    MainFrm.InitializingQueries = false;
+    //
+    // Modifico alcune impostazioni per smartphone, potranno
+    // essere ulteriormente modificate nell'evento di Load
+    if (MainFrm.IsSmartPhone())
+    {
+      DockType = 0;
+      Docked = false;
+      ResModeW = Glb.FRESMODE_STRETCH;
+      ResModeH = Glb.FRESMODE_STRETCH;
+    }
+    //
+    for (i=1; i<Frames.length; i++)
+    {
+      if (Frames[i].Content instanceof IDPanel)
+      {
+        Frames[i].Content.MainFrm = w;
+        Frames[i].Content.Parent = this;
+        ((IDPanel)Frames[i].Content).CalcLayout();
+        ((IDPanel)Frames[i].Content).SetDOIMDB(IMDB);
+      }
+      if (Frames[i].Content instanceof OBook)
+        Frames[i].Content.MainFrm = w;
+      //
+      if (Frames[i].Content != null)
+        Frames[i].Content.Collapsable = w.ParamsObj().UseCollapsableFrames;
+      //
+      if (Frames[i].Content != null && Frames[i].HasCaptionToolbar==-1)
+        Frames[i].HasCaptionToolbar = MainFrm.CmdObj.HasCaptionToolbar(FormIdx, Frames[i].Index, Frames[i].Content.Code);
+    }
+    //
+    // Init sub-frames
+    for (i = 1; i < Frames.length; i++)
+    {
+      if (Frames[i].Content instanceof IDPanel)
+        for (int j = 0; j < ((IDPanel)Frames[i].Content).UFields(); j++)
+          ((IDPanel)Frames[i].Content).bFields(j).UpdateSubFrame();
+    }
+    //
+    for (i=1; i<Frames.length; i++)
+    {
+      if (Frames[i].Content instanceof OTabView)
+        ((OTabView)Frames[i].Content).SelectTab(1, true);
+    }
+    OrgWidth = Frames[1].Width + GetPadding(false);
+    OrgHeight = Frames[1].Height + GetPadding(true);
+    //
+    // Resetto il fuoco perchè le tabbed view lo possono modificare
+    FocusPriority=0;
+    ActiveElement="";
+    //
+    MainFrm.RolObj.ApplyRoles(FormIdx, this);
+    //
+    MainFrm.TimerObj.ActivateTimers(FormIdx, true);    
+    IntFormLoad();
+    //
+    // Solo le form non modali devono essere ridimensionate
+    if (!flSubForm && (!MainFrm.ParamsObj().TruePopup || OpenAs == Glb.OPEN_MDI))
+      Resize(w.ScreenW(), w.ScreenH());
+    //
+    JustLoaded = true;
+    UpdateControls();
+    MainFrm.InitializingQueries = oldIQ;
+  }
+
+
+  // **********************************************
+  // Command Activation Handler
+  // **********************************************
+  public void CmdClickCB(int CmdIdx)
+  {
+    fine:
+    {
+    }
+  }
+  
+  
+  // **********************************************
+  // Timer Activation Handler
+  // **********************************************
+  public void TimerTickCB(int TimerIdx)
+  {
+    fine:
+    {
+    }
+  }
+  
+  
+  // **********************************************
+  // Update Controls against IMDB variations
+  // **********************************************
+  public void UpdateControls()
+  {
+    try
+    {    
+      if (IMDB.TblModified(IMDBDef5.TBL_VALORICOMUNI, MyGlb.GlbRefModIdx) || JustLoaded)
+      {
+        AGGIVALOCOMU_PARAMETRI407();
+      }
+      PAN_VALORICOMUNI.UpdatePanel(MainFrm);
+      //
+    }
+    catch(Exception e)
+    {
+      e.printStackTrace(System.out);
+    }
+    JustLoaded = false;
+    DOSetCaption();
+    super.UpdateControls();
+  }
+  
+  
+  // **********************************************
+  // One of my modal form has been closed
+  // **********************************************
+  public void EndModal(int CallerIdx, boolean flRis)
+  {
+    IDVariant Cancel=new IDVariant();
+    IntEndModal(new IDVariant(CallerIdx), new IDVariant(flRis), Cancel);
+    if (Cancel.isTrue())
+    {
+      if (MainFrm != null) MainFrm.DTTObj.AddMsg(DTTEngine.DTTMSG_INFO, RTCGuid, 26, "Form.EndModal", "Form " + Caption() + " canceled further processing after EndModal event");
+      return;
+    }
+    //
+    if (CallerIdx == MyGlb.FRM_SCELTADELIBE && flRis && IdxPanelActived == PAN_VALORICOMUNI.FrIndex)
+    {
+      if (IdxFieldActived ==PFL_VALORICOMUNI_SCELDELIFORM) {
+      }
+    }
+    if (CallerIdx == MyGlb.FRM_SCELTASOGGET && flRis && IdxPanelActived == PAN_VALORICOMUNI.FrIndex)
+    {
+      if (IdxFieldActived ==PFL_VALORICOMUNI_SELEZISOGGET) {
+      }
+    }
+    if (CallerIdx == MyGlb.FRM_SCEQUIDELSOG && flRis && IdxPanelActived == PAN_VALORICOMUNI.FrIndex)
+    {
+      if (IdxFieldActived ==PFL_VALORICOMUNI_NUMQTNDIVBEN) {
+      }
+    }
+    if (CallerIdx == MyGlb.FRM_SCELTARICLAS && flRis && IdxPanelActived == PAN_VALORICOMUNI.FrIndex)
+    {
+      if (IdxFieldActived ==PFL_VALORICOMUNI_CODLIVELLO5) {
+      }
+    }
+  }
+  
+
+  // **********************************************
+  // Enumerate books
+  // **********************************************
+  public CIDREObj SearchBook(String Code)
+  {
+    //
+    return null;
+  }
+
+  // **************************************************
+  // Torna TRUE se l'oggetto passato è una mia istanza
+  // **************************************************
+  public static boolean IsMyInstance(Object obj)
+  {
+    return (obj instanceof AggiornamentoValoriComuni);
+  }
+
+  // **********************************************
+  // Restituisce il nome della classe
+  // **********************************************
+  public static String GetClassName(boolean FullName)
+  {
+    return (FullName ? AggiornamentoValoriComuni.class.getName() : (Glb.ClassWithPackage(AggiornamentoValoriComuni.class) ? AggiornamentoValoriComuni.class.getName().substring(AggiornamentoValoriComuni.class.getPackage().getName().length() + 1) : AggiornamentoValoriComuni.class.getName()));
+  }
+  
+
+  // **********************************************
+  // Procedure Definition
+  // **********************************************  
+  // **********************************************************************
+  // Valori Comuni On Updating Row Event
+  // Evento notificato dal pannello quando un utente modifica
+  // i dati presenti nel pannello
+  // Column: E' un numero intero che indica per quale campo della riga l'evento è in fase di esecuzione. Occorre utilizzare la proprietà Me del campo di pannello per effettuare i confronti. - Input
+  // Field Modified: E' un valore booleano che indica che il campo è veramente stato modificato, cioè il suo valore è diverso da quello originalmente letto dal database. - Input
+  // Field Was Modified: Dalla versione 6.7.2900, questo argomento indica se il campo è stato modificato nell'ultima trasmissione del browser, ed è quindi utilizzabile per sapere quali campi sono stati effettivamente modificati nell'ultimo ciclo di comunicazione con il server. - Input
+  // Row Was Modified: Non è consigliabile utilizzare questo argomento perchè è presente solo per compatibilità con vecchie versioni di Instant Developer. - Input
+  // Inserting: E' un valore booleano che indica se la riga attuale è in fase di modifica (falso) o di inserimento (vero). - Input
+  // Cancel: Non utilizzare questo argomento. Per segnalare una condizione di errore, utilizzare le funzioni SetErrorText del campo di pannello o del pannello stesso. - Input/Output
+  // **********************************************************************
+  private void PAN_VALORICOMUNI_OnUpdatingRow(IDVariant Column, IDVariant FieldModified, IDVariant FieldWasModified, IDVariant RowWasModified, IDVariant Inserting, IDVariant Cancel)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Valori Comuni On Updating Row Event Body
+      // Procedure Body
+      // 
+      if (Column.equals((new IDVariant(PFL_VALORICOMUNI_SEDEDEL)), true) || Column.equals((new IDVariant(PFL_VALORICOMUNI_NUMERODEL)), true) || Column.equals((new IDVariant(PFL_VALORICOMUNI_ANNODEL)), true))
+      {
+        IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_SEDE_DEL, 0, IDL.Upper(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_SEDE_DEL, 0)));
+        if (IDL.NullValue(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_SEDE_DEL, 0),(new IDVariant(""))).compareTo((new IDVariant("")), true)!=0 && !(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_NUMERO_DEL, 0))) && !(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_ANNO_DEL, 0))))
+        {
+          IDVariant v_SEDEDEL = new IDVariant(0,IDVariant.STRING);
+          IDVariant v_NUMERODEL = new IDVariant(0,IDVariant.INTEGER);
+          IDVariant v_ANNODEL = new IDVariant(0,IDVariant.INTEGER);
+          v_SEDEDEL = IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_SEDE_DEL, 0);
+          v_NUMERODEL = IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_NUMERO_DEL, 0);
+          v_ANNODEL = IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_ANNO_DEL, 0);
+          MainFrm.ControlloDelibere(v_SEDEDEL, v_ANNODEL, v_NUMERODEL, (new IDVariant("SI")));
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_SEDE_DEL, 0, new IDVariant(v_SEDEDEL));
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_NUMERO_DEL, 0, new IDVariant(v_NUMERODEL));
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_ANNO_DEL, 0, new IDVariant(v_ANNODEL));
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKDEL, 0, (new IDVariant("SI")));
+        }
+        else
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKDEL, 0, (new IDVariant()));
+        }
+      }
+      if (Column.equals((new IDVariant(PFL_VALORICOMUNI_DESCRIZIONE)), true))
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_DESCRIZIONE, 0))))
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKDES, 0, (new IDVariant("SI")));
+        }
+        else
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKDES, 0, (new IDVariant()));
+        }
+      }
+      if (Column.equals((new IDVariant(PFL_VALORICOMUNI_CAUSALE)), true))
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_CAUSALE, 0))))
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKCAU, 0, (new IDVariant("SI")));
+        }
+        else
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKCAU, 0, (new IDVariant()));
+        }
+      }
+      if (Column.equals((new IDVariant(PFL_VALORICOMUNI_BOLLO)), true))
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_BOLLO, 0))))
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKBOL, 0, (new IDVariant("SI")));
+        }
+        else
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKBOL, 0, (new IDVariant()));
+        }
+      }
+      if (Column.equals((new IDVariant(PFL_VALORICOMUNI_UFFICIO)), true))
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_UFFICIO, 0))))
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKUFF, 0, (new IDVariant("SI")));
+        }
+        else
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKUFF, 0, (new IDVariant()));
+        }
+      }
+      if (Column.equals((new IDVariant(PFL_VALORICOMUNI_TIPOVINCOLO)), true))
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_TIPO_VINCOLO, 0))))
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCKTIVI, 0, (new IDVariant("SI")));
+        }
+        else
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCKTIVI, 0, (new IDVariant()));
+        }
+      }
+      if (Column.equals((new IDVariant(PFL_VALORICOMUNI_NUMEROCONTAB)), true) || Column.equals((new IDVariant(PFL_VALORICOMUNI_DATACONTABIL)), true))
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_NUMERO_CONTABILE, 0))) && !(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_DATA_CONTABILE, 0))))
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKCON, 0, (new IDVariant("SI")));
+        }
+        else
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALOCOMCKCON, 0, (new IDVariant()));
+        }
+      }
+      if (Column.equals((new IDVariant(PFL_VALORICOMUNI_SPESE)), true) || Column.equals((new IDVariant(PFL_VALORICOMUNI_SCADENZA)), true) || Column.equals((new IDVariant(PFL_VALORICOMUNI_ALLEGATI)), true) || Column.equals((new IDVariant(PFL_VALORICOMUNI_COMMISSIONI)), true) || Column.equals((new IDVariant(PFL_VALORICOMUNI_INFOTESORIER)), true))
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_SPESE, 0))) || !(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_SCADENZA, 0))) || !(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_ALLEGATI, 0))) || !(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_COMMISSIONI, 0))) || !(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_INFO_TESORIERE, 0))))
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCKMAIN, 0, (new IDVariant("SI")));
+        }
+        else
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCKMAIN, 0, (new IDVariant()));
+        }
+      }
+      if (Column.equals((new IDVariant(PFL_VALORICOMUNI_DATAREG)), true))
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMDATREG, 0))))
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCKDARE, 0, (new IDVariant("SI")));
+        }
+        else
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCKDARE, 0, (new IDVariant()));
+        }
+      }
+      if (Column.equals((new IDVariant(PFL_VALORICOMUNI_ESCLUSIONCIG)), true))
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_ESCLUSIONE_CIG, 0))))
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCKESCI, 0, (new IDVariant("SI")));
+        }
+        else
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCKESCI, 0, (new IDVariant()));
+        }
+      }
+      // 
+      // Caricamento quietanza diverso beneficiario
+      // 
+      if (Column.equals((new IDVariant(PFL_VALORICOMUNI_CODICDIVEBEN)), true) && FieldWasModified.booleanValue())
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCODIBE, 0))))
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VACONUQTDIBE, 0, MainFrm.SettaQuietanzaBeneficiario(new IDVariant(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCODIBE, 0),IDVariant.FLOAT), IDL.NullValue(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMDATREG, 0),IDL.Today())));
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCKDIBE, 0, (new IDVariant("SI")));
+        }
+        else
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VACONUQTDIBE, 0, (new IDVariant()));
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCKDIBE, 0, (new IDVariant()));
+        }
+      }
+      // if (Column.equals((new IDVariant(PFL_VALORICOMUNI_CODICDIVEBEN)), true) || Column.equals((new IDVariant(PFL_VALORICOMUNI_NUMQTNDIVBEN)), true))
+      // {
+        // if (IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCODIBE, 0)))
+        // {
+          // IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VACONUQTDIBE, 0, (new IDVariant()));
+        // }
+        // if (!(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCODIBE, 0))) || !(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VACONUQTDIBE, 0))))
+        // {
+          // IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCKDIBE, 0, (new IDVariant("SI")));
+        // }
+        // else
+        // {
+          // IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCKDIBE, 0, (new IDVariant()));
+        // }
+      // }
+      if (Column.equals((new IDVariant(PFL_VALORICOMUNI_CODLIVELLO5)), true))
+      {
+        if (!(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_COD_LIVELLO_5, 0))))
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCKLIV5, 0, (new IDVariant("SI")));
+        }
+        else
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCKLIV5, 0, (new IDVariant()));
+        }
+      }
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("AggiornamentoValoriComuni", "ValoriComuniOnUpdatingRowEvent", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Valori Comuni On Dynamic Properties Event
+  // Consente l'aggiustamento delle proprietà visuali delle
+  // singole celle del pannello.
+  // **********************************************************************
+  private void PAN_VALORICOMUNI_DynamicProperties ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      MainFrm.DynamicProperties(PAN_VALORICOMUNI);
+      // 
+      // Valori Comuni On Dynamic Properties Event Body
+      // Procedure Body
+      // 
+      PAN_VALORICOMUNI.set_ToolTip(Glb.OBJ_FIELD,PFL_VALORICOMUNI_DESCRIZIONE,(new IDVariant(PAN_VALORICOMUNI.FieldText(PFL_VALORICOMUNI_DESCRIZIONE))).stringValue()); 
+      PAN_VALORICOMUNI.set_ToolTip(Glb.OBJ_FIELD,PFL_VALORICOMUNI_CAUSALE,(new IDVariant(PAN_VALORICOMUNI.FieldText(PFL_VALORICOMUNI_CAUSALE))).stringValue()); 
+      PAN_VALORICOMUNI.set_ToolTip(Glb.OBJ_FIELD,PFL_VALORICOMUNI_BOLLO,(new IDVariant(PAN_VALORICOMUNI.FieldText(PFL_VALORICOMUNI_BOLLO))).stringValue()); 
+      PAN_VALORICOMUNI.set_ToolTip(Glb.OBJ_FIELD,PFL_VALORICOMUNI_UFFICIO,(new IDVariant(PAN_VALORICOMUNI.FieldText(PFL_VALORICOMUNI_UFFICIO))).stringValue()); 
+      PAN_VALORICOMUNI.set_ToolTip(Glb.OBJ_FIELD,PFL_VALORICOMUNI_TIPOVINCOLO,(new IDVariant(PAN_VALORICOMUNI.FieldText(PFL_VALORICOMUNI_TIPOVINCOLO))).stringValue()); 
+      PAN_VALORICOMUNI.set_ToolTip(Glb.OBJ_FIELD,PFL_VALORICOMUNI_NUMEROCONTAB,(new IDVariant(PAN_VALORICOMUNI.FieldText(PFL_VALORICOMUNI_NUMEROCONTAB))).stringValue()); 
+      PAN_VALORICOMUNI.set_ToolTip(Glb.OBJ_FIELD,PFL_VALORICOMUNI_ALLEGATI,(new IDVariant(PAN_VALORICOMUNI.FieldText(PFL_VALORICOMUNI_ALLEGATI))).stringValue()); 
+      PAN_VALORICOMUNI.set_ToolTip(Glb.OBJ_FIELD,PFL_VALORICOMUNI_INFOTESORIER,(new IDVariant(PAN_VALORICOMUNI.FieldText(PFL_VALORICOMUNI_INFOTESORIER))).stringValue()); 
+      PAN_VALORICOMUNI.set_ToolTip(Glb.OBJ_FIELD,PFL_VALORICOMUNI_ESCLUSIONCIG,(new IDVariant(PAN_VALORICOMUNI.FieldText(PFL_VALORICOMUNI_ESCLUSIONCIG))).stringValue()); 
+      PAN_VALORICOMUNI.set_ToolTip(Glb.OBJ_FIELD,PFL_VALORICOMUNI_BENBENEFICIA,(new IDVariant(PAN_VALORICOMUNI.FieldText(PFL_VALORICOMUNI_BENBENEFICIA))).stringValue()); 
+      PAN_VALORICOMUNI.set_ToolTip(Glb.OBJ_FIELD,PFL_VALORICOMUNI_T02DESCRIZIO,(new IDVariant(PAN_VALORICOMUNI.FieldText(PFL_VALORICOMUNI_T02DESCRIZIO))).stringValue()); 
+      PAN_VALORICOMUNI.set_ToolTip(Glb.OBJ_FIELD,PFL_VALORICOMUNI_DESCIZLIVEL5,(new IDVariant(PAN_VALORICOMUNI.FieldText(PFL_VALORICOMUNI_DESCIZLIVEL5))).stringValue()); 
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("AggiornamentoValoriComuni", "ValoriComuniOnDynamicPropertiesEvent", _e);
+    }
+  }
+
+  // **********************************************************************
+  // End Modal Event
+  // Evento notificato dall'oggetto form in applicazioni
+  // Web quando viene chiusa una finestra modale
+  // LookupForm: È un numero intero che identifica il form modale appena chiuso, utilizzare la funzione Me dell'oggetto form per effettuare il confronto. - Input
+  // Result: True se l'utente ha confermato la scelta, chiudendo la videata modale tramite il bottone conferma nella barra del titolo, False altrimenti. E' possibile chiudere con conferma la videata anche tramite la procedura Close dell'oggetto form. - Input
+  // Cancel: Se impostato a True viene annullata ogni elaborazione automatica successiva. In questo caso il framework non cercherà di trasportare automaticamente i dati dal form modale al form chiamante. - Input/Output
+  // **********************************************************************
+  private void IntEndModal(IDVariant LookupForm,IDVariant Result,IDVariant Cancel)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // End Modal Event Body
+      // Procedure Body
+      // 
+      if (LookupForm.equals((new IDVariant(MyGlb.FRM_SCELTADELIBE)), true) && Result.booleanValue())
+      {
+        IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_SEDE_DEL, 0, IMDB.Value(IMDBDef7.PQRY_DEL1, IMDBDef7.PQSL_DEL1_SEDE_DEL, 0));
+        IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_NUMERO_DEL, 0, IMDB.Value(IMDBDef7.PQRY_DEL1, IMDBDef7.PQSL_DEL1_NUMERO_DEL, 0));
+        IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_ANNO_DEL, 0, IMDB.Value(IMDBDef7.PQRY_DEL1, IMDBDef7.PQSL_DEL1_ANNO_DEL, 0));
+      }
+      if (LookupForm.equals((new IDVariant(MyGlb.FRM_DELIBERA)), true))
+      {
+        if (Result.booleanValue())
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_SEDE_DEL, 0, IMDB.Value(IMDBDef9.PQRY_DEL7, IMDBDef9.PQSL_DEL7_SEDE_DEL, 0));
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_NUMERO_DEL, 0, IMDB.Value(IMDBDef9.PQRY_DEL7, IMDBDef9.PQSL_DEL7_NUMERO_DEL, 0));
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_ANNO_DEL, 0, IMDB.Value(IMDBDef9.PQRY_DEL7, IMDBDef9.PQSL_DEL7_ANNO_DEL, 0));
+        }
+        else
+        {
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_SEDE_DEL, 0, (new IDVariant()));
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_NUMERO_DEL, 0, (new IDVariant()));
+          IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_ANNO_DEL, 0, (new IDVariant()));
+        }
+      }
+      if (LookupForm.equals((new IDVariant(MyGlb.FRM_SCELTASOGGET)), true) && Result.booleanValue())
+      {
+        IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCODIBE, 0, new IDVariant(IMDB.Value(IMDBDef7.PQRY_SOGGETTI4, IMDBDef7.PQSL_SOGGETTI4_CODICE, 0),IDVariant.INTEGER));
+      }
+      if (LookupForm.equals((new IDVariant(MyGlb.FRM_SCEQUIDELSOG)), true) && Result.booleanValue())
+      {
+        IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VACONUQTDIBE, 0, IMDB.Value(IMDBDef7.PQRY_QTN4, IMDBDef7.PQSL_QTN4_NUM_QUIETANZA, 0));
+      }
+      if (LookupForm.equals((new IDVariant(MyGlb.FRM_SCELTARICLAS)), true) && Result.booleanValue())
+      {
+        IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_COD_LIVELLO_5, 0, new IDVariant(IMDB.Value(IMDBDef7.PQRY_VISTSTRURIC2, IMDBDef7.PQSL_VISTSTRURIC2_VISSTRRICCOD, 0),IDVariant.DECIMAL));
+      }
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("AggiornamentoValoriComuni", "EndModalEvent", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Unload Event
+  // Evento notificato dal form prima della chiusura dello
+  // stesso
+  // Cancel: Se impostato a True la chiusura del form viene annullata. - Input/Output
+  // Confirm: Rappresenta la scelta dell'utente per la chiusura dei form modali. True se l'utente ha confermato la scelta effettuata, False altrimenti. - Input
+  // **********************************************************************
+  public void IntFormUnload (IDVariant Cancel, IDVariant Confirm)
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Unload Event Body
+      // Procedure Body
+      // 
+      PAN_VALORICOMUNI.PanelCommand(Glb.PCM_UPDATE);
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("AggiornamentoValoriComuni", "UnloadEvent", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Load Event
+  // Evento notificato alla videata al momento del caricamento
+  // in memoria.
+  // **********************************************************************
+  private void IntFormLoad ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      MainFrm.IntFormLoad(this);
+      // 
+      // Load Event Body
+      // Procedure Body
+      // 
+      VisibilitaMandatoInformatico();
+      IMDB.set_Value(IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_UFFICIO, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOUFFICI, 0));
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("AggiornamentoValoriComuni", "LoadEvent", _e);
+    }
+  }
+
+  // **********************************************************************
+  // Selezione Delibere
+  // Explain which processing is carried out by this procedure
+  // **********************************************************************
+  public int SelezioneDelibere ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Selezione Delibere Body
+      // Procedure Body
+      // 
+      MainFrm.Show(MyGlb.FRM_SCELTADELIBE, (new IDVariant(-1)).intValue(), this); 
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("AggiornamentoValoriComuni", "SelezioneDelibere", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Visibilita Mandato Informatico
+  // **********************************************************************
+  public int VisibilitaMandatoInformatico ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+    IDVariant v_LICENZAMIF = new IDVariant(0,IDVariant.INTEGER);
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Visibilita Mandato Informatico Body
+      // Procedure Body
+      // 
+      v_LICENZAMIF = (new IDVariant(MainFrm.Licenza((new IDVariant("MIF")))));
+      if (MainFrm.LIQMO.equals((new IDVariant("SI")), true))
+      {
+        PAN_VALORICOMUNI.SetFlags (Glb.OBJ_FIELD, PFL_VALORICOMUNI_SPESE, ((new IDVariant(-1)).booleanValue())? Glb.OBJ_VISIBLE : 0, Glb.OBJ_VISIBLE); 
+        PAN_VALORICOMUNI.SetFlags (Glb.OBJ_FIELD, PFL_VALORICOMUNI_SCADENZA, ((new IDVariant(-1)).booleanValue())? Glb.OBJ_VISIBLE : 0, Glb.OBJ_VISIBLE); 
+        PAN_VALORICOMUNI.SetFlags (Glb.OBJ_FIELD, PFL_VALORICOMUNI_ALLEGATI, ((new IDVariant(-1)).booleanValue())? Glb.OBJ_VISIBLE : 0, Glb.OBJ_VISIBLE); 
+      }
+      else
+      {
+        if (v_LICENZAMIF.booleanValue() && MainFrm.GESTIONSPESE.equals((new IDVariant("SI")), true))
+        {
+          PAN_VALORICOMUNI.SetFlags (Glb.OBJ_FIELD, PFL_VALORICOMUNI_SPESE, ((new IDVariant(-1)).booleanValue())? Glb.OBJ_VISIBLE : 0, Glb.OBJ_VISIBLE); 
+        }
+        else
+        {
+          PAN_VALORICOMUNI.SetFlags (Glb.OBJ_FIELD, PFL_VALORICOMUNI_SPESE, ((new IDVariant(0)).booleanValue())? Glb.OBJ_VISIBLE : 0, Glb.OBJ_VISIBLE); 
+        }
+        if (v_LICENZAMIF.booleanValue() && MainFrm.GESTIOALLEGA.equals((new IDVariant("SI")), true))
+        {
+          PAN_VALORICOMUNI.SetFlags (Glb.OBJ_FIELD, PFL_VALORICOMUNI_ALLEGATI, ((new IDVariant(-1)).booleanValue())? Glb.OBJ_VISIBLE : 0, Glb.OBJ_VISIBLE); 
+        }
+        else
+        {
+          PAN_VALORICOMUNI.SetFlags (Glb.OBJ_FIELD, PFL_VALORICOMUNI_ALLEGATI, ((new IDVariant(0)).booleanValue())? Glb.OBJ_VISIBLE : 0, Glb.OBJ_VISIBLE); 
+        }
+        if (v_LICENZAMIF.booleanValue())
+        {
+          PAN_VALORICOMUNI.SetFlags (Glb.OBJ_FIELD, PFL_VALORICOMUNI_SCADENZA, ((new IDVariant(-1)).booleanValue())? Glb.OBJ_VISIBLE : 0, Glb.OBJ_VISIBLE); 
+        }
+        else
+        {
+          PAN_VALORICOMUNI.SetFlags (Glb.OBJ_FIELD, PFL_VALORICOMUNI_SCADENZA, ((new IDVariant(0)).booleanValue())? Glb.OBJ_VISIBLE : 0, Glb.OBJ_VISIBLE); 
+        }
+      }
+      if (v_LICENZAMIF.booleanValue() && MainFrm.GESTIOCOMMIS.equals((new IDVariant("SI")), true))
+      {
+        PAN_VALORICOMUNI.SetFlags (Glb.OBJ_FIELD, PFL_VALORICOMUNI_COMMISSIONI, ((new IDVariant(-1)).booleanValue())? Glb.OBJ_VISIBLE : 0, Glb.OBJ_VISIBLE); 
+      }
+      else
+      {
+        PAN_VALORICOMUNI.SetFlags (Glb.OBJ_FIELD, PFL_VALORICOMUNI_COMMISSIONI, ((new IDVariant(0)).booleanValue())? Glb.OBJ_VISIBLE : 0, Glb.OBJ_VISIBLE); 
+      }
+      if (v_LICENZAMIF.booleanValue() && MainFrm.GESTINFOTESO.equals((new IDVariant("SI")), true))
+      {
+        PAN_VALORICOMUNI.SetFlags (Glb.OBJ_FIELD, PFL_VALORICOMUNI_INFOTESORIER, ((new IDVariant(-1)).booleanValue())? Glb.OBJ_VISIBLE : 0, Glb.OBJ_VISIBLE); 
+      }
+      else
+      {
+        PAN_VALORICOMUNI.SetFlags (Glb.OBJ_FIELD, PFL_VALORICOMUNI_INFOTESORIER, ((new IDVariant(0)).booleanValue())? Glb.OBJ_VISIBLE : 0, Glb.OBJ_VISIBLE); 
+      }
+      if (!(v_LICENZAMIF.booleanValue()) && MainFrm.LIQMO.compareTo((new IDVariant("SI")), true)!=0)
+      {
+        PAN_VALORICOMUNI.SetFlags (Glb.OBJ_GROUP, GRP_VALORICOMUNI_MANDATINFORM, ((new IDVariant(0)).booleanValue())? Glb.OBJ_VISIBLE:0, Glb.OBJ_VISIBLE); 
+      }
+      else
+      {
+        PAN_VALORICOMUNI.SetFlags (Glb.OBJ_GROUP, GRP_VALORICOMUNI_MANDATINFORM, ((new IDVariant(-1)).booleanValue())? Glb.OBJ_VISIBLE:0, Glb.OBJ_VISIBLE); 
+      }
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("AggiornamentoValoriComuni", "VisibilitaMandatoInformatico", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Conferma
+  // **********************************************************************
+  public int Conferma ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Conferma Body
+      // Procedure Body
+      // 
+      MainFrm.UnloadForm(FormIdx,(new IDVariant(-1)).booleanValue()); 
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("AggiornamentoValoriComuni", "Conferma", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Descrizione Da Delibera
+  // **********************************************************************
+  public int DescrizioneDaDelibera ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Descrizione Da Delibera Body
+      // Corpo Procedura
+      // 
+      IDVariant v_VDELDESCRIZI = null;
+      v_VDELDESCRIZI = (new IDVariant());
+      if (!(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_ANNO_DEL, 0))) && !(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_NUMERO_DEL, 0))) && !(IDL.IsNull(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_SEDE_DEL, 0))))
+      {
+        SQL = new StringBuffer();
+        SQL.append("select ");
+        SQL.append("  A.DESCRIZIONE as DELDESCRIZIO ");
+        SQL.append("from ");
+        SQL.append("  DEL A ");
+        SQL.append("where (A.ANNO_DEL = " + IDL.CSql(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_ANNO_DEL, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+        SQL.append("and   (A.NUMERO_DEL = " + IDL.CSql(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_NUMERO_DEL, 0), IDL.FMT_NUM, MainFrm.Cf4armDBObject.DBO()) + ") ");
+        SQL.append("and   (A.SEDE_DEL = " + IDL.CSql(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_SEDE_DEL, 0), IDL.FMT_CHAR, MainFrm.Cf4armDBObject.DBO()) + ") ");
+        QV = MainFrm.Cf4armDBObject.DBO().OpenRS(SQL);
+        if (!QV.EOF()) QV.MoveNext();
+        if (!QV.EOF())
+        {
+          v_VDELDESCRIZI = QV.Get("DELDESCRIZIO", IDVariant.STRING) ;
+        }
+        QV.Close();
+        IMDB.set_Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_DESCRIZIONE, 0, new IDVariant(v_VDELDESCRIZI));
+      }
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("AggiornamentoValoriComuni", "DescrizioneDaDelibera", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Scelta Diverso Beneficiario
+  // **********************************************************************
+  public int SceltaDiversoBeneficiario ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Scelta Diverso Beneficiario Body
+      // Procedure Body
+      // 
+      IMDB.set_Value(IMDBDef1.TBL_PARAMETRI401, IMDBDef1.FLD_PARAMETRI401_PARADATASCAD, 0, IDL.NullValue(IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMDATREG, 0),IDL.Today()));
+      IMDB.set_Value(IMDBDef1.TBL_PARAMETRI401, IMDBDef1.FLD_PARAMETRI401_PARAANCHSCAD, 0, (new IDVariant("NO")));
+      MainFrm.Show(MyGlb.FRM_SCELTASOGGET, (new IDVariant(-1)).intValue(), this); 
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("AggiornamentoValoriComuni", "SceltaDiversoBeneficiario", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Scelta Quietanza Div Ben
+  // **********************************************************************
+  public int SceltaQuietanzaDivBen ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Scelta Quietanza Div Ben Body
+      // Corpo Procedura
+      // 
+      IMDB.set_Value(IMDBDef1.TBL_PARAM27, IMDBDef1.FLD_PARAM27_ROWNAMESOGGE, 0, IMDB.Value(IMDBDef14.PQRY_PARAMETRI407, IMDBDef14.PQSL_PARAMETRI407_VALCOMCODIBE, 0));
+      IMDB.set_Value(IMDBDef1.TBL_PARAM27, IMDBDef1.FLD_PARAM27_ROWNAMESCADE, 0, IDL.Today());
+      MainFrm.Show(MyGlb.FRM_SCEQUIDELSOG, (new IDVariant(-1)).intValue(), this); 
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("AggiornamentoValoriComuni", "SceltaQuietanzaDivBen", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Scelta Livello 5
+  // **********************************************************************
+  public int SceltaLivello5 ()
+  {
+    StringBuffer SQL = new StringBuffer();
+    int TransCount   = 0;
+    int ReturnStatus = 0;
+    IDCachedRowSet QV;
+
+    try
+    {
+      TransCount = 0;
+      // 
+      // Scelta Livello 5 Body
+      // Corpo Procedura
+      // 
+      MainFrm.UnloadForm(MyGlb.FRM_SCELTARICLAS,(new IDVariant(-1)).booleanValue()); 
+      IMDB.set_Value(IMDBDef1.TBL_PARS8, IMDBDef1.FLD_PARS8_NOMOGGCOTIRI, 0, (new IDVariant("MACRO_5")));
+      IMDB.set_Value(IMDBDef1.TBL_PARS8, IMDBDef1.FLD_PARS8_NOMEOGGETTES, 0, (new IDVariant("S")));
+      IMDB.set_Value(IMDBDef1.TBL_PARS8, IMDBDef1.FLD_PARS8_NOMEOGGELIVE, 0, (new IDVariant(2)));
+      IMDB.set_Value(IMDBDef1.TBL_PARS8, IMDBDef1.FLD_PARS8_NOMEOGGEESER, 0, IMDB.Value(IMDBDef7.TBL_DATISESSIONE, IMDBDef7.FLD_DATISESSIONE_SESSIOESERCI, 0));
+      IMDB.set_Value(IMDBDef1.TBL_PARS8, IMDBDef1.FLD_PARS8_NOMEOGGELIV4, 0, (new IDVariant()));
+      MainFrm.Show(MyGlb.FRM_SCELTARICLAS, (new IDVariant(1)).intValue(), this); 
+      return 0;
+    }
+    catch (Exception _e)
+    {
+      MainFrm.ErrObj.ProcError ("AggiornamentoValoriComuni", "SceltaLivello5", _e);
+      return -1;
+    }
+  }
+
+  // **********************************************************************
+  // Parametri
+  // Primary record source for panel data
+  // **********************************************************************
+  private void AGGIVALOCOMU_PARAMETRI407() throws SQLException
+  {
+    IDVariant[] AggrBuff;
+    int[] AggrRowCount;
+    int AggrCount=0;
+    boolean AggrNewGroup = false;
+
+    IMDB.TblTruncate(IMDBDef14.PQRY_PARAMETRI407_RS);
+    IMDB.TblMoveFirst(IMDBDef5.TBL_VALORICOMUNI, 0);
+    Loop1: while (!IMDB.Eof(IMDBDef5.TBL_VALORICOMUNI, 0))
+    {
+      IMDB.TblAddNew(IMDBDef14.PQRY_PARAMETRI407_RS, 0);
+      IMDB.TblLinkRow(IMDBDef14.PQRY_PARAMETRI407_RS, 0, IMDBDef5.TBL_VALORICOMUNI, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 0, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_ANNO_DISTINTA, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 1, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_NUMERO_DISTINTA, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 2, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKDEL, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 3, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_ANNO_DEL, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 4, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_NUMERO_DEL, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 5, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_SEDE_DEL, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 6, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKDES, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 7, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_DESCRIZIONE, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 8, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_VALOCOMINEMI, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 9, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_VALCOMCKINEM, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 10, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKCAU, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 11, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_CAUSALE, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 12, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKBOL, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 13, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_BOLLO, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 14, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_VALCOMCKTIVI, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 15, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_TIPO_VINCOLO, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 16, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKUFF, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 17, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_UFFICIO, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 18, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKCON, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 19, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_NUMERO_CONTABILE, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 20, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_DATA_CONTABILE, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 21, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_VALCOMCKMAIN, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 22, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_SPESE, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 23, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_SCADENZA, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 24, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_ALLEGATI, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 25, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_COMMISSIONI, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 26, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_INFO_TESORIERE, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 27, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_VALCOMCKDARE, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 28, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_VALCOMDATREG, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 29, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_VALCOMCKESCI, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 30, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_ESCLUSIONE_CIG, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 31, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_VALCOMCKDIBE, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 32, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_VALCOMCODIBE, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 33, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_VACONUQTDIBE, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 34, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_VALCOMCKLIV5, 0);
+      IMDB.TblLinkField(IMDBDef14.PQRY_PARAMETRI407_RS, 35, 0, IMDBDef5.TBL_VALORICOMUNI, IMDBDef5.FLD_VALORICOMUNI_COD_LIVELLO_5, 0);
+      IMDB.TblMoveNext(IMDBDef5.TBL_VALORICOMUNI, 0);
+      if (IMDB.Eof(IMDBDef5.TBL_VALORICOMUNI, 0))
+      {
+        IMDB.TblMoveFirst(IMDBDef5.TBL_VALORICOMUNI, 0);
+      }
+      else
+      {
+        continue Loop1;
+      }
+      break;
+    }
+    IMDB.TblMoveFirst(IMDBDef14.PQRY_PARAMETRI407_RS, 0);
+  }
+
+  
+  
+  // **********************************************
+  // Event Stubs
+  // **********************************************  
+  // **********************************************************************
+  // Activate
+  // Evento notificato alla videata quando essa viene attivata
+  // cioè quando viene portata in primo piano
+  // **********************************************************************
+  public void Form_Activate()
+  {
+      MainFrm.Form_Activate(this);
+    // Stub
+  }
+
+  // **********************************************************************
+  // Deactivate
+  // Evento notificato alla videata quando essa viene messa
+  // in secondo piano
+  // **********************************************************************
+  public void Form_Deactivate(IDVariant Cancel)
+  {
+    // Stub
+  }
+
+  // **********************************************************************
+  // On Change Document
+  // Evento notificato al form quando viene cambiato il
+  // documento collegato
+  // **********************************************************************
+  public void OnChangeDocument(com.progamma.doc.IDDocument OldDocument)
+  {
+    // Stub
+  }
+
+  // **********************************************************************
+  // On Send Message
+  // Evento notificato quando una videata invia un messaggio
+  // tramite la procedura SendMessage
+  // **********************************************************************
+  public void OnSendMessage(IDVariant Message, WebForm Sender, com.progamma.doc.IDDocument Doc, IDVariant Par1, IDVariant Par2, IDVariant Par3, IDVariant Par4)
+  {
+    // Stub
+  }
+
+  
+  
+  // **********************************************
+  // Frame Events
+  // **********************************************
+  // **********************************************************************
+  // On Database Error
+  // Evento notificato dal pannello al verificarsi di un
+  // errore di database durante un'operazione di salvataggio
+  // dei dati.
+  // **********************************************************************
+  private void PAN_VALORICOMUNI_OnDBError(IDVariant Cancel, IDVariant Skip, IDVariant ErrorNumber, IDVariant ErrorMessage, IDVariant NativeErrorNumber, IDVariant PanelOperation, com.progamma.doc.IDDocument Doc)
+  {
+      MainFrm.OnDBError(PAN_VALORICOMUNI, Cancel, Skip, ErrorNumber, ErrorMessage, NativeErrorNumber, PanelOperation, Doc);
+    // Stub
+  }
+
+  // **********************************************************************
+  // On Validate Row
+  // Evento notificato dal pannello quando un utente modifica
+  // i dati presenti nel pannello
+  // **********************************************************************
+  private void PAN_VALORICOMUNI_IntValidateRow (IDVariant Cancel)
+  {
+      MainFrm.IntValidateRow(PAN_VALORICOMUNI, Cancel);
+    // Stub
+  }
+
+  private void PAN_VALORICOMUNI_CellActivated(IDVariant ColIndex, IDVariant Cancel)
+  {
+    int i = 0;
+    if (ColIndex.intValue() == PFL_VALORICOMUNI_SCELDELIFORM)
+    {
+      this.IdxPanelActived = this.PAN_VALORICOMUNI.FrIndex;
+      this.IdxFieldActived = ColIndex.intValue();
+      SelezioneDelibere();
+      Cancel.set(IDVariant.TRUE);
+    }
+    if (ColIndex.intValue() == PFL_VALORICOMUNI_DESCRDADELIB)
+    {
+      this.IdxPanelActived = this.PAN_VALORICOMUNI.FrIndex;
+      this.IdxFieldActived = ColIndex.intValue();
+      DescrizioneDaDelibera();
+      Cancel.set(IDVariant.TRUE);
+    }
+    if (ColIndex.intValue() == PFL_VALORICOMUNI_SELEZISOGGET)
+    {
+      this.IdxPanelActived = this.PAN_VALORICOMUNI.FrIndex;
+      this.IdxFieldActived = ColIndex.intValue();
+      SceltaDiversoBeneficiario();
+      Cancel.set(IDVariant.TRUE);
+    }
+    if (ColIndex.intValue() == PFL_VALORICOMUNI_NUMQTNDIVBEN)
+    {
+      this.IdxPanelActived = this.PAN_VALORICOMUNI.FrIndex;
+      this.IdxFieldActived = ColIndex.intValue();
+      SceltaQuietanzaDivBen();
+      Cancel.set(IDVariant.TRUE);
+    }
+    if (ColIndex.intValue() == PFL_VALORICOMUNI_CODLIVELLO5)
+    {
+      this.IdxPanelActived = this.PAN_VALORICOMUNI.FrIndex;
+      this.IdxFieldActived = ColIndex.intValue();
+      SceltaLivello5();
+      Cancel.set(IDVariant.TRUE);
+    }
+    if (ColIndex.intValue() == PFL_VALORICOMUNI_CONFERMLABEL)
+    {
+      this.IdxPanelActived = this.PAN_VALORICOMUNI.FrIndex;
+      this.IdxFieldActived = ColIndex.intValue();
+      Conferma();
+      Cancel.set(IDVariant.TRUE);
+    }
+  }
+
+  private void PAN_VALORICOMUNI_ValidateCell(IDVariant ColIndex, IDVariant CellModified, IDVariant Cancel, IDVariant FldWasModified, IDVariant RowWasModified, IDVariant IsInsert)
+  {
+    try
+    {
+      PAN_VALORICOMUNI_OnUpdatingRow(ColIndex, CellModified, FldWasModified, RowWasModified, IsInsert, Cancel);
+    }
+    catch(Exception e) {}
+  }
+
+  private void PAN_VALORICOMUNI_ValidateRow(IDVariant Cancel)
+  {
+    try
+    {
+      if (Cancel.isFalse())
+      {
+        PAN_VALORICOMUNI_IntValidateRow(Cancel);
+      }
+    } catch ( Exception e) { }
+  }
+
+  
+  
+  // **********************************************
+  // Panel (long) initialization
+  // **********************************************
+  private void PAN_VALORICOMUNI_Init()
+  {
+
+    PAN_VALORICOMUNI.SetSize(MyGlb.OBJ_PAGE, 0);
+    PAN_VALORICOMUNI.SetSize(MyGlb.OBJ_GROUP, 12);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DELIBERA, "712B3D78-2D91-449D-B070-89767CAA4315");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DELIBERA, "Delibera");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DELIBERA, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DELIBERA, MyGlb.VIS_GROUPSTYLE);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DELIBERA, MyGlb.PANEL_LIST, 0, -9999, 48, 16, 0, 0);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DELIBERA, MyGlb.PANEL_FORM, 8, 47, 236, 49, 0, 0);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DELIBERA, 0, 47);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DELIBERA, 1, 13);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DELIBERA, 0, 4);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DELIBERA, 1, 4);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DELIBERA, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DESCRIZIONE, "50EA5303-94AD-4646-A8F4-8478E7F3C8E1");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DESCRIZIONE, "Descrizione");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DESCRIZIONE, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DESCRIZIONE, MyGlb.VIS_GROUPSTYLE);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DESCRIZIONE, MyGlb.PANEL_LIST, 0, -9999, 48, 16, 0, 0);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DESCRIZIONE, MyGlb.PANEL_FORM, 8, 99, 400, 49, 0, 0);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DESCRIZIONE, 0, 65);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DESCRIZIONE, 1, 13);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DESCRIZIONE, 0, 4);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DESCRIZIONE, 1, 4);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DESCRIZIONE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CONTABILE, "806FF5A4-9804-4891-9C28-FB85B026803D");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CONTABILE, "Contabile");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CONTABILE, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CONTABILE, MyGlb.VIS_GROUPSTYLE);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CONTABILE, MyGlb.PANEL_LIST, 0, -9999, 96, 16, 0, 0);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CONTABILE, MyGlb.PANEL_FORM, 8, 151, 400, 49, 0, 0);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CONTABILE, 0, 53);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CONTABILE, 1, 13);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CONTABILE, 0, 4);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CONTABILE, 1, 4);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CONTABILE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MANDATINFORM, "56D02B8F-FD25-4BA8-BF67-97BCD37624D4");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MANDATINFORM, "Mandato Informatico");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MANDATINFORM, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MANDATINFORM, MyGlb.VIS_GROUPSTYLE);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MANDATINFORM, MyGlb.PANEL_LIST, 0, -9999, 104, 16, 0, 0);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MANDATINFORM, MyGlb.PANEL_FORM, 8, 203, 400, 149, 0, 0);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MANDATINFORM, 0, 120);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MANDATINFORM, 1, 13);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MANDATINFORM, 0, 4);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MANDATINFORM, 1, 4);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MANDATINFORM, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DATAREGISTRA, "7EEED6DF-7B10-4B50-9695-B357C0AA7785");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DATAREGISTRA, "Data Registrazione");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DATAREGISTRA, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DATAREGISTRA, MyGlb.VIS_GROUPSTYLE);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DATAREGISTRA, MyGlb.PANEL_LIST, 0, -9999, 84, 16, 0, 0);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DATAREGISTRA, MyGlb.PANEL_FORM, 412, 47, 412, 49, 0, 0);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DATAREGISTRA, 0, 108);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DATAREGISTRA, 1, 13);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DATAREGISTRA, 0, 4);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DATAREGISTRA, 1, 4);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DATAREGISTRA, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CAUSALE, "0EBD464F-3431-4678-8092-C3A7FAC774B3");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CAUSALE, "Causale");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CAUSALE, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CAUSALE, MyGlb.VIS_GROUPSTYLE);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CAUSALE, MyGlb.PANEL_LIST, 0, -9999, 48, 16, 0, 0);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CAUSALE, MyGlb.PANEL_FORM, 412, 99, 412, 49, 0, 0);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CAUSALE, 0, 44);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CAUSALE, 1, 13);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CAUSALE, 0, 4);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CAUSALE, 1, 4);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CAUSALE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_BOLLO, "AFCC0BB6-06AE-471B-8C58-46B5769BC1BD");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_BOLLO, "Bollo");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_BOLLO, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_BOLLO, MyGlb.VIS_GROUPSTYLE);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_BOLLO, MyGlb.PANEL_LIST, 0, -9999, 48, 16, 0, 0);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_BOLLO, MyGlb.PANEL_FORM, 412, 151, 412, 49, 0, 0);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_BOLLO, 0, 27);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_BOLLO, 1, 13);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_BOLLO, 0, 4);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_BOLLO, 1, 4);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_BOLLO, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_UFFICIO, "43F0D21F-DB3C-4F5C-BE61-2BAD47EB5AD6");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_UFFICIO, "Ufficio");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_UFFICIO, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_UFFICIO, MyGlb.VIS_GROUPSTYLE);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_UFFICIO, MyGlb.PANEL_LIST, 0, -9999, 48, 16, 0, 0);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_UFFICIO, MyGlb.PANEL_FORM, 412, 203, 412, 57, 0, 0);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_UFFICIO, 0, 35);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_UFFICIO, 1, 13);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_UFFICIO, 0, 4);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_UFFICIO, 1, 4);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_UFFICIO, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_TIPOVINCOLO, "47D28638-0468-4196-9C0C-FEB4D4D003AE");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_TIPOVINCOLO, "Tipo Vincolo");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_TIPOVINCOLO, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_TIPOVINCOLO, MyGlb.VIS_GROUPSTYLE);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_TIPOVINCOLO, MyGlb.PANEL_LIST, 0, -9999, 48, 16, 0, 0);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_TIPOVINCOLO, MyGlb.PANEL_FORM, 412, 263, 412, 61, 0, 0);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_TIPOVINCOLO, 0, 67);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_TIPOVINCOLO, 1, 13);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_TIPOVINCOLO, 0, 4);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_TIPOVINCOLO, 1, 4);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_TIPOVINCOLO, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MOTIVESCLCIG, "F9ECA92C-554D-426F-8D0E-722D12BD2D2F");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MOTIVESCLCIG, "Motivo Esclusione Cig");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MOTIVESCLCIG, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MOTIVESCLCIG, MyGlb.VIS_GROUPSTYLE);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MOTIVESCLCIG, MyGlb.PANEL_LIST, 0, -9999, 260, 16, 0, 0);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MOTIVESCLCIG, MyGlb.PANEL_FORM, 412, 327, 412, 49, 0, 0);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MOTIVESCLCIG, 0, 120);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MOTIVESCLCIG, 1, 13);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MOTIVESCLCIG, 0, 4);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MOTIVESCLCIG, 1, 4);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_MOTIVESCLCIG, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DIVERSBENEFI, "89E33DC8-A6CB-4028-BA0B-9D55D9BB1900");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DIVERSBENEFI, "Diverso Beneficiario");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DIVERSBENEFI, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DIVERSBENEFI, MyGlb.VIS_GROUPSTYLE);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DIVERSBENEFI, MyGlb.PANEL_LIST, 0, -9999, 404, 16, 0, 0);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DIVERSBENEFI, MyGlb.PANEL_FORM, 8, 355, 400, 73, 0, 0);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DIVERSBENEFI, 0, 112);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DIVERSBENEFI, 1, 13);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DIVERSBENEFI, 0, 4);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DIVERSBENEFI, 1, 4);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_DIVERSBENEFI, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CODVLIVELLO, "88D852AF-445E-4BBF-A0E6-380A32FC5316");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CODVLIVELLO, "Cod. V Livello");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CODVLIVELLO, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CODVLIVELLO, MyGlb.VIS_GROUPSTYLE);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CODVLIVELLO, MyGlb.PANEL_LIST, 0, -9999, 432, 16, 0, 0);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CODVLIVELLO, MyGlb.PANEL_FORM, 412, 379, 412, 49, 0, 0);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CODVLIVELLO, 0, 73);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CODVLIVELLO, 1, 13);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CODVLIVELLO, 0, 4);
+    PAN_VALORICOMUNI.SetHeaderPos(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CODVLIVELLO, 1, 4);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_GROUP, GRP_VALORICOMUNI_CODVLIVELLO, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE, -1);
+    PAN_VALORICOMUNI.SetSize(MyGlb.OBJ_FIELD, 51);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INTESTALABEL, "B8C9A08D-0072-41EB-8581-DD2814B42791");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INTESTALABEL, "I valori indicati verranno valorizzati su tutte le righe selezionate. \nI campi considerati sono quelli selezionati tramite checkbox");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INTESTALABEL, MyGlb.VIS_ETICGRASLEFT);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INTESTALABEL, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INFORM, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODISTINTA, "BA83A018-9B24-4D49-9A3A-8FCA17AE3DF4");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODISTINTA, "ANNO DISTINTA");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODISTINTA, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODISTINTA, MyGlb.VIS_NORMFIELPADR);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODISTINTA, 0 | MyGlb.OBJ_ENABLED | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODISTIN, "997ECCDB-CE69-4B2D-82E7-4E15A45FECBF");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODISTIN, "NUMERO DISTINTA");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODISTIN, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODISTIN, MyGlb.VIS_NORMFIELPADR);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODISTIN, 0 | MyGlb.OBJ_ENABLED | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDELIBERA, "A37477BC-F15C-48C0-8DA0-7E92836E07B6");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDELIBERA, "CK DELIBERA");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDELIBERA, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDELIBERA, MyGlb.VIS_CHECKSTYLE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDELIBERA, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SEDEDEL, "1AD7E16C-AF31-4DFA-AF33-5F5A644FD711");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SEDEDEL, "SEDE DEL");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SEDEDEL, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SEDEDEL, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SEDEDEL, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TRATDELILABE, "99993F0F-8A73-4A61-83A3-204C38AB814C");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TRATDELILABE, "-");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TRATDELILABE, MyGlb.VIS_VUOTONORMALE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TRATDELILABE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INFORM, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODEL, "11C2EBB5-E7B7-41AA-B7B6-4337381AFAFD");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODEL, "NUMERO DEL");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODEL, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODEL, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODEL, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODEL, "761E2917-C08D-41D2-9905-843D45F9E8DA");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODEL, "ANNO DEL");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODEL, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODEL, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODEL, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BARRDELILABE, "19B5311F-D21A-4D88-8015-1C1EEC2C7518");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BARRDELILABE, "/");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BARRDELILABE, MyGlb.VIS_VUOTONORMALE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BARRDELILABE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INFORM, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCELDELIFORM, "32678772-C939-4785-ACF3-5A7FA4889216");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCELDELIFORM, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCELDELIFORM, MyGlb.VIS_STATICBUTTON);
+    PAN_VALORICOMUNI.SetImage(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCELDELIFORM, 0, "wsearch1.gif", false);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCELDELIFORM, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INFORM | MyGlb.FLD_CANACTIVATE, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INEMISSIONE, "F5575E00-D723-45F9-A976-7100F9452CC0");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INEMISSIONE, "In Emissione");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INEMISSIONE, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INEMISSIONE, MyGlb.VIS_CHECKSTYLE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INEMISSIONE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDESCRIZION, "9623BB3C-532D-4B62-966E-984427D27919");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDESCRIZION, "CK DESCRIZIONE");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDESCRIZION, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDESCRIZION, MyGlb.VIS_CHECKSTYLE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDESCRIZION, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRIZIONE, "487826B2-92DC-4ECA-9B1A-A894DD95AB9A");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRIZIONE, "Descrizione");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRIZIONE, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRIZIONE, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRIZIONE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRDADELIB, "FBD8365A-C2E7-4B4A-9A8B-00A3F8AB33ED");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRDADELIB, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRDADELIB, MyGlb.VIS_STATICBUTTON);
+    PAN_VALORICOMUNI.SetImage(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRDADELIB, 0, "Paste.gif", false);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRDADELIB, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INFORM | MyGlb.FLD_CANACTIVATE, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCONTABILE, "BA9074C3-19EC-4829-B79D-389332685288");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCONTABILE, "CK CONTABILE");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCONTABILE, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCONTABILE, MyGlb.VIS_CHECKSTYLE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCONTABILE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMEROCONTAB, "12588BD5-2861-49DF-AE53-860FC9EF06AA");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMEROCONTAB, "Numero Contabile");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMEROCONTAB, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMEROCONTAB, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMEROCONTAB, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTABIL, "F813CFCE-9021-4A4A-BD84-C21DF8BF3EED");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTABIL, "Data Contabile");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTABIL, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTABIL, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTABIL, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMECONTLABE, "713F1D86-EDA5-491F-98A4-79DDA25DE80E");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMECONTLABE, "Numero");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMECONTLABE, MyGlb.VIS_VUOTONORMALE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMECONTLABE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INFORM, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTLABE, "3FF8D2D2-049D-462B-BEDF-73816E1D6D86");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTLABE, "Data");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTLABE, MyGlb.VIS_VUOTONORMALE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTLABE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INFORM, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_LABELDX, "19130DE4-9134-47DF-AA86-8C0C17B2C2A4");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_LABELDX, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_LABELDX, MyGlb.VIS_VUOTONORMALE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_LABELDX, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INFORM, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKMANDAINFOR, "BB234E2F-14EB-4757-895B-1EA25EA2D079");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKMANDAINFOR, "CK MANDATO INFORMATICO");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKMANDAINFOR, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKMANDAINFOR, MyGlb.VIS_CHECKSTYLE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKMANDAINFOR, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SPESE, "046EFD15-5A81-41B5-AF04-87E7BA5D6EFC");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SPESE, "Spese");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SPESE, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SPESE, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SPESE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_AUTOLOOKUP | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCADENZA, "B4BEAC5B-6524-427F-A626-29D7B26DA7BC");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCADENZA, "Scadenza");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCADENZA, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCADENZA, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCADENZA, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_COMMISSIONI, "A2D82CDB-887C-4530-A7FB-0C7652389464");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_COMMISSIONI, "Commissioni");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_COMMISSIONI, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_COMMISSIONI, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_COMMISSIONI, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ALLEGATI, "575F89D5-835B-44DB-AB1E-C5594AA5A3FB");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ALLEGATI, "Allegati");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ALLEGATI, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ALLEGATI, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ALLEGATI, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INFOTESORIER, "B470808E-223B-43D2-954A-C68E146FC094");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INFOTESORIER, "Info Tesoriere");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INFOTESORIER, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INFOTESORIER, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INFOTESORIER, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDATAREG, "4F0DB6CC-9808-482A-B7F0-9A4E7FE3B9B5");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDATAREG, "CK DATA REG");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDATAREG, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDATAREG, MyGlb.VIS_CHECKSTYLE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDATAREG, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATAREG, "8C6013B7-FC9A-4476-AFDB-D9781369790A");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATAREG, "DATA REG");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATAREG, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATAREG, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATAREG, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE1, "B7353869-F48E-45D6-B880-8136AC8C3BC6");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE1, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE1, MyGlb.VIS_VUOTONORMALE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE1, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INFORM, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCAUSALE, "DC4AB1A8-DE00-4176-AE61-368174A845C2");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCAUSALE, "CK CAUSALE");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCAUSALE, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCAUSALE, MyGlb.VIS_CHECKSTYLE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCAUSALE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CAUSALE, "4F4DA21D-D897-482D-AD69-95062F56E85B");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CAUSALE, "CAUSALE");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CAUSALE, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CAUSALE, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CAUSALE, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_AUTOLOOKUP | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKBOLLO, "5F72CD34-A8A0-4140-8082-874DE8D48C3A");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKBOLLO, "CK BOLLO");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKBOLLO, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKBOLLO, MyGlb.VIS_CHECKSTYLE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKBOLLO, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BOLLO, "6A03CAD6-8EEB-4241-B6DF-C6D30E974FFF");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BOLLO, "BOLLO");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BOLLO, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BOLLO, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BOLLO, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_AUTOLOOKUP | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE2, "2D3832F5-BA74-4FC9-9374-90C0153E5B63");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE2, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE2, MyGlb.VIS_VUOTONORMALE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE2, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INFORM, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKUFFICIO, "9E9ABF40-AC9C-49CE-A2A2-4F2623422534");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKUFFICIO, "CK UFFICIO");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKUFFICIO, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKUFFICIO, MyGlb.VIS_CHECKSTYLE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKUFFICIO, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_UFFICIO, "9B966941-6173-4C4E-BCCD-3874A4FC2618");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_UFFICIO, "UFFICIO");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_UFFICIO, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_UFFICIO, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_UFFICIO, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_AUTOLOOKUP | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKTIPOVINCOL, "601E30F6-A045-425D-A11B-F64EDFE9A1FD");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKTIPOVINCOL, "CK TIPO VINCOLO");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKTIPOVINCOL, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKTIPOVINCOL, MyGlb.VIS_CHECKSTYLE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKTIPOVINCOL, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TIPOVINCOLO, "BBC7AC20-5523-460C-AB66-F64C4054073B");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TIPOVINCOLO, "TIPO VINCOLO");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TIPOVINCOLO, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TIPOVINCOLO, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TIPOVINCOLO, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_AUTOLOOKUP | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABEL, "28B540C9-1694-490F-9793-DFCFB38BF783");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABEL, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABEL, MyGlb.VIS_VUOTONORMALE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABEL, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INFORM, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKESCLUSICIG, "48AD9859-F909-4D5A-B547-3FD287BDB635");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKESCLUSICIG, "CK ESCLUSIONE CIG");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKESCLUSICIG, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKESCLUSICIG, MyGlb.VIS_CHECKSTYLE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKESCLUSICIG, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ESCLUSIONCIG, "0D8314E8-4FFB-45D2-8DB8-3EEE68FBA108");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ESCLUSIONCIG, "ESCLUSIONE CIG");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ESCLUSIONCIG, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ESCLUSIONCIG, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ESCLUSIONCIG, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_AUTOLOOKUP | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDIVERSOBEN, "9D206A1E-3F2D-4C7C-A460-5250DD92E623");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDIVERSOBEN, "CK DIVERSO BEN");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDIVERSOBEN, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDIVERSOBEN, MyGlb.VIS_CHECKSTYLE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDIVERSOBEN, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODICDIVEBEN, "7CF616B1-F797-487E-86C2-5D4E75C12A68");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODICDIVEBEN, "Beneficiario");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODICDIVEBEN, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODICDIVEBEN, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODICDIVEBEN, 0 | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BENBENEFICIA, "FB6F3AA8-420B-4E4D-A9B0-22A802E6D07E");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BENBENEFICIA, "Beneficiario");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BENBENEFICIA, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BENBENEFICIA, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BENBENEFICIA, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SELEZISOGGET, "259A5288-0960-495C-BB93-D32089A14D88");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SELEZISOGGET, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SELEZISOGGET, MyGlb.VIS_STATICBUTTON);
+    PAN_VALORICOMUNI.SetImage(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SELEZISOGGET, 0, "wsearch1.gif", false);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SELEZISOGGET, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INFORM | MyGlb.FLD_CANACTIVATE, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMQTNDIVBEN, "6BF542E8-7F54-494F-87A6-BA8C1A290A4D");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMQTNDIVBEN, "Quietanza");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMQTNDIVBEN, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMQTNDIVBEN, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMQTNDIVBEN, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_CANACTIVATE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_T02DESCRIZIO, "2CD40A6A-A696-405B-A34B-BEB7910DF7EA");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_T02DESCRIZIO, "T02 DESCRIZIONE");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_T02DESCRIZIO, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_T02DESCRIZIO, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_T02DESCRIZIO, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKLIVELLO5, "17CE93BE-118C-4EDB-B6CE-28C60985D2E9");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKLIVELLO5, "CK LIVELLO 5");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKLIVELLO5, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKLIVELLO5, MyGlb.VIS_CHECKSTYLE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKLIVELLO5, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODLIVELLO5, "80CBEF37-EF61-41B3-977F-2FC78E2EEA19");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODLIVELLO5, "COD LIVELLO 5");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODLIVELLO5, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODLIVELLO5, MyGlb.VIS_INTE10NORFIE);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODLIVELLO5, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM | MyGlb.FLD_ACTIVE | MyGlb.FLD_CANACTIVATE | MyGlb.FLD_ISOPT, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCIZLIVEL5, "5802137C-3877-404A-9A69-36C2AE71A6BD");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCIZLIVEL5, "Descizione Livello 5");
+    PAN_VALORICOMUNI.set_ToolTip(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCIZLIVEL5, "");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCIZLIVEL5, MyGlb.VIS_NORMALFIELDS);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCIZLIVEL5, 0 | MyGlb.OBJ_VISIBLE | MyGlb.FLD_LISTLIST | MyGlb.FLD_INLIST | MyGlb.FLD_NOHDRLIST | MyGlb.FLD_NOHDRFORM | MyGlb.FLD_INFORM, -1);
+    PAN_VALORICOMUNI.SetRTCGuid(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CONFERMLABEL, "69A555EE-CC80-4F87-8E62-5BA63BDD37B3");
+    PAN_VALORICOMUNI.set_Header(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CONFERMLABEL, "Conferma");
+    PAN_VALORICOMUNI.set_VisualStyle(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CONFERMLABEL, MyGlb.VIS_STATICBUTTON);
+    PAN_VALORICOMUNI.SetImage(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CONFERMLABEL, 0, "button1.gif", false);
+    PAN_VALORICOMUNI.SetFlags(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CONFERMLABEL, 0 | MyGlb.OBJ_ENABLED | MyGlb.OBJ_VISIBLE | MyGlb.FLD_INFORM | MyGlb.FLD_CANACTIVATE, -1);
+  }
+
+  private void PAN_VALORICOMUNI_InitFields()
+  {
+
+    StringBuffer SQL = new StringBuffer();
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INTESTALABEL, MyGlb.PANEL_LIST, 80, 8, 484, 24, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INTESTALABEL, MyGlb.PANEL_LIST, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INTESTALABEL, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INTESTALABEL, MyGlb.PANEL_FORM, 8, 8, 816, 32, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INTESTALABEL, MyGlb.PANEL_FORM, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INTESTALABEL, MyGlb.PANEL_FORM, 2);
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_INTESTALABEL, -1, -1);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_INTESTALABEL, -1, "", "INTESTALABEL", 0, 0, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODISTINTA, MyGlb.PANEL_LIST, 0, 36, 40, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODISTINTA, MyGlb.PANEL_LIST, 88);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODISTINTA, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODISTINTA, MyGlb.PANEL_LIST, "ANN. DIST.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODISTINTA, MyGlb.PANEL_FORM, 4, 4, 112, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODISTINTA, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODISTINTA, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODISTINTA, MyGlb.PANEL_FORM, "ANN. DIST.");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_ANNODISTINTA, -1, -1);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_ANNODISTINTA, PPQRY_PARAMETRI407, "A.ANNO_DISTINTA", "ANNO_DISTINTA", 1, 4, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODISTIN, MyGlb.PANEL_LIST, 0, 36, 40, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODISTIN, MyGlb.PANEL_LIST, 104);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODISTIN, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODISTIN, MyGlb.PANEL_LIST, "NUM. DIST.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODISTIN, MyGlb.PANEL_FORM, 4, 28, 112, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODISTIN, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODISTIN, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODISTIN, MyGlb.PANEL_FORM, "NUM. DST.");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_NUMERODISTIN, -1, -1);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_NUMERODISTIN, PPQRY_PARAMETRI407, "A.NUMERO_DISTINTA", "NUMERO_DISTINTA", 1, 6, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDELIBERA, MyGlb.PANEL_LIST, 0, 36, 48, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDELIBERA, MyGlb.PANEL_LIST, 72);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDELIBERA, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDELIBERA, MyGlb.PANEL_LIST, "CK DEL.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDELIBERA, MyGlb.PANEL_FORM, 12, 72, 20, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDELIBERA, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDELIBERA, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDELIBERA, MyGlb.PANEL_FORM, "CK DELIB.");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_CKDELIBERA, -1, GRP_VALORICOMUNI_DELIBERA);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_CKDELIBERA, PPQRY_PARAMETRI407, "A.VALOCOMCKDEL", "VALOCOMCKDEL", 5, 2, 0, -13997);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKDELIBERA, (new IDVariant("SI")), "SI", "Type the value and explain what it means.", "", -1);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKDELIBERA, (new IDVariant()), "Null", "", "", -1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SEDEDEL, MyGlb.PANEL_LIST, 0, 36, 40, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SEDEDEL, MyGlb.PANEL_LIST, 56);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SEDEDEL, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SEDEDEL, MyGlb.PANEL_LIST, "SD. D.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SEDEDEL, MyGlb.PANEL_FORM, 40, 72, 44, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SEDEDEL, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SEDEDEL, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SEDEDEL, MyGlb.PANEL_FORM, "SEDE DEL");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_SEDEDEL, -1, GRP_VALORICOMUNI_DELIBERA);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_SEDEDEL, PPQRY_PARAMETRI407, "A.SEDE_DEL", "SEDE_DEL", 5, 4, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TRATDELILABE, MyGlb.PANEL_LIST, 132, 64, 20, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TRATDELILABE, MyGlb.PANEL_LIST, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TRATDELILABE, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TRATDELILABE, MyGlb.PANEL_FORM, 88, 72, 16, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TRATDELILABE, MyGlb.PANEL_FORM, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TRATDELILABE, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_TRATDELILABE, -1, GRP_VALORICOMUNI_DELIBERA);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_TRATDELILABE, -1, "", "TRATDELILABE", 0, 0, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODEL, MyGlb.PANEL_LIST, 0, 36, 40, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODEL, MyGlb.PANEL_LIST, 72);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODEL, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODEL, MyGlb.PANEL_LIST, "NM. D.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODEL, MyGlb.PANEL_FORM, 108, 72, 44, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODEL, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODEL, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMERODEL, MyGlb.PANEL_FORM, "NUM. DEL");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_NUMERODEL, -1, GRP_VALORICOMUNI_DELIBERA);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_NUMERODEL, PPQRY_PARAMETRI407, "A.NUMERO_DEL", "NUMERO_DEL", 1, 6, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODEL, MyGlb.PANEL_LIST, 0, 36, 40, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODEL, MyGlb.PANEL_LIST, 60);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODEL, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODEL, MyGlb.PANEL_LIST, "AN. D.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODEL, MyGlb.PANEL_FORM, 176, 72, 44, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODEL, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODEL, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ANNODEL, MyGlb.PANEL_FORM, "ANNO DEL");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_ANNODEL, -1, GRP_VALORICOMUNI_DELIBERA);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_ANNODEL, PPQRY_PARAMETRI407, "A.ANNO_DEL", "ANNO_DEL", 1, 4, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BARRDELILABE, MyGlb.PANEL_LIST, 140, 72, 20, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BARRDELILABE, MyGlb.PANEL_LIST, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BARRDELILABE, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BARRDELILABE, MyGlb.PANEL_FORM, 156, 72, 16, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BARRDELILABE, MyGlb.PANEL_FORM, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BARRDELILABE, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_BARRDELILABE, -1, GRP_VALORICOMUNI_DELIBERA);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_BARRDELILABE, -1, "", "BARRDELILABE", 0, 0, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCELDELIFORM, MyGlb.PANEL_LIST, 292, 80, 20, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCELDELIFORM, MyGlb.PANEL_LIST, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCELDELIFORM, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCELDELIFORM, MyGlb.PANEL_FORM, 224, 76, 16, 16, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCELDELIFORM, MyGlb.PANEL_FORM, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCELDELIFORM, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_SCELDELIFORM, -1, GRP_VALORICOMUNI_DELIBERA);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_SCELDELIFORM, -1, "", "SCELDELIFORM", 0, 0, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INEMISSIONE, MyGlb.PANEL_LIST, 0, 36, 80, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INEMISSIONE, MyGlb.PANEL_LIST, 80);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INEMISSIONE, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INEMISSIONE, MyGlb.PANEL_LIST, "In Emissione");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INEMISSIONE, MyGlb.PANEL_FORM, 304, 76, 104, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INEMISSIONE, MyGlb.PANEL_FORM, 80);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INEMISSIONE, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INEMISSIONE, MyGlb.PANEL_FORM, "In Emissione");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_INEMISSIONE, -1, -1);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_INEMISSIONE, PPQRY_PARAMETRI407, "A.VALOCOMINEMI", "VALOCOMINEMI", 5, 2, 0, -13997);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_INEMISSIONE, (new IDVariant("SI")), "SI", "Type the value and explain what it means.", "", -1);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_INEMISSIONE, (new IDVariant()), "Null", "", "", -1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDESCRIZION, MyGlb.PANEL_LIST, 0, 36, 48, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDESCRIZION, MyGlb.PANEL_LIST, 92);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDESCRIZION, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDESCRIZION, MyGlb.PANEL_LIST, "CK DSC.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDESCRIZION, MyGlb.PANEL_FORM, 12, 124, 20, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDESCRIZION, MyGlb.PANEL_FORM, 104);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDESCRIZION, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDESCRIZION, MyGlb.PANEL_FORM, "CK DESCRIZIONE");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_CKDESCRIZION, -1, GRP_VALORICOMUNI_DESCRIZIONE);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_CKDESCRIZION, PPQRY_PARAMETRI407, "A.VALOCOMCKDES", "VALOCOMCKDES", 5, 2, 0, -13997);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKDESCRIZION, (new IDVariant("SI")), "SI", "Type the value and explain what it means.", "", -1);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKDESCRIZION, (new IDVariant()), "Null", "", "", -1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRIZIONE, MyGlb.PANEL_LIST, 4, 576, 504, 32, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRIZIONE, MyGlb.PANEL_LIST, 104);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRIZIONE, MyGlb.PANEL_LIST, 2);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRIZIONE, MyGlb.PANEL_LIST, "Descrizione");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRIZIONE, MyGlb.PANEL_FORM, 44, 124, 336, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRIZIONE, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRIZIONE, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRIZIONE, MyGlb.PANEL_FORM, "Descr.");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_DESCRIZIONE, -1, GRP_VALORICOMUNI_DESCRIZIONE);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_DESCRIZIONE, PPQRY_PARAMETRI407, "A.DESCRIZIONE", "DESCRIZIONE", 5, 140, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRDADELIB, MyGlb.PANEL_LIST, 300, 88, 20, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRDADELIB, MyGlb.PANEL_LIST, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRDADELIB, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRDADELIB, MyGlb.PANEL_FORM, 384, 128, 20, 16, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRDADELIB, MyGlb.PANEL_FORM, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCRDADELIB, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_DESCRDADELIB, -1, GRP_VALORICOMUNI_DESCRIZIONE);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_DESCRDADELIB, -1, "", "DESCRDADELIB", 0, 0, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCONTABILE, MyGlb.PANEL_LIST, 0, 36, 48, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCONTABILE, MyGlb.PANEL_LIST, 80);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCONTABILE, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCONTABILE, MyGlb.PANEL_LIST, "CK CNT.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCONTABILE, MyGlb.PANEL_FORM, 12, 176, 20, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCONTABILE, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCONTABILE, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCONTABILE, MyGlb.PANEL_FORM, "CK CONT.");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_CKCONTABILE, -1, GRP_VALORICOMUNI_CONTABILE);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_CKCONTABILE, PPQRY_PARAMETRI407, "A.VALOCOMCKCON", "VALOCOMCKCON", 5, 2, 0, -13997);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKCONTABILE, (new IDVariant("SI")), "SI", "Type the value and explain what it means.", "", -1);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKCONTABILE, (new IDVariant()), "Null", "", "", -1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMEROCONTAB, MyGlb.PANEL_LIST, 0, 36, 80, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMEROCONTAB, MyGlb.PANEL_LIST, 112);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMEROCONTAB, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMEROCONTAB, MyGlb.PANEL_LIST, "Num. Cont.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMEROCONTAB, MyGlb.PANEL_FORM, 104, 176, 92, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMEROCONTAB, MyGlb.PANEL_FORM, 48);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMEROCONTAB, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMEROCONTAB, MyGlb.PANEL_FORM, "N. Cnt.");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_NUMEROCONTAB, -1, GRP_VALORICOMUNI_CONTABILE);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_NUMEROCONTAB, PPQRY_PARAMETRI407, "A.NUMERO_CONTABILE", "NUMERO_CONTABILE", 5, 10, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTABIL, MyGlb.PANEL_LIST, 0, 36, 96, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTABIL, MyGlb.PANEL_LIST, 96);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTABIL, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTABIL, MyGlb.PANEL_LIST, "Data Contabile");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTABIL, MyGlb.PANEL_FORM, 272, 176, 76, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTABIL, MyGlb.PANEL_FORM, 32);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTABIL, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTABIL, MyGlb.PANEL_FORM, "D. C.");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_DATACONTABIL, -1, GRP_VALORICOMUNI_CONTABILE);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_DATACONTABIL, PPQRY_PARAMETRI407, "A.DATA_CONTABILE", "DATA_CONTABILE", 8, 19, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMECONTLABE, MyGlb.PANEL_LIST, 24, 328, 48, 16, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMECONTLABE, MyGlb.PANEL_LIST, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMECONTLABE, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMECONTLABE, MyGlb.PANEL_FORM, 48, 176, 52, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMECONTLABE, MyGlb.PANEL_FORM, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMECONTLABE, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_NUMECONTLABE, -1, GRP_VALORICOMUNI_CONTABILE);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_NUMECONTLABE, -1, "", "NUMECONTLABE", 0, 0, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTLABE, MyGlb.PANEL_LIST, 32, 336, 48, 16, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTLABE, MyGlb.PANEL_LIST, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTLABE, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTLABE, MyGlb.PANEL_FORM, 232, 176, 36, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTLABE, MyGlb.PANEL_FORM, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATACONTLABE, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_DATACONTLABE, -1, GRP_VALORICOMUNI_CONTABILE);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_DATACONTLABE, -1, "", "DATACONTLABE", 0, 0, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_LABELDX, MyGlb.PANEL_LIST, 340, 188, 12, 12, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_LABELDX, MyGlb.PANEL_LIST, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_LABELDX, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_LABELDX, MyGlb.PANEL_FORM, 392, 184, 12, 12, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_LABELDX, MyGlb.PANEL_FORM, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_LABELDX, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_LABELDX, -1, GRP_VALORICOMUNI_CONTABILE);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_LABELDX, -1, "", "LABELDX", 0, 0, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKMANDAINFOR, MyGlb.PANEL_LIST, 0, 36, 48, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKMANDAINFOR, MyGlb.PANEL_LIST, 152);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKMANDAINFOR, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKMANDAINFOR, MyGlb.PANEL_LIST, "C. M. I.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKMANDAINFOR, MyGlb.PANEL_FORM, 12, 228, 20, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKMANDAINFOR, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKMANDAINFOR, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKMANDAINFOR, MyGlb.PANEL_FORM, "C. MN. INF.");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_CKMANDAINFOR, -1, GRP_VALORICOMUNI_MANDATINFORM);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_CKMANDAINFOR, PPQRY_PARAMETRI407, "A.VALCOMCKMAIN", "VALCOMCKMAIN", 5, 2, 0, -13997);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKMANDAINFOR, (new IDVariant("SI")), "SI", "Type the value and explain what it means.", "", -1);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKMANDAINFOR, (new IDVariant()), "Null", "", "", -1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SPESE, MyGlb.PANEL_LIST, 0, 36, 40, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SPESE, MyGlb.PANEL_LIST, 40);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SPESE, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SPESE, MyGlb.PANEL_LIST, "Spese");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SPESE, MyGlb.PANEL_FORM, 56, 256, 348, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SPESE, MyGlb.PANEL_FORM, 44);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SPESE, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SPESE, MyGlb.PANEL_FORM, "Spese");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_SPESE, -1, GRP_VALORICOMUNI_MANDATINFORM);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_SPESE, PPQRY_PARAMETRI407, "A.SPESE", "SPESE", 1, 1, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCADENZA, MyGlb.PANEL_LIST, 0, 36, 96, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCADENZA, MyGlb.PANEL_LIST, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCADENZA, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCADENZA, MyGlb.PANEL_LIST, "Scadenza");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCADENZA, MyGlb.PANEL_FORM, 36, 280, 144, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCADENZA, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCADENZA, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SCADENZA, MyGlb.PANEL_FORM, "Scadenza");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_SCADENZA, -1, GRP_VALORICOMUNI_MANDATINFORM);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_SCADENZA, PPQRY_PARAMETRI407, "A.SCADENZA", "SCADENZA", 8, 19, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_COMMISSIONI, MyGlb.PANEL_LIST, 0, 36, 104, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_COMMISSIONI, MyGlb.PANEL_LIST, 80);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_COMMISSIONI, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_COMMISSIONI, MyGlb.PANEL_LIST, "Commissioni");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_COMMISSIONI, MyGlb.PANEL_FORM, 212, 280, 192, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_COMMISSIONI, MyGlb.PANEL_FORM, 80);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_COMMISSIONI, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_COMMISSIONI, MyGlb.PANEL_FORM, "Commissioni");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_COMMISSIONI, -1, GRP_VALORICOMUNI_MANDATINFORM);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_COMMISSIONI, PPQRY_PARAMETRI407, "A.COMMISSIONI", "COMMISSIONI", 1, 1, 0, -13997);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_COMMISSIONI, (new IDVariant(1)), "Esente", "", "", -1);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_COMMISSIONI, (new IDVariant(2)), "A carico Ente", "", "", -1);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_COMMISSIONI, (new IDVariant(3)), "A carico Istituto", "", "", -1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ALLEGATI, MyGlb.PANEL_LIST, 4, 600, 504, 32, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ALLEGATI, MyGlb.PANEL_LIST, 104);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ALLEGATI, MyGlb.PANEL_LIST, 2);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ALLEGATI, MyGlb.PANEL_LIST, "Allegati");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ALLEGATI, MyGlb.PANEL_FORM, 48, 304, 356, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ALLEGATI, MyGlb.PANEL_FORM, 52);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ALLEGATI, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ALLEGATI, MyGlb.PANEL_FORM, "Allegati");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_ALLEGATI, -1, GRP_VALORICOMUNI_MANDATINFORM);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_ALLEGATI, PPQRY_PARAMETRI407, "A.ALLEGATI", "ALLEGATI", 5, 150, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INFOTESORIER, MyGlb.PANEL_LIST, 4, 624, 504, 32, MyGlb.RESMODE_NONE, MyGlb.RESMODE_MOVE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INFOTESORIER, MyGlb.PANEL_LIST, 104);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INFOTESORIER, MyGlb.PANEL_LIST, 2);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INFOTESORIER, MyGlb.PANEL_LIST, "Info Tesoriere");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INFOTESORIER, MyGlb.PANEL_FORM, 12, 328, 392, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INFOTESORIER, MyGlb.PANEL_FORM, 88);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INFOTESORIER, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_INFOTESORIER, MyGlb.PANEL_FORM, "Info Tesoriere");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_INFOTESORIER, -1, GRP_VALORICOMUNI_MANDATINFORM);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_INFOTESORIER, PPQRY_PARAMETRI407, "A.INFO_TESORIERE", "INFO_TESORIERE", 5, 200, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDATAREG, MyGlb.PANEL_LIST, 0, 36, 84, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDATAREG, MyGlb.PANEL_LIST, 84);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDATAREG, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDATAREG, MyGlb.PANEL_LIST, "CK DATA REG");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDATAREG, MyGlb.PANEL_FORM, 416, 72, 20, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDATAREG, MyGlb.PANEL_FORM, 84);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDATAREG, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDATAREG, MyGlb.PANEL_FORM, "CK DATA REG");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_CKDATAREG, -1, GRP_VALORICOMUNI_DATAREGISTRA);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_CKDATAREG, PPQRY_PARAMETRI407, "A.VALCOMCKDARE", "VALCOMCKDARE", 5, 2, 0, -13997);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKDATAREG, (new IDVariant("SI")), "SI", "Type the value and explain what it means.", "", -1);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKDATAREG, (new IDVariant()), "Null", "", "", -1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATAREG, MyGlb.PANEL_LIST, 0, 36, 64, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATAREG, MyGlb.PANEL_LIST, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATAREG, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATAREG, MyGlb.PANEL_LIST, "DATA REG");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATAREG, MyGlb.PANEL_FORM, 440, 72, 92, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATAREG, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATAREG, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DATAREG, MyGlb.PANEL_FORM, "DATA REG");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_DATAREG, -1, GRP_VALORICOMUNI_DATAREGISTRA);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_DATAREG, PPQRY_PARAMETRI407, "A.VALCOMDATREG", "VALCOMDATREG", 6, 10, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE1, MyGlb.PANEL_LIST, 316, 356, 16, 16, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE1, MyGlb.PANEL_LIST, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE1, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE1, MyGlb.PANEL_FORM, 804, 76, 16, 16, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE1, MyGlb.PANEL_FORM, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE1, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_ETICHETLABE1, -1, GRP_VALORICOMUNI_DATAREGISTRA);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_ETICHETLABE1, -1, "", "ETICHETLABE1", 0, 0, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCAUSALE, MyGlb.PANEL_LIST, 0, 36, 48, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCAUSALE, MyGlb.PANEL_LIST, 72);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCAUSALE, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCAUSALE, MyGlb.PANEL_LIST, "CK CS.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCAUSALE, MyGlb.PANEL_FORM, 416, 124, 20, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCAUSALE, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCAUSALE, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKCAUSALE, MyGlb.PANEL_FORM, "CK CAUS.");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_CKCAUSALE, -1, GRP_VALORICOMUNI_CAUSALE);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_CKCAUSALE, PPQRY_PARAMETRI407, "A.VALOCOMCKCAU", "VALOCOMCKCAU", 5, 2, 0, -13997);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKCAUSALE, (new IDVariant("SI")), "SI", "Type the value and explain what it means.", "", -1);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKCAUSALE, (new IDVariant()), "Null", "", "", -1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CAUSALE, MyGlb.PANEL_LIST, 0, 36, 40, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CAUSALE, MyGlb.PANEL_LIST, 56);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CAUSALE, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CAUSALE, MyGlb.PANEL_LIST, "CAUS.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CAUSALE, MyGlb.PANEL_FORM, 440, 124, 380, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CAUSALE, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CAUSALE, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CAUSALE, MyGlb.PANEL_FORM, "CAUSALE");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_CAUSALE, -1, GRP_VALORICOMUNI_CAUSALE);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_CAUSALE, PPQRY_PARAMETRI407, "A.CAUSALE", "CAUSALE", 1, 4, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKBOLLO, MyGlb.PANEL_LIST, 0, 36, 48, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKBOLLO, MyGlb.PANEL_LIST, 56);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKBOLLO, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKBOLLO, MyGlb.PANEL_LIST, "CK BOL.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKBOLLO, MyGlb.PANEL_FORM, 416, 176, 20, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKBOLLO, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKBOLLO, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKBOLLO, MyGlb.PANEL_FORM, "CK BOLLO");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_CKBOLLO, -1, GRP_VALORICOMUNI_BOLLO);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_CKBOLLO, PPQRY_PARAMETRI407, "A.VALOCOMCKBOL", "VALOCOMCKBOL", 5, 2, 0, -13997);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKBOLLO, (new IDVariant("SI")), "SI", "Type the value and explain what it means.", "", -1);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKBOLLO, (new IDVariant()), "Null", "", "", -1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BOLLO, MyGlb.PANEL_LIST, 0, 36, 40, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BOLLO, MyGlb.PANEL_LIST, 40);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BOLLO, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BOLLO, MyGlb.PANEL_LIST, "BOL.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BOLLO, MyGlb.PANEL_FORM, 440, 176, 380, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BOLLO, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BOLLO, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BOLLO, MyGlb.PANEL_FORM, "BOLLO");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_BOLLO, -1, GRP_VALORICOMUNI_BOLLO);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_BOLLO, PPQRY_PARAMETRI407, "A.BOLLO", "BOLLO", 1, 2, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE2, MyGlb.PANEL_LIST, 352, 352, 24, 16, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE2, MyGlb.PANEL_LIST, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE2, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE2, MyGlb.PANEL_FORM, 716, 248, 104, 8, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE2, MyGlb.PANEL_FORM, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABE2, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_ETICHETLABE2, -1, GRP_VALORICOMUNI_UFFICIO);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_ETICHETLABE2, -1, "", "ETICHETLABE2", 0, 0, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKUFFICIO, MyGlb.PANEL_LIST, 0, 36, 48, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKUFFICIO, MyGlb.PANEL_LIST, 68);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKUFFICIO, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKUFFICIO, MyGlb.PANEL_LIST, "CK UFF.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKUFFICIO, MyGlb.PANEL_FORM, 416, 228, 20, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKUFFICIO, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKUFFICIO, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKUFFICIO, MyGlb.PANEL_FORM, "CK UFF.");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_CKUFFICIO, -1, GRP_VALORICOMUNI_UFFICIO);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_CKUFFICIO, PPQRY_PARAMETRI407, "A.VALOCOMCKUFF", "VALOCOMCKUFF", 5, 2, 0, -13997);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKUFFICIO, (new IDVariant("SI")), "SI", "Type the value and explain what it means.", "", -1);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKUFFICIO, (new IDVariant()), "Null", "", "", -1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_UFFICIO, MyGlb.PANEL_LIST, 0, 36, 40, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_UFFICIO, MyGlb.PANEL_LIST, 52);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_UFFICIO, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_UFFICIO, MyGlb.PANEL_LIST, "UFF.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_UFFICIO, MyGlb.PANEL_FORM, 440, 228, 380, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_UFFICIO, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_UFFICIO, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_UFFICIO, MyGlb.PANEL_FORM, "UFFICIO");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_UFFICIO, -1, GRP_VALORICOMUNI_UFFICIO);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_UFFICIO, PPQRY_PARAMETRI407, "A.UFFICIO", "UFFICIO", 1, 5, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKTIPOVINCOL, MyGlb.PANEL_LIST, 0, 36, 48, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKTIPOVINCOL, MyGlb.PANEL_LIST, 96);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKTIPOVINCOL, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKTIPOVINCOL, MyGlb.PANEL_LIST, "C. T. V.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKTIPOVINCOL, MyGlb.PANEL_FORM, 416, 288, 20, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKTIPOVINCOL, MyGlb.PANEL_FORM, 84);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKTIPOVINCOL, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKTIPOVINCOL, MyGlb.PANEL_FORM, "CK TP. VINC.");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_CKTIPOVINCOL, -1, GRP_VALORICOMUNI_TIPOVINCOLO);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_CKTIPOVINCOL, PPQRY_PARAMETRI407, "A.VALCOMCKTIVI", "VALCOMCKTIVI", 5, 2, 0, -13997);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKTIPOVINCOL, (new IDVariant("SI")), "SI", "Type the value and explain what it means.", "", -1);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKTIPOVINCOL, (new IDVariant()), "Null", "", "", -1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TIPOVINCOLO, MyGlb.PANEL_LIST, 0, 36, 40, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TIPOVINCOLO, MyGlb.PANEL_LIST, 80);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TIPOVINCOLO, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TIPOVINCOLO, MyGlb.PANEL_LIST, "T. VN.");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TIPOVINCOLO, MyGlb.PANEL_FORM, 440, 288, 380, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TIPOVINCOLO, MyGlb.PANEL_FORM, 64);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TIPOVINCOLO, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_TIPOVINCOLO, MyGlb.PANEL_FORM, "TP. VINC.");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_TIPOVINCOLO, -1, GRP_VALORICOMUNI_TIPOVINCOLO);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_TIPOVINCOLO, PPQRY_PARAMETRI407, "A.TIPO_VINCOLO", "TIPO_VINCOLO", 1, 6, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABEL, MyGlb.PANEL_LIST, 436, 336, 20, 16, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABEL, MyGlb.PANEL_LIST, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABEL, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABEL, MyGlb.PANEL_FORM, 708, 312, 112, 8, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABEL, MyGlb.PANEL_FORM, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ETICHETLABEL, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_ETICHETLABEL, -1, GRP_VALORICOMUNI_TIPOVINCOLO);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_ETICHETLABEL, -1, "", "ETICHETLABEL", 0, 0, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKESCLUSICIG, MyGlb.PANEL_LIST, 0, 36, 116, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKESCLUSICIG, MyGlb.PANEL_LIST, 116);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKESCLUSICIG, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKESCLUSICIG, MyGlb.PANEL_LIST, "CK ESCLUSIONE CIG");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKESCLUSICIG, MyGlb.PANEL_FORM, 416, 352, 20, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKESCLUSICIG, MyGlb.PANEL_FORM, 116);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKESCLUSICIG, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKESCLUSICIG, MyGlb.PANEL_FORM, "CK ESCLUSIONE CIG");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_CKESCLUSICIG, -1, GRP_VALORICOMUNI_MOTIVESCLCIG);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_CKESCLUSICIG, PPQRY_PARAMETRI407, "A.VALCOMCKESCI", "VALCOMCKESCI", 5, 2, 0, -13997);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKESCLUSICIG, (new IDVariant("SI")), "SI", "Type the value and explain what it means.", "", -1);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKESCLUSICIG, (new IDVariant()), "Null", "", "", -1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ESCLUSIONCIG, MyGlb.PANEL_LIST, 0, 36, 260, 20, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ESCLUSIONCIG, MyGlb.PANEL_LIST, 100);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ESCLUSIONCIG, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ESCLUSIONCIG, MyGlb.PANEL_LIST, "ESCLUSIONE CIG");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ESCLUSIONCIG, MyGlb.PANEL_FORM, 440, 352, 380, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ESCLUSIONCIG, MyGlb.PANEL_FORM, 100);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ESCLUSIONCIG, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_ESCLUSIONCIG, MyGlb.PANEL_FORM, "ESCLUSIONE CIG");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_ESCLUSIONCIG, -1, GRP_VALORICOMUNI_MOTIVESCLCIG);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_ESCLUSIONCIG, PPQRY_PARAMETRI407, "A.ESCLUSIONE_CIG", "ESCLUSIONE_CIG", 5, 50, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDIVERSOBEN, MyGlb.PANEL_LIST, 0, 36, 100, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDIVERSOBEN, MyGlb.PANEL_LIST, 100);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDIVERSOBEN, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDIVERSOBEN, MyGlb.PANEL_LIST, "CK DIVERSO BEN");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDIVERSOBEN, MyGlb.PANEL_FORM, 12, 380, 20, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDIVERSOBEN, MyGlb.PANEL_FORM, 100);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDIVERSOBEN, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKDIVERSOBEN, MyGlb.PANEL_FORM, "CK DIVERSO BEN");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_CKDIVERSOBEN, -1, GRP_VALORICOMUNI_DIVERSBENEFI);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_CKDIVERSOBEN, PPQRY_PARAMETRI407, "A.VALCOMCKDIBE", "VALCOMCKDIBE", 5, 2, 0, -13997);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKDIVERSOBEN, (new IDVariant("SI")), "SI", "Type the value and explain what it means.", "", -1);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKDIVERSOBEN, (new IDVariant()), "Null", "", "", -1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODICDIVEBEN, MyGlb.PANEL_LIST, 0, 36, 124, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODICDIVEBEN, MyGlb.PANEL_LIST, 124);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODICDIVEBEN, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODICDIVEBEN, MyGlb.PANEL_LIST, "Beneficiario");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODICDIVEBEN, MyGlb.PANEL_FORM, 36, 404, 144, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODICDIVEBEN, MyGlb.PANEL_FORM, 80);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODICDIVEBEN, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODICDIVEBEN, MyGlb.PANEL_FORM, "Beneficiario");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_CODICDIVEBEN, -1, GRP_VALORICOMUNI_DIVERSBENEFI);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_CODICDIVEBEN, PPQRY_PARAMETRI407, "A.VALCOMCODIBE", "VALCOMCODIBE", 1, 6, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BENBENEFICIA, MyGlb.PANEL_LIST, 0, 36, 404, 32, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BENBENEFICIA, MyGlb.PANEL_LIST, 100);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BENBENEFICIA, MyGlb.PANEL_LIST, 2);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BENBENEFICIA, MyGlb.PANEL_LIST, "Beneficiario");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BENBENEFICIA, MyGlb.PANEL_FORM, 36, 380, 348, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BENBENEFICIA, MyGlb.PANEL_FORM, 76);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BENBENEFICIA, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_BENBENEFICIA, MyGlb.PANEL_FORM, "Beneficiario");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_BENBENEFICIA, -1, GRP_VALORICOMUNI_DIVERSBENEFI);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_BENBENEFICIA, PPQRY_BEN, "TO_CHAR ( A.CODICE ) || '-' || A.RAGIONE_SOCIALE_ESTESA", "BENBENEFICIA", 5, 160, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SELEZISOGGET, MyGlb.PANEL_LIST, 580, 52, 24, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SELEZISOGGET, MyGlb.PANEL_LIST, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SELEZISOGGET, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SELEZISOGGET, MyGlb.PANEL_FORM, 388, 384, 16, 16, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SELEZISOGGET, MyGlb.PANEL_FORM, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_SELEZISOGGET, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_SELEZISOGGET, -1, GRP_VALORICOMUNI_DIVERSBENEFI);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_SELEZISOGGET, -1, "", "SELEZISOGGET", 0, 0, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMQTNDIVBEN, MyGlb.PANEL_LIST, 0, 36, 136, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMQTNDIVBEN, MyGlb.PANEL_LIST, 136);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMQTNDIVBEN, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMQTNDIVBEN, MyGlb.PANEL_LIST, "Quietanza");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMQTNDIVBEN, MyGlb.PANEL_FORM, 44, 404, 112, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMQTNDIVBEN, MyGlb.PANEL_FORM, 68);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMQTNDIVBEN, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_NUMQTNDIVBEN, MyGlb.PANEL_FORM, "Quietanza");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_NUMQTNDIVBEN, -1, GRP_VALORICOMUNI_DIVERSBENEFI);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_NUMQTNDIVBEN, PPQRY_PARAMETRI407, "A.VACONUQTDIBE", "VACONUQTDIBE", 1, 2, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_T02DESCRIZIO, MyGlb.PANEL_LIST, 0, 36, 208, 20, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_T02DESCRIZIO, MyGlb.PANEL_LIST, 108);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_T02DESCRIZIO, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_T02DESCRIZIO, MyGlb.PANEL_LIST, "T02 DESCRIZIONE");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_T02DESCRIZIO, MyGlb.PANEL_FORM, 160, 404, 244, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_T02DESCRIZIO, MyGlb.PANEL_FORM, 108);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_T02DESCRIZIO, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_T02DESCRIZIO, MyGlb.PANEL_FORM, "T02 DESCRIZIONE");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_T02DESCRIZIO, -1, GRP_VALORICOMUNI_DIVERSBENEFI);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_T02DESCRIZIO, PPQRY_QTN, "B.DESCRIZIONE", "QTNT02DESCRI", 5, 40, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKLIVELLO5, MyGlb.PANEL_LIST, 0, 36, 80, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKLIVELLO5, MyGlb.PANEL_LIST, 80);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKLIVELLO5, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKLIVELLO5, MyGlb.PANEL_LIST, "CK LIVELLO 5");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKLIVELLO5, MyGlb.PANEL_FORM, 416, 404, 20, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKLIVELLO5, MyGlb.PANEL_FORM, 80);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKLIVELLO5, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CKLIVELLO5, MyGlb.PANEL_FORM, "CK LIVELLO 5");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_CKLIVELLO5, -1, GRP_VALORICOMUNI_CODVLIVELLO);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_CKLIVELLO5, PPQRY_PARAMETRI407, "A.VALCOMCKLIV5", "VALCOMCKLIV5", 5, 2, 0, -13997);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKLIVELLO5, (new IDVariant("SI")), "SI", "Type the value and explain what it means.", "", -1);
+    PAN_VALORICOMUNI.SetValueListItem(PFL_VALORICOMUNI_CKLIVELLO5, (new IDVariant()), "Null", "", "", -1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODLIVELLO5, MyGlb.PANEL_LIST, 0, 36, 88, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODLIVELLO5, MyGlb.PANEL_LIST, 88);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODLIVELLO5, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODLIVELLO5, MyGlb.PANEL_LIST, "COD LIVELLO 5");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODLIVELLO5, MyGlb.PANEL_FORM, 440, 404, 88, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODLIVELLO5, MyGlb.PANEL_FORM, 88);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODLIVELLO5, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CODLIVELLO5, MyGlb.PANEL_FORM, "COD LIVELLO 5");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_CODLIVELLO5, -1, GRP_VALORICOMUNI_CODVLIVELLO);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_CODLIVELLO5, PPQRY_PARAMETRI407, "A.COD_LIVELLO_5", "COD_LIVELLO_5", 3, 10, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCIZLIVEL5, MyGlb.PANEL_LIST, 0, 36, 432, 44, MyGlb.RESMODE_STRETCH, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCIZLIVEL5, MyGlb.PANEL_LIST, 220);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCIZLIVEL5, MyGlb.PANEL_LIST, 2);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCIZLIVEL5, MyGlb.PANEL_LIST, "Descizione Livello 5");
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCIZLIVEL5, MyGlb.PANEL_FORM, 532, 404, 288, 20, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCIZLIVEL5, MyGlb.PANEL_FORM, 220);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCIZLIVEL5, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetAbbrHeader(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_DESCIZLIVEL5, MyGlb.PANEL_FORM, "Descizione Livello 5");
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_DESCIZLIVEL5, -1, GRP_VALORICOMUNI_CODVLIVELLO);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_DESCIZLIVEL5, PPQRY_LIVELLO5, "A.DESCRIZIONE", "VISSTRRICDES", 5, 300, 0, -13997);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CONFERMLABEL, MyGlb.PANEL_LIST, 552, 336, 80, 28, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CONFERMLABEL, MyGlb.PANEL_LIST, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CONFERMLABEL, MyGlb.PANEL_LIST, 1);
+    PAN_VALORICOMUNI.SetRect(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CONFERMLABEL, MyGlb.PANEL_FORM, 740, 448, 80, 32, MyGlb.RESMODE_NONE, MyGlb.RESMODE_NONE);
+    PAN_VALORICOMUNI.SetHeaderSize(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CONFERMLABEL, MyGlb.PANEL_FORM, 0);
+    PAN_VALORICOMUNI.SetNumRow(MyGlb.OBJ_FIELD, PFL_VALORICOMUNI_CONFERMLABEL, MyGlb.PANEL_FORM, 1);
+    PAN_VALORICOMUNI.SetFieldPage(PFL_VALORICOMUNI_CONFERMLABEL, -1, -1);
+    PAN_VALORICOMUNI.SetFieldPanel(PFL_VALORICOMUNI_CONFERMLABEL, -1, "", "CONFERMLABEL", 0, 0, 0, -13997);
+  }
+
+  private void PAN_VALORICOMUNI_InitQueries()
+  {
+    StringBuffer SQL;
+
+    PAN_VALORICOMUNI.SetSize(MyGlb.OBJ_QUERY, 10);
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as BENCODICE, ");
+    SQL.append("  TO_CHAR ( A.CODICE ) || '-' || A.RAGIONE_SOCIALE_ESTESA as BENBENEFICIA, ");
+    SQL.append("  A.CODICE_FISCALE as CODICE_FISCALE, ");
+    SQL.append("  A.PARTITA_IVA as PARTITA_IVA ");
+    SQL.append("from ");
+    SQL.append("  BEN A ");
+    SQL.append("where (A.CODICE = ~~VALCOMCODIBE~~) ");
+    SQL.append("and   ((NVL(~~VALCOMDATREG~~, TRUNC( SYSDATE )) BETWEEN NVL(A.DAL, TO_DATE('1900-01-01','YYYY-MM-DD')) AND NVL(A.AL, TO_DATE('2999-12-31','YYYY-MM-DD')))) ");
+    SQL.append("and   (DECODE(A.D_SCADENZA, to_date(NULL), TO_DATE('2999-12-31','YYYY-MM-DD'), A.D_SCADENZA) >= NVL(~~VALCOMDATREG~~, TRUNC( SYSDATE ))) ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_VALORICOMUNI.SetQuery(PPQRY_BEN, 0, SQL, -1, "");
+    PAN_VALORICOMUNI.SetQueryDB(PPQRY_BEN, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_VALORICOMUNI.SetMasterTable(PPQRY_BEN, "BEN");
+    PAN_VALORICOMUNI.SetQueryLKE(PPQRY_BEN, PFL_VALORICOMUNI_CODICDIVEBEN, "BENCODICE");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as BENCODICE, ");
+    SQL.append("  TO_CHAR ( A.CODICE ) || '-' || A.RAGIONE_SOCIALE_ESTESA as BENBENEFICIA, ");
+    SQL.append("  A.CODICE_FISCALE as CODICE_FISCALE, ");
+    SQL.append("  A.PARTITA_IVA as PARTITA_IVA ");
+    SQL.append("from ");
+    SQL.append("  BEN A ");
+    SQL.append("where ((NVL(~~VALCOMDATREG~~, TRUNC( SYSDATE )) BETWEEN NVL(A.DAL, TO_DATE('1900-01-01','YYYY-MM-DD')) AND NVL(A.AL, TO_DATE('2999-12-31','YYYY-MM-DD')))) ");
+    SQL.append("and   (DECODE(A.D_SCADENZA, to_date(NULL), TO_DATE('2999-12-31','YYYY-MM-DD'), A.D_SCADENZA) >= NVL(~~VALCOMDATREG~~, TRUNC( SYSDATE ))) ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_VALORICOMUNI.SetQuery(PPQRY_BEN, 1, SQL, -1, "");
+    PAN_VALORICOMUNI.SetQueryHeaderColumn(PPQRY_BEN, "BENBENEFICIA", "Beneficiario");
+    PAN_VALORICOMUNI.SetQueryHeaderColumn(PPQRY_BEN, "CODICE_FISCALE", "Codice Fiscale");
+    PAN_VALORICOMUNI.SetQueryVisibleColumn(PPQRY_BEN, "CODICE_FISCALE");
+    PAN_VALORICOMUNI.SetQueryHeaderColumn(PPQRY_BEN, "PARTITA_IVA", "Partita IVA");
+    PAN_VALORICOMUNI.SetQueryVisibleColumn(PPQRY_BEN, "PARTITA_IVA");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  B.DESCRIZIONE as QTNT02DESCRI ");
+    SQL.append("from ");
+    SQL.append("  QTN A, ");
+    SQL.append("  T02 B ");
+    SQL.append("where (B.CODICE = A.TIPO_QUIETANZA) ");
+    SQL.append("and   (A.CODICE = ~~VALCOMCODIBE~~) ");
+    SQL.append("and   (A.NUM_QUIETANZA = ~~VACONUQTDIBE~~) ");
+    SQL.append("and   (NVL(A.SCADENZA, TO_DATE('2999-12-31','YYYY-MM-DD')) > TRUNC( SYSDATE )) ");
+    PAN_VALORICOMUNI.SetQuery(PPQRY_QTN, 0, SQL, -1, "");
+    PAN_VALORICOMUNI.SetQueryDB(PPQRY_QTN, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_VALORICOMUNI.SetMasterTable(PPQRY_QTN, "QTN");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.DESCRIZIONE as VISSTRRICDES ");
+    SQL.append("from ");
+    SQL.append("  VISTA_STRUTTURA_RICL A ");
+    SQL.append("where (A.CODICE_TIPO_RICL = 'MACRO_5') ");
+    SQL.append("and   (A.E_S = 'S') ");
+    SQL.append("and   (A.LIVELLO = 2) ");
+    SQL.append("and   (NVL(A.ESERCIZIO_INIZIO, 0) <= ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("and   (A.ESERCIZIO_SCADENZA >= ~~TBL_DATISESSIONE.SESSIOESERCI~~) ");
+    SQL.append("and   (A.CODICE = ~~COD_LIVELLO_5~~) ");
+    PAN_VALORICOMUNI.SetQuery(PPQRY_LIVELLO5, 0, SQL, -1, "");
+    PAN_VALORICOMUNI.SetQueryDB(PPQRY_LIVELLO5, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_VALORICOMUNI.SetMasterTable(PPQRY_LIVELLO5, "VISTA_STRUTTURA_RICL");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as TIPSPEMINCOD, ");
+    SQL.append("  TO_CHAR ( A.CODICE ) || ' - ' || A.DESCRIZIONE as TIPSPEMINDES ");
+    SQL.append("from ");
+    SQL.append("  TIPI_SPESA_MINF A ");
+    SQL.append("where (A.CODICE = ~~SPESE~~) ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_VALORICOMUNI.SetQuery(PPQRY_TIPISPESMINF, 0, SQL, PFL_VALORICOMUNI_SPESE, "");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as TIPSPEMINCOD, ");
+    SQL.append("  TO_CHAR ( A.CODICE ) || ' - ' || A.DESCRIZIONE as TIPSPEMINDES ");
+    SQL.append("from ");
+    SQL.append("  TIPI_SPESA_MINF A ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_VALORICOMUNI.SetQuery(PPQRY_TIPISPESMINF, 1, SQL, PFL_VALORICOMUNI_SPESE, "");
+    PAN_VALORICOMUNI.SetQueryDB(PPQRY_TIPISPESMINF, MainFrm.Cf4armDBObject.DB, 4);
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as T58CODICE, ");
+    SQL.append("  TO_CHAR ( A.CODICE ) || ' - ' || A.DESCRIZIONE as T58DESCRIZIO ");
+    SQL.append("from ");
+    SQL.append("  T58 A ");
+    SQL.append("where (A.CODICE = ~~CAUSALE~~) ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_VALORICOMUNI.SetQuery(PPQRY_T58, 0, SQL, PFL_VALORICOMUNI_CAUSALE, "");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as T58CODICE, ");
+    SQL.append("  TO_CHAR ( A.CODICE ) || ' - ' || A.DESCRIZIONE as T58DESCRIZIO ");
+    SQL.append("from ");
+    SQL.append("  T58 A ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_VALORICOMUNI.SetQuery(PPQRY_T58, 1, SQL, PFL_VALORICOMUNI_CAUSALE, "");
+    PAN_VALORICOMUNI.SetQueryDB(PPQRY_T58, MainFrm.Cf4armDBObject.DB, 4);
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as T60CODICE, ");
+    SQL.append("  TO_CHAR ( A.CODICE ) || ' - ' || A.DESCRIZIONE as T60DESCRIZIO ");
+    SQL.append("from ");
+    SQL.append("  T60 A ");
+    SQL.append("where (A.CODICE = ~~BOLLO~~) ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_VALORICOMUNI.SetQuery(PPQRY_T60, 0, SQL, PFL_VALORICOMUNI_BOLLO, "");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as T60CODICE, ");
+    SQL.append("  TO_CHAR ( A.CODICE ) || ' - ' || A.DESCRIZIONE as T60DESCRIZIO ");
+    SQL.append("from ");
+    SQL.append("  T60 A ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_VALORICOMUNI.SetQuery(PPQRY_T60, 1, SQL, PFL_VALORICOMUNI_BOLLO, "");
+    PAN_VALORICOMUNI.SetQueryDB(PPQRY_T60, MainFrm.Cf4armDBObject.DB, 4);
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as T53CODICE, ");
+    SQL.append("  TO_CHAR ( A.CODICE ) || ' - ' || A.DESCRIZIONE as T53DESCRIZIO ");
+    SQL.append("from ");
+    SQL.append("  T53 A ");
+    SQL.append("where (A.CODICE = ~~UFFICIO~~) ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_VALORICOMUNI.SetQuery(PPQRY_T53, 0, SQL, PFL_VALORICOMUNI_UFFICIO, "");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as T53CODICE, ");
+    SQL.append("  TO_CHAR ( A.CODICE ) || ' - ' || A.DESCRIZIONE as T53DESCRIZIO ");
+    SQL.append("from ");
+    SQL.append("  T53 A ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_VALORICOMUNI.SetQuery(PPQRY_T53, 1, SQL, PFL_VALORICOMUNI_UFFICIO, "");
+    PAN_VALORICOMUNI.SetQueryDB(PPQRY_T53, MainFrm.Cf4armDBObject.DB, 4);
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as VINCOLCODICE, ");
+    SQL.append("  TO_CHAR ( A.CODICE ) || ' - ' || A.DESCRIZIONE as VINCOLDESCRI ");
+    SQL.append("from ");
+    SQL.append("  VINCOLI A ");
+    SQL.append("where (A.CODICE = ~~TIPO_VINCOLO~~) ");
+    SQL.append("and   ((A.SCADENZA IS NULL) OR A.SCADENZA > TRUNC( SYSDATE )) ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_VALORICOMUNI.SetQuery(PPQRY_VINCOLI, 0, SQL, PFL_VALORICOMUNI_TIPOVINCOLO, "");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as VINCOLCODICE, ");
+    SQL.append("  TO_CHAR ( A.CODICE ) || ' - ' || A.DESCRIZIONE as VINCOLDESCRI ");
+    SQL.append("from ");
+    SQL.append("  VINCOLI A ");
+    SQL.append("where ((A.SCADENZA IS NULL) OR A.SCADENZA > TRUNC( SYSDATE )) ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_VALORICOMUNI.SetQuery(PPQRY_VINCOLI, 1, SQL, PFL_VALORICOMUNI_TIPOVINCOLO, "");
+    PAN_VALORICOMUNI.SetQueryDB(PPQRY_VINCOLI, MainFrm.Cf4armDBObject.DB, 4);
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as ATTRIOPICODI, ");
+    SQL.append("  A.DESCRIZIONE as ATTRIOPIDESC ");
+    SQL.append("from ");
+    SQL.append("  ATTRIBUTI_OPI A ");
+    SQL.append("where (A.CODICE = ~~ESCLUSIONE_CIG~~) ");
+    SQL.append("and   (A.TIPO = 'MOT_ESC_CIG') ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_VALORICOMUNI.SetQuery(PPQRY_ATTRIBUTIOPI, 0, SQL, PFL_VALORICOMUNI_ESCLUSIONCIG, "");
+    SQL = new StringBuffer();
+    SQL.append("select ");
+    SQL.append("  A.CODICE as ATTRIOPICODI, ");
+    SQL.append("  A.DESCRIZIONE as ATTRIOPIDESC ");
+    SQL.append("from ");
+    SQL.append("  ATTRIBUTI_OPI A ");
+    SQL.append("where (A.TIPO = 'MOT_ESC_CIG') ");
+    SQL.append("order by ");
+    SQL.append("  A.CODICE ");
+    PAN_VALORICOMUNI.SetQuery(PPQRY_ATTRIBUTIOPI, 1, SQL, PFL_VALORICOMUNI_ESCLUSIONCIG, "");
+    PAN_VALORICOMUNI.SetQueryDB(PPQRY_ATTRIBUTIOPI, MainFrm.Cf4armDBObject.DB, 4);
+    PAN_VALORICOMUNI.SetIMDB(IMDB, "PQRY_PARAMETRI407", true);
+    PAN_VALORICOMUNI.set_SetString(MyGlb.MASTER_ROWNAME, "Param");
+    PAN_VALORICOMUNI.SetQueryIMDB(PPQRY_PARAMETRI407, IMDBDef14.PQRY_PARAMETRI407_RS, IMDBDef5.TBL_VALORICOMUNI);
+    JustLoaded = true;
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_ANNODISTINTA, IMDBDef5.FLD_VALORICOMUNI_ANNO_DISTINTA);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_NUMERODISTIN, IMDBDef5.FLD_VALORICOMUNI_NUMERO_DISTINTA);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_CKDELIBERA, IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKDEL);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_SEDEDEL, IMDBDef5.FLD_VALORICOMUNI_SEDE_DEL);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_NUMERODEL, IMDBDef5.FLD_VALORICOMUNI_NUMERO_DEL);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_ANNODEL, IMDBDef5.FLD_VALORICOMUNI_ANNO_DEL);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_INEMISSIONE, IMDBDef5.FLD_VALORICOMUNI_VALOCOMINEMI);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_CKDESCRIZION, IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKDES);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_DESCRIZIONE, IMDBDef5.FLD_VALORICOMUNI_DESCRIZIONE);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_CKCONTABILE, IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKCON);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_NUMEROCONTAB, IMDBDef5.FLD_VALORICOMUNI_NUMERO_CONTABILE);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_DATACONTABIL, IMDBDef5.FLD_VALORICOMUNI_DATA_CONTABILE);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_CKMANDAINFOR, IMDBDef5.FLD_VALORICOMUNI_VALCOMCKMAIN);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_SPESE, IMDBDef5.FLD_VALORICOMUNI_SPESE);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_SCADENZA, IMDBDef5.FLD_VALORICOMUNI_SCADENZA);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_COMMISSIONI, IMDBDef5.FLD_VALORICOMUNI_COMMISSIONI);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_ALLEGATI, IMDBDef5.FLD_VALORICOMUNI_ALLEGATI);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_INFOTESORIER, IMDBDef5.FLD_VALORICOMUNI_INFO_TESORIERE);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_CKDATAREG, IMDBDef5.FLD_VALORICOMUNI_VALCOMCKDARE);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_DATAREG, IMDBDef5.FLD_VALORICOMUNI_VALCOMDATREG);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_CKCAUSALE, IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKCAU);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_CAUSALE, IMDBDef5.FLD_VALORICOMUNI_CAUSALE);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_CKBOLLO, IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKBOL);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_BOLLO, IMDBDef5.FLD_VALORICOMUNI_BOLLO);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_CKUFFICIO, IMDBDef5.FLD_VALORICOMUNI_VALOCOMCKUFF);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_UFFICIO, IMDBDef5.FLD_VALORICOMUNI_UFFICIO);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_CKTIPOVINCOL, IMDBDef5.FLD_VALORICOMUNI_VALCOMCKTIVI);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_TIPOVINCOLO, IMDBDef5.FLD_VALORICOMUNI_TIPO_VINCOLO);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_CKESCLUSICIG, IMDBDef5.FLD_VALORICOMUNI_VALCOMCKESCI);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_ESCLUSIONCIG, IMDBDef5.FLD_VALORICOMUNI_ESCLUSIONE_CIG);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_CKDIVERSOBEN, IMDBDef5.FLD_VALORICOMUNI_VALCOMCKDIBE);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_CODICDIVEBEN, IMDBDef5.FLD_VALORICOMUNI_VALCOMCODIBE);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_NUMQTNDIVBEN, IMDBDef5.FLD_VALORICOMUNI_VACONUQTDIBE);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_CKLIVELLO5, IMDBDef5.FLD_VALORICOMUNI_VALCOMCKLIV5);
+    PAN_VALORICOMUNI.SetFieldPrimaryIndex(PFL_VALORICOMUNI_CODLIVELLO5, IMDBDef5.FLD_VALORICOMUNI_COD_LIVELLO_5);
+    PAN_VALORICOMUNI.SetMasterTable(0, "VALORICOMUNI");
+    //
+    // Rieseguo la query se il pannello era già in stato DATA
+    if (PAN_VALORICOMUNI.Status() == 2)
+    {
+      int oldListQBE = PAN_VALORICOMUNI.iUseListQBE;
+      PAN_VALORICOMUNI.iUseListQBE = 0;
+      PAN_VALORICOMUNI.PanelCommand(Glb.PCM_SEARCH);
+      PAN_VALORICOMUNI.PanelCommand(Glb.PCM_FIND);
+      PAN_VALORICOMUNI.iUseListQBE = oldListQBE;
+    }
+  }
+
+  
+  
+  // **********************************************
+  // Panel events dispatching
+  // **********************************************
+  public void ValidateCell(IDPanel SrcObj, IDVariant ColIndex, IDVariant CellModified , IDVariant Cancel, IDVariant FldWasModified, IDVariant RowWasModified, IDVariant IsInsert)
+  {
+    if (SrcObj == PAN_VALORICOMUNI) PAN_VALORICOMUNI_ValidateCell(ColIndex, CellModified , Cancel, FldWasModified, RowWasModified, IsInsert);
+  }
+  
+  public void ValidateRow(IDPanel SrcObj, IDVariant Cancel)
+  {
+    if (SrcObj == PAN_VALORICOMUNI) PAN_VALORICOMUNI_ValidateRow(Cancel);
+  }
+  
+  public void DynamicProperties(IDPanel SrcObj)
+  {
+    if (SrcObj == PAN_VALORICOMUNI) PAN_VALORICOMUNI_DynamicProperties();
+  }
+  
+  public void CellActivated(IDPanel SrcObj, IDVariant ColIndex, IDVariant Cancel)
+  {
+    if (SrcObj == PAN_VALORICOMUNI) PAN_VALORICOMUNI_CellActivated(ColIndex, Cancel);
+  }
+  
+  public void OnChangePage(IDPanel SrcObj, IDVariant NewPage, IDVariant Cancel)
+  {
+  }
+  
+  public void OnChangeLayout(IDPanel SrcObj, IDVariant NewLayout, IDVariant Cancel)
+  {
+  }
+  
+  public void OnChangeRow(IDPanel SrcObj)
+  {
+  }
+
+  public void OnSelectingRow(IDPanel SrcObj)
+  {
+  }
+
+  public void OnSorting(IDPanel SrcObj, IDVariant FldIdx, IDVariant Cancel)
+  {
+  }
+
+  public void OnChangeSelection(IDPanel SrcObj, IDVariant NewVal, IDVariant Final, IDVariant Cancel)
+  {
+  }
+  
+  public void OnChangeLocking(IDPanel SrcObj, IDVariant NewLocking, IDVariant Cancel)
+  {
+  }
+  
+  public void OnChangeStatus(IDPanel SrcObj, IDVariant OldStatus)
+  {
+  }
+  
+  public void OnPanelCommand(IDPanel SrcObj, IDVariant Command, IDVariant Cancel, IDVariant UserOp)
+  {
+  }
+  
+  public void BeforeFind(IDPanel SrcObj, IDVariant Cancel)
+  {
+  }
+  
+  public void BeforeInsert(IDPanel SrcObj, IDVariant Cancel)
+  {
+  }
+  
+  public void BeforeUpdate(IDPanel SrcObj, IDVariant Cancel)
+  {
+  }
+
+  public void BeforeBlobUpdate(IDPanel SrcObj, IDVariant Cancel, IDVariant Column, IDVariant Size, IDVariant Extension, IDVariant FilePath)
+  {
+  }
+  
+  public void BeforeDelete(IDPanel SrcObj, IDVariant Cancel)
+  {
+  }
+  
+  public void AfterInsert(IDPanel SrcObj)
+  {
+  }
+  
+  public void AfterUpdate(IDPanel SrcObj)
+  {
+  }
+
+  public void AfterBlobUpdate(IDPanel SrcObj, IDVariant Column, IDVariant Size, IDVariant Extension)
+  {
+  }
+  
+  public void AfterDelete(IDPanel SrcObj)
+  {
+  }    
+
+  public void AfterFind(IDPanel SrcObj, IDVariant CmdFind)
+  {
+  }    
+
+  public void BeforeCommit(IDPanel SrcObj, IDVariant Cancel)
+  {
+  }
+  
+  public void AfterCommit(IDPanel SrcObj, IDVariant RowUpdated, IDVariant RowError)
+  {
+  }  
+
+  public void OnDBError(IDPanel SrcObj, IDVariant Cancel, IDVariant Skip, IDVariant ErrNum, IDVariant ErrMsg, IDVariant NativeErrNum, IDVariant PanOp, IDDocument Doc)
+  {
+    if (SrcObj == PAN_VALORICOMUNI) PAN_VALORICOMUNI_OnDBError(Cancel, Skip, ErrNum, ErrMsg, NativeErrNum, PanOp, Doc);
+  }  
+  
+  public void OnDownloadBlob(IDPanel SrcObj, IDVariant Cancel, IDVariant Column, IDVariant Size, IDVariant Extension, IDVariant Inline, IDVariant Filename, IDVariant MimeType)
+  {
+  }
+
+  public void OnPrint(IDPanel SrcObj, IDVariant Cancel, IDVariant Dest, IDVariant SetWC)
+  {
+  }  
+    
+  public void TabClick(OTabView SrcObj, IDVariant PreviousPage, IDVariant Cancel)
+  {
+  }    
+
+  public void NodeClick(ATree SrcObj, ATreeNode Node)
+  {
+  }    
+
+  public void OnTreeDropNode(ATree SrcObj, IDVariant SourceHash, IDVariant SourceTreeIndex, IDVariant DestinationHash, IDVariant ShiftKey, IDVariant AltKey, IDVariant ControlKey)
+  {
+  }    
+
+  public void OnTreeExpandNode(ATree SrcObj, IDVariant HashKey, IDVariant Cancel)
+  {
+  }
+  
+  public void OnTreeActivateNode(ATree SrcObj, IDVariant HashKey, IDVariant Cancel)
+  {
+  }
+
+  public void OnTreeChangeSelNode(ATree SrcObj, IDVariant HashKey, IDVariant Selected, IDVariant Cancel, IDVariant Final)
+  {
+  }
+  
+  public void OnTreeDropDoc(ATree SrcObj, IDDocument SourceDoc, IDDocument DestDoc, IDVariant ShiftKey, IDVariant AltKey, IDVariant ControlKey, IDVariant Cancel)
+  {
+  }    
+
+  public void OnTreeExpandDoc(ATree SrcObj, IDDocument Doc, IDVariant Cancel)
+  {
+  }
+  
+  public void OnTreeActivateDoc(ATree SrcObj, IDDocument Doc, IDVariant Cancel)
+  {
+  }
+  
+  public void OnTreeChangeSelDoc(ATree SrcObj, IDDocument Doc, IDVariant Selected, IDVariant Cancel, IDVariant Final)
+  {
+  }
+  
+  public void OnFormattingSection(OBook SrcObj, int SectionID)
+  {
+  }
+
+  public void OnAfterFormattingSection(OBook SrcObj, int SectionID)
+  {
+  }
+
+  public void OnFormattingPage(OBook SrcObj, int PageID)
+  {
+  }
+
+  public void OnChangingSpan(OBook SrcObj, int SpanIdx, IDVariant OldVal, IDVariant NewVal, IDVariant Cancel)
+  {
+  }
+
+  public void OnBoxDrop(OBook SrcObj, IDVariant SrcBoxIdx, IDVariant DstBoxIdx)
+  {
+  }
+
+  public void OnBoxTransform(OBook SrcObj, IDVariant BoxIdx, IDVariant NewX, IDVariant NewY, IDVariant NewW, IDVariant NewH, IDVariant Cancel)
+  {
+  }
+
+  public void OnConnecting(OBook SrcObj, IDConnection DBConn)
+  {
+  }
+
+  public void Activated(OBook SrcObj, int ObjID, String BoxName)
+  {
+  }
+
+  public void OnIMDBUpdate(OBook SrcObj, int ReportIdx)
+  {
+  }
+
+  public void OnPreview(OBook SrcObj)
+  {
+  }
+  
+  public void OnOpenPopup(ACommand SrcObj, IDVariant Direction, IDVariant Cancel) 
+  {
+  }
+  
+  public void OnCmdSetCommand(ACommand SrcObj, IDVariant CmdIdx, IDVariant ChildIdx, IDVariant Cancel) 
+  {
+  }
+  
+  public void OnCmdSetGeneralDrag(ACommand SrcObj, IDVariant DragInfo, IDVariant CmdIdx, IDVariant ChildIdx)
+  {
+  }
+  
+  public void OnCmdSetGeneralDrop(ACommand SrcObj, IDVariant DragInfo, IDVariant CmdIdx, IDVariant ChildIdx)
+  {
+  }
+
+  public void OnChangeCollapse(WebFrame SrcObj, IDVariant Collapse, IDVariant Cancel)
+  {
+  }
+
+  public void OnGraphClick(WebFrame SrcObj, IDVariant NumSerie, IDVariant NumPoint)
+  {
+  }
+
+  public void OnGraphOptions(WebFrame SrcObj, IDVariant Options)
+  {
+  }
+  
+  public void OnRenderToolbar(WebFrame SrcObj, IDVariant CmdIdx, IDVariant Visible)
+  {
+  }
+
+  public void OnBookCommand(OBook SrcObj, IDVariant Command, IDVariant Cancel, IDVariant UserOp)
+  {
+  }
+
+  public void OnCmdSetChangeExpand(ACommand SrcObj, IDVariant Expand, IDVariant Cancel)
+  {
+  }
+
+  public void OnTreeChangeExpandNode(ATree SrcObj, IDVariant HashKey, IDVariant Expanded, IDVariant Cancel)
+  {
+  }
+
+  public void OnTreeChangeExpandDoc(ATree SrcObj, IDDocument Doc, IDVariant Expanded, IDVariant Cancel)
+  {
+  }
+  
+
+  public void OnMouseClick(IDPanel SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant c, IDVariant r, IDVariant cancel)
+  {
+  }
+
+  public void OnMouseDoubleClick(IDPanel SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant c, IDVariant r, IDVariant cancel)
+  {
+  }
+  
+  public void OnMouseClick(OBook SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant boxid, IDVariant cancel)
+  {
+  }
+
+  public void OnMouseDoubleClick(OBook SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant boxid, IDVariant cancel)
+  {
+  }
+  
+  public void OnMouseClick(ATree SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant nodehash, IDDocument doc, IDVariant cancel)
+  {
+  }
+
+  public void OnMouseDoubleClick(ATree SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant nodehash, IDDocument doc, IDVariant cancel)
+  {
+  }
+  
+  public void OnMouseClick(AGraph SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant numserie, IDVariant recordselected, IDVariant cancel)
+  {
+  }
+
+  public void OnMouseDoubleClick(AGraph SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant numserie, IDVariant recordselected, IDVariant cancel)
+  {
+  }
+  
+  public void OnMouseClick(OTabView SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant tabid, IDVariant cancel)
+  {
+  }
+
+  public void OnMouseDoubleClick(OTabView SrcObj, IDVariant btn, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant tabid, IDVariant cancel)
+  {
+  }  
+  
+  public void OnReorderColum(IDPanel SrcObj, IDVariant sourcefield, IDVariant targetfield)
+  {
+  }
+  
+  public void OnResizeColum(IDPanel SrcObj, IDVariant sourcefield, IDVariant oldwidth)
+  {
+  }
+  
+
+  public void OnGenericDrag(IDPanel SrcObj, IDVariant draginfo,  IDVariant button, IDVariant colidx)
+  {
+  }
+
+  public void OnGenericDrop(IDPanel SrcObj, IDVariant draginfo, IDVariant cancel, IDVariant button, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant colidx, IDVariant rownum, IDDocument doc)
+  {
+  }
+  
+  public void OnGenericDrag(ATree SrcObj, IDVariant draginfo,  IDVariant button, IDVariant hashkey)
+  {
+  }
+
+  public void OnGenericDrop(ATree SrcObj, IDVariant draginfo, IDVariant cancel, IDVariant button, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant hashkey, IDDocument doc)
+  {
+  }  
+  
+  public void OnGenericDrag(OBook SrcObj, IDVariant draginfo,  IDVariant button, IDVariant boxid)
+  {
+  }
+
+  public void OnGenericDrop(OBook SrcObj, IDVariant draginfo, IDVariant cancel, IDVariant button, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant boxid)
+  {
+  }    
+  
+  public void OnGenericDrag(OTabView SrcObj, IDVariant draginfo, IDVariant button, IDVariant pageindex)
+  {
+  }
+
+  public void OnGenericDrop(OTabView SrcObj, IDVariant draginfo, IDVariant cancel, IDVariant button, IDVariant x, IDVariant y, IDVariant xb, IDVariant yb, IDVariant pageindex)
+  {
+  }
+
+  public void OnExpandingGroup(IDPanel SrcObj, IDVariant expanded, IDVariant userOperation)
+  {
+  }  
+
+  public void OnChangeGroupCollapse(IDPanel SrcObj, IDVariant GrpIndex)
+  {
+  }
+  
+  public void OnShowMultipleSelection(IDPanel SrcObj, IDVariant NewValue, IDVariant Cancel, IDVariant UserOperation)
+  {
+  }
+  
+  public void OnChangeTextSelection(IDPanel SrcObj, IDVariant Field, IDVariant OldSelectionStart, IDVariant OldSelectionEnd)
+  {
+  }
+  
+  public void OnFocus(IDPanel SrcObj, IDVariant Field, IDVariant GotFocus)
+  {
+  }
+  
+  public void OnFrameKeyPress(WebFrame SrcObj, IDVariant KeySet, IDVariant KeyCode, IDVariant Skip)
+  {
+  }
+  
+  public void OnGetLKE(IDPanel SrcObj, IDCachedRowSet RS, IDVariant ntry, IDVariant nullv, IDVariant bskip, IDVariant bcancel, IDVariant fldindex)
+  {
+  }
+  
+  public void OnMouseOver(IDPanel SrcObj, IDVariant Field, IDVariant Row)
+  {
+  }
+  
+  public void OnFieldListVisibilityChanged(IDPanel SrcObj, IDVariant FieldIndex, IDVariant NewValue, IDVariant Final)
+  {
+  }
+}

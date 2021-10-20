@@ -1,0 +1,105 @@
+
+prepare:
+    [mkdir] Created dir: C:\appsid\cfaid\build
+    [mkdir] Created dir: C:\appsid\cfaid\build\WEB-INF
+     [copy] Copying 10 files to C:\appsid\cfaid\build\WEB-INF
+    [mkdir] Created dir: C:\appsid\cfaid\build\images
+     [copy] Copying 305 files to C:\appsid\cfaid\build\images
+    [mkdir] Created dir: C:\appsid\cfaid\build\dttimg
+     [copy] Copying 81 files to C:\appsid\cfaid\build\dttimg
+    [mkdir] Created dir: C:\appsid\cfaid\build\temp
+    [mkdir] Created dir: C:\appsid\cfaid\build\docs
+    [mkdir] Created dir: C:\appsid\cfaid\build\logs
+    [mkdir] Created dir: C:\appsid\cfaid\build\fonts
+    [mkdir] Created dir: C:\appsid\cfaid\build\help
+     [copy] Copying 34 files to C:\appsid\cfaid\build\help
+    [mkdir] Created dir: C:\appsid\cfaid\build\swfupload
+     [copy] Copying 3 files to C:\appsid\cfaid\build\swfupload
+    [mkdir] Created dir: C:\appsid\cfaid\build\soundman
+     [copy] Copying 5 files to C:\appsid\cfaid\build\soundman
+    [mkdir] Created dir: C:\appsid\cfaid\build\mmedia
+     [copy] Copying 10 files to C:\appsid\cfaid\build\mmedia
+    [mkdir] Created dir: C:\appsid\cfaid\build\RD3
+     [copy] Copying 67 files to C:\appsid\cfaid\build\RD3
+    [mkdir] Created dir: C:\appsid\cfaid\build\RD4
+     [copy] Copying 1 file to C:\appsid\cfaid\build\RD4
+    [mkdir] Created dir: C:\appsid\cfaid\build\JScript
+    [mkdir] Created dir: C:\appsid\cfaid\build\ckeditor
+     [copy] Copying 62 files to C:\appsid\cfaid\build\ckeditor
+    [mkdir] Created dir: C:\appsid\cfaid\build\jqplot
+     [copy] Copying 3 files to C:\appsid\cfaid\build\jqplot
+    [mkdir] Created dir: C:\appsid\cfaid\build\chartjs
+     [copy] Copying 1 file to C:\appsid\cfaid\build\chartjs
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 9 files to C:\appsid\cfaid\build\calimages
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copied 1 empty directory to 1 empty directory under C:\appsid\cfaid\build\WEB-INF\fonts
+     [copy] Copying 1 file to C:\appsid\cfaid\build\bootstrap
+     [copy] Copying 1 file to C:\appsid\cfaid\build\bootstrap
+     [copy] Copying 1 file to C:\appsid\cfaid\build\bootstrap
+     [copy] Copying 1 file to C:\appsid\cfaid\build\bootstrap
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+    [mkdir] Created dir: C:\appsid\cfaid\build\FusionChart
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+     [copy] Copying 1 file to C:\appsid\cfaid\build
+
+compile:
+    [mkdir] Created dir: C:\appsid\cfaid\build\WEB-INF\classes
+    [javac] Compiling 1096 source files to C:\appsid\cfaid\build\WEB-INF\classes
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+
+deploy:
+     [copy] Copying 1745 files to C:\workarea\tomcat7\webapps\Cfaid
+     [copy] Copying 1 file to C:\workarea\tomcat7\webapps\Cfaid\WEB-INF\lib
+
+BUILD SUCCESSFUL
+Total time: 2 minutes 8 seconds

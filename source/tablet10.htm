@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html> 
+  <head> 
+    <title>Ricette Last Minute</title>
+  <style>
+    BODY { margin: 8px; -webkit-user-select: none; }
+    #dev { cursor:pointer; -webkit-user-drag: none; }
+    #debug { cursor:pointer; -webkit-user-drag: none; opacity:0.30; position:absolute; padding:0px; width:24px; height:24px; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAb9JREFUeNqsVsFVhDAQDTzu0sHSgXQAW4FrBWIF4pWLlGAHsh3gkdNCBWIHWIFLBTqDP76YJQSEeW9eEgh/MjM/MzhZlgmTRFF0TUNC+tw0zQet72he4HVNmtLzdzEhngH4ioaSNMajgPRWWQvMfey/oaHlQ+hYjskD+uhTAkxITnpmD7FOyMhR3eBqoA+kOyw7YZdcAWcp4M2lAXrxhM0tzd9oDMVyOSM3fw0QYITTCITlP+BD4ilEvZLHXw/YcivWy4GAT6RfMnSDAVDtILYRybSE8+mB677FQIcQ1gpIDvpOeuTh4oQW8FDGFnKkg5UIq8kIh6hwZyQ018AFwtorxBhL9iPv8eYww+LdaB7IwxeuBi5cTMT2kgwGuH7o19vAijGxJbl2qqqSlyxekGR5kTpLvSo90NN2Si4fuRLzACwxgadgWCdpmlpcDZQ+MLdkDH3CxaRG/S82SnAtq7IHTu+V2IYrip1eWS/6wW4FeCFBOa+SFO4CSk4J9+x75IrBm9GOhvuQKOXbN5SDeuxgfGrSV2PLVIxwmGK4qYMxrfcaIZjG4qdvzfir0P4OOjDMx0lbpR9L9vWm2H0LMADUj7EBaJ+idAAAAABJRU5ErkJggg=="); }
+    #carurl { cursor:pointer; -webkit-user-drag: none; opacity:0.30; position:absolute; padding:0px; width:24px; height:24px; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABDZJREFUeNqcVTtsXUUQnZnd++57/uFPiJMIAcKRFUhIJJACKHyEoqQhFRQEBA0NpEBCQAEFFLRIgEBU1CnSUCAoKAIpQHwKIkChANIkSjDgxBg/v/vbneGsY0exebYDK827993dO2dmzsy5/Mlnp2j9xUdcXZxg5y9Ug2Mvi0WXOfmK8s4MRSVvDc27DlXsyYn09eAta2/gn7+mGM5xqHfli3NvRt86pVnrZsniCWKZIaNNl/febQQwy05+MuVdHMO0s7g1Onc81vVOL24rO/5hMwDBi7SuBRjRhRSpMe5UR11VPFr6drcMYcJic4DSiQ0Bii6tbwtwGmviZScsAK23txbn3uvlQz/OlzoOkPuu7vcrUciHNiKZpOmNsgVacWLiqFUs3D/s/BuL+cALXBSPefGlZu3TbImU1cSIgf11zUmqzdTaKqS9bPGvYznb0SZvf8iLf9/tY30rWyQ2XWUSVGk9izHczhp29sssBZp3L7/eIps04o99b/6Qa6ohHxq61kRR134WUQogHAKxN/UjMmUhTTnVqXsvycDgTHSt711sDq/lQ5AIJYuISFO3LP/Hn4ksVE/wBs1uJOSLhafyWO8h3/rWVHMO5e6EsWLi0IrJchCUAKo6kDUNnlVPOg332gYdsuRB47jUvWccRWqy9hdwcg92WlczcHDmYVmMafqpqkJC2dcO5Wu2SY+vgLiyeJxMJ6EX51G5yyjdXawgHCbpgC1bqjUmd6JNzbtouRvpuhbeiXGH73Yf6ZQ9Itf6UkKzh9EkyVYpFBqzPcr127nog0bXv4yNvIbDWcRgNfWsN5qVqtpLdTPkr/U/rMU7zuqn9XpKs3Zp2I3eu4Ebmwfkr6x0G9wsCCJNareN6+K4C+WzRv9vYagmOFS3EIaNzC45seGM45RkYgdbHJ8H+kPQmjlwElaNe5/x7zt4ZCMYnO1Jr0j8n3hSgoMJn7F9h90zGJwPsNkW50fMbIuqHsVEOBz8DfuIzLbh+QQcjQETAmb+Cm3m4N8hhLbGMCLcoEl9gEoUaPwt4INmV0QsZgMQJ3JIjyU2XXRSCYCKmQeUFMkyHFlymiHqDl4DkCIgGsP9GLvsbBpMbiqoAbVQNpBsV2ZSXWcpIDiaFI174WAYcvGLiD/DDYIRGTemYWZpJSUy08SfcEpgaWyTKqBMZg+TNl0cAMmc+39pmNpF1VCo8n7hcEypvAMvnRfOvmFxpwF0Fg7/0LpqUlgoqzONmcWQobw55inn9OU2/Qj3tV+HNJBNnyLsz9X4AdHmOdXyVQjfZJIqZncRVxjOkS0gmwIR17h2DGlSJi+iKL+niP0mMlDj9ySiPEmSTZPTI0jxoMV4AGD7U2mXmoyvfO0U8ox3ekqDr3DqJuz7/zCvPwPkLRD3PovHR4jvRM/vg6RPA2YHfI1CG8bRLOfI+bkVHftHgAEAbqRZ1QX9ZqEAAAAASUVORK5CYII="); }
+    #carqr  { -webkit-user-drag: none; opacity:0.90; position:absolute; padding:0px; width:55px; height:55px; }
+    #reset { cursor:pointer; -webkit-user-drag: none; opacity:0.15; position:absolute; padding:0px;; width:24px; height:24px; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAQAAABu4E3oAAADKElEQVQ4y31UW0gUYRQ+RhAFPa0PPcmC5d9TPUTkm2s76yV0KyQQoXqoKF+iTM1AosQMtd3MKG1adyoLNcnKMtfKCqIrXioveSnNxValcnuwh2Fjvs7MuFuZ+S//zNnvn3POfN85Z4j+WB+M66i1RXiFS8jiphi26kgfLbC+FXo9rlA+srEDe3EIZSG37Ff++zgWtTRlIxUS/5LhjFi7cB8jYh6HIakWW2BDJkpw9omnpkm5pBRXu7CTsWTtPF5I/zic4ngOzYVXvo5VWBrG38W98XmQqkkoxLPfTvd417FDGi6rJjKX7i01A3ZUwb8yArUrDGke1W8herV2+AZRb5SOX4vCkv67RD+ib6qpWjIegui96VKABGZg2iU4gOGBcDAZu9EL00pke9xU71adExl45CMKxruQqCUgF52NnC/ardo1G/bgbTNRt287UlAps8OE1RuScBjNsSzzsiZWR5c2Dz0DZVO6zDatBIF1RF1xZfyvPPTRSp3iBJuVM8EYojZmUKumM1U7tnFMvSrF+LmG6BMHP16th2oW9EjkwYE8Ofz2Y5YrappmN9yScPR7X5LpwGyUZOyDV1Cr2M/xXH81xRFs5Ax2bEXnwG+0UUnnwlYIahe5nCUnkqXbckZ1cJaNRp5cdDWGJT/ndbAU1YK6xEmOeDoU4J69ykdu1eytfdxldr7nYogz9RMWu5slFKBVUHBFzYTEtWgwFPNwSSXmUDjjH/BO6UIkIgeDXNwXq4qM0GP6OPjqnRzxThvRZLwMSbNpRVr/FpY/+rKaoiVoBXhqI3ruy2T9quQIXRvnmSw3q1yKYHqEMo7NdkUpd0g2AmGZXipZTLdo+m000cgGcOpRA2+NwrKpeKIvlguqpDnx+DXRoH7whPdtbOKRKv76+bpRmzmdXKU6md9VTC//AxyXqtglEQeZU0NswGqiwZi7sQ99RSxJErdtz9whC0i3kcXvu5ndKkI5slvJlytn8rlhbbzr0SfNO/3PlMM8zA6jLimz9zQO0f6/D0a7OaP1F4dK+duynx8thhJqvIL1RC204PphebP6gWgV90WHmDJYjf51/gv5MPbSLAoM1gAAAABJRU5ErkJggg==");}
+  	#iosplatform { cursor:pointer; -webkit-user-drag: none; position:absolute; }
+    #mdplatform { cursor:pointer; -webkit-user-drag: none; position:absolute; }
+    #iosplatform:focus { outline: none; }
+    #mdplatform:focus { outline: none; }
+    .ho { position:absolute; left:92px; top:73px; width:1263px; height:754px; overflow:hidden; }
+    .vo { position:absolute; left:80px; top:91px; width:799px; height:1223px; overflow:hidden; }
+  </style>
+  <script src="simulator.js" type="text/javascript"></script>
+  <script>
+    var CaravelUrl = "152.RicetteLastMinute";
+    var LoginURL = "RicetteLastMinute.htm";
+    var simImgHoriz = "images/tablet10h.gif";
+    var simImgVert  = "images/tablet10v.gif";
+	//
+	var simCarUrlLeftVert   = "38px";
+    var simCarUrlTopVert  = "42px";
+    var simCarUrlLeftHoriz  = "42px";
+    var simCarUrlTopHoriz = "30px";	
+	//
+	var simDebugLeftVert = "88px";
+    var simDebugTopVert = "42px";
+    var simDebugLeftHoriz = "92px";
+    var simDebugTopHoriz = "30px";	
+	//
+    var simWidthVert   = "895px";
+    var simHeightVert  = "44px";
+    var simWidthHoriz  = "1380px";
+    var simHeightHoriz = "35px";
+	//
+    var simCarQRLeftVert = "460px";
+    var simCarQRTopVert = "25px";
+    var simCarQRLeftHoriz = "715px";
+    var simCarQRTopHoriz = "15px";
+    //
+    var simIosLeftVert = "278px";
+    var simIosTopVert = "1338px";
+    var simIosLeftHoriz = "1380px";
+    var simIosToptHoriz = "270px";
+    //
+    var simAndroidLeftVert = "650px";
+    var simAndroidTopVert = "1338px";
+    var simAndroidLeftHoriz = "1380px";
+    var simAndroidToptHoriz = "598px";
+  </script>
+  </head>
+  <body onload="javascript:changeorient()">
+    <img id="dev" style="display:none" title="click to change orientation" src="images/tablet10h.gif" onclick="javascript:changeorient('t')">
+    <div id="debug" style="display:none" onclick="opendebug()" title="click to open a debug window"></div>
+    <div id="carurl" style="display:none" onclick="showcarurl()" title="click to show caravel url"></div>
+    <img id="iosplatform" onclick="changePlatform('ios');" title="click to set the platform to ios" height="30" src="images/apple.png"/>
+    <img id="mdplatform" onclick="changePlatform('md');" title="click to set the platform to Andoid" height="30" src="images/android.png"/>
+    <img id="carqr" style="display:none">
+    <div id="reset" onclick="resetapp()" title="click to reset the application"></div>
+    <iframe id="app" class="ho" frameborder="0">
+  </body>
+</html> 
