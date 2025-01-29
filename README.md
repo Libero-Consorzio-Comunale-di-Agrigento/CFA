@@ -43,7 +43,7 @@ Il repository è suddiviso nelle seguente cartelle:
 
 ### Prerequisiti
 - AD4: Amministrazione Database di Finmatica S.p.A. 
-- SO4: Struttura Amministrativa di Finmatica S.p.A. 
+- SO4: Struttura Amministrativa di Finmatica S.p.A.  
 - Java JDK versione 7 o superiore
 - Apache Tomcat versione 7 o superiore
 - Database Oracle versione 10 o superiore 
